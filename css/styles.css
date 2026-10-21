@@ -1,0 +1,375 @@
+/* MFFL public tracker — static styles. All URLs relative for /mffl/ subpath. */
+@font-face {
+  font-family: 'Delirium';
+  src: url('../assets/fonts/delirium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --body: 16px;
+  --name-size: 28.5px;        /* tracker team-name size */
+  --score-size: 36px;         /* tracker phone score size (42px >= 760px) */
+  --row-h: 72px;
+  --row-gap: 4px;
+  --nav-h: 68px;
+  --gold: #d8b45a;
+  --ink: #f4f2ea;
+  --ink-dim: rgba(244, 242, 234, 0.62);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: var(--body);
+  background: #101014;
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+/* Full bleed: the root canvas follows the active view, so the area behind
+   the system bars (and any overscroll strip) shows the view's own
+   background instead of permanent black. setView toggles html.light. */
+html.light, html.light body { background: #f3f2ee; }
+
+.display, .team-name, .team-score, .week-label, .countdown,
+.standings-name, .standings-num, .standings-rank, .roster-score,
+.player-name, .league-title {
+  font-family: 'Delirium', 'Arial Narrow', sans-serif;
+  font-weight: 400;
+  font-synthesis: none; /* never synthetically embolden the single-weight face */
+}
+
+/* ---------- 3D background ---------- */
+#bg3d { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+#bg3d canvas { display: block; width: 100%; height: 100%; transition: opacity 600ms ease; }
+#bg-tint {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  transition: background-color 900ms ease; opacity: 1;
+}
+#bg-fallback {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  display: none; transition: background-color 900ms ease;
+}
+#bg3d.failed + #bg-fallback { display: block; }
+#bg3d.failed { display: none; }
+
+/* ---------- app frame ---------- */
+#app { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+
+/* ---------- scores header ---------- */
+#scores-head { text-align: center; padding: 15.56px 16px 0; }
+#league-logo {
+  display: block; margin: 0 auto;
+  width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: opacity 500ms ease;
+}
+#league-logo.fading { opacity: 0; }
+.week-label {
+  margin: 2px 0 0; font-size: clamp(19.8px, 5.04vw, 39.6px); line-height: 1; letter-spacing: 0.02em; color: #e8e6dd;
+}
+.countdown { margin-top: 6px; font-size: 20px; letter-spacing: 0.08em; color: var(--ink-dim); }
+.countdown.hidden { display: none; }
+
+#helmet-wrap { text-align: center; margin: 16px 0 0; }
+#leader-helmet { display: block; margin: 0 auto; width: 247px; max-width: 70vw; height: auto; aspect-ratio: 1500 / 856; object-fit: cover; min-width: 0; min-height: 0; }
+#helmet-wrap.swap-out #leader-helmet { animation: helmetOut 450ms ease-in forwards; }
+#helmet-wrap.swap-in #leader-helmet { animation: helmetIn 550ms ease-out; }
+@keyframes helmetOut { to { transform: translateY(120px); opacity: 0; } }
+@keyframes helmetIn { from { transform: translateY(-40px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- leaderboard ---------- */
+#leaderboard {
+  display: flex; flex-direction: column; gap: var(--row-gap);
+  padding: 24px 14px 0; max-width: 720px; margin: 0 auto;
+}
+@media (max-width: 759px) { #leaderboard { padding-left: 22px; padding-right: 22px; } }
+.team-row {
+  display: flex; align-items: center;
+  height: var(--row-h); min-height: var(--row-h);
+  padding: 10px 8px;
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0.14),
+      rgba(255,255,255,0.045) 38%,
+      rgba(255,255,255,0.025) 62%,
+      rgba(12,12,16,0.34)),
+    rgba(20, 20, 26, 0.52);
+  -webkit-backdrop-filter: blur(12px) saturate(1.35);
+  backdrop-filter: blur(12px) saturate(1.35);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 0; /* square corners */
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.22),
+    0 10px 24px rgba(0,0,0,0.18);
+  color: var(--ink); text-align: left; cursor: pointer;
+  width: 100%; font-size: var(--body);
+  transition: transform 420ms ease, opacity 420ms ease;
+}
+.team-row:hover {
+  border-color: rgba(255,255,255,0.24);
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.065) 38%,
+      rgba(255,255,255,0.04) 62%,
+      rgba(12,12,16,0.36)),
+    rgba(28, 28, 35, 0.6);
+}
+.team-row:focus-visible { outline: 3px solid rgba(217,184,74,0.4); outline-offset: 2px; }
+.team-row .badge { width: 52px; height: 52px; object-fit: contain; flex: 0 0 auto; margin: 0 13px 0 6px; }
+.team-row .team-main {
+  flex: 1 1 auto; min-width: 0;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.team-row .team-name {
+  font-size: var(--name-size); font-weight: 600; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  line-height: 1.1; display: block;
+}
+.team-row .dots { display: flex; gap: 5px; margin-top: 6px; height: 6px; }
+.team-row .dot { width: 6px; height: 6px; border-radius: 50%; flex: 0 0 auto; }
+.team-row .dot-pre { background: #ffffff; }
+.team-row .dot-live { background: #e55252; }
+.team-row .dot-final { background: rgba(255, 255, 255, 0.22); }
+.team-row .team-score {
+  flex: 0 0 auto; font-size: var(--score-size); font-weight: 700; font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em; margin-left: 12px; line-height: 1;
+  transform: translateY(0.114em);
+}
+@media (min-width: 760px) { .team-row .team-score { font-size: 42px; } }
+.team-row .row-arrow { flex: 0 0 18px; margin-left: 7px; display: grid; place-items: center; }
+.team-row.pending .team-score { color: var(--ink-dim); font-size: 20px; letter-spacing: 0.06em; }
+/* dropped-week indicator on the Scores rows (same treatment as the old
+   standings week views): the viewed week is dropped from the season total */
+.team-row .team-score.dropped { color: #d92d20; text-decoration: line-through; opacity: 0.7; }
+
+/* ---------- roster view (aligned to the tracker) ---------- */
+#roster-view {
+  position: fixed; inset: 0; z-index: 8; overflow: hidden;
+  background: #1d1d23; color: #f1efe7;
+}
+/* the lineup scrolls in an inner layer so the close button can live on
+   the panel itself (absolute against it) without scrolling away */
+.roster-scroll {
+  height: 100%; overflow-y: auto;
+  padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+}
+#roster-view[hidden], #standings-view[hidden], #scores-wrap[hidden] { display: none !important; }
+@media (max-width: 1023px) {
+  body.roster-open { overflow: hidden; }
+  /* bottom sheet: the roster panel parks below the viewport and slides
+     up/down on the iOS sheet curve; visibility flips with the travel so
+     the parked sheet never intercepts touches */
+  #roster-view {
+    transform: translateY(102%);
+    visibility: hidden;
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0.38s;
+  }
+  #roster-view.sheet-open {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0s;
+  }
+}
+.roster-head {
+  display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; align-items: center;
+  gap: 10px; padding: 14px 10px 14px;
+  position: sticky; top: 0; z-index: 2; background: #1d1d23;
+}
+.roster-head .badge { width: 64px; height: 64px; object-fit: contain; }
+.roster-head h2 {
+  font-size: 33px; font-weight: 600; line-height: 1.15; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.roster-state { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: #9d9ea6; margin-top: 2px; }
+.roster-total { font-size: 36px; font-weight: 700; line-height: 0.95; text-align: right; font-variant-numeric: tabular-nums; }
+.frac { font-size: 0.52em; position: relative; top: -0.5em; }
+.lineup-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 14px; border-top: 1px solid #33333c; border-bottom: 1px solid #33333c;
+}
+.lineup-label { font-size: 17px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.lineup-meta { font-size: 10px; font-weight: 600; color: #9d9ea6; }
+.player-row {
+  position: relative;
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) 56px; gap: 9px; align-items: center;
+  min-height: 92px; padding: 12px 11px;
+  border-bottom: 1px solid #33333c;
+}
+.player-row:last-child { border-bottom: none; }
+.player-row.live::before {
+  content: ''; position: absolute; top: 13px; bottom: 13px; left: 0;
+  width: 2px; border-radius: 2px; background: #e55252;
+}
+.player-row .slot {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 25px; padding: 3px; border-radius: 6px;
+  background: #28282f; color: #b9bec6; font-size: 10px; font-weight: 780; letter-spacing: 0.04em;
+}
+.player-row .name-line { display: flex; align-items: baseline; min-width: 0; }
+.player-row .player-name {
+  font-size: clamp(18px, 5vw, 20px); font-weight: 600; line-height: 1.15; letter-spacing: 0.02em;
+  text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  min-width: 0;
+}
+.player-row .salary { margin-left: auto; flex: 0 0 auto; padding-left: 8px; font-size: 10px; font-weight: 550; color: #9d9ea6; }
+.player-row .meta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 7px; margin-top: 5px; }
+.player-row .matchup { font-size: 10px; font-weight: 650; letter-spacing: 0.02em; color: #8b929c; }
+.player-row .matchup .own { color: #f1efe7; }
+.pill { display: inline-flex; align-items: center; gap: 4px; min-height: 19px; padding: 2px 6px; border-radius: 999px; font-size: 9px; font-weight: 700; white-space: nowrap; }
+.pill.live { background: rgba(229, 82, 82, 0.16); color: #ff7878; }
+.pill.live i { display: block; width: 5px; height: 5px; border-radius: 50%; background: #e55252; }
+.pill.final { background: rgba(217, 184, 74, 0.16); color: #d9b84a; }
+.player-row .stat-line { font-size: 10px; line-height: 1.3; color: #9d9ea6; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-row .roster-score {
+  display: flex; align-items: center; justify-content: flex-end;
+  align-self: stretch; padding-left: 8px; border-left: 1px solid #33333c;
+  font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.player-row.concealed .player-name { font-style: italic; text-transform: none; }
+.player-row .meta-hidden { font-style: italic; font-size: 10px; font-weight: 650; color: #8b929c; }
+@media (min-width: 1024px) {
+  #scores-wrap.roster-open {
+    display: grid; column-gap: 16px;
+    grid-template-columns: minmax(310px, 0.78fr) minmax(430px, 1.22fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    grid-template-areas: "head head" "helmet roster" "board roster";
+    height: calc(100vh - 84px - env(safe-area-inset-bottom, 0px));
+    height: calc(100dvh - 84px - env(safe-area-inset-bottom, 0px));
+  }
+  #scores-wrap.roster-open #scores-head { grid-area: head; }
+  #scores-wrap.roster-open #helmet-wrap { grid-area: helmet; }
+  #scores-wrap.roster-open #leaderboard { grid-area: board; overflow: hidden; min-height: 0; }
+  #scores-wrap.roster-open #roster-view { grid-area: roster; }
+  #roster-view { position: static; height: 100%; min-height: 0; border: 1px solid #33333c; border-radius: 12px; padding-bottom: 0; }
+  .roster-scroll { padding-bottom: 0; }
+  .roster-head { gap: 12px; padding: 18px 14px 14px; }
+  .roster-total { font-size: 42px; }
+  .player-row { grid-template-columns: 38px minmax(0, 1fr) 62px; min-height: 96px; padding-left: 14px; padding-right: 14px; }
+  .player-row .roster-score { font-size: 42px; }
+}
+
+/* ---------- standings (light page, aligned to the tracker) ---------- */
+#standings-view { background: #f3f2ee; color: #191920; min-height: 100vh; min-height: 100dvh; margin: -0px; padding: 15.56px 20px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 76px); }
+.s-head { display: flex; align-items: center; justify-content: center; }
+#standings-view .s-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
+.league-title { text-align: center; font-size: clamp(33.84px, 9.76vw, 72.81px); letter-spacing: 0.01em; line-height: 0.98; margin: 12px 0 0; padding-bottom: 14px; font-weight: 700; }
+#standings-list { max-width: 720px; margin: 16px auto 0; background: #ffffff; border: 1px solid #d8d8d2; border-radius: 12px; overflow: hidden; }
+.standing-row {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 78px; padding: 12px 14px;
+  border-bottom: 1px solid #e3e1d9;
+}
+.standing-row:last-child { border-bottom: none; }
+.standing-row .standings-rank { flex: 0 0 24px; width: 24px; font-size: 20px; color: #191920; }
+.standing-row .badge { width: 38px; height: 38px; object-fit: contain; flex: 0 0 auto; }
+.standing-row .standings-name { flex: 1 1 auto; font-size: 28.5px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.standing-row .standings-num { flex: 0 0 auto; font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: #191920; }
+.standing-row .standings-num.dropped { color: #d92d20; text-decoration: line-through; opacity: 0.7; }
+@media (min-width: 760px) {
+  .standing-row .standings-num { font-size: 42px; }
+}
+.standings-note { text-align: center; font-size: 13px; color: #6b6b73; line-height: 1.5; margin: 14px 0 0; }
+
+/* week picker: iOS-style segmented pill control, floating just above the
+   bottom nav on the Scores view — frosted translucent track, the current
+   week as the filled selected segment, ghost arrow segments either side */
+#week-picker {
+  position: fixed; left: 16px; right: 16px; bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 10px); z-index: 5;
+  display: flex; align-items: center; gap: 4px;
+  max-width: 430px; margin: 0 auto; padding: 4px;
+  background: rgba(118, 118, 128, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.10); border-radius: 999px;
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+#week-picker[hidden] { display: none; }
+#week-picker button {
+  border: none; cursor: pointer; color: rgba(255, 255, 255, 0.92);
+  width: 58px; height: 38px; padding: 0; flex: none; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.17);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+  display: flex; align-items: center; justify-content: center;
+}
+#week-picker button:active { background: rgba(255, 255, 255, 0.26); }
+#week-picker button:disabled { opacity: 0.3; cursor: default; }
+#week-picker button:disabled:active { background: rgba(255, 255, 255, 0.17); }
+#week-picker button svg { display: block; }
+#week-picker .week-name {
+  flex: 1 1 auto; height: 38px; display: flex; align-items: center; justify-content: center;
+  font-size: 28.5px; font-weight: 600; letter-spacing: 0.04em; color: #ffffff; line-height: 1;
+  /* the display font's ink rides ~4px high in its line box; nudge it onto
+     the pill's optical center (measured against the rendered frame) */
+  transform: translateY(4px);
+}
+/* The picker itself never changes on mobile: the bottom sheet slides
+   over it untouched and carries its own close button (#sheet-close),
+   which rides the sheet's travel and stays fixed against the panel
+   while the lineup scrolls. On desktop the roster is an in-flow panel,
+   so there the picker still swaps to its own close button. */
+#week-picker #picker-close { display: none; }
+@media (min-width: 1024px) {
+  body.roster-open #week-picker {
+    justify-content: center;
+    background: transparent; border-color: transparent; box-shadow: none;
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    pointer-events: none;
+  }
+  body.roster-open #week-picker #week-prev,
+  body.roster-open #week-picker #week-next,
+  body.roster-open #week-picker .week-name { display: none; }
+  body.roster-open #week-picker #picker-close { display: flex; pointer-events: auto; }
+}
+#sheet-close { display: none; }
+@media (max-width: 1023px) {
+  #sheet-close {
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; left: 50%; transform: translateX(-50%); z-index: 3;
+    bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 14px);
+    width: 58px; height: 38px; padding: 0; border: none; border-radius: 999px;
+    cursor: pointer; color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.20);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  }
+  #sheet-close:active { background: rgba(255, 255, 255, 0.30); }
+}
+
+/* ---------- bottom nav ---------- */
+#bottomnav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+  padding: 4px 24px calc(8px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  background: rgba(15, 15, 18, 0.72);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+#bottomnav.light {
+  background: rgba(243, 242, 238, 0.72);
+  border-top: 1px solid rgba(27,27,32,0.10);
+}
+#bottomnav button {
+  flex: 1; background: none; border: none; color: rgba(255,255,255,0.42);
+  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  padding: 8px 0 4px; min-height: 56px; border-radius: 8px;
+}
+#bottomnav.light button { color: rgba(27,27,30,0.45); }
+#bottomnav button svg { display: block; flex: none; }
+#bottomnav button span { line-height: 1; }
+#bottomnav button.active { color: rgba(255,255,255,0.96); }
+#bottomnav.light button.active { color: #1b1b1e; }
+
+@media (min-width: 760px) {
+  #leaderboard, #roster-view { max-width: 860px; }
+  .team-row .team-name { font-size: 30px; }
+}
