@@ -203,6 +203,50 @@ function currentLeader() {
 function sortedTeams() {
   return TEAMS.slice().sort(function (a, b) { return (state.scores[b] || 0) - (state.scores[a] || 0); });
 }
+/* The Standings leader: the team ranked #1 by the standings model the
+   Standings view renders (standingsRows — season totals with each
+   team's single worst week dropped, derived from all week docs). */
+function standingsLeader() {
+  var rows = standingsRows();
+  return rows.length ? rows[0].team : currentLeader();
+}
+/* ---- view-scoped theming (decoupled) ----
+   The 3D background text wall (#bg3d) and its theme-driven backdrop
+   tint (#bg-tint / #bg-fallback — both set inside bg3d.js from the same
+   setLeader call) belong to the Scores page ONLY. They are driven
+   exclusively by applyScoresTheme(), from the viewed week's leader,
+   and only while the Scores view is active: navigating to Standings
+   never rebuilds, re-names, re-colors or animates the wall and never
+   retints the backdrop. The Standings page themes itself separately
+   through applyStandingsTheme(), which touches standings-scoped
+   elements only and never calls window.mfflBg, so no standings-leader
+   state can leak into the background; returning to Scores re-applies
+   the Scores leader's theme as usual. */
+function applyScoresTheme() {
+  if (state.view !== 'scores') return;
+  var tid = currentLeader();
+  if (window.mfflBg && tid && THEMES[tid]) {
+    window.mfflBg.setLeader(TEAM_LABEL[tid], THEMES[tid][0], THEMES[tid][1]);
+  }
+}
+/* Standings-scoped theming: the standings leader's theme applies to the
+   Standings view's own elements — its header logo (#standings-logo) and
+   the scoped theme channel on #standings-view — decoupled from the
+   Scores background machinery. */
+function applyStandingsTheme() {
+  var tid = standingsLeader();
+  if (!tid) return;
+  var sLogo = $('standings-logo');
+  if (sLogo && sLogo.getAttribute('src') !== 'assets/img/league-' + tid + '.png') {
+    sLogo.src = 'assets/img/league-' + tid + '.png';
+  }
+  var view = $('standings-view');
+  if (view && THEMES[tid]) {
+    view.dataset.leader = tid;
+    view.style.setProperty('--standings-accent', THEMES[tid][0]);
+    view.style.setProperty('--standings-fill', THEMES[tid][1]);
+  }
+}
 
 function renderAll() {
   renderHeader();
@@ -215,28 +259,26 @@ function renderHeader() {
   var leader = currentLeader();
   var prev = state.leader;
   state.leader = leader;
-  var logo = $('league-logo'), helmet = $('leader-helmet');
-  var sLogo = $('standings-logo');
+  var helmet = $('leader-helmet');
+  /* Keep the Standings view's own theming fresh (its header logo follows
+     the STANDINGS leader) without touching the background: that path is
+     applyStandingsTheme(), which never drives the wall or the tint. */
+  applyStandingsTheme();
 
   if (prev !== leader) {
-    /* lead change: helmet exits downward, staggered fade-in; logo cross-fades */
+    /* lead change: helmet exits downward, staggered fade-in */
     var wrap = $('helmet-wrap');
     wrap.classList.add('swap-out');
-    logo.classList.add('fading');
     setTimeout(function () {
       helmet.src = 'assets/img/helmet-' + leader + '.png';
-      logo.src = 'assets/img/league-' + leader + '.png';
-      sLogo.src = 'assets/img/league-' + leader + '.png';
-      logo.classList.remove('fading');
       wrap.classList.remove('swap-out');
       wrap.classList.add('swap-in');
       setTimeout(function () { wrap.classList.remove('swap-in'); }, 600);
     }, 460);
-    if (window.mfflBg) window.mfflBg.setLeader(TEAM_LABEL[leader], THEMES[leader][0], THEMES[leader][1]);
+    applyScoresTheme();
   } else {
-    if (logo.getAttribute('src') !== 'assets/img/league-' + leader + '.png') logo.src = 'assets/img/league-' + leader + '.png';
     if (helmet.getAttribute('src') !== 'assets/img/helmet-' + leader + '.png') helmet.src = 'assets/img/helmet-' + leader + '.png';
-    if (window.mfflBg) window.mfflBg.setLeader(TEAM_LABEL[leader], THEMES[leader][0], THEMES[leader][1]);
+    applyScoresTheme();
   }
 }
 
@@ -540,6 +582,14 @@ function standingsRows() {
 function renderStandings() {
   var list = $('standings-list');
   list.innerHTML = '';
+  /* Standings theming: this view's own elements (header logo and the
+     scoped theme channel on #standings-view) follow the team at the top
+     of THESE standings (season totals, worst week dropped) — not the
+     Scores view's viewed-week leader. This path is deliberately
+     decoupled from the background: rendering Standings never calls the
+     Scores-only applyScoresTheme(), so the text wall and its tint are
+     left exactly as the Scores view set them. */
+  applyStandingsTheme();
   standingsRows().forEach(function (r, i) {
     var row = document.createElement('div');
     row.className = 'standing-row';

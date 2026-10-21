@@ -19,7 +19,10 @@
   --ink-dim: rgba(244, 242, 234, 0.62);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+::selection { background: rgba(216, 180, 90, 0.35); }
+input, select, textarea { accent-color: var(--gold); }
 
 html, body { height: 100%; }
 
@@ -62,21 +65,13 @@ html.light, html.light body { background: #f3f2ee; }
 #app { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
 
 /* ---------- scores header ---------- */
-#scores-head { text-align: center; padding: 15.56px 16px 0; }
-#league-logo {
-  display: block; margin: 0 auto;
-  width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
-  transition: opacity 500ms ease;
-}
-#league-logo.fading { opacity: 0; }
 .week-label {
   margin: 2px 0 0; font-size: clamp(19.8px, 5.04vw, 39.6px); line-height: 1; letter-spacing: 0.02em; color: #e8e6dd;
 }
 .countdown { margin-top: 6px; font-size: 20px; letter-spacing: 0.08em; color: var(--ink-dim); }
 .countdown.hidden { display: none; }
 
-#helmet-wrap { text-align: center; margin: 16px 0 0; }
+#helmet-wrap { text-align: center; margin: 16px 0 0; padding: 20px; }
 #leader-helmet { display: block; margin: 0 auto; width: 247px; max-width: 70vw; height: auto; aspect-ratio: 1500 / 856; object-fit: cover; min-width: 0; min-height: 0; }
 #helmet-wrap.swap-out #leader-helmet { animation: helmetOut 450ms ease-in forwards; }
 #helmet-wrap.swap-in #leader-helmet { animation: helmetIn 550ms ease-out; }
@@ -122,7 +117,17 @@ html.light, html.light body { background: #f3f2ee; }
       rgba(12,12,16,0.36)),
     rgba(28, 28, 35, 0.6);
 }
-.team-row:focus-visible { outline: 3px solid rgba(217,184,74,0.4); outline-offset: 2px; }
+.team-row:active {
+  border-color: rgba(255,255,255,0.3);
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0.24),
+      rgba(255,255,255,0.09) 38%,
+      rgba(255,255,255,0.05) 62%,
+      rgba(12,12,16,0.36)),
+    rgba(32, 32, 40, 0.62);
+}
+.team-row:focus-visible, button:focus-visible { outline: 3px solid rgba(217,184,74,0.4); outline-offset: 2px; }
 .team-row .badge { width: 52px; height: 52px; object-fit: contain; flex: 0 0 auto; margin: 0 13px 0 6px; }
 .team-row .team-main {
   flex: 1 1 auto; min-width: 0;
@@ -147,8 +152,24 @@ html.light, html.light body { background: #f3f2ee; }
 .team-row .row-arrow { flex: 0 0 18px; margin-left: 7px; display: grid; place-items: center; }
 .team-row.pending .team-score { color: var(--ink-dim); font-size: 20px; letter-spacing: 0.06em; }
 /* dropped-week indicator on the Scores rows (same treatment as the old
-   standings week views): the viewed week is dropped from the season total */
-.team-row .team-score.dropped { color: #d92d20; text-decoration: line-through; opacity: 0.7; }
+   standings week views): the viewed week is dropped from the season total.
+   The strike is ONE straight line across the whole number, drawn by a
+   pseudo-element on the score container — not text-decoration, whose
+   per-run lines step between the integer and the smaller, raised .frac
+   decimal part and look broken. */
+.team-row .team-score.dropped { color: #d92d20; opacity: 0.7; position: relative; text-decoration: none; }
+.team-row .team-score.dropped .frac { text-decoration: none; }
+.team-row .team-score.dropped::after {
+  /* Optical center of the Delirium digits, not the container midpoint:
+     the font's ascent is 750/1000 and its lining digits span y 0..728,
+     so with line-height: 1 the baseline sits 0.75em below the box top,
+     the digits run 0.022em..0.75em, and their center is 0.386em from
+     the top — 0.114em above the 50% midpoint, which read as low.
+     Em-relative so it holds at both the 36px and 42px score sizes. */
+  content: ""; position: absolute; left: 0; right: 0; top: 0.386em;
+  height: 0.075em; min-height: 2px; background: currentColor;
+  transform: translateY(-50%); pointer-events: none;
+}
 
 /* ---------- roster view (aligned to the tracker) ---------- */
 #roster-view {
@@ -239,12 +260,11 @@ html.light, html.light body { background: #f3f2ee; }
   #scores-wrap.roster-open {
     display: grid; column-gap: 16px;
     grid-template-columns: minmax(310px, 0.78fr) minmax(430px, 1.22fr);
-    grid-template-rows: auto auto minmax(0, 1fr);
-    grid-template-areas: "head head" "helmet roster" "board roster";
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas: "helmet roster" "board roster";
     height: calc(100vh - 84px - env(safe-area-inset-bottom, 0px));
     height: calc(100dvh - 84px - env(safe-area-inset-bottom, 0px));
   }
-  #scores-wrap.roster-open #scores-head { grid-area: head; }
   #scores-wrap.roster-open #helmet-wrap { grid-area: helmet; }
   #scores-wrap.roster-open #leaderboard { grid-area: board; overflow: hidden; min-height: 0; }
   #scores-wrap.roster-open #roster-view { grid-area: roster; }
@@ -258,7 +278,10 @@ html.light, html.light body { background: #f3f2ee; }
 
 /* ---------- standings (light page, aligned to the tracker) ---------- */
 #standings-view { background: #f3f2ee; color: #191920; min-height: 100vh; min-height: 100dvh; margin: -0px; padding: 15.56px 20px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 76px); }
-.s-head { display: flex; align-items: center; justify-content: center; }
+/* top padding only: the standings logo starts at 15.56 + 20 = 35.56px,
+   matching the Scores helmet's top offset (16px margin + 20px wrap padding);
+   no bottom padding, so no extra space is wedged between logo and title */
+.s-head { display: flex; align-items: center; justify-content: center; padding: 20px 20px 0; }
 #standings-view .s-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
 .league-title { text-align: center; font-size: clamp(33.84px, 9.76vw, 72.81px); letter-spacing: 0.01em; line-height: 0.98; margin: 12px 0 0; padding-bottom: 14px; font-weight: 700; }
 #standings-list { max-width: 720px; margin: 16px auto 0; background: #ffffff; border: 1px solid #d8d8d2; border-radius: 12px; overflow: hidden; }
@@ -272,7 +295,17 @@ html.light, html.light body { background: #f3f2ee; }
 .standing-row .badge { width: 38px; height: 38px; object-fit: contain; flex: 0 0 auto; }
 .standing-row .standings-name { flex: 1 1 auto; font-size: 28.5px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .standing-row .standings-num { flex: 0 0 auto; font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: #191920; }
-.standing-row .standings-num.dropped { color: #d92d20; text-decoration: line-through; opacity: 0.7; }
+/* same single-line strike as the Scores rows: one straight pseudo-element
+   line across the whole number at a single height (see .team-score.dropped) */
+.standing-row .standings-num.dropped { color: #d92d20; opacity: 0.7; position: relative; text-decoration: none; }
+.standing-row .standings-num.dropped .frac { text-decoration: none; }
+.standing-row .standings-num.dropped::after {
+  /* same 0.386em optical digit center as .team-score.dropped::after
+     (Delirium digits center 0.114em above the box midpoint) */
+  content: ""; position: absolute; left: 0; right: 0; top: 0.386em;
+  height: 0.075em; min-height: 2px; background: currentColor;
+  transform: translateY(-50%); pointer-events: none;
+}
 @media (min-width: 760px) {
   .standing-row .standings-num { font-size: 42px; }
 }
@@ -368,6 +401,8 @@ html.light, html.light body { background: #f3f2ee; }
 #bottomnav button span { line-height: 1; }
 #bottomnav button.active { color: rgba(255,255,255,0.96); }
 #bottomnav.light button.active { color: #1b1b1e; }
+#bottomnav button:active { background: rgba(255,255,255,0.10); }
+#bottomnav.light button:active { background: rgba(27,27,30,0.08); }
 
 @media (min-width: 760px) {
   #leaderboard, #roster-view { max-width: 860px; }
