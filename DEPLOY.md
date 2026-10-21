@@ -52,16 +52,38 @@ part of a deploy.
   (a Pages-settings commit, a user hotfix), reconcile them — never
   force-push over them silently. Name any divergence in the deploy report.
 
+## The pre-deploy sweep (blocking)
+
+Before anything is pushed, the agent runs the sweep
+(`tools/deploy-sweep.mjs` — agent-side tooling, never committed) against the
+exact tree being shipped, staged from `mffl-dev`. It checks: every JS file
+parses; CSS braces are balanced (one stray brace silently discards every
+rule after it — the bug class that broke the display font in v34); every
+local path referenced by the HTML/CSS/JS exists, with dynamically built
+paths pattern-checked; the `index.html` `?v=` version and the `sw.js` cache
+version match; and no credential patterns appear anywhere in the tree.
+
+Any finding stops the deploy. The agent reports each finding with its fix
+guidance and pushes nothing until the sweep passes clean — or the user
+explicitly overrides a named finding, which is then named again in the
+deploy report.
+
+Deep code audits are not part of a deploy. They happen on request
+("audit the site") or before major changes: the sweep is the fast
+mechanical gate, the audit is the slow human-grade review.
+
 ## Deploy steps (agent)
 
 1. Diff `mffl-dev` `main` against `mffl` `main`: list changed files and the
    build version being shipped.
-2. Push the changed text files to `mffl` `main` as one commit:
+2. Run the pre-deploy sweep on the staged tree. If it blocks, stop and
+   report the findings — do not push.
+3. Push the changed text files to `mffl` `main` as one commit:
    `Deploy <version> (from mffl-dev)`.
-3. Read the pushed files back from GitHub to confirm they landed.
-4. Verify live: https://mffl.richzarick.com returns 200 and serves the new
+4. Read the pushed files back from GitHub to confirm they landed.
+5. Verify live: https://mffl.richzarick.com returns 200 and serves the new
    `?v=` version; spot-check the changed CSS/JS and one image.
-5. Report to the user: version, the deploy commit SHA on `mffl`, files
+6. Report to the user: version, the deploy commit SHA on `mffl`, files
    changed, live-check result, and any binary assets still needing their
    push to `mffl`.
 
