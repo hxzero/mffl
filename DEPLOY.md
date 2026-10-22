@@ -14,6 +14,21 @@ Rule: `mffl` receives changes only through a deploy from `mffl-dev`.
 No direct edits to `mffl`. Any emergency hotfix made in `mffl` must be copied
 back into `mffl-dev` in the same session, or the next deploy will diverge.
 
+## Feature branches
+
+Large features (a new tab, a redesign) are built on a feature branch in
+`mffl-dev`, created from `main` — never directly on `main`. `main` always
+holds a deployable state: what is live, plus confirmed small fixes only.
+
+- Work is iterated in the tracker as usual; confirmed increments are
+  committed to the feature branch, not to `main`.
+- A deploy promotes `main` only — a feature branch is never deployed
+  directly, and nothing on it can ship by accident.
+- When the feature is complete and confirmed end to end, it merges into
+  `mffl-dev` `main` (via pull request). From there it deploys normally.
+- Current feature branch: `feature/team-tab` (the Team tab), created
+  2026-10-21 from `main` at 4fb45c37.
+
 ## What "deploy" means
 
 Promote the current state of `mffl-dev`'s `main` to `mffl`'s `main`, verify
