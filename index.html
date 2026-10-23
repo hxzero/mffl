@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Meaningless Fantasy Football League 2026</title>
-<link rel="stylesheet" href="css/styles.css?v=20261020c">
+<link rel="stylesheet" href="css/styles.css?v=20261022f">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#101014">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
@@ -30,9 +30,9 @@
     <!-- SCORES -->
     <section id="scores-wrap">
       <div id="helmet-wrap"><img id="leader-helmet" src="assets/img/helmet-hxzero.png" alt="Leader helmet">
-        <div id="countdown" class="countdown display"></div>
       </div>
       <main id="leaderboard" aria-label="Leaderboard"></main>
+      <p id="pending-note" class="pending-note" hidden>Lineups pending — not entered yet.</p>
       <section id="roster-view" hidden>
         <div class="roster-scroll" id="roster-scroll">
         <div class="roster-head">
@@ -56,18 +56,21 @@
     <!-- STANDINGS -->
     <section id="standings-view" hidden>
       <header class="s-head">
-        <img class="s-logo" id="standings-logo" src="assets/img/league-hxzero.png" alt="League logo">
+        <img class="s-logo" id="standings-logo" src="assets/img/icon-192.png" alt="App icon">
       </header>
       <h1 class="league-title">Leaderboard</h1>
       <div id="standings-list"></div>
       <p class="standings-note">Each team's worst week is dropped from their total score.</p>
     </section>
 
-    <div id="week-picker" hidden>
-      <button id="week-prev" aria-label="Previous week"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 5.5 8 12 14.5 18.5"/></svg></button>
-      <span class="week-name display" id="week-name">WEEK 6</span>
-      <button id="week-next" aria-label="Next week"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 5.5 16 12 9.5 18.5"/></svg></button>
-      <button id="picker-close" aria-label="Close lineup"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div id="scores-bottom-stack">
+      <div id="countdown" class="countdown display" hidden></div>
+      <div id="week-picker" hidden>
+        <button id="week-prev" aria-label="Previous week"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 5.5 8 12 14.5 18.5"/></svg></button>
+        <span class="week-name display" id="week-name">WEEK 6</span>
+        <button id="week-next" aria-label="Next week"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 5.5 16 12 9.5 18.5"/></svg></button>
+        <button id="picker-close" aria-label="Close lineup"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
     </div>
   </div>
 
@@ -82,7 +85,7 @@
     </button>
   </nav>
 
-  <script src="js/bg3d.js?v=20261020c"></script>
-  <script src="js/app.js?v=20261020c"></script>
+  <script src="js/bg3d.js?v=20261022f"></script>
+  <script src="js/app.js?v=20261022f"></script>
 </body>
 </html>

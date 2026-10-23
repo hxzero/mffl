@@ -34,13 +34,13 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-/* Full bleed: the root canvas follows the active view, so the area behind
-   the system bars (and any overscroll strip) shows the view's own
-   background instead of permanent black. setView toggles html.light. */
-html.light, html.light body { background: #f3f2ee; }
+/* Full bleed: the root canvas is dark, so the area behind the system
+   bars (and any overscroll strip) shows the view's own background
+   instead of a mismatched strip. No view uses a light theme anymore:
+   Standings paints the roster system's dark background over its area. */
 
 .display, .team-name, .team-score, .week-label, .countdown,
-.standings-name, .standings-num, .standings-rank, .roster-score,
+.standings-name, .standings-num, .roster-score,
 .player-name, .league-title {
   font-family: 'Delirium', 'Arial Narrow', sans-serif;
   font-weight: 400;
@@ -68,8 +68,15 @@ html.light, html.light body { background: #f3f2ee; }
 .week-label {
   margin: 2px 0 0; font-size: clamp(19.8px, 5.04vw, 39.6px); line-height: 1; letter-spacing: 0.02em; color: #e8e6dd;
 }
-.countdown { margin-top: 6px; font-size: 20px; letter-spacing: 0.08em; color: var(--ink-dim); }
-.countdown.hidden { display: none; }
+/* Self-sufficient: the full treatment lives in this one rule (display
+   font included), so the countdown renders styled wherever it sits —
+   it no longer inherits anything from its old header context. */
+.countdown {
+  font-family: 'Delirium', 'Arial Narrow', sans-serif;
+  font-weight: 400; font-synthesis: none;
+  font-size: 20px; letter-spacing: 0.08em; color: var(--ink-dim); text-align: center;
+}
+#countdown[hidden] { display: none; }
 
 #helmet-wrap { text-align: center; margin: 16px 0 0; padding: 20px; }
 #leader-helmet { display: block; margin: 0 auto; width: 247px; max-width: 70vw; height: auto; aspect-ratio: 1500 / 856; object-fit: cover; min-width: 0; min-height: 0; }
@@ -276,25 +283,38 @@ html.light, html.light body { background: #f3f2ee; }
   .player-row .roster-score { font-size: 42px; }
 }
 
-/* ---------- standings (light page, aligned to the tracker) ---------- */
-#standings-view { background: #f3f2ee; color: #191920; min-height: 100vh; min-height: 100dvh; margin: -0px; padding: 15.56px 20px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 76px); }
-/* top padding only: the standings logo starts at 15.56 + 20 = 35.56px,
+/* ---------- standings (roster color system) ----------
+   Same dark palette as the roster sheet: background #1d1d23, surface
+   #28282f, borders #33333c, ink #f1efe7, muted text #9d9ea6. No leader
+   theming on this page — the fixed system applies whoever leads. */
+#standings-view { background: #1d1d23; color: #f1efe7; min-height: 100vh; min-height: 100dvh; margin: -0px; padding: 15.56px 20px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 76px); }
+/* top padding only: the standings icon starts at 15.56 + 20 = 35.56px,
    matching the Scores helmet's top offset (16px margin + 20px wrap padding);
-   no bottom padding, so no extra space is wedged between logo and title */
+   no bottom padding, so no extra space is wedged between icon and title */
 .s-head { display: flex; align-items: center; justify-content: center; padding: 20px 20px 0; }
-#standings-view .s-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
+#standings-view .s-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
 .league-title { text-align: center; font-size: clamp(33.84px, 9.76vw, 72.81px); letter-spacing: 0.01em; line-height: 0.98; margin: 12px 0 0; padding-bottom: 14px; font-weight: 700; }
-#standings-list { max-width: 720px; margin: 16px auto 0; background: #ffffff; border: 1px solid #d8d8d2; border-radius: 12px; overflow: hidden; }
+#standings-list { max-width: 720px; margin: 16px auto 0; background: #28282f; border: 1px solid #33333c; border-radius: 12px; overflow: hidden; }
 .standing-row {
   display: flex; align-items: center; gap: 12px;
   min-height: 78px; padding: 12px 14px;
-  border-bottom: 1px solid #e3e1d9;
+  border-bottom: 1px solid #33333c;
 }
 .standing-row:last-child { border-bottom: none; }
-.standing-row .standings-rank { flex: 0 0 24px; width: 24px; font-size: 20px; color: #191920; }
-.standing-row .badge { width: 38px; height: 38px; object-fit: contain; flex: 0 0 auto; }
-.standing-row .standings-name { flex: 1 1 auto; font-size: 28.5px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.standing-row .standings-num { flex: 0 0 auto; font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: #191920; }
+.standing-row .badge { width: 52px; height: 52px; object-fit: contain; flex: 0 0 auto; }
+/* Optical centering for both standings texts: Delirium's glyphs sit on
+   the baseline (ink spans 0..0.728em) while the font reserves a 0.75em
+   ascent and 0.25em descent, so the ink's center rides 0.114em above
+   the line box's midpoint — and flex align-items centers the box, not
+   the ink. There is no secondary row under the name; the offset is the
+   empty descent space inside its own line box. The Scores rows already
+   nudge their score down by this amount (.team-row .team-score); the
+   standings name and number get the same correction so both sit on
+   the badge's center line. Em-relative: it scales with the 42px
+   number size at >= 760px. The dropped strike is a child of the
+   number, so it travels with it and stays glued to the digits. */
+.standing-row .standings-name { flex: 1 1 auto; font-size: 28.5px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform: translateY(0.114em); }
+.standing-row .standings-num { flex: 0 0 auto; font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: #f1efe7; transform: translateY(0.114em); }
 /* same single-line strike as the Scores rows: one straight pseudo-element
    line across the whole number at a single height (see .team-score.dropped) */
 .standing-row .standings-num.dropped { color: #d92d20; opacity: 0.7; position: relative; text-decoration: none; }
@@ -309,15 +329,31 @@ html.light, html.light body { background: #f3f2ee; }
 @media (min-width: 760px) {
   .standing-row .standings-num { font-size: 42px; }
 }
-.standings-note { text-align: center; font-size: 13px; color: #6b6b73; line-height: 1.5; margin: 14px 0 0; }
+.standings-note { text-align: center; font-size: 13px; color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; }
+/* the Scores pending week's single quiet line, in the same
+   reduced-clutter manner as .standings-note */
+.pending-note { text-align: center; font-size: 13px; color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; padding: 0 22px; }
 
-/* week picker: iOS-style segmented pill control, floating just above the
-   bottom nav on the Scores view — frosted translucent track, the current
-   week as the filled selected segment, ghost arrow segments either side */
-#week-picker {
+/* Scores bottom stack: the kickoff countdown (when rendered) and the
+   week picker, floating just above the bottom nav on the Scores view.
+   The countdown sits directly above the picker, centered with it; when
+   it is not rendered the stack collapses so the picker sits alone with
+   no reserved space above it. The stack is out of the header flow, so
+   showing or hiding the countdown never moves the header. */
+#scores-bottom-stack {
   position: fixed; left: 16px; right: 16px; bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 10px); z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  max-width: 430px; margin: 0 auto;
+  pointer-events: none;
+}
+#scores-bottom-stack > * { pointer-events: auto; }
+#scores-bottom-stack .countdown { pointer-events: none; width: 100%; }
+/* week picker: iOS-style segmented pill control — frosted translucent
+   track, the current week as the filled selected segment, ghost arrow
+   segments either side */
+#week-picker {
   display: flex; align-items: center; gap: 4px;
-  max-width: 430px; margin: 0 auto; padding: 4px;
+  width: 100%; max-width: 430px; margin: 0 auto; padding: 4px;
   background: rgba(118, 118, 128, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.10); border-radius: 999px;
   -webkit-backdrop-filter: blur(16px) saturate(1.4);
@@ -385,10 +421,6 @@ html.light, html.light body { background: #f3f2ee; }
   -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
   border-top: 1px solid rgba(255,255,255,0.10);
 }
-#bottomnav.light {
-  background: rgba(243, 242, 238, 0.72);
-  border-top: 1px solid rgba(27,27,32,0.10);
-}
 #bottomnav button {
   flex: 1; background: none; border: none; color: rgba(255,255,255,0.42);
   font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
@@ -396,13 +428,10 @@ html.light, html.light body { background: #f3f2ee; }
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
   padding: 8px 0 4px; min-height: 56px; border-radius: 8px;
 }
-#bottomnav.light button { color: rgba(27,27,30,0.45); }
 #bottomnav button svg { display: block; flex: none; }
 #bottomnav button span { line-height: 1; }
 #bottomnav button.active { color: rgba(255,255,255,0.96); }
-#bottomnav.light button.active { color: #1b1b1e; }
 #bottomnav button:active { background: rgba(255,255,255,0.10); }
-#bottomnav.light button:active { background: rgba(27,27,30,0.08); }
 
 @media (min-width: 760px) {
   #leaderboard, #roster-view { max-width: 860px; }
