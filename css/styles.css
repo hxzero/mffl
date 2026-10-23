@@ -330,9 +330,6 @@ body {
   .standing-row .standings-num { font-size: 42px; }
 }
 .standings-note { text-align: center; font-size: 13px; color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; }
-/* the Scores pending week's single quiet line, in the same
-   reduced-clutter manner as .standings-note */
-.pending-note { text-align: center; font-size: 13px; color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; padding: 0 22px; }
 
 /* Scores bottom stack: the kickoff countdown (when rendered) and the
    week picker, floating just above the bottom nav on the Scores view.

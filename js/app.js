@@ -426,8 +426,6 @@ function renderHeader() {
 
 function renderLeaderboard() {
   var board = $('leaderboard');
-  var note = $('pending-note');
-  if (note) note.hidden = !state.pending;
   var order = sortedTeams();
   /* FLIP: record positions before reorder */
   var prevTops = {};
@@ -602,11 +600,19 @@ function renderRoster(tid) {
   list.innerHTML = '';
   var entry = state.rosters.teams[tid];
   if (!entry || entry.status !== 'entered' || !entry.players.length) {
-    $('lineup-meta').textContent = '';
-    var p = document.createElement('div');
-    p.className = 'player-row';
-    p.innerHTML = '<span class="player-name" style="grid-column:1 / -1;font-family:inherit;font-size:15px;color:#9d9ea6">Lineup pending — not entered yet.</span>';
-    list.appendChild(p);
+    $('lineup-meta').textContent = 'Lineups not entered yet for this week';
+    var slots = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DEF'];
+    slots.forEach(function (slot) {
+      var row = document.createElement('div');
+      row.className = 'player-row concealed';
+      row.innerHTML =
+        '<span class="slot">' + slot + '</span>' +
+        '<div class="player-main">' +
+          '<div class="name-line"><span class="player-name">Revealed at kickoff</span><span class="salary">—</span></div>' +
+        '</div>' +
+        '<span class="roster-score display">—</span>';
+      list.appendChild(row);
+    });
     return;
   }
   var cap = (typeof entry.salary === 'number') ? entry.salary
@@ -623,7 +629,7 @@ function renderRoster(tid) {
       row.innerHTML =
         '<span class="slot">' + pl.slot + '</span>' +
         '<div class="player-main">' +
-          '<div class="name-line"><span class="player-name">Revealed at kickoff.</span><span class="salary">—</span></div>' +
+          '<div class="name-line"><span class="player-name">Revealed at kickoff</span><span class="salary">—</span></div>' +
           '<div class="meta-line"><span class="meta-hidden">Player info hidden until the game starts</span></div>' +
         '</div>' +
         '<span class="roster-score display">—</span>';
