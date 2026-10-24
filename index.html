@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Meaningless Fantasy Football League 2026</title>
-<link rel="stylesheet" href="css/styles.css?v=20261024a">
+<link rel="stylesheet" href="css/styles.css?v=20261024c">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#101014">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
@@ -35,8 +35,24 @@
              arrive, so the img ships without a src and a helmet-sized
              shimmer block holds its slot during the loading shimmer.
              app.js clears the .helmet-loading state the moment the
-             real leader's helmet is revealed (see clearHelmetLoading). -->
+             first render presents the helmet slot's real content
+             (see dismissHelmetShimmer in app.js). -->
         <div class="shimmer-block helmet-shimmer" aria-hidden="true"></div>
+        <!-- The kickoff countdown lives HERE, in the helmet space:
+             the single static #countdown element (app.js only toggles
+             its hidden flag and its two line texts; ensureCountdown
+             rebuilds it here as a defensive fallback). While a viewed
+             week is in countdown mode, #helmet-wrap carries
+             .countdown-mode, the helmet is suppressed, and this
+             element is shown with the sign-in gate title's treatment
+             (the .league-title .gate-title classes below carry those
+             exact declarations). It takes TWO lines in that same
+             treatment: the top line (.countdown-label) reads
+             "Week <n> Kickoff:" for the viewed week and the bottom
+             line (.countdown-value) carries the timer duration
+             alone, with no "Kickoff in " prefix. It is hidden in
+             every other state. -->
+        <div id="countdown" class="countdown display league-title gate-title" hidden><span class="countdown-label" id="countdown-label">Week 6 Kickoff:</span><span class="countdown-value" id="countdown-value"></span></div>
       </div>
       <main id="leaderboard" aria-label="Leaderboard">
         <!-- Loading shimmer: placeholder rows shown from first paint
@@ -79,7 +95,8 @@
     </section>
 
     <div id="scores-bottom-stack">
-      <div id="countdown" class="countdown display" hidden></div>
+      <!-- The countdown no longer sits here: it lives in #helmet-wrap
+           (see Scores above). The week picker stays put. -->
       <div id="week-picker" hidden>
         <button id="week-prev" aria-label="Previous week"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 5.5 8 12 14.5 18.5"/></svg></button>
         <span class="week-name display" id="week-name">WEEK 6</span>
@@ -225,10 +242,10 @@
     </button>
   </nav>
 
-  <script src="js/pool.js?v=20261024a"></script>
-  <script src="js/history.js?v=20261024a"></script>
-  <script src="js/pool-extended.js?v=20261024a"></script>
-  <script src="js/bg3d.js?v=20261024a"></script>
-  <script src="js/app.js?v=20261024a"></script>
+  <script src="js/pool.js?v=20261024c"></script>
+  <script src="js/history.js?v=20261024c"></script>
+  <script src="js/pool-extended.js?v=20261024c"></script>
+  <script src="js/bg3d.js?v=20261024c"></script>
+  <script src="js/app.js?v=20261024c"></script>
 </body>
 </html>

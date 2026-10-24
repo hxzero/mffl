@@ -72,7 +72,18 @@
 
   var api = {
     ready: false,
+    /* The wall TEXT and the theme are independent inputs: `name` is
+       only the wall's text (and its wall-cache key), while the theme
+       is derived solely from accentCss/fillCss. Callers may pair any
+       text with any theme — a leader's name with that leader's
+       colors, or the countdown mode's "MFFL" with the neutral
+       charcoal entry — and the swap machinery (fade/slide out, swap,
+       fade/slide in) treats every pairing alike. wallText mirrors
+       the most recently requested text so the wall's current state
+       is readable without reaching into the scene. */
+    wallText: null,
     setLeader: function (name, accentCss, fillCss) {
+      api.wallText = name;
       var theme = themeFrom(accentCss, fillCss);
       tint.style.backgroundColor = css(theme.block);
       fallback.style.backgroundColor = css(theme.block);

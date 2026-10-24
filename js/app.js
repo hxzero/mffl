@@ -16,6 +16,26 @@ var THEMES = {
   mickandcheese: ['#191718', '#191718'],
   preparetobecrusheddoodles: ['#E3CC80', '#B12128'], silveroregano: ['#B050E0', '#721C95']
 };
+/* Countdown-mode wall entry, registered alongside the team themes:
+   while a viewed week is in countdown mode the 3D text wall reads
+   COUNTDOWN_WALL_TEXT and the whole Scores theme (wall colors + the
+   tint block behind it, both derived inside bg3d from this same
+   [accent, fill] pair) goes NEUTRAL CHARCOAL, DARKENED AGAIN per
+   the user's second follow-up (still charcoal — gray, no team hue,
+   not pure black): accent deepened from #7e8087 to #66686f and fill
+   darkened from #28282f to #1f1f27 (just above the app's #1d1d23
+   view background). Accent and fill drop by roughly the same
+   proportion as the previous darkening, so bg3d's derivations keep
+   roughly the previous face-to-block contrast relationship: face =
+   accent + 8% white (#72747b, darkened from #888a91), the tint
+   block = face mixed 50% toward black (#393a3e, darkened from
+   #444549), and the backdrop surface = fill x 0.65 (#141419,
+   darkened from #1a1a1f) — no team hue anywhere. It is applied
+   through the same setLeader machinery as any leader change, so
+   entering and leaving countdown mode run the usual 1200ms wall
+   transition. */
+var COUNTDOWN_WALL_TEXT = 'MFFL';
+var COUNTDOWN_THEME = ['#66686f', '#1f1f27'];
 
 /* WEEK is the newest week document in Firebase (the newest week that
    has rosters): the Standings derivation and the live poll key off it.
@@ -81,6 +101,7 @@ function gameState(pl, now) {
 
 var state = {
   weekDocs: {},         /* week number -> canonical /weeks/<n> document */
+  lineupStatus: {},     /* week number -> { tid: {entered, submitted, updatedAt} } | null (public /lineupStatus/<n>; null = fetched, no data / fetch failed) */
   rosters: null,        /* roster state for the SELECTED week (see applyWeek) */
   scores: {},           /* teamId -> total for the SELECTED week */
   playerScores: {},     /* teamId -> { name -> pts } for the selected week */
@@ -107,6 +128,77 @@ function fmt(n) { return (Math.round(n * 100) / 100).toFixed(2); }
    salary, pts, stats } ] } } }. The poller is the only writer; this
    page derives its rosters / scores / standings state from those docs. */
 var API_BASE = 'https://mffl-79e7b-default-rtdb.firebaseio.com/mffl';
+/* ---------------- public lineup status ----------------
+   The per-team lineup ENTRY status lives in its own public node,
+   /lineupStatus/<week>/<team> -> { entered, submitted, updatedAt }
+   (updatedAt is ms epoch). It exists because the real lineups at
+   /lineups/<week>/<team> are private to each team's owner — the
+   public roster view can never read them — while whether a team
+   has entered is public information the roster sheet must state
+   truthfully per team. The status node carries NO picks, counts or
+   salary: entry state and a timestamp only. Reads at the week level
+   are public (no auth); writes are owner-only (see the Team tab's
+   mirror in the persistence block below). */
+var STATUS_BASE = 'https://mffl-79e7b-default-rtdb.firebaseio.com/lineupStatus';
+var lineupStatusInflight = {}; /* week string -> Promise (dedupe) */
+/* Defensive parse of one week's status document: only known teams,
+   only a boolean `entered` is honored; anything malformed degrades
+   to "no status for that team" rather than breaking the sheet. */
+function parseLineupStatus(raw) {
+  if (!raw || typeof raw !== 'object') return null;
+  var out = {};
+  TEAMS.forEach(function (tid) {
+    var rec = raw[tid];
+    if (!rec || typeof rec !== 'object') return;
+    if (typeof rec.entered !== 'boolean') return;
+    out[tid] = {
+      entered: rec.entered,
+      submitted: rec.submitted === true,
+      updatedAt: typeof rec.updatedAt === 'number' ? rec.updatedAt : null
+    };
+  });
+  return Object.keys(out).length ? out : null;
+}
+/* Fetch (once per week, cached in state.lineupStatus alongside the
+   week-doc handling) the public status map for week W. A failed or
+   denied fetch resolves to null — "no status data" — never an
+   error state. force=true refetches (the scores poll uses it for
+   the live week, so a teammate's fresh submission lands without a
+   reload). When the fetch lands and that week's roster sheet is
+   open, the sheet re-renders with the real per-team status. */
+function fetchLineupStatus(W, force) {
+  var key = String(W);
+  if (!force && Object.prototype.hasOwnProperty.call(state.lineupStatus, key)) {
+    return Promise.resolve(state.lineupStatus[key]);
+  }
+  if (!force && lineupStatusInflight[key]) return lineupStatusInflight[key];
+  var p = fetch(STATUS_BASE + '/' + key + '.json', { cache: 'no-store' })
+    .then(function (res) { return res && res.ok ? res.json() : null; })
+    .then(function (raw) {
+      state.lineupStatus[key] = parseLineupStatus(raw);
+      return state.lineupStatus[key];
+    })
+    .catch(function () {
+      /* keep any previously loaded map; otherwise record "no data" */
+      if (!Object.prototype.hasOwnProperty.call(state.lineupStatus, key)) {
+        state.lineupStatus[key] = null;
+      }
+      return state.lineupStatus[key];
+    })
+    .then(function (map) {
+      delete lineupStatusInflight[key];
+      if (state.rosterTeam && state.scoresWeek === W) renderRoster(state.rosterTeam);
+      return map;
+    });
+  lineupStatusInflight[key] = p;
+  return p;
+}
+function ensureLineupStatus(W) { return fetchLineupStatus(W, false); }
+/* One team's status record for week W, or null when unknown. */
+function lineupStatusFor(W, tid) {
+  var map = state.lineupStatus[String(W)];
+  return map && map[tid] ? map[tid] : null;
+}
 /* Point the Scores page's working state (rosters, totals, per-player
    points) at week W's canonical document. The header theme, helmet and
    league icon follow from state.scores via currentLeader(), so the page
@@ -269,25 +361,81 @@ function firstKickoff() {
   return t;
 }
 var countdownTimer = null;
-/* The countdown element is STATIC markup in the Scores bottom stack
-   (directly above the week picker): the script only toggles its
-   hidden flag and its text. It is never created or removed at
-   runtime, so a missing-element failure cannot abort boot — the bug
-   that left the bottom nav unwired and the week picker hidden when
-   an older cached script met the newer page. ensureCountdown() only
-   rebuilds it as a defensive fallback. */
+/* ---------------- countdown mode ----------------
+   Countdown mode is a per-viewed-week Scores state: it applies
+   exactly while updateCountdown() would display the countdown for
+   the viewed week — the viewed week is the current (calendar) week
+   and its kickoff is still ahead (a pending week counts down to its
+   Sunday 10:00 AM PT main-slate kickoff; a rostered current week to
+   its first roster kickoff). A completed past week is never in the
+   mode. While the mode is active: the leader helmet is suppressed
+   in #helmet-wrap, the countdown occupies the helmet space with the
+   gate-title treatment as TWO lines ("Week <n> Kickoff:" over the
+   timer duration — see ensureCountdownLines), sized to the helmet's
+   own box height so the wrap does not change height, and the text
+   wall reads MFFL in the neutral charcoal theme (COUNTDOWN_THEME
+   above). Enter/exit is driven
+   from the existing render flow — renderHeader() and
+   updateCountdown() below; no new timers or polling are added. */
+var countdownMode = false;
+function computeCountdownActive() {
+  if (state.scoresWeek !== CAL_WEEK) return false;
+  var target = state.pending ? pendingKickoff(state.scoresWeek) : firstKickoff();
+  if (!isFinite(target)) return false;
+  return (target - Date.now()) > 0;
+}
+/* The countdown element is STATIC markup in #helmet-wrap (the helmet
+   space): the script only toggles its hidden flag and its text, and
+   moves it there with appendChild should a stale cached page still
+   carry it elsewhere. It is never created or removed at runtime in
+   normal operation, so a missing-element failure cannot abort boot
+   — the bug that left the bottom nav unwired and the week picker
+   hidden when an older cached script met the newer page.
+   ensureCountdown() only rebuilds it, in #helmet-wrap, as a
+   defensive fallback. */
+function moveCountdownIntoHelmet(el) {
+  var wrap = $('helmet-wrap');
+  if (el && wrap && el.parentNode !== wrap) wrap.appendChild(el);
+  return el;
+}
+/* The countdown's two lines: a label span (.countdown-label, the
+   top line) and a value span (.countdown-value, the bottom line),
+   both children of #countdown. ensureCountdownLines() guarantees
+   they exist — creating them on a legacy single-text element (and
+   dropping its stray direct text nodes) or on the rebuilt fallback
+   element — and returns them for updateCountdown() to fill. */
+function ensureCountdownLines(el) {
+  if (!el) return { label: null, value: null };
+  var value = el.querySelector('.countdown-value');
+  var label = el.querySelector('.countdown-label');
+  if (!value) {
+    value = document.createElement('span');
+    value.className = 'countdown-value';
+    value.id = 'countdown-value';
+    el.appendChild(value);
+  }
+  if (!label) {
+    label = document.createElement('span');
+    label.className = 'countdown-label';
+    label.id = 'countdown-label';
+    el.insertBefore(label, value);
+  }
+  Array.prototype.slice.call(el.childNodes).forEach(function (n) {
+    if (n.nodeType === 3) n.remove();
+  });
+  return { label: label, value: value };
+}
 function ensureCountdown() {
   var el = $('countdown');
-  if (el) return el;
-  var stack = $('scores-bottom-stack');
-  if (!stack) return null;
+  if (el) { ensureCountdownLines(el); return moveCountdownIntoHelmet(el); }
+  var wrap = $('helmet-wrap');
+  if (!wrap) return null;
   el = document.createElement('div');
   el.id = 'countdown';
-  el.className = 'countdown display';
+  el.className = 'countdown display league-title gate-title';
   el.hidden = true;
-  var picker = $('week-picker');
-  if (picker && picker.parentNode === stack) stack.insertBefore(el, picker);
-  else stack.appendChild(el);
+  ensureCountdownLines(el);
+  wrap.appendChild(el);
   return el;
 }
 function hideCountdown() {
@@ -295,29 +443,54 @@ function hideCountdown() {
   if (el) el.hidden = true;
 }
 function updateCountdown() {
-  /* The countdown lives in the Scores bottom stack, directly above
-     the week picker — never in the header, so the header lays out
-     identically whether it is shown or not. It is shown ONLY when
-     the selected week is the current (calendar) week and kickoff has
-     not yet begun; in every other case it stays hidden, so the
-     picker sits alone with no reserved space above it. The whole
-     update is guarded: the countdown is decoration and must never
-     throw into boot, rendering, or view switching. */
+  /* The countdown is shown ONLY in countdown mode (see above): the
+     viewed week is the current (calendar) week, kickoff has not yet
+     begun, and the Scores view is active. In every other case it
+     stays hidden. Until the first render dismisses the helmet
+     slot's boot shimmer (helmetShimmerDismissed), the countdown
+     stays hidden too — the shimmer owns the slot while a fetch is
+     in flight, and the first render's renderHeader() resolves the
+     mode and presents the countdown in its place. The whole update
+     is guarded: the countdown is decoration and must never throw
+     into boot, rendering, or view switching. */
   try {
-    if (state.view !== 'scores' || state.scoresWeek !== CAL_WEEK) { hideCountdown(); return; }
+    var wasMode = countdownMode;
+    countdownMode = computeCountdownActive();
+    var wrap = $('helmet-wrap');
+    if (wrap) wrap.classList.toggle('countdown-mode', countdownMode);
+    ensureCountdown();
+    if (state.view !== 'scores' || !countdownMode) {
+      hideCountdown();
+      /* Exit driven from here (the existing 30s countdown tick
+         crossing kickoff with no data render in between): removing
+         the mode is not enough — the helmet slot must present the
+         leader's helmet and the leader's wall, which is
+         renderHeader()'s job. Render paths that already ran
+         renderHeader() for this flip find it mid-swap or settled
+         for the same leader and return harmlessly. */
+      if (wasMode && !countdownMode && helmetShimmerDismissed) renderHeader();
+      return;
+    }
     /* A pending week has no roster kickoffs to read: its countdown
        targets that week's Sunday 10:00 AM PT main-slate kickoff. */
     var target = state.pending ? pendingKickoff(state.scoresWeek) : firstKickoff();
-    if (!isFinite(target)) { hideCountdown(); return; }
     var diff = target - Date.now();
-    if (diff <= 0) { hideCountdown(); return; }
+    if (!isFinite(target) || diff <= 0) { hideCountdown(); return; }
     var el = ensureCountdown();
     if (!el) return;
     var d = Math.floor(diff / 86400000),
         h = Math.floor(diff % 86400000 / 3600000),
         m = Math.floor(diff % 3600000 / 60000);
-    el.textContent = 'Kickoff in ' + (d > 0 ? d + 'd ' : '') + String(h).padStart(2, '0') + 'h ' + String(m).padStart(2, '0') + 'm';
-    el.hidden = false;
+    /* Two lines: the label names the viewed week that is counting
+       down (refreshed here every tick, so it follows week changes),
+       and the value is the timer duration in the existing format
+       (day segment only when > 0) WITHOUT the old "Kickoff in "
+       prefix — the label line replaces it. Never set el.textContent:
+       that would wipe the two line spans. */
+    var lines = ensureCountdownLines(el);
+    if (lines.label) lines.label.textContent = 'Week ' + state.scoresWeek + ' Kickoff:';
+    if (lines.value) lines.value.textContent = (d > 0 ? d + 'd ' : '') + String(h).padStart(2, '0') + 'h ' + String(m).padStart(2, '0') + 'm';
+    el.hidden = !helmetShimmerDismissed;
   } catch (e) { /* never let the countdown break the page */ }
 }
 function startCountdown() {
@@ -396,10 +569,23 @@ function applyScoresTheme() {
   if (state.view !== 'scores') return;
   var tid = currentLeader();
   if (window.mfflBg && tid && THEMES[tid]) {
-    window.mfflBg.setLeader(TEAM_LABEL[tid], THEMES[tid][0], THEMES[tid][1]);
+    /* Wall-text mechanism: bg3d's setLeader takes the wall TEXT and
+       the theme's [accent, fill] as independent arguments — the
+       text is the wall-cache key, the colors alone derive the
+       theme — so the two are decoupled here. In countdown mode the
+       text is MFFL and the theme is the neutral charcoal entry;
+       otherwise the text is the leader's name in the leader's own
+       theme. Either way the call goes through the same machinery,
+       so mode enter/exit transitions animate exactly like a lead
+       change (the 1200ms out/in wall transition). */
+    if (countdownMode) {
+      window.mfflBg.setLeader(COUNTDOWN_WALL_TEXT, COUNTDOWN_THEME[0], COUNTDOWN_THEME[1]);
+    } else {
+      window.mfflBg.setLeader(TEAM_LABEL[tid], THEMES[tid][0], THEMES[tid][1]);
+    }
     if (!bgPrewarmed && window.mfflBg && window.mfflBg.prewarm) {
       bgPrewarmed = true;
-      window.mfflBg.prewarm(Object.keys(TEAM_LABEL).map(function (t) { return TEAM_LABEL[t]; }));
+      window.mfflBg.prewarm([COUNTDOWN_WALL_TEXT].concat(Object.keys(TEAM_LABEL).map(function (t) { return TEAM_LABEL[t]; })));
     }
   }
 }
@@ -413,28 +599,107 @@ function renderAll() {
 }
 
 var helmetSwap = null; /* { leader, outTimer, inTimer } while a lead-change swap runs */
+/* The leader whose helmet is actually PRESENTED in the slot right
+   now — decoded, ungated, and not suppressed — or null when no
+   helmet is on display (boot, countdown mode, a load in flight, a
+   failed load). This is deliberately separate from what the img
+   happens to hold: entering countdown mode hides the helmet but
+   leaves its src in place, so on exit the img can still hold a
+   fully loaded STALE helmet that was never presented during the
+   mode. Whether a swap-out may run keys off this flag (see
+   helmetOutgoingPresentable), never off the img's load state
+   alone — keying off the load state is what let the hidden helmet
+   animate out on the first navigation away from the countdown
+   whenever an earlier scored week had left a loaded src behind. */
+var helmetPresentedLeader = null;
 /* First-load helmet reveal: #helmet-wrap ships in the .helmet-loading
    state — the helmet img has no src and a helmet-sized shimmer block
    holds its slot — because the leader is unknown until the week
    documents arrive; no helmet may paint during the loading shimmer.
-   The first time renderHeader actually presents a helmet (the swap-in
-   entrance below, or the steady-state src assignment), this clears
-   the loading state: shimmer block removed, img back in layout.
-   Idempotent like dismissShimmer — later calls find nothing. */
-var helmetLoadingCleared = false;
-function clearHelmetLoading(wrap) {
-  if (helmetLoadingCleared) return;
-  helmetLoadingCleared = true;
+   The first renderHeader dismisses the shimmer when it presents the
+   helmet slot's real content: the leader's helmet (the swap-in
+   entrance below, or the steady-state src assignment) — or, when the
+   week resolves into countdown mode, the countdown, in which case
+   dismissing the shimmer must NOT reveal the helmet (the
+   .countdown-mode CSS keeps it suppressed). Idempotent like
+   dismissShimmer — later calls find nothing. */
+var helmetShimmerDismissed = false;
+function dismissHelmetShimmer(wrap) {
+  if (helmetShimmerDismissed) return;
+  helmetShimmerDismissed = true;
   wrap.classList.remove('helmet-loading');
   var shim = wrap.querySelector('.helmet-shimmer');
   if (shim) shim.remove();
 }
+/* Whether the helmet img currently holds a displayable image: a src
+   that finished loading with real pixels. The img ships src-less and
+   countdown mode never assigns one, so on the first exit from
+   countdown mode it holds nothing at all — and a failed load leaves
+   it broken (complete, naturalWidth 0). Painting it in either state
+   shows the browser's broken-image placeholder (glyph + alt text)
+   instead of a helmet, so renderHeader keeps #helmet-wrap in the
+   .helmet-awaiting state (CSS: the img keeps its box but paints
+   nothing) whenever this does not hold for the incoming helmet, and
+   clears it only once that helmet has decoded. */
+function helmetImageLoaded(helmet) {
+  return !!(helmet.getAttribute('src') && helmet.complete && helmet.naturalWidth > 0);
+}
+/* Whether there is a helmet on display that a swap-out may exit:
+   the img still holds the PRESENTED leader's image and that image
+   is displayable. A loaded img is NOT enough — after countdown
+   mode the img routinely holds a stale, fully decoded helmet that
+   was suppressed for the whole mode, and exiting it would paint a
+   helmet nobody ever saw presented. Only a helmet that actually
+   reached the screen (helmetPresentedLeader, still the img's src,
+   still loaded) has an out-phase. */
+function helmetOutgoingPresentable(helmet) {
+  return !!(helmetPresentedLeader &&
+    helmet.getAttribute('src') === 'assets/img/helmet-' + helmetPresentedLeader + '.png' &&
+    helmetImageLoaded(helmet));
+}
 function renderHeader() {
   var leader = currentLeader();
-  var prev = state.leader;
-  state.leader = leader;
   var helmet = $('leader-helmet');
   var wrap = $('helmet-wrap');
+
+  /* Countdown mode (see computeCountdownActive): the helmet is
+     suppressed for as long as the mode lasts — no src assignment, no
+     swap, and the boot shimmer is dismissed WITHOUT presenting the
+     helmet (the countdown takes the slot; updateCountdown presents
+     it). state.leader is reset to null so that when the mode ends,
+     the next renderHeader takes the swap path and the leader's
+     helmet enters with its usual swap-in, alongside the wall's
+     transition from MFFL/charcoal to the leader's name and theme. */
+  countdownMode = computeCountdownActive();
+  if (countdownMode) {
+    if (helmetSwap) {
+      clearTimeout(helmetSwap.outTimer);
+      clearTimeout(helmetSwap.inTimer);
+      helmetSwap = null;
+      wrap.classList.remove('swap-out');
+      wrap.classList.remove('swap-in');
+    }
+    wrap.classList.add('countdown-mode');
+    /* The mode never assigns a src, so entering it leaves the img
+       src-less (or holding a stale helmet): the reveal gate goes on
+       here and stays on until a later swap-in presents a decoded
+       helmet — this is what keeps the first exit from painting the
+       src-less img during its swap-out phase. Just as important,
+       nothing is PRESENTED while the mode lasts, however loaded the
+       img's stale src is: clearing helmetPresentedLeader here is
+       what denies the exit path a swap-out for that stale helmet on
+       every way out of the mode (week switch, tab switch and back,
+       the countdown tick crossing kickoff). */
+    wrap.classList.add('helmet-awaiting');
+    helmetPresentedLeader = null;
+    dismissHelmetShimmer(wrap);
+    state.leader = null;
+    applyScoresTheme();
+    return;
+  }
+  wrap.classList.remove('countdown-mode');
+  var prev = state.leader;
+  state.leader = leader;
 
   if (helmetSwap) {
     if (helmetSwap.leader === leader) { applyScoresTheme(); return; }
@@ -444,42 +709,108 @@ function renderHeader() {
     helmetSwap = null;
     wrap.classList.remove('swap-out');
     wrap.classList.remove('swap-in');
+    wrap.classList.remove('helmet-awaiting');
     prev = null; /* force the swap path for the newest leader */
   }
 
   if (prev !== leader) {
-    /* lead change: helmet exits downward, staggered fade-in. The
-       re-entry waits until the new helmet image is decoded, so the
-       first painted frame of the fade-in is already the new helmet —
-       never a frame of the old one. Until then swap-out's forwards
-       fill holds the wrap at opacity 0. */
+    /* Lead change. Two shapes, decided by whether a helmet is
+       actually on display (helmetOutgoingPresentable):
+       - A presented helmet exits downward over 600ms, then the new
+         helmet fades in once decoded — the usual 1200ms out+in
+         choreography for a genuine change between two presented
+         helmets. The re-entry waits until the new helmet image is
+         decoded, so the first painted frame of the fade-in is
+         already the new helmet — never a frame of the old one.
+         Until then swap-out's forwards fill holds the wrap at
+         opacity 0.
+       - Nothing presented to exit (boot, a failed load, and above
+         all the exit from countdown mode — whose img may hold a
+         stale LOADED helmet that was hidden for the whole mode):
+         there is NO out-phase at all. The img stays behind the
+         reveal gate while the incoming helmet loads, and the first
+         presentation is that helmet's swap-in alone. Running the
+         out-phase here is the phantom-helmet bug: the gate test
+         used to key off the img merely holding a loaded image, so
+         a stale helmet left over from an earlier scored week was
+         ungated and slid out of a slot it was never shown in. */
     var swap = { leader: leader, outTimer: null, inTimer: null };
     helmetSwap = swap;
     wrap.classList.remove('swap-in');
-    wrap.classList.add('swap-out');
-    swap.outTimer = setTimeout(function () {
+    var beginIn = function () {
+      if (helmetSwap !== swap) return;
+      /* First reveal: the decoded leader helmet starts its entrance
+         now, so the loading shimmer in the helmet slot clears in the
+         same frame — never a frame of both, never a frame of none. */
+      dismissHelmetShimmer(wrap);
+      helmetPresentedLeader = leader;
+      wrap.classList.remove('helmet-awaiting');
+      wrap.classList.remove('swap-out');
+      wrap.classList.add('swap-in');
+      swap.inTimer = setTimeout(function () {
+        wrap.classList.remove('swap-in');
+        if (helmetSwap === swap) helmetSwap = null;
+      }, 600);
+    };
+    var failIn = function () {
+      if (helmetSwap !== swap) return;
+      /* The incoming helmet genuinely failed to load: settle with
+         the img kept behind the reveal gate — the placeholder
+         treatment — instead of swapping in the browser's
+         broken-image rendering. */
+      dismissHelmetShimmer(wrap);
+      wrap.classList.remove('swap-out');
+      wrap.classList.add('helmet-awaiting');
+      helmetPresentedLeader = null;
+      helmetSwap = null;
+    };
+    var loadIn = function () {
+      if (helmetSwap !== swap) return;
       helmet.src = 'assets/img/helmet-' + leader + '.png';
-      var beginIn = function () {
-        if (helmetSwap !== swap) return;
-        /* First reveal: the decoded leader helmet starts its entrance
-           now, so the loading shimmer in the helmet slot clears in the
-           same frame — never a frame of both, never a frame of none. */
-        clearHelmetLoading(wrap);
-        wrap.classList.remove('swap-out');
-        wrap.classList.add('swap-in');
-        swap.inTimer = setTimeout(function () {
-          wrap.classList.remove('swap-in');
-          if (helmetSwap === swap) helmetSwap = null;
-        }, 600);
-      };
-      if (helmet.decode) helmet.decode().then(beginIn, beginIn);
-      else if (helmet.complete) beginIn();
-      else { helmet.onload = beginIn; helmet.onerror = beginIn; }
-    }, 600);
+      if (helmet.decode) helmet.decode().then(beginIn, failIn);
+      else if (helmet.complete) { if (helmet.naturalWidth > 0) beginIn(); else failIn(); }
+      else { helmet.onload = beginIn; helmet.onerror = failIn; }
+    };
+    if (helmetOutgoingPresentable(helmet)) {
+      wrap.classList.remove('helmet-awaiting');
+      wrap.classList.add('swap-out');
+      swap.outTimer = setTimeout(loadIn, 600);
+    } else {
+      wrap.classList.add('helmet-awaiting');
+      wrap.classList.remove('swap-out');
+      loadIn();
+    }
     applyScoresTheme();
   } else {
-    clearHelmetLoading(wrap);
-    if (helmet.getAttribute('src') !== 'assets/img/helmet-' + leader + '.png') helmet.src = 'assets/img/helmet-' + leader + '.png';
+    dismissHelmetShimmer(wrap);
+    if (helmet.getAttribute('src') !== 'assets/img/helmet-' + leader + '.png') {
+      /* Direct assignment (no choreography on this path) gets the
+         same reveal gate: the img stays unpainted until the newly
+         assigned helmet has decoded, and a failed load leaves it
+         gated rather than painting the broken-image placeholder.
+         Until it settles, nothing counts as presented. */
+      wrap.classList.add('helmet-awaiting');
+      helmetPresentedLeader = null;
+      helmet.src = 'assets/img/helmet-' + leader + '.png';
+      var settleHelmet = function () {
+        if (helmet.getAttribute('src') !== 'assets/img/helmet-' + leader + '.png') return;
+        if (helmetImageLoaded(helmet)) {
+          wrap.classList.remove('helmet-awaiting');
+          helmetPresentedLeader = leader;
+        }
+      };
+      if (helmet.decode) helmet.decode().then(settleHelmet, settleHelmet);
+      else if (helmet.complete) settleHelmet();
+      else { helmet.onload = settleHelmet; helmet.onerror = settleHelmet; }
+    } else if (helmetImageLoaded(helmet)) {
+      wrap.classList.remove('helmet-awaiting');
+      helmetPresentedLeader = leader;
+    } else {
+      /* The img names the leader but holds no displayable image
+         (a failed load): it is gated and NOT presented, so a later
+         lead change gets no swap-out for it either. */
+      helmetPresentedLeader = null;
+    }
     applyScoresTheme();
   }
 }
@@ -693,6 +1024,10 @@ function statLine(pl, st) {
 }
 
 function renderRoster(tid) {
+  /* The sheet reads the week's PUBLIC lineup status (cached per
+     week; the fetch re-renders this sheet when it lands). It never
+     fetches /lineups — those records are private to their owners. */
+  ensureLineupStatus(state.scoresWeek);
   $('roster-team-name').textContent = TEAM_LABEL[tid];
   $('roster-badge').src = 'assets/img/team-' + tid + '.png';
   $('roster-state').textContent = 'WEEK ' + state.scoresWeek;
@@ -701,7 +1036,37 @@ function renderRoster(tid) {
   list.innerHTML = '';
   var entry = state.rosters.teams[tid];
   if (!entry || entry.status !== 'entered' || !entry.players.length) {
-    $('lineup-meta').textContent = 'Lineups not entered yet for this week';
+    /* No roster for this team in the published week document — the
+       bar's set/not-set wording then keys off the week's PUBLIC
+       lineup status (/lineupStatus/<n>, state.lineupStatus), the
+       per-team record this view CAN read; the actual lineups in
+       private /lineups/<week>/<team> are never fetched here.
+       Precedence (positive entry evidence always wins over
+       absence-based inference):
+         (1) a roster in the week doc — handled above this branch;
+         (2) status entered=true  -> the team HAS entered (submitted
+             or not — the string is the same), still concealed;
+         (3) status entered=false -> not entered, per the team's own
+             status record;
+         (4) a week doc exists but the team is absent from it ->
+             not entered, grounded in the published document;
+         (5) no doc and no status -> concealment only, no claim. */
+    var statusRec = lineupStatusFor(state.scoresWeek, tid);
+    var weekDoc = state.weekDocs[String(state.scoresWeek)];
+    var lineupMeta = $('lineup-meta');
+    if (statusRec && statusRec.entered === true) {
+      lineupMeta.classList.remove('is-not-entered');
+      lineupMeta.textContent = 'Lineup entered · Hidden until kickoff';
+    } else if (statusRec && statusRec.entered === false) {
+      lineupMeta.classList.add('is-not-entered');
+      lineupMeta.textContent = 'Lineup not entered';
+    } else if (weekDoc && weekDoc.teams) {
+      lineupMeta.classList.add('is-not-entered');
+      lineupMeta.textContent = 'Lineup not entered';
+    } else {
+      lineupMeta.classList.remove('is-not-entered');
+      lineupMeta.textContent = 'Lineup hidden until kickoff';
+    }
     var slots = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DEF'];
     slots.forEach(function (slot) {
       var row = document.createElement('div');
@@ -717,6 +1082,7 @@ function renderRoster(tid) {
   }
   var cap = (typeof entry.salary === 'number') ? entry.salary
     : entry.players.reduce(function (a, pl) { return a + (pl.salary || 0); }, 0);
+  $('lineup-meta').classList.remove('is-not-entered');
   $('lineup-meta').textContent = entry.players.length + ' roster spots' +
     (cap > 0 ? ' · $' + cap.toLocaleString('en-US') + ' cap used' : '');
   var statsMap = (state.playerStats || {})[tid] || {};
@@ -1024,9 +1390,9 @@ function wireAvatarFallback(scope) {
   });
 }
 /* Kickoff for a pool player's game, from the pool's games map
-   (game string -> ISO instant, UTC), formatted in America/Los_Angeles
-   as short weekday + time ("Sun 1:25 PM"). A game missing from the map
-   yields '' — the kickoff is omitted rather than guessed. */
+   (game string -> ISO instant, UTC), formatted in the viewer's
+   local time as short weekday + time ("Sun 1:25 PM"). A game missing
+   from the map yields '' — the kickoff is omitted rather than guessed. */
 function poolKickoff(p) {
   if (!p || !p.game) return '';
   /* Kickoff lookup spans BOTH games maps: a derived player's game
@@ -1042,7 +1408,7 @@ function poolKickoff(p) {
   if (isNaN(d.getTime())) return '';
   try {
     var parts = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'America/Los_Angeles', weekday: 'short',
+      weekday: 'short',
       hour: 'numeric', minute: '2-digit', hour12: true
     }).formatToParts(d);
     var wd = '', hr = '', min = '', ap = '';
@@ -1480,7 +1846,11 @@ function wireAuth() {
    draft). In-progress unsubmitted edits are never written, and a
    failed save NEVER shows the submitted state. (The artifact's
    getTeamLineup / saveTeamLineup actions and their stored rows
-   remain in place, unused by this view.) */
+   remain in place, unused by this view.)
+   Every successful /lineups write is MIRRORED to the public status
+   node /lineupStatus/<week>/<team> (see putLineupStatus below), so
+   the public roster view can read this team's entry state without
+   ever touching the private record. */
 var teamLineupLoadedKey = null;
 var teamSaveInFlight = false;
 /* Lookup in the OFFICIAL pool alone (never the derived extension):
@@ -1529,6 +1899,54 @@ function currentPicksObject() {
   });
   return out;
 }
+/* Mirror one lineup record to the PUBLIC status node:
+   PUT /lineupStatus/<week>/<team> = { entered, submitted, updatedAt }
+   derived from the record just written — entered = it carries at
+   least one pick, submitted = its submitted flag, updatedAt = its
+   write instant as ms epoch. Status only: no picks, counts or
+   salary ever leave the private record. (A null record means the
+   lineup document was deleted, so the status node is DELETEd too;
+   no current flow deletes, but the mirror honors the contract.)
+   The /lineups write is authoritative: a failed status write is
+   caught here and NEVER fails the lineup operation — the caller's
+   submitted state, the saved picks, everything proceeds as if the
+   mirror had landed; the load-time self-heal in loadTeamLineup
+   re-derives the node on a later visit. On success the local
+   per-week status cache is updated in place, so this session's
+   roster view reflects the team's own new status immediately. */
+function putLineupStatus(week, team, record) {
+  if (!record) {
+    return authedDbFetch('/lineupStatus/' + week + '/' + team + '.json', { method: 'DELETE' })
+      .then(function () { return true; }, function () { return false; })
+      .then(function (ok) {
+        if (ok) {
+          var map = state.lineupStatus[String(week)];
+          if (map) delete map[team];
+        }
+        return ok;
+      });
+  }
+  var ms = typeof record.updatedAt === 'number' ? record.updatedAt : Date.parse(record.updatedAt);
+  if (!isFinite(ms)) ms = Date.now();
+  var status = {
+    entered: !!(record.picks && Object.keys(record.picks).length > 0),
+    submitted: record.submitted === true,
+    updatedAt: ms
+  };
+  return authedDbFetch('/lineupStatus/' + week + '/' + team + '.json', {
+    method: 'PUT',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(status)
+  }).then(function (res) { return !!(res && res.ok); }, function () { return false; })
+    .then(function (ok) {
+      if (ok) {
+        var key = String(week);
+        if (!state.lineupStatus[key]) state.lineupStatus[key] = {};
+        state.lineupStatus[key][team] = status;
+      }
+      return ok;
+    });
+}
 function persistTeamLineup(submitted) {
   var pool = poolData();
   if (!pool || typeof pool.week !== 'number') return Promise.resolve(false);
@@ -1544,7 +1962,12 @@ function persistTeamLineup(submitted) {
     method: 'PUT',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(record)
-  }).then(function (res) { return !!(res && res.ok); }, function () { return false; });
+  }).then(function (res) {
+    if (!res || !res.ok) return false;
+    /* the lineup is saved — mirror its status (failure-tolerant:
+       putLineupStatus never rejects and its result is ignored) */
+    return putLineupStatus(pool.week, auth.team, record).then(function () { return true; });
+  }, function () { return false; });
 }
 /* Restore the saved record for (pool week, signed-in team) the
    first time the Team view is shown for that team. Picks rehydrate
@@ -1570,6 +1993,13 @@ function loadTeamLineup() {
     })
     .then(function (rec) {
       if (!rec || !rec.picks) return;
+      /* Self-heal the public status node from the record just
+         loaded (idempotent): lineups submitted before the node
+         existed — or whose mirror write once failed — get their
+         /lineupStatus entry (re)derived here, once per load.
+         Fire-and-forget: putLineupStatus never rejects and its
+         outcome never affects the restore. */
+      putLineupStatus(pool.week, auth.team, rec);
       /* the user started picking before the record arrived: their
          in-progress edits win, the stale restore is dropped */
       if (lineupKey() !== keyAtStart) return;
@@ -2413,6 +2843,8 @@ async function scoresUpdate() {
   } catch (e) { return; }
   if (!data || !data.teams) return;
   state.weekDocs[String(W)] = data;
+  /* keep the live week's public lineup status as fresh as its doc */
+  await fetchLineupStatus(W, true);
   if (W > WEEK) WEEK = W;
   if (data.final) state.waveFinal = true;
   /* refresh the displayed state only when the user is viewing this

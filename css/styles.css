@@ -158,13 +158,62 @@ html.team #app { padding-bottom: 0; }
 }
 /* Self-sufficient: the full treatment lives in this one rule (display
    font included), so the countdown renders styled wherever it sits —
-   it no longer inherits anything from its old header context. */
+   it no longer inherits anything from its old header context. The
+   element now lives in #helmet-wrap and is only ever shown in
+   countdown mode, where the .league-title.gate-title declarations
+   (shared with the sign-in gate's title, below) take over its size,
+   line-height, spacing and weight. */
 .countdown {
   font-family: var(--font-display);
   font-weight: var(--fw-regular); font-synthesis: none;
   font-size: var(--fs-lg); letter-spacing: var(--ls-widest); color: var(--ink-dim); text-align: center;
 }
-#countdown[hidden] { display: none; }
+#countdown[hidden] { display: none !important; }
+/* Countdown in the helmet space: the .league-title margin/padding
+   rhythm is the gate title's own page rhythm, not the helmet slot's —
+   inside #helmet-wrap the countdown sits flush and centered, with
+   the wrap's own padding as its breathing room. */
+#helmet-wrap #countdown {
+  margin: 0; padding-bottom: 0;
+  /* Kickoff text treatment (countdown presentation ONLY — this
+     element lives in #helmet-wrap; the sign-in gate title shares
+     the .league-title.gate-title size/line-height but sits in
+     #team-gate, so it keeps its own color): both lines render in
+     pure white at full opacity — overriding the .countdown base
+     rule's dimmed --ink-dim color — with a hairline neutral-gray
+     outline around the letters. The stroke is inherited by the
+     .countdown-label / .countdown-value lines; 0.5px at the
+     64–84px gate-title size reads as a hairline, not a border,
+     and #8a8d94 stays clearly visible against the darkened
+     charcoal tint behind it while the white fill dominates. */
+  color: #ffffff; opacity: 1;
+  -webkit-text-stroke: 0.5px #8a8d94;
+}
+/* Two-line countdown: the label line ("Week <n> Kickoff:") and the
+   value line (the timer duration) are block lines inside the single
+   #countdown element, both inheriting its .league-title.gate-title
+   treatment (Delirium, clamp(64px, 17.5vw, 84px), line-height 0.82,
+   centered). They carry no margins of their own, so the pair's height
+   is exactly two title lines. */
+.countdown-label, .countdown-value { display: block; }
+/* Container height = helmet height: in countdown mode the countdown
+   box is given the helmet's own rendered height — the helmet is
+   247px wide capped at 70vw (see #leader-helmet) at a 1500/856
+   aspect, i.e. min(247px, 70vw) * 856/1500 tall (≈141px at both
+   390px and 430px viewports, where 247px is under the cap) — as a
+   MIN-height, so the wrap (its 20px top/bottom padding plus this
+   box) renders at exactly the helmet-present height
+   (20 + 141 + 20 ≈ 181px) with no layout shift when the mode flips
+   either way, while the box can still grow rather than clip if two
+   title lines ever exceeded that height at a very narrow width.
+   The two lines are centered within the box (flex column,
+   justify-content: center). The :not([hidden]) guard keeps the
+   hidden state (and the boot shimmer period) display:none. */
+#helmet-wrap.countdown-mode #countdown:not([hidden]) {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%;
+  min-height: calc(min(247px, 70vw) * 856 / 1500);
+}
 
 #helmet-wrap { text-align: center; margin: 16px 0 0; padding: 20px; }
 #leader-helmet { display: block; margin: 0 auto; width: 247px; max-width: 70vw; height: auto; aspect-ratio: 1500 / 856; object-fit: cover; min-width: 0; min-height: 0; }
@@ -180,10 +229,41 @@ html.team #app { padding-bottom: 0; }
    (the .shimmer-block sweep below) holds its exact box — same
    247px width and 1500/856 aspect as #leader-helmet, so the reveal
    causes no layout shift. app.js removes the class and the block
-   when the first renderHeader presents the real leader's helmet
-   (see clearHelmetLoading); while a fetch hangs both simply stay,
-   like the leaderboard shimmer rows. */
+   at the first renderHeader, when the helmet slot's real content
+   is presented — the leader's helmet, or the countdown when the
+   week resolves into countdown mode (see dismissHelmetShimmer);
+   while a fetch hangs both simply stay, like the leaderboard
+   shimmer rows. */
 #helmet-wrap.helmet-loading #leader-helmet { display: none; }
+/* ---------- countdown mode (Scores, viewed week pre-kickoff) ----------
+   While the viewed week is in countdown mode, #helmet-wrap carries
+   .countdown-mode (app.js owns the class, driven from the render
+   flow): the leader helmet is suppressed outright — no swap
+   animation, no reveal — and the relocated #countdown occupies the
+   helmet space instead, styled by its .league-title.gate-title
+   classes. This is a post-render state, distinct from the boot
+   .helmet-loading shimmer above: the shimmer still shows until the
+   first render resolves the week, and dismissHelmetShimmer clears
+   it without ever presenting the helmet while this class is on. */
+#helmet-wrap.countdown-mode #leader-helmet { display: none !important; }
+/* ---------- helmet reveal gate ----------
+   #helmet-wrap.helmet-awaiting means #leader-helmet does not
+   currently hold a displayable image: it ships src-less, countdown
+   mode never assigns a src, and a failed load leaves it broken.
+   Painting it in that state shows the browser's broken-image
+   placeholder (glyph + alt text) — visibly so during the swap-out
+   phase of the first week switch out of countdown mode, when the
+   .helmet-loading and .countdown-mode display:none covers are both
+   already gone. While the gate is on, the img keeps its layout box
+   (width + aspect-ratio above, so the slot's height never changes)
+   but paints nothing; app.js clears the class only once the
+   incoming leader helmet has decoded, and re-adds it if that load
+   fails. With a PRESENTED helmet exiting, the class stays off and
+   the swap-out animation paints exactly as before; a helmet that
+   was never presented (a stale loaded src left behind by countdown
+   mode) gets no swap-out at all — app.js skips the out-phase and
+   keeps this gate on until the incoming helmet's swap-in. */
+#helmet-wrap.helmet-awaiting #leader-helmet { visibility: hidden; }
 .helmet-shimmer { display: none; }
 #helmet-wrap.helmet-loading .helmet-shimmer {
   display: block; width: 141px; height: 141px; max-width: 70vw; max-height: 70vw;
@@ -385,6 +465,7 @@ html.team #app { padding-bottom: 0; }
 }
 .lineup-label { font-size: var(--fs-label-lg); font-weight: var(--fw-semibold); letter-spacing: var(--ls-wider); text-transform: uppercase; }
 .lineup-meta { font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: #9d9ea6; }
+.lineup-meta.is-not-entered { color: var(--gold); }
 #roster-list { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px 0; }
 .player-row {
   position: relative;
@@ -504,12 +585,11 @@ html.team #app { padding-bottom: 0; }
 }
 .standings-note { text-align: center; font-size: var(--fs-body-sm); color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; }
 
-/* Scores bottom stack: the kickoff countdown (when rendered) and the
-   week picker, floating just above the bottom nav on the Scores view.
-   The countdown sits directly above the picker, centered with it; when
-   it is not rendered the stack collapses so the picker sits alone with
-   no reserved space above it. The stack is out of the header flow, so
-   showing or hiding the countdown never moves the header. */
+/* Scores bottom stack: the week picker, floating just above the
+   bottom nav on the Scores view. (The kickoff countdown used to sit
+   directly above the picker here; it now lives in #helmet-wrap —
+   see the countdown-mode rules at the helmet header.) The stack is
+   out of the header flow. */
 #scores-bottom-stack {
   position: fixed; left: 16px; right: 16px; bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 10px); z-index: 5;
   display: flex; flex-direction: column; align-items: center; gap: 8px;
@@ -517,7 +597,6 @@ html.team #app { padding-bottom: 0; }
   pointer-events: none;
 }
 #scores-bottom-stack > * { pointer-events: auto; }
-#scores-bottom-stack .countdown { pointer-events: none; width: 100%; }
 /* week picker: iOS-style segmented pill control — frosted translucent
    track, the current week as the filled selected segment, ghost arrow
    segments either side */
