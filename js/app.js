@@ -1194,11 +1194,16 @@ function setView(v) {
      views are dark now; neither enters a light mode and the bottom nav
      keeps its normal dark form on both. */
   var tc = document.querySelector('meta[name="theme-color"]');
-  if (tc) tc.setAttribute('content', v === 'standings' ? '#1d1d23' : '#101014');
+  if (tc) tc.setAttribute('content', (v === 'standings' || v === 'team') ? '#1d1d23' : '#101014');
   /* Team view only: moves the bottom nav clearance inside #team-view
      (html.team in styles.css) so its background paints the clearance
-     strip at the bottom of the scroll; removed on any other view. */
+     strip at the bottom of the scroll; removed on any other view.
+     Standings likewise: html.standings zeroes #app's bottom padding
+     (its own internal padding already provides the clearance, painted
+     #1d1d23) and, under ios-standalone, moves the top strip inside
+     #standings-view / #team-view so it paints #1d1d23. */
   document.documentElement.classList.toggle('team', v === 'team');
+  document.documentElement.classList.toggle('standings', v === 'standings');
   $('nav-scores').classList.toggle('active', v === 'scores');
   $('nav-standings').classList.toggle('active', v === 'standings');
   $('nav-team').classList.toggle('active', v === 'team');

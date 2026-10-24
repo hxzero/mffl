@@ -146,14 +146,15 @@ body {
    at boot by the detection script in index.html — iOS device AND
    standalone display; never in a browser tab, on Android, or on
    desktop): extra top padding on the app frame so the first-screen
-   content — the Scores helmet/countdown header, and the top areas of
-   the Standings, Team and sign-in gate views, all of which live
-   inside #app — clears the iOS status bar / notch. The padding sits
+   content — the Scores helmet/countdown header, which lives inside
+   #app — clears the iOS status bar / notch. The padding sits
    on #app, OUTSIDE #helmet-wrap, so the helmet/countdown height
    matching is untouched. Sized from the safe-area inset with a 24px
    floor: max() yields env(safe-area-inset-top) whenever it exceeds
    24px (notch / Dynamic Island devices) and 24px whenever the inset
-   resolves to 0 or is unavailable. */
+   resolves to 0 or is unavailable. Exception: Standings and Team
+   zero this padding and carry the same inset INSIDE their views
+   instead, so the strip paints their own #1d1d23 (see below). */
 html.ios-standalone #app { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
 /* While the Team view is active, the bottom nav clearance moves INSIDE
    #team-view (its own padding-bottom below, the Standings pattern), so
@@ -164,6 +165,28 @@ html.ios-standalone #app { padding-top: max(24px, env(safe-area-inset-top, 0px))
    which setView toggles on every view switch, so Scores and Standings
    keep #app's padding — and render — exactly as before. */
 html.team #app { padding-bottom: 0; }
+/* While the Standings view is active, the bottom nav clearance is
+   already INSIDE #standings-view (its own padding-bottom:
+   nav + safe-area + 76px, painted #1d1d23), so #app's bottom padding
+   is zeroed exactly as for Team: otherwise the 100dvh view plus
+   #app's ~92px padding is a permanent duplicate overflow and the
+   page scrolls even though Standings is designed to fit exactly.
+   Scoped to html.standings, which setView toggles on every switch,
+   so Scores keeps #app's padding — and render — exactly as before. */
+html.standings #app { padding-bottom: 0; }
+/* iOS standalone top strip, Standings and Team: #app's top padding
+   sits OUTSIDE those views, on a box with no background of its own
+   (body is #101014 and the Scores wall shows through), so above
+   #standings-view / #team-view it painted #101014 instead of the
+   views' own #1d1d23. While either view is active under
+   ios-standalone, #app's top padding is zeroed and the same
+   max(24px, env(safe-area-inset-top)) moves INSIDE the views
+   (see the html.ios-standalone.standings / .team rules at
+   #standings-view and #team-view below), where their #1d1d23
+   backgrounds paint it. Scores is untouched: no standings/team
+   class, so its #app top padding and strip stay as designed. */
+html.ios-standalone.standings #app,
+html.ios-standalone.team #app { padding-top: 0; }
 
 /* ---------- scores header ---------- */
 .week-label {
@@ -555,6 +578,14 @@ html.team #app { padding-bottom: 0; }
    #28282f, borders #33333c, ink #f1efe7, muted text #9d9ea6. No leader
    theming on this page — the fixed system applies whoever leads. */
 #standings-view { background: #1d1d23; color: #f1efe7; min-height: 100vh; min-height: 100dvh; margin: -0px; padding: 15.56px 20px calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 76px); }
+/* iOS standalone only (see the #app top-strip note above): the
+   status-bar clearance lives INSIDE #standings-view so its #1d1d23
+   background paints it, added on top of the designed 15.56px top
+   padding so the header offset is preserved. Global box-sizing is
+   border-box, so this padding is included in the min-height:
+   100dvh total — the view still exactly fills the viewport and
+   the no-scroll fix above holds in standalone too. */
+html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(24px, env(safe-area-inset-top, 0px))); }
 /* top padding only: the standings icon starts at 15.56 + 20 = 35.56px,
    matching the Scores helmet's top offset (16px margin + 20px wrap padding);
    no bottom padding, so no extra space is wedged between icon and title */
@@ -688,6 +719,14 @@ html.team #app { padding-bottom: 0; }
    above), so the last row's resting clearance above the fixed bottom
    nav is unchanged. */
 #team-view { background: #1d1d23; color: #f1efe7; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+/* iOS standalone only (see the #app top-strip note above): the
+   status-bar clearance lives INSIDE #team-view so its #1d1d23
+   background paints it — above the sticky head and, while gated,
+   above the sign-in gate (whose internal layout is unchanged;
+   it simply gains this clearance over it). Team stays scrollable
+   exactly as before. Scoped to html.team so no other view, and no
+   non-standalone context, sees it. */
+html.ios-standalone.team #team-view { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
 /* Sticky Team header block: the "My Team" title row and the budget bar
    ride as ONE sticky block at the top of the page scroll while the slot
    list moves beneath it — the roster sheet's sticky-header pattern
