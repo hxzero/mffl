@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Meaningless Fantasy Football League 2026</title>
-<link rel="stylesheet" href="css/styles.css?v=20261023a">
+<link rel="stylesheet" href="css/styles.css?v=20261024a">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#101014">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
@@ -29,9 +29,25 @@
   <div id="app">
     <!-- SCORES -->
     <section id="scores-wrap">
-      <div id="helmet-wrap"><img id="leader-helmet" src="assets/img/helmet-hxzero.png" alt="Leader helmet">
+      <div id="helmet-wrap" class="helmet-loading"><img id="leader-helmet" alt="Leader helmet">
+        <!-- Helmet loading placeholder: NO team's helmet is in the
+             markup — the leader is unknown until the week documents
+             arrive, so the img ships without a src and a helmet-sized
+             shimmer block holds its slot during the loading shimmer.
+             app.js clears the .helmet-loading state the moment the
+             real leader's helmet is revealed (see clearHelmetLoading). -->
+        <div class="shimmer-block helmet-shimmer" aria-hidden="true"></div>
       </div>
-      <main id="leaderboard" aria-label="Leaderboard"></main>
+      <main id="leaderboard" aria-label="Leaderboard">
+        <!-- Loading shimmer: placeholder rows shown from first paint
+             until app.js's first real render removes them (see
+             dismissShimmer). Pure blocks — no text, names or scores. -->
+        <div class="shimmer-row" aria-hidden="true"><span class="shimmer-block shimmer-badge"></span><span class="shimmer-block shimmer-name"></span><span class="shimmer-block shimmer-score"></span></div>
+        <div class="shimmer-row" aria-hidden="true"><span class="shimmer-block shimmer-badge"></span><span class="shimmer-block shimmer-name"></span><span class="shimmer-block shimmer-score"></span></div>
+        <div class="shimmer-row" aria-hidden="true"><span class="shimmer-block shimmer-badge"></span><span class="shimmer-block shimmer-name"></span><span class="shimmer-block shimmer-score"></span></div>
+        <div class="shimmer-row" aria-hidden="true"><span class="shimmer-block shimmer-badge"></span><span class="shimmer-block shimmer-name"></span><span class="shimmer-block shimmer-score"></span></div>
+        <div class="shimmer-row" aria-hidden="true"><span class="shimmer-block shimmer-badge"></span><span class="shimmer-block shimmer-name"></span><span class="shimmer-block shimmer-score"></span></div>
+      </main>
       <section id="roster-view" hidden>
         <div class="roster-scroll" id="roster-scroll">
         <div class="roster-head">
@@ -55,7 +71,7 @@
     <!-- STANDINGS -->
     <section id="standings-view" hidden>
       <header class="s-head">
-        <img class="s-logo" id="standings-logo" src="assets/img/icon-192.png" alt="App icon">
+        <img class="s-logo" id="standings-logo" src="assets/img/league-neutral.png" alt="League logo">
       </header>
       <h1 class="league-title">Leaderboard</h1>
       <div id="standings-list"></div>
@@ -71,9 +87,134 @@
         <button id="picker-close" aria-label="Close lineup"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </div>
     </div>
+
+    <!-- TEAM -->
+    <section id="team-view" class="auth-gated" hidden>
+      <!-- SIGN-IN GATE: shown instead of the lineup builder until the
+           user is authenticated (Firebase Auth, bare REST in app.js).
+           The builder markup below is untouched; CSS hides it while
+           #team-view carries .auth-gated, and app.js removes that
+           class only after a session resolves to a team. The gate
+           starts gated in markup so a restored session never flashes
+           the builder before it is verified. -->
+      <div id="team-gate">
+        <header class="gate-head">
+          <img class="gate-logo" src="assets/img/league-neutral.png" alt="League logo">
+        </header>
+        <h1 class="league-title gate-title">meaningless fantasy football league</h1>
+        <div id="gate-restoring" hidden>
+          <p class="gate-restoring-note">Restoring your session…</p>
+        </div>
+        <div id="gate-signin">
+          <p class="gate-sub">Join the league and stick it to FanDuel, bitches - roster management now available</p>
+          <form id="gate-form" class="gate-card" novalidate>
+            <label class="gate-field">
+              <span class="gate-label">Email</span>
+              <input id="gate-email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false">
+            </label>
+            <div class="gate-field">
+              <label class="gate-label" for="gate-password">Password</label>
+              <span class="gate-pass-wrap">
+                <input id="gate-password" type="password" autocomplete="current-password">
+                <button type="button" id="gate-pass-toggle" class="gate-pass-toggle" aria-label="Show password">Show</button>
+              </span>
+            </div>
+            <p class="gate-error" id="gate-error" role="alert" hidden></p>
+            <button type="submit" id="gate-submit" class="gate-submit">Sign in</button>
+          </form>
+          <button type="button" id="gate-forgot" class="gate-forgot">Forgot password?</button>
+          <p class="gate-inline-note" id="gate-note" role="status" hidden></p>
+          <p class="gate-fineprint">Accounts are created by the commissioner — there's no sign-up. First time here? Use the password link from your league email, or tap Forgot password to get a fresh one.</p>
+        </div>
+        <div id="gate-unassigned" hidden>
+          <p class="gate-unassigned-msg">This account isn't assigned to a team yet — the commissioner needs to link it.</p>
+          <button type="button" id="gate-signout" class="gate-signout-btn">Sign out</button>
+        </div>
+      </div>
+      <div class="team-sticky-head">
+        <header class="team-head">
+          <div class="team-head-main">
+            <h2 class="display" id="team-title">My Team</h2>
+            <div class="team-week" id="team-week">Week 6</div>
+          </div>
+          <div class="team-head-actions">
+            <button type="button" id="team-submit" class="team-submit" disabled>Draft</button>
+          </div>
+        </header>
+        <div class="team-budget no-anim" id="team-budget">
+          <div class="budget-item">
+            <span class="budget-label">Salary Remaining</span>
+            <span class="budget-value" id="team-salary-left">$60,000</span>
+          </div>
+          <div class="budget-item">
+            <span class="budget-label">Lineup</span>
+            <span class="budget-value" id="team-filled">0/9 filled</span>
+          </div>
+          <div class="budget-item">
+            <span class="budget-label">Avg / open slot</span>
+            <span class="budget-value" id="team-avg-open">$6,666</span>
+          </div>
+        </div>
+      </div>
+      <div id="team-list"></div>
+
+      <!-- PLAYER BROWSER: a pushed page over the Team view (navigation
+           pattern) — dark panel that slides in from the right, sticky
+           solid header with a Back button at its left, then the slot
+           label as title, inner scroll. Lives inside #team-view so it
+           can never appear over Scores or Standings. -->
+      <section id="pool-sheet" hidden>
+        <div class="pool-scroll" id="pool-scroll">
+          <div class="pool-head">
+            <button type="button" id="pool-back" class="pool-detail-back" aria-label="Back to team"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 5.5 8 12 14.5 18.5"/></svg></button>
+            <div class="pool-head-main">
+              <h2 class="display" id="pool-title">QB</h2>
+              <div class="pool-sub">Available for this slot</div>
+            </div>
+            <div class="pool-head-right">
+              <div class="pool-cap-stack">
+                <div class="pool-cap display" id="pool-cap"></div>
+                <div class="pool-avg" id="pool-avg">Avg per player $6,666</div>
+              </div>
+            </div>
+          </div>
+          <div class="pool-search-wrap">
+            <input id="pool-search" type="search" placeholder="Search players or teams" aria-label="Search players" autocomplete="off">
+          </div>
+          <div id="pool-current" hidden></div>
+          <div id="pool-list"></div>
+        </div>
+        <section id="pool-detail" hidden aria-label="Player detail">
+          <div class="pool-detail-scroll" id="pool-detail-scroll">
+            <div class="pool-detail-head">
+              <button type="button" id="pool-detail-back" class="pool-detail-back" aria-label="Back to player list"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 5.5 8 12 14.5 18.5"/></svg></button>
+            </div>
+            <div class="pool-detail-hero">
+              <div id="pool-detail-avatar" class="pool-detail-avatar"></div>
+              <div class="pool-detail-hero-main">
+                <h3 class="display pool-detail-name" id="pool-detail-name"><span class="pool-detail-name-text" id="pool-detail-name-text">Player</span><span class="pool-detail-pos" id="pool-detail-pos"></span></h3>
+                <div class="pool-detail-meta" id="pool-detail-meta"></div>
+              </div>
+              <button type="button" id="pool-detail-pill" class="pool-quick" aria-label="Add player">＋</button>
+            </div>
+            <div class="pool-detail-section-label">Score History</div>
+            <div id="pool-detail-history"></div>
+            <div class="pool-detail-section-label">Player News</div>
+            <div id="pool-detail-news">
+              <p class="pool-detail-news-placeholder">Player news will appear here.</p>
+            </div>
+          </div>
+        </section>
+      </section>
+      <button type="button" id="team-signout" class="team-signout">Sign out</button>
+    </section>
   </div>
 
   <nav id="bottomnav">
+    <button id="nav-team">
+      <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-3.5 3.6-5.5 8-5.5s8 2 8 5.5"/></svg>
+      <span>TEAM</span>
+    </button>
     <button id="nav-scores" class="active" aria-current="page">
       <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
       <span>SCORES</span>
@@ -84,7 +225,10 @@
     </button>
   </nav>
 
-  <script src="js/bg3d.js?v=20261023a"></script>
-  <script src="js/app.js?v=20261023a"></script>
+  <script src="js/pool.js?v=20261024a"></script>
+  <script src="js/history.js?v=20261024a"></script>
+  <script src="js/pool-extended.js?v=20261024a"></script>
+  <script src="js/bg3d.js?v=20261024a"></script>
+  <script src="js/app.js?v=20261024a"></script>
 </body>
 </html>

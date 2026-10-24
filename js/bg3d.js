@@ -78,6 +78,13 @@
       fallback.style.backgroundColor = css(theme.block);
       if (api._apply) api._apply(name, theme);
       else api._pending = { name: name, theme: theme };
+    },
+    prewarm: function (names) {
+      if (api._prewarm) { api._prewarm(names); return; }
+      if (!api._prewarmPending) api._prewarmPending = [];
+      (names || []).forEach(function (n) {
+        if (n && api._prewarmPending.indexOf(n) === -1) api._prewarmPending.push(n);
+      });
     }
   };
   window.mfflBg = api;
@@ -310,6 +317,14 @@
         var g = font.data.glyphs[ch] || font.data.glyphs['?'] || font.data.glyphs[' '];
         return g && typeof g.ha === 'number' ? g.ha * scale : 0;
       }
+      function glyphMinX(ch, scale) {
+        var g = font.data.glyphs[ch] || font.data.glyphs['?'] || font.data.glyphs[' '];
+        return g && typeof g.x_min === 'number' ? g.x_min * scale : 0;
+      }
+      function glyphMaxX(ch, scale) {
+        var g = font.data.glyphs[ch] || font.data.glyphs['?'] || font.data.glyphs[' '];
+        return g && typeof g.x_max === 'number' ? g.x_max * scale : 0;
+      }
 
       /* Re-sort one glyph's extruded geometry into lid / wall / bevel parts.
          ExtrudeGeometry emits group 0 = lids, group 1 = side strip; inside
@@ -412,8 +427,17 @@
         return out;
       }
 
-      /* Build one word tile: per-glyph extruded shapes with 10% tracking,
-         plus a trailing NBSP separator advance. Returns { geo, advance }. */
+      /* Build one word tile: per-glyph extruded shapes with 10% tracking.
+         Returns { geo, advance } where advance is set by measurement so
+         the seam between repetitions matches the letter spacing inside
+         the name: targetGap is the average internal ink-to-ink gap
+         (origin_{i+1} - (origin_i + maxX_i), maxX from the glyph's
+         x_max in the same font metrics as `ha`), and advance is the
+         tile's total ink extent (first ink edge to last ink edge) plus
+         targetGap — so the boundary ink gap (advance + minX_first -
+         (origin_last + maxX_last)) equals targetGap exactly. Bevel
+         expands every glyph symmetrically, so outline gaps rank and
+         size identically to rendered gaps. */
       function buildTile(name, fontSize) {
         var scale = fontSize / font.data.resolution;
         var tracking = 0.10 * fontSize;
@@ -427,6 +451,7 @@
         var text = name.toUpperCase();
         var lids = [], walls = [], bevels = [];
         var cursor = 0;
+        var origins = [], maxXs = [], minXFirst = null;
         for (var i = 0; i < text.length; i++) {
           var ch = text.charAt(i);
           var shapes = font.generateShapes(ch, fontSize);
@@ -438,12 +463,24 @@
             });
             lids.push(parts.lid); walls.push(parts.wall); bevels.push(parts.bevel);
             g.dispose();
+            origins.push(cursor);
+            maxXs.push(glyphMaxX(ch, scale));
+            if (minXFirst === null) minXFirst = glyphMinX(ch, scale);
           }
           cursor += glyphAdvance(ch, scale) + tracking;
         }
-        var sep = glyphAdvance('\u00A0', scale) || glyphAdvance(' ', scale);
-        cursor += sep + tracking; /* word separator + word tracking */
         if (!lids.length) return null;
+        var advance = cursor;
+        if (origins.length >= 2 && minXFirst !== null) {
+          var gapSum = 0;
+          for (var gi = 0; gi < origins.length - 1; gi++) {
+            gapSum += origins[gi + 1] - (origins[gi] + maxXs[gi]);
+          }
+          var targetGap = gapSum / (origins.length - 1);
+          var inkExtent = (origins[origins.length - 1] + maxXs[maxXs.length - 1]) - minXFirst;
+          var boundaryGapFactor = 1.15;
+          if (targetGap > 0) advance = inkExtent + targetGap * boundaryGapFactor;
+        }
         var lidMerged = BU.mergeGeometries(lids, false);
         var wallMerged = BU.mergeGeometries(walls, false);
         var bevelMerged = BU.mergeGeometries(bevels, false);
@@ -458,7 +495,7 @@
         var cy = (bb.max.y + bb.min.y) / 2;
         tile.translate(0, -cy, TEXT_Z_GAP + bt);
         tile.computeBoundingBox();
-        return { geo: tile, advance: cursor, lidFront: tile.boundingBox.max.z };
+        return { geo: tile, advance: advance, lidFront: tile.boundingBox.max.z };
       }
 
       function layoutWall(name) {
@@ -471,35 +508,113 @@
         if (!built) return null;
         var advance = built.advance;
 
+        var maxTravel = Math.min(advance * 0.20, viewW * 0.12);
         var counts = [];
-        var total = 0;
         for (var row = 0; row < rowCount; row++) {
           var shift = row % 2 === 0 ? 0 : advance / 2;
-          var reps = Math.ceil((w + shift) / advance) + 1;
-          counts.push({ shift: shift, reps: reps });
-          total += reps;
+          var coverReps = Math.ceil((w + shift) / advance);
+          var reps = Math.ceil(((w + shift) + 2 * maxTravel) / advance);
+          if (reps < coverReps) reps = coverReps;
+          var totalSlack = reps * advance - (w + shift);
+          counts.push({ shift: shift, reps: reps, totalSlack: totalSlack });
         }
-        var mesh = new three.InstancedMesh(built.geo, [faceMat, wallMat, bevelMat], total);
-        mesh.castShadow = true;
-        mesh.frustumCulled = false; /* instances span the screen */
-        var m4 = new three.Matrix4();
-        var idx = 0;
+        /* Row-parity meshes: two InstancedMeshes sharing ONE geometry.
+           Even rows in one mesh, odd rows in the other, so the slide is
+           a pair of position.x writes instead of rewriting every
+           instance matrix per frame. Matrices are computed ONCE here. */
+        var evenInstances = [];
+        var oddInstances = [];
+        var instances = [];
         for (var r2 = 0; r2 < rowCount; r2++) {
           var y = h / 2 - r2 * rowHeight;
           for (var k = 0; k < counts[r2].reps; k++) {
-            var x = -counts[r2].shift + k * advance - w / 2;
-            m4.makeTranslation(x, y, 0);
-            mesh.setMatrixAt(idx++, m4);
+            var x = -w / 2 - counts[r2].shift - counts[r2].totalSlack / 2 + k * advance;
+            var inst = { x: x, y: y, row: r2 };
+            instances.push(inst);
+            if (r2 % 2 === 0) evenInstances.push(inst);
+            else oddInstances.push(inst);
           }
         }
-        mesh.instanceMatrix.needsUpdate = true;
-        return { mesh: mesh, name: name, lidFront: built.lidFront };
+        var group = new three.Group();
+        var m4 = new three.Matrix4();
+        function buildParityMesh(list) {
+          var im = new three.InstancedMesh(built.geo, [faceMat, wallMat, bevelMat], list.length);
+          im.castShadow = true;
+          im.frustumCulled = false; /* instances span the screen */
+          for (var i = 0; i < list.length; i++) {
+            m4.makeTranslation(list[i].x, list[i].y, 0);
+            im.setMatrixAt(i, m4);
+          }
+          if (im.instanceMatrix) im.instanceMatrix.needsUpdate = true;
+          return im;
+        }
+        var evenMesh = buildParityMesh(evenInstances);
+        var oddMesh = buildParityMesh(oddInstances);
+        group.add(evenMesh);
+        group.add(oddMesh);
+        return { mesh: group, geo: built.geo, evenMesh: evenMesh, oddMesh: oddMesh, name: name, lidFront: built.lidFront, advance: advance, instances: instances };
       }
+
+      /* Wall cache: walls are built once per name (per viewport size)
+         and reused — a swap does zero geometry work when cached. */
+      var wallCache = {};
+      function getWall(name) {
+        if (wallCache[name]) return wallCache[name];
+        var builtWall = layoutWall(name);
+        if (builtWall) wallCache[name] = builtWall;
+        return builtWall;
+      }
+
+      function setRowSlide(wallObj, dist) {
+        /* O(1): even rows +dist, odd rows -dist via mesh positions.
+           No instance-matrix writes after build. */
+        if (!wallObj || !wallObj.evenMesh || !wallObj.oddMesh) return;
+        wallObj.evenMesh.position.x = dist;
+        wallObj.oddMesh.position.x = -dist;
+      }
+      function slideDist(wallObj) { return Math.min(wallObj.advance * 0.20, viewW * 0.12); }
+      function easeInSlide(p) { return Math.pow(p, 1.5); }
+      function easeOutSlide(p) { return 1 - Math.pow(1 - p, 1.5); }
 
       /* ---------- theme application + transitions ---------- */
       var wall = null;
+      var wallAnim = null;
       var currentTheme = null;
       var rafId = null;
+
+      /* Idle prewarm: build each named wall into the cache, ONE per
+         idle tick, skipping cached names and the displayed wall. */
+      var prewarmQueue = [];
+      var prewarmScheduled = false;
+      function schedulePrewarmTick() {
+        if (prewarmScheduled) return;
+        if (!prewarmQueue.length) return;
+        prewarmScheduled = true;
+        var tick = function () {
+          prewarmScheduled = false;
+          while (prewarmQueue.length) {
+            var n = prewarmQueue.shift();
+            if (wallCache[n]) continue;
+            if (wall && wall.name === n) continue;
+            getWall(n);
+            break;
+          }
+          if (prewarmQueue.length) schedulePrewarmTick();
+        };
+        if (typeof requestIdleCallback === 'function') requestIdleCallback(tick, { timeout: 1000 });
+        else setTimeout(tick, 250);
+      }
+      function queuePrewarm(names) {
+        if (!names) return;
+        names.forEach(function (n) {
+          if (!n) return;
+          if (wallCache[n]) return;
+          if (wall && wall.name === n) return;
+          if (prewarmQueue.indexOf(n) === -1) prewarmQueue.push(n);
+        });
+        schedulePrewarmTick();
+      }
+      api._prewarm = queuePrewarm;
 
       function setWallOpacity(o) {
         faceMat.opacity = o; wallMat.opacity = o; bevelMat.opacity = o;
@@ -534,7 +649,7 @@
 
       api._apply = function (name, theme) {
         if (!wall) {
-          var first = layoutWall(name);
+          var first = getWall(name);
           if (!first) return;
           wall = first;
           scene.add(first.mesh);
@@ -542,28 +657,67 @@
           setWallOpacity(0);
           render();
           canvas.style.opacity = '1';
-          animate(450, function (p) { setWallOpacity(p); });
+          wallAnim = { name: name };
+          animate(450, function (p) { setWallOpacity(p); }, function () { wallAnim = null; });
+          return;
+        }
+        if (wallAnim) {
+          if (wallAnim.name === name) return; /* already heading there */
+          /* a newer leader mid-transition: cancel the running chain and
+             jump-cut to the newest wall at opacity 0, then run only the
+             entry phase — a stale chain never gets to swap late or
+             restart the fade over the new text */
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+          var stale = wall;
+          scene.remove(stale.mesh);
+          wall = null;
+          wallAnim = null;
+          var jump = getWall(name);
+          if (!jump) return;
+          wall = jump;
+          scene.add(jump.mesh);
+          applyTheme(theme);
+          blockTwinMat.color.setHex(hexNum(theme.block));
+          blockTwinMat.opacity = 0;
+          setWallOpacity(0);
+          var jDist = slideDist(jump);
+          setRowSlide(jump, -jDist);
+          wallAnim = { name: name };
+          animate(600, function (p) {
+            var q = Math.min(1, p / 0.7);
+            setRowSlide(jump, -jDist * (1 - easeOutSlide(p)));
+            setWallOpacity(q);
+          }, function () { wallAnim = null; });
           return;
         }
         if (wall.name === name) { applyTheme(theme); render(); return; }
         /* lead change: text fades out -> swaps -> fades in; the color block
            cross-fades in-scene through its twin plane */
+        wallAnim = { name: name };
         var old = wall;
         blockTwinMat.color.setHex(hexNum(theme.block));
-        animate(320, function (p) {
-          setWallOpacity(1 - p);
-          blockTwinMat.opacity = p;
+        var outDist = slideDist(old);
+        animate(600, function (p) {
+          var q = Math.min(1, p / 0.7);
+          setRowSlide(old, outDist * easeInSlide(p));
+          setWallOpacity(1 - q);
+          blockTwinMat.opacity = q;
         }, function () {
           scene.remove(old.mesh);
-          old.mesh.geometry.dispose();
-          var next = layoutWall(name);
-          if (!next) return;
+          var next = getWall(name);
+          if (!next) { wallAnim = null; return; }
           wall = next;
           scene.add(next.mesh);
           applyTheme(theme);
           blockTwinMat.opacity = 0;
           setWallOpacity(0);
-          animate(320, function (p) { setWallOpacity(p); });
+          var inDist = slideDist(next);
+          setRowSlide(next, -inDist);
+          animate(600, function (p) {
+            var q = Math.min(1, p / 0.7);
+            setRowSlide(next, -inDist * (1 - easeOutSlide(p)));
+            setWallOpacity(q);
+          }, function () { wallAnim = null; });
         });
       };
 
@@ -587,12 +741,19 @@
           camera.updateProjectionMatrix();
           layoutLights();
           layoutPlanes();
-          if (wall) {
-            var cur = wall;
-            var next = layoutWall(cur.name);
+          /* layout depends on viewport: dispose every cached wall */
+          var curName = wall ? wall.name : null;
+          if (wall) scene.remove(wall.mesh);
+          Object.keys(wallCache).forEach(function (k) {
+            var cw = wallCache[k];
+            if (cw && cw.geo) cw.geo.dispose();
+          });
+          wallCache = {};
+          prewarmQueue = [];
+          wall = null;
+          if (curName) {
+            var next = getWall(curName);
             if (next) {
-              scene.remove(cur.mesh);
-              cur.mesh.geometry.dispose();
               wall = next;
               scene.add(next.mesh);
               if (currentTheme) applyTheme(currentTheme);
@@ -607,6 +768,11 @@
       api.ready = true;
       if (api._pending) { api._apply(api._pending.name, api._pending.theme); api._pending = null; }
       else render();
+      if (api._prewarmPending && api._prewarmPending.length) {
+        var pendingPrewarm = api._prewarmPending.slice();
+        api._prewarmPending = null;
+        queuePrewarm(pendingPrewarm);
+      }
     } catch (e) {
       fail();
     }

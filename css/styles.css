@@ -7,13 +7,92 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url('../assets/fonts/barlow-semi-condensed-400.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url('../assets/fonts/barlow-semi-condensed-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url('../assets/fonts/barlow-semi-condensed-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url('../assets/fonts/barlow-semi-condensed-800.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --body: 16px;
-  --name-size: 28.5px;        /* tracker team-name size */
-  --score-size: 36px;         /* tracker phone score size (42px >= 760px) */
+  /* ---------- global type ramp (single definition site) ----------
+     Every font-family / font-size / font-weight / letter-spacing in the
+     component rules below references one of these tokens; literals live
+     only here (and in the @font-face descriptors above, where var() is
+     not valid). Tuned display values (28.5px team names, the clamp()
+     display sizes, the 33/36/42px score numerals) keep their exact
+     values as named steps — consolidation is one definition site, not
+     forced rounding. Fractional weights folded to the nearest standard
+     step when this ramp was built: 550→600, 650→700, 780→800. */
+  --font-ui: 'Barlow Semi Condensed', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-display: 'Delirium', 'Arial Narrow', sans-serif;
+  --font-player-list: 'Barlow Semi Condensed', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fs-frac: 0.52em;          /* score fraction (.frac) relative size */
+  --fs-2xs: 9px;              /* badges, pills, tags */
+  --fs-xs: 10px;              /* captions: slot badges, salary, avatar fallbacks, lineup/budget labels */
+  --fs-sm: 11px;              /* eyebrow labels, state lines, nav labels */
+  --fs-compact: 12px;         /* compact text buttons (header sign-out); player-row secondary (meta) and tertiary (stat / FPPG) lines */
+  --fs-body-sm: 13px;         /* small body: notes, errors, small values */
+  --fs-body: 14px;            /* body text, gate actions */
+  --fs-value: 15px;           /* picker salary value, large avatar fallback */
+  --fs-base: 16px;            /* base body / input text */
+  --fs-label-lg: 17px;        /* lineup section label */
+  --fs-icon-md: 18px;         /* medium icon glyphs, history points */
+  --fs-lg: 20px;              /* countdown, ranks, budget values, swap glyph */
+  --fs-icon-lg: 22px;         /* quick-add glyph, hero avatar fallback */
+  --fs-detail: 28px;          /* player detail name / position */
+  --fs-name: 28.5px;          /* tracker team-name size (tuned, exact) */
+  --fs-cap: 30px;             /* picker cap total, desktop team name */
+  --fs-heading: 33px;         /* view headings (roster / team / picker) */
+  --fs-score: 36px;           /* tracker phone score size (tuned, exact) */
+  --fs-score-lg: 42px;        /* score numerals >= 760px / desktop */
+  --fs-player-list: clamp(16px, 4.5vw, 18px);          /* list-row player name + position */
+  --fs-week-label: clamp(19.8px, 5.04vw, 39.6px);      /* scores week label (tuned) */
+  --fs-league-title: clamp(33.84px, 9.76vw, 72.81px);  /* standings league title (tuned) */
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+  --ls-tight: 0.01em;
+  --ls-normal: 0.02em;
+  --ls-wide: 0.04em;
+  --ls-tag: 0.05em;
+  --ls-wider: 0.06em;
+  --ls-widest: 0.08em;
+  /* legacy aliases (kept in the ramp; component rules use the --fs-* names) */
+  --body: var(--fs-base);
+  --name-size: var(--fs-name);
+  --score-size: var(--fs-score);
   --row-h: 72px;
   --row-gap: 4px;
   --nav-h: 68px;
+  --flow-header-h: 90px;      /* shared header height for the My Team flow, set to the SHORTER value: the height of the Team view's TITLE ROW alone (title + week label + Submit pill, with its own padding). The Team budget row is NOT part of the header height — it keeps its natural height beneath the title row. The picker header and the player detail header use this same height so the band never jumps between views; their contents (picker budget stack, circular Back) fit fully inside it. */
+  --flow-header-bg: rgba(40, 40, 47, 0.72);  /* glass tint: the #28282f brighter tone (one step brighter than the Team-flow view background #1d1d23) at the bottom nav's 0.72 alpha — the Team sticky header, the picker header and the player detail header share this translucent fill with the nav's backdrop blur so scrolled content shows through, blurred, while the band still reads a step brighter than the views behind it */
   --gold: #d8b45a;
   --ink: #f4f2ea;
   --ink-dim: rgba(244, 242, 234, 0.62);
@@ -27,8 +106,8 @@ input, select, textarea { accent-color: var(--gold); }
 html, body { height: 100%; }
 
 body {
-  font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  font-size: var(--body);
+  font-family: var(--font-ui);
+  font-size: var(--fs-base);
   background: #101014;
   color: var(--ink);
   overflow-x: hidden;
@@ -41,9 +120,9 @@ body {
 
 .display, .team-name, .team-score, .week-label, .countdown,
 .standings-name, .standings-num, .roster-score,
-.player-name, .league-title {
-  font-family: 'Delirium', 'Arial Narrow', sans-serif;
-  font-weight: 400;
+.league-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular);
   font-synthesis: none; /* never synthetically embolden the single-weight face */
 }
 
@@ -63,27 +142,53 @@ body {
 
 /* ---------- app frame ---------- */
 #app { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+/* While the Team view is active, the bottom nav clearance moves INSIDE
+   #team-view (its own padding-bottom below, the Standings pattern), so
+   #app's bottom padding is zeroed: the total clearance below the Team
+   content is exactly what it was, but the strip now sits inside the
+   Team view's box and is painted with its background instead of
+   showing the fixed 3D text wall behind #app. Scoped to html.team,
+   which setView toggles on every view switch, so Scores and Standings
+   keep #app's padding — and render — exactly as before. */
+html.team #app { padding-bottom: 0; }
 
 /* ---------- scores header ---------- */
 .week-label {
-  margin: 2px 0 0; font-size: clamp(19.8px, 5.04vw, 39.6px); line-height: 1; letter-spacing: 0.02em; color: #e8e6dd;
+  margin: 2px 0 0; font-size: var(--fs-week-label); line-height: 1; letter-spacing: var(--ls-normal); color: #e8e6dd;
 }
 /* Self-sufficient: the full treatment lives in this one rule (display
    font included), so the countdown renders styled wherever it sits —
    it no longer inherits anything from its old header context. */
 .countdown {
-  font-family: 'Delirium', 'Arial Narrow', sans-serif;
-  font-weight: 400; font-synthesis: none;
-  font-size: 20px; letter-spacing: 0.08em; color: var(--ink-dim); text-align: center;
+  font-family: var(--font-display);
+  font-weight: var(--fw-regular); font-synthesis: none;
+  font-size: var(--fs-lg); letter-spacing: var(--ls-widest); color: var(--ink-dim); text-align: center;
 }
 #countdown[hidden] { display: none; }
 
 #helmet-wrap { text-align: center; margin: 16px 0 0; padding: 20px; }
 #leader-helmet { display: block; margin: 0 auto; width: 247px; max-width: 70vw; height: auto; aspect-ratio: 1500 / 856; object-fit: cover; min-width: 0; min-height: 0; }
-#helmet-wrap.swap-out #leader-helmet { animation: helmetOut 450ms ease-in forwards; }
-#helmet-wrap.swap-in #leader-helmet { animation: helmetIn 550ms ease-out; }
+#helmet-wrap.swap-out #leader-helmet { animation: helmetOut 600ms ease-in forwards; }
+#helmet-wrap.swap-in #leader-helmet { animation: helmetIn 600ms ease-out; }
 @keyframes helmetOut { to { transform: translateY(120px); opacity: 0; } }
 @keyframes helmetIn { from { transform: translateY(-40px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* ---------- helmet loading state (Scores, app open) ----------
+   #helmet-wrap starts in .helmet-loading: the leader is not known
+   until the week documents arrive, so the helmet img ships with no
+   src and stays out of layout while a helmet-sized shimmer block
+   (the .shimmer-block sweep below) holds its exact box — same
+   247px width and 1500/856 aspect as #leader-helmet, so the reveal
+   causes no layout shift. app.js removes the class and the block
+   when the first renderHeader presents the real leader's helmet
+   (see clearHelmetLoading); while a fetch hangs both simply stay,
+   like the leaderboard shimmer rows. */
+#helmet-wrap.helmet-loading #leader-helmet { display: none; }
+.helmet-shimmer { display: none; }
+#helmet-wrap.helmet-loading .helmet-shimmer {
+  display: block; width: 141px; height: 141px; max-width: 70vw; max-height: 70vw;
+  aspect-ratio: 1 / 1; border-radius: 50%; margin: 0 auto;
+}
 
 /* ---------- leaderboard ---------- */
 #leaderboard {
@@ -91,6 +196,58 @@ body {
   padding: 24px 14px 0; max-width: 720px; margin: 0 auto;
 }
 @media (max-width: 759px) { #leaderboard { padding-left: 22px; padding-right: 22px; } }
+/* ---------- loading shimmer (Scores, app open) ----------
+   Restored loading state: the original tracker's shimmer (frozen
+   static copy: .loading-row) swept a 100deg surface gradient at
+   220% size across placeholder rows on a 1.7s linear loop —
+   @keyframes shimmer to background-position-x: -220%. That exact
+   sweep lives here on the placeholder rows' inner blocks, shaped
+   to the current leaderboard: five rows at the real 72px row
+   height with the board's 4px gaps (the #leaderboard flex gap),
+   square corners and the rows' glass treatment, holding a badge
+   circle and name/score bars — no text, names or scores, so the
+   Sunday no-player-info rule is trivially satisfied. The rows are
+   static markup in index.html (visible before any script runs);
+   app.js removes them at the first real render (see
+   dismissShimmer in renderLeaderboard), which stops the animation
+   with the nodes. While a fetch hangs they simply keep shimmering
+   over a fully wired page. */
+.shimmer-row {
+  display: flex; align-items: center;
+  height: var(--row-h); min-height: var(--row-h);
+  padding: 10px 8px;
+  background:
+    linear-gradient(115deg,
+      rgba(255,255,255,0.14),
+      rgba(255,255,255,0.045) 38%,
+      rgba(255,255,255,0.025) 62%,
+      rgba(12,12,16,0.34)),
+    rgba(20, 20, 26, 0.52);
+  -webkit-backdrop-filter: blur(12px) saturate(1.35);
+  backdrop-filter: blur(12px) saturate(1.35);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 0;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.22),
+    0 10px 24px rgba(0,0,0,0.18);
+}
+.shimmer-block {
+  display: block; flex: 0 0 auto;
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0.07) 30%,
+    rgba(255,255,255,0.20) 45%,
+    rgba(255,255,255,0.07) 60%);
+  background-size: 220% 100%;
+  animation: shimmer 1.7s linear infinite;
+}
+.shimmer-badge { width: 52px; height: 52px; border-radius: 50%; margin: 0 13px 0 6px; }
+.shimmer-name { flex: 1 1 auto; height: 20px; max-width: 55%; margin-right: 12px; }
+.shimmer-score { width: 64px; height: 28px; margin-left: auto; }
+@keyframes shimmer { to { background-position-x: -220%; } }
+@media (prefers-reduced-motion: reduce) {
+  .shimmer-block { animation: none; }
+}
 .team-row {
   display: flex; align-items: center;
   height: var(--row-h); min-height: var(--row-h);
@@ -111,7 +268,7 @@ body {
     inset 0 -1px 0 rgba(0,0,0,0.22),
     0 10px 24px rgba(0,0,0,0.18);
   color: var(--ink); text-align: left; cursor: pointer;
-  width: 100%; font-size: var(--body);
+  width: 100%; font-size: var(--fs-base);
   transition: transform 420ms ease, opacity 420ms ease;
 }
 .team-row:hover {
@@ -141,7 +298,7 @@ body {
   display: flex; flex-direction: column; justify-content: center;
 }
 .team-row .team-name {
-  font-size: var(--name-size); font-weight: 600; letter-spacing: 0.02em;
+  font-size: var(--fs-name); font-weight: var(--fw-semibold); letter-spacing: var(--ls-normal);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   line-height: 1.1; display: block;
 }
@@ -151,13 +308,13 @@ body {
 .team-row .dot-live { background: #e55252; }
 .team-row .dot-final { background: rgba(255, 255, 255, 0.22); }
 .team-row .team-score {
-  flex: 0 0 auto; font-size: var(--score-size); font-weight: 700; font-variant-numeric: tabular-nums;
-  letter-spacing: 0.01em; margin-left: 12px; line-height: 1;
+  flex: 0 0 auto; font-size: var(--fs-score); font-weight: var(--fw-bold); font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-tight); margin-left: 12px; line-height: 1;
   transform: translateY(0.114em);
 }
-@media (min-width: 760px) { .team-row .team-score { font-size: 42px; } }
+@media (min-width: 760px) { .team-row .team-score { font-size: var(--fs-score-lg); } }
 .team-row .row-arrow { flex: 0 0 18px; margin-left: 7px; display: grid; place-items: center; }
-.team-row.pending .team-score { color: var(--ink-dim); font-size: 20px; letter-spacing: 0.06em; }
+.team-row.pending .team-score { color: var(--ink-dim); font-size: var(--fs-lg); letter-spacing: var(--ls-wider); }
 /* dropped-week indicator on the Scores rows (same treatment as the old
    standings week views): the viewed week is dropped from the season total.
    The strike is ONE straight line across the whole number, drawn by a
@@ -189,7 +346,7 @@ body {
   height: 100%; overflow-y: auto;
   padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px));
 }
-#roster-view[hidden], #standings-view[hidden], #scores-wrap[hidden] { display: none !important; }
+#roster-view[hidden], #standings-view[hidden], #scores-wrap[hidden], #team-view[hidden] { display: none !important; }
 @media (max-width: 1023px) {
   body.roster-open { overflow: hidden; }
   /* bottom sheet: the roster panel parks below the viewport and slides
@@ -213,23 +370,30 @@ body {
 }
 .roster-head .badge { width: 64px; height: 64px; object-fit: contain; }
 .roster-head h2 {
-  font-size: 33px; font-weight: 600; line-height: 1.15; letter-spacing: 0.02em;
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.roster-state { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: #9d9ea6; margin-top: 2px; }
-.roster-total { font-size: 36px; font-weight: 700; line-height: 0.95; text-align: right; font-variant-numeric: tabular-nums; }
-.frac { font-size: 0.52em; position: relative; top: -0.5em; }
+.roster-state { font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); color: #9d9ea6; margin-top: 2px; }
+.roster-total { font-size: var(--fs-score); font-weight: var(--fw-bold); line-height: 0.95; text-align: right; font-variant-numeric: tabular-nums; }
+.frac { font-size: var(--fs-frac); position: relative; top: -0.5em; }
 .lineup-bar {
   display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: 10px 14px; border-top: 1px solid #33333c; border-bottom: 1px solid #33333c;
+  /* no hairline dividers above/below the roster sheet's lineup bar:
+     separation comes from spacing; the 2px of removed border is kept
+     as padding so the bar's total height is unchanged */
+  padding: 11px 14px; border-top: none; border-bottom: none;
 }
-.lineup-label { font-size: 17px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-.lineup-meta { font-size: 10px; font-weight: 600; color: #9d9ea6; }
+.lineup-label { font-size: var(--fs-label-lg); font-weight: var(--fw-semibold); letter-spacing: var(--ls-wider); text-transform: uppercase; }
+.lineup-meta { font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: #9d9ea6; }
+#roster-list { display: flex; flex-direction: column; gap: 10px; padding: 12px 14px 0; }
 .player-row {
   position: relative;
   display: grid; grid-template-columns: 36px minmax(0, 1fr) 56px; gap: 9px; align-items: center;
-  min-height: 92px; padding: 12px 11px;
-  border-bottom: 1px solid #33333c;
+  min-height: 92px; padding: 12px 14px;
+  background: #28282f;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
 }
 .player-row:last-child { border-bottom: none; }
 .player-row.live::before {
@@ -239,30 +403,37 @@ body {
 .player-row .slot {
   display: flex; align-items: center; justify-content: center;
   min-height: 25px; padding: 3px; border-radius: 6px;
-  background: #28282f; color: #b9bec6; font-size: 10px; font-weight: 780; letter-spacing: 0.04em;
+  background: #28282f; color: #b9bec6; font-size: var(--fs-xs); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wide);
 }
 .player-row .name-line { display: flex; align-items: baseline; min-width: 0; }
 .player-row .player-name {
-  font-size: clamp(18px, 5vw, 20px); font-weight: 600; line-height: 1.15; letter-spacing: 0.02em;
-  text-transform: uppercase; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  font-family: var(--font-player-list);
+  font-size: var(--fs-player-list); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   min-width: 0;
 }
-.player-row .salary { margin-left: auto; flex: 0 0 auto; padding-left: 8px; font-size: 10px; font-weight: 550; color: #9d9ea6; }
+.player-row .salary { margin-left: auto; flex: 0 0 auto; padding-left: 8px; font-size: var(--fs-xs); font-weight: var(--fw-semibold); color: #9d9ea6; }
 .player-row .meta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 7px; margin-top: 5px; }
-.player-row .matchup { font-size: 10px; font-weight: 650; letter-spacing: 0.02em; color: #8b929c; }
+.player-row .matchup { font-size: var(--fs-compact); font-weight: var(--fw-bold); letter-spacing: var(--ls-normal); color: #8b929c; }
 .player-row .matchup .own { color: #f1efe7; }
-.pill { display: inline-flex; align-items: center; gap: 4px; min-height: 19px; padding: 2px 6px; border-radius: 999px; font-size: 9px; font-weight: 700; white-space: nowrap; }
+/* Roster rows (has-avatar): no far-left slot column — the grid leads
+   with the circular team-icon avatar (.pool-avatar, shared with the
+   picker), then the player main block, then the week points. */
+.player-row.has-avatar { grid-template-columns: 38px minmax(0, 1fr) 56px; }
+/* Concealed roster rows (pre-kickoff) have no slot element and no
+   avatar: just the main block and the score placeholder. */
+.player-row.concealed { grid-template-columns: minmax(0, 1fr) 56px; }
+.pill { display: inline-flex; align-items: center; gap: 4px; min-height: 19px; padding: 2px 6px; border-radius: 999px; font-size: var(--fs-2xs); font-weight: var(--fw-bold); white-space: nowrap; }
 .pill.live { background: rgba(229, 82, 82, 0.16); color: #ff7878; }
 .pill.live i { display: block; width: 5px; height: 5px; border-radius: 50%; background: #e55252; }
 .pill.final { background: rgba(217, 184, 74, 0.16); color: #d9b84a; }
-.player-row .stat-line { font-size: 10px; line-height: 1.3; color: #9d9ea6; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-row .stat-line { font-size: var(--fs-compact); line-height: 1.3; color: #9d9ea6; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-row .roster-score {
   display: flex; align-items: center; justify-content: flex-end;
-  align-self: stretch; padding-left: 8px; border-left: 1px solid #33333c;
-  font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums;
+  align-self: stretch; padding-left: 8px; border-left: none;
+  font-size: var(--fs-score); font-weight: var(--fw-bold); line-height: 1; font-variant-numeric: tabular-nums;
 }
-.player-row.concealed .player-name { font-style: italic; text-transform: none; }
-.player-row .meta-hidden { font-style: italic; font-size: 10px; font-weight: 650; color: #8b929c; }
+.player-row .meta-hidden { font-style: italic; font-size: var(--fs-compact); font-weight: var(--fw-bold); color: #8b929c; }
 @media (min-width: 1024px) {
   #scores-wrap.roster-open {
     display: grid; column-gap: 16px;
@@ -278,9 +449,11 @@ body {
   #roster-view { position: static; height: 100%; min-height: 0; border: 1px solid #33333c; border-radius: 12px; padding-bottom: 0; }
   .roster-scroll { padding-bottom: 0; }
   .roster-head { gap: 12px; padding: 18px 14px 14px; }
-  .roster-total { font-size: 42px; }
+  .roster-total { font-size: var(--fs-score-lg); }
   .player-row { grid-template-columns: 38px minmax(0, 1fr) 62px; min-height: 96px; padding-left: 14px; padding-right: 14px; }
-  .player-row .roster-score { font-size: 42px; }
+  .player-row.has-avatar { grid-template-columns: 38px minmax(0, 1fr) 62px; }
+  .player-row.concealed { grid-template-columns: minmax(0, 1fr) 62px; }
+  .player-row .roster-score { font-size: var(--fs-score-lg); }
 }
 
 /* ---------- standings (roster color system) ----------
@@ -293,7 +466,7 @@ body {
    no bottom padding, so no extra space is wedged between icon and title */
 .s-head { display: flex; align-items: center; justify-content: center; padding: 20px 20px 0; }
 #standings-view .s-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25)); }
-.league-title { text-align: center; font-size: clamp(33.84px, 9.76vw, 72.81px); letter-spacing: 0.01em; line-height: 0.98; margin: 12px 0 0; padding-bottom: 14px; font-weight: 700; }
+.league-title { text-align: center; font-size: var(--fs-league-title); letter-spacing: var(--ls-tight); line-height: 0.98; margin: 12px 0 0; padding-bottom: 14px; font-weight: var(--fw-bold); }
 #standings-list { max-width: 720px; margin: 16px auto 0; background: #28282f; border: 1px solid #33333c; border-radius: 12px; overflow: hidden; }
 .standing-row {
   display: flex; align-items: center; gap: 12px;
@@ -313,8 +486,8 @@ body {
    the badge's center line. Em-relative: it scales with the 42px
    number size at >= 760px. The dropped strike is a child of the
    number, so it travels with it and stays glued to the digits. */
-.standing-row .standings-name { flex: 1 1 auto; font-size: 28.5px; font-weight: 600; letter-spacing: 0.02em; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform: translateY(0.114em); }
-.standing-row .standings-num { flex: 0 0 auto; font-size: 36px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; color: #f1efe7; transform: translateY(0.114em); }
+.standing-row .standings-name { flex: 1 1 auto; font-size: var(--fs-name); font-weight: var(--fw-semibold); letter-spacing: var(--ls-normal); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform: translateY(0.114em); }
+.standing-row .standings-num { flex: 0 0 auto; font-size: var(--fs-score); font-weight: var(--fw-bold); line-height: 1; font-variant-numeric: tabular-nums; color: #f1efe7; transform: translateY(0.114em); }
 /* same single-line strike as the Scores rows: one straight pseudo-element
    line across the whole number at a single height (see .team-score.dropped) */
 .standing-row .standings-num.dropped { color: #d92d20; opacity: 0.7; position: relative; text-decoration: none; }
@@ -327,9 +500,9 @@ body {
   transform: translateY(-50%); pointer-events: none;
 }
 @media (min-width: 760px) {
-  .standing-row .standings-num { font-size: 42px; }
+  .standing-row .standings-num { font-size: var(--fs-score-lg); }
 }
-.standings-note { text-align: center; font-size: 13px; color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; }
+.standings-note { text-align: center; font-size: var(--fs-body-sm); color: #9d9ea6; line-height: 1.5; margin: 14px 0 0; }
 
 /* Scores bottom stack: the kickoff countdown (when rendered) and the
    week picker, floating just above the bottom nav on the Scores view.
@@ -371,7 +544,7 @@ body {
 #week-picker button svg { display: block; }
 #week-picker .week-name {
   flex: 1 1 auto; height: 38px; display: flex; align-items: center; justify-content: center;
-  font-size: 28.5px; font-weight: 600; letter-spacing: 0.04em; color: #ffffff; line-height: 1;
+  font-size: var(--fs-name); font-weight: var(--fw-semibold); letter-spacing: var(--ls-wide); color: #ffffff; line-height: 1;
   /* the display font's ink rides ~4px high in its line box; nudge it onto
      the pill's optical center (measured against the rendered frame) */
   transform: translateY(4px);
@@ -409,6 +582,741 @@ body {
   #sheet-close:active { background: rgba(255, 255, 255, 0.30); }
 }
 
+/* ---------- team view (dark page, roster-row language) ----------
+   Plain solid background like Standings: no 3D wall, no backdrop tint —
+   the wall stays scoped to the Scores view only. Rows reuse the roster
+   view's .player-row family (slot chip, main line + sub line, right
+   value); only the trailing cell differs — a salary figure where a pick
+   will show its price, plus the ＋ Add affordance on empty slots. */
+/* The bottom padding is the same nav clearance #app carries for the
+   other views (nav height + safe area + 24px), kept INSIDE this box —
+   the Standings pattern — so the Team background paints the full
+   scroll height including the clearance strip at the very bottom.
+   While this view is active #app's own padding-bottom is 0 (html.team
+   above), so the last row's resting clearance above the fixed bottom
+   nav is unchanged. */
+#team-view { background: #1d1d23; color: #f1efe7; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+/* Sticky Team header block: the "My Team" title row and the budget bar
+   ride as ONE sticky block at the top of the page scroll while the slot
+   list moves beneath it — the roster sheet's sticky-header pattern
+   family, in the Team view's existing (page) scroll context. Only the
+   title row is the header proper: it carries the shared
+   --flow-header-h height. The budget row is NOT part of the header
+   height — it sits beneath the title row at its own natural height,
+   inside the same sticky block so the two stick together. The block
+   itself is a plain block container (no flex column, no fixed height,
+   no centering): the title row and the budget row each span the full
+   content width, left-aligned, exactly as before the header-height
+   unification. Glass background (--flow-header-bg translucent tint
+   with the bottom nav's backdrop blur) so scrolled rows show through,
+   blurred, while the header still reads apart from the view,
+   and a z-index above the slot rows. */
+.team-sticky-head {
+  position: sticky; top: 0; z-index: 4;
+  /* glass header: the whole sticky block (title row + budget row)
+     carries the translucent --flow-header-bg tint with the bottom
+     nav's backdrop blur, so scrolled content shows through, blurred,
+     while the band still reads a step brighter than the view beneath */
+  background: var(--flow-header-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: none;
+}
+.team-head { width: 100%; max-width: 720px; margin: 0 auto; padding: 20px 14px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; height: var(--flow-header-h); min-height: var(--flow-header-h); }
+.team-head-main { flex: 1 1 auto; min-width: 0; }
+.team-head h2 {
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.team-week { font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); color: #9d9ea6; margin-top: 2px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.team-week.is-submitted { color: var(--gold); }
+/* Countdown urgency treatments on the header secondary text
+   (countdown state only): under a day to the lock it takes the
+   app's gold; under 30 minutes it turns the live-indicator red.
+   At/above a day it keeps the default dim color above. */
+.team-week.is-soon { color: var(--gold); }
+.team-week.is-critical { color: #e55252; }
+.team-budget {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; max-width: 720px; margin: 0 auto;
+  /* no hairlines between the title row and the budget row, or along
+     the sticky header's bottom edge: the brighter --flow-header-bg
+     of .team-sticky-head differentiates the block. The 2px of removed
+     border is kept as padding so the row's total height is unchanged. */
+  padding: 11px 14px; border-top: none; border-bottom: none;
+  /* Expand/collapse animation (20261023n): the bar's full box is
+     animated via max-height (ceiling 88px, comfortably above its
+     ~58px natural height: 11px top/bottom padding + label/value
+     stack) with overflow hidden, plus its vertical padding and
+     opacity. Expanded resting state is fully visible and
+     interactive; visibility flips immediately on expand. */
+  overflow: hidden;
+  max-height: 88px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    max-height 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    padding-top 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    padding-bottom 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    margin-top 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    margin-bottom 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 200ms cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s linear 0s;
+}
+/* First-load suppression: the bar carries .no-anim from markup, so
+   the very first .is-hidden application in renderTeam (including a
+   submitted lineup restored from Firebase) paints directly in its
+   correct state with no collapse flash. app.js removes .no-anim
+   after that first application has painted (double rAF); every
+   later toggle animates. */
+.team-budget.no-anim { transition: none !important; }
+.budget-item { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.budget-item:nth-child(2) { align-items: center; text-align: center; }
+.budget-item:last-child { align-items: flex-end; text-align: right; }
+.budget-label { font-size: var(--fs-xs); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); text-transform: uppercase; color: #9d9ea6; white-space: nowrap; }
+.budget-value { font-family: var(--font-ui); font-size: var(--fs-lg); font-weight: var(--fw-semibold); line-height: 1.1; white-space: nowrap; }
+/* Collapsed when the lineup is locked in (submitted): renderTeam
+   toggles .is-hidden on .team-budget exactly while teamSubmitted()
+   is true — the same condition that reads "Week N lineup submitted"
+   in the header. The end state occupies ZERO layout space (max-height
+   0 with vertical padding and vertical margins zeroed — the bar's
+   vertical margins are already 0 via margin: 0 auto, so zeroing them
+   here is explicit) and is non-interactive (visibility: hidden,
+   delayed until the collapse finishes, plus pointer-events: none),
+   so the sticky block settles at the title row alone. This
+   max-height end state is the final resting state — no display:none
+   is applied after the transition — which keeps the sticky header
+   block stable and lets expand run as the exact reverse. The budget
+   values keep updating in renderTeam while collapsed, so expanding
+   never shows stale numbers. --flow-header-h covers only the title
+   row, so collapsing this row does not change the picker/detail
+   header band. */
+.team-budget.is-hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    max-height 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    padding-top 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    padding-bottom 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    margin-top 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    margin-bottom 300ms cubic-bezier(0.32, 0.72, 0, 1),
+    opacity 200ms cubic-bezier(0.32, 0.72, 0, 1),
+    visibility 0s linear 300ms;
+}
+/* Reduced motion: the submitted-state change is instant — no
+   transition on the bar in either direction. */
+@media (prefers-reduced-motion: reduce) {
+  .team-budget, .team-budget.is-hidden { transition: none !important; }
+}
+#team-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; padding: 10px 14px 0; }
+/* Submit rides the sticky Team header at the top right of the title
+   row: a compact primary action in the app's gold accent treatment —
+   the same solid gold pill family as the picker/team action pills,
+   sized for the header. Enabled only for a complete, in-cap lineup
+   (renderTeam owns the state); a placeholder no-op when tapped. */
+.team-submit {
+  flex: 0 0 auto; margin-top: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 9px 18px; border-radius: 999px;
+  border: 1px solid #d8b45a;
+  background: #d8b45a; color: #1d1d23;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wider); text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+}
+.team-submit:active { background: #bd9732; border-color: #bd9732; }
+.team-submit:disabled { opacity: 0.38; cursor: default; }
+.team-submit:disabled:active {
+  background: #d8b45a; border-color: #d8b45a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+/* Unlock state (lineup submitted): the same dark treatment the swap
+   button uses (.team-swap) — dark fill from the #1d1d23 family with
+   gold text and the gold-toned border that keeps a dark pill
+   readable as a button. Driven by .is-unlock, the class renderTeam
+   adds exactly while the lineup is submitted (the same condition
+   that sets the "Unlock" label); Draft and Submit keep the gold
+   pill above untouched. */
+.team-submit.is-unlock {
+  background: #1d1d23; color: #d8b45a;
+  border-color: rgba(216, 180, 90, 0.55);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.team-submit.is-unlock:active {
+  background: #101014; border-color: #d8b45a; color: #d8b45a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+/* ---------- sign-in gate (Team tab auth) ----------
+   Until the user is authenticated, #team-view carries .auth-gated
+   (present in the markup from first paint, removed by app.js only
+   after a restored/signed-in session resolves to a team): the gate
+   replaces the whole builder — sticky head, slot list
+   and picker sheet are all suppressed — while Scores
+   and Standings are untouched. The gate header mirrors the
+   Standings header: the app icon at the same 48px size and top
+   placement (the standings view's 15.56px page padding + the
+   .s-head 20px top padding = 35.56px), and the league name in the
+   standings title's own .league-title text style. */
+#team-gate { display: none; }
+#team-view.auth-gated #team-gate { display: block; }
+#team-view.auth-gated .team-sticky-head,
+#team-view.auth-gated #team-list,
+#team-view.auth-gated #team-signout,
+#team-view.auth-gated #pool-sheet { display: none !important; }
+.gate-head { display: flex; align-items: center; justify-content: center; padding: 35.56px 20px 0; }
+.gate-logo { display: block; width: 48px; height: auto; aspect-ratio: 1 / 1.06; object-fit: contain; margin: 0 auto; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25)); }
+/* Gate title only (the shared .league-title size is untouched, so the
+   Scores/Standings headers keep theirs): enlarged so the four words
+   wrap at exactly two per line — "meaningless fantasy" / "football
+   league" — by natural wrapping, no forced break. Sized from the
+   Delirium metrics (opentype pipeline, advance + kerning + the
+   title's 0.01em letter-spacing): "meaningless fantasy" measures
+   4.785em and "meaningless fantasy football" 6.872em, so at the
+   gate's full-viewport column the break needs a size above
+   62.6px (at 430px) and no more than 81.5px (at 390px). 17.5vw lands
+   mid-range at both widths — 68.25px at 390px (two words 326.6px
+   fit, three words 469.0px overflow) and 75.25px at 430px (360.1px
+   fit, 517.1px overflow) — and the longest single word,
+   "meaningless" (2.856em, 194.9px at 390px), fits alone with room
+   to spare.
+   Line-height is tightened here only (the base .league-title keeps
+   0.98): measured from the ACTUAL glyph bounding boxes via the
+   opentype pipeline, every Delirium glyph in both lines — g and y
+   included — has the identical ink box, y −0.728em..0 relative to
+   the baseline (ink height 0.728em, nothing below the baseline:
+   this face has no true descenders). With both lines' ink 0.728em
+   tall and sitting on their baselines, the visible gap between
+   line 1's ink bottom and line 2's ink top is exactly
+   (line-height − 0.728em). At the old inherited 0.98 that gap was
+   0.252em (≈17px at 68px) — the looseness being fixed. At 0.82 the
+   gap is 0.092em (≈6.3px at 390px width, ≈6.9px at 430px): a small
+   clear separation, and 0.092em above the 0.728 collision floor,
+   so the lines can never touch. */
+.league-title.gate-title { font-size: clamp(64px, 17.5vw, 84px); line-height: 0.82; }
+.gate-sub { text-align: center; font-size: var(--fs-body); color: #9d9ea6; margin: 2px 20px 0; }
+.gate-card {
+  width: calc(100% - 40px); max-width: 430px; margin: 22px auto 0; padding: 20px;
+  background: #28282f; border: 1px solid #33333c; border-radius: 12px;
+}
+.gate-field { display: block; margin-bottom: 14px; }
+.gate-label { display: block; font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); text-transform: uppercase; color: #9d9ea6; margin-bottom: 6px; }
+.gate-card input {
+  width: 100%; padding: 12px; border-radius: 8px;
+  background: #1d1d23; border: 1px solid #33333c; color: #f1efe7;
+  font: inherit; font-size: var(--fs-base);
+}
+.gate-card input:focus { outline: none; border-color: var(--gold); }
+.gate-pass-wrap { position: relative; display: block; }
+.gate-pass-wrap input { padding-right: 64px; }
+.gate-pass-toggle {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; color: var(--gold); font: inherit;
+  font-size: var(--fs-body-sm); font-weight: var(--fw-bold); cursor: pointer; padding: 8px;
+}
+.gate-error { font-size: var(--fs-body-sm); color: #e55252; line-height: 1.45; margin: 0 0 12px; }
+.gate-submit {
+  width: 100%; padding: 13px 18px; border-radius: 999px;
+  border: 1px solid #d8b45a; background: #d8b45a; color: #1d1d23;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  font: inherit; font-size: var(--fs-body); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wider); text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+}
+.gate-submit:active { background: #bd9732; border-color: #bd9732; }
+.gate-submit:disabled { opacity: 0.38; cursor: default; }
+.gate-submit:disabled:active { background: #d8b45a; border-color: #d8b45a; }
+.gate-forgot {
+  display: block; margin: 16px auto 0; padding: 8px; background: none; border: none;
+  color: var(--gold); font: inherit; font-size: var(--fs-body); font-weight: var(--fw-semibold); cursor: pointer;
+}
+.gate-inline-note { text-align: center; font-size: var(--fs-body-sm); color: #9d9ea6; line-height: 1.45; margin: 10px 20px 0; }
+.gate-fineprint { max-width: 430px; margin: 22px auto 0; padding: 0 20px; text-align: center; font-size: var(--fs-body-sm); color: #9d9ea6; line-height: 1.55; }
+.gate-restoring-note, .gate-unassigned-msg { text-align: center; font-size: var(--fs-body); color: #9d9ea6; line-height: 1.55; margin: 18px 20px 0; }
+.gate-signout-btn {
+  display: block; margin: 16px auto 0; padding: 9px 22px; border-radius: 999px;
+  background: #1d1d23; color: var(--gold); border: 1px solid rgba(216, 180, 90, 0.55);
+  font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wider); text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+}
+.gate-signout-btn:active { background: #101014; border-color: #d8b45a; }
+/* Header actions: Submit rides the right end of the Team header
+   row (inside the sticky header). */
+.team-head-actions { flex: 0 0 auto; display: flex; align-items: flex-start; gap: 14px; }
+/* Sign out (restored 2026-10-24): the last element inside #team-view,
+   at the bottom of the Team page after the lineup list — outside the
+   sticky head and the budget bar, so it stays reachable in both the
+   draft and submitted states (the budget bar collapses when
+   submitted; this button does not). While the view is gated it is
+   hidden with the rest of the builder (see the .auth-gated rule
+   above), so it never appears on the sign-in gate. Subdued secondary
+   treatment in the page's dark surface system: a #28282f surface
+   pill with the #33333c border, aligned to the lineup list's edges
+   (720px max width less its 14px side padding), with clear space
+   above it and a comfortable tap height. The unassigned gate's
+   #gate-signout button is a separate element and is unaffected. */
+.team-signout {
+  display: flex; align-items: center; justify-content: center;
+  width: calc(100% - 28px); max-width: 692px;
+  margin: 28px auto 0; min-height: 48px; padding: 12px 18px;
+  background: #28282f; border: 1px solid #33333c; border-radius: 999px;
+  color: var(--gold); font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); text-transform: uppercase;
+  cursor: pointer; white-space: nowrap;
+}
+.team-signout:active { background: #101014; border-color: rgba(216, 180, 90, 0.55); }
+
+/* The former standalone lock line (countdown / submitted /
+   locked) is consolidated into the Team header's secondary text
+   (.team-week above) — there is no separate lock line element in
+   the Team view anymore. */
+#team-view .player-row { grid-template-columns: 36px minmax(0, 1fr) auto; }
+.team-empty { color: #9d9ea6; }
+.team-cell { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 6px; }
+.team-sal-val { font-size: var(--fs-body-sm); font-weight: var(--fw-semibold); color: #9d9ea6; font-variant-numeric: tabular-nums; }
+.team-add {
+  font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wide); white-space: nowrap;
+  color: var(--gold); border: 1px solid rgba(216, 180, 90, 0.45); border-radius: 999px; padding: 4px 9px;
+}
+/* Team slot rows: two-click-target pattern mirroring the picker rows
+   (.pool-row / .pool-info / .pool-quick). The row card itself is a
+   plain flex container; its content area (.team-slot-info) is one tap
+   target and, on filled rows, the swap pill (.team-swap) sitting
+   across a real gap on the right is a second, visually separate tap
+   target. Pressed feedback belongs to each target alone — exactly
+   like .pool-info:active vs .pool-quick:active: pressing the swap
+   pill (outside .team-slot-info) cannot light the content area, and
+   pressing the content area cannot light the pill, because neither
+   target is an ancestor of the other. The row card carries no
+   :active of its own for the same reason. Card content and styling
+   are otherwise unchanged from the single-target row. */
+#team-view .player-row.team-slot-row { display: flex; align-items: center; gap: 12px; }
+.team-slot-row {
+  width: 100%; background: #28282f; color: inherit; font: inherit; text-align: left;
+  border: none; border-bottom: none; border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.team-slot-info {
+  flex: 1 1 auto; min-width: 0; align-self: stretch;
+  display: grid; grid-template-columns: 38px minmax(0, 1fr) auto; gap: 9px; align-items: center;
+  padding: 4px 2px; border-radius: 10px; cursor: pointer;
+}
+/* Empty-slot avatar: the fallback (no-image) circle carrying the
+   slot position. Empty state only: the circle turns dark gray
+   (#33333c) and the slot label renders in the Delirium display face
+   in light gray (#c9cbd1) at 16px so it reads in the 38px circle —
+   filled-row avatar fallbacks keep the base treatment. The
+   fallback span is forced visible (no img to hide behind). */
+.team-empty-avatar .pool-avatar-fallback {
+  display: flex;
+  font-family: var(--font-display);
+  font-size: var(--fs-base);
+  color: #c9cbd1;
+}
+/* the compound selector outranks the base .pool-avatar light fill,
+   which is declared later in this stylesheet */
+.team-empty-avatar { flex: 0 0 auto; }
+.pool-avatar.team-empty-avatar { background: #33333c; }
+/* Add pill on empty Team rows: the picker's add pill (.pool-quick)
+   itself — identical 44px gold pill geometry, fill, border, shadow
+   and pressed treatment, carrying the ＋ glyph alone. It sits as a
+   sibling of .team-slot-info (like .team-swap on filled rows), so
+   its :active is its own and never lights the content area. */
+.team-add-pill { flex: 0 0 auto; align-self: center; }
+.team-slot-info:active { background: rgba(255, 255, 255, 0.06); }
+.team-slot-info:focus-visible { outline: 3px solid rgba(217, 184, 74, 0.4); outline-offset: 2px; }
+/* The swap button is the picker's add button (.pool-quick) at the
+   identical 44px pill geometry, but with inverted colors: a DARK
+   fill from the row/card dark family (the sticky header's #1d1d23)
+   with a gold-toned border that keeps it readable as a button
+   against the card, and the swap glyph (⇅) alone in gold — no text
+   label. Its pressed treatment darkens further; the gold pills
+   elsewhere (empty-row add, picker, detail) are untouched. */
+.team-swap {
+  display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  align-self: center;
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border-radius: 999px;
+  border: 1px solid rgba(216, 180, 90, 0.55);
+  background: #1d1d23; color: #d8b45a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  font-size: var(--fs-lg); font-weight: var(--fw-extrabold); line-height: 1; cursor: pointer;
+  transition: background-color 300ms ease, background 300ms ease, border-color 300ms ease, color 300ms ease, box-shadow 300ms ease;
+}
+.team-swap svg { display: block; flex: 0 0 auto; }
+.team-swap:active {
+  background: #101014; border-color: #d8b45a;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+/* Locked state (lineup submitted): the swap pill recedes — its dark
+   fill fades out to transparent and its border dims to a faint tone
+   over the same 300ms transition declared on .team-swap above, and
+   the gold ⇅ glyph is replaced (in markup) by a lock icon in an
+   OPAQUE mid grey (#898989 — the solid equivalent of the old
+   translucent white composited over the card, chosen solid so the
+   lock SVG's overlapping shapes cannot double-paint into brighter
+   overlap artifacts). The button is inert while locked (its handler
+   checks the submitted state); unlocking removes .is-locked and the
+   transition fades the fill, border and glyph back in. */
+.team-swap.is-locked {
+  background: transparent; background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #898989;
+  box-shadow: none;
+  cursor: default;
+}
+.team-swap.is-locked:active {
+  background: transparent; background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #898989;
+  box-shadow: none;
+}
+.inj-badge {
+  flex: 0 0 auto; margin-left: 7px; padding: 2px 5px; border-radius: 4px;
+  font-size: var(--fs-2xs); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wide);
+  color: #ff9a9a; background: rgba(229, 82, 82, 0.16);
+}
+
+/* ---------- player browser page (Team picking flow) ----------
+   Navigation pattern, pool-scoped: a fixed dark panel that is pushed
+   in from the RIGHT and pushed back out to the right, on the app's
+   sheet/detail motion curve — at every width (mobile and the desktop
+   full overlay alike); there is no vertical bottom-sheet slide. The
+   panel itself never scrolls — .pool-scroll does — under a solid
+   sticky header whose first item is a Back button (the detail page's
+   .pool-detail-back pill), then the slot label and the slot's
+   available budget. */
+#pool-sheet {
+  position: fixed; inset: 0; z-index: 9; overflow: hidden;
+  background: #1d1d23; color: #f1efe7;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0.38s;
+}
+#pool-sheet.sheet-open {
+  transform: translateX(0);
+  visibility: visible;
+  transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1), visibility 0s linear 0s;
+}
+#pool-sheet[hidden] { display: none !important; }
+body.pool-open { overflow: hidden; }
+.pool-scroll {
+  height: 100%; overflow-y: auto; max-width: 720px; margin: 0 auto;
+  padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px));
+}
+.pool-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 14px; position: sticky; top: 0; z-index: 2;
+  /* glass header: translucent --flow-header-bg tint with the bottom
+     nav's backdrop blur, so scrolled content shows through, blurred;
+     no hairline divider along the bottom edge; the fixed 90px height
+     is border-box, so dropping the 1px border does not change it */
+  background: var(--flow-header-bg);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: none;
+  height: var(--flow-header-h); min-height: var(--flow-header-h);
+}
+.pool-head-main { flex: 1 1 auto; min-width: 0; }
+.pool-head h2 {
+  font-size: var(--fs-heading); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.pool-sub { font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wider); color: #9d9ea6; margin-top: 2px; }
+.pool-head-right { display: flex; align-items: center; gap: 10px; flex: 0 0 auto; }
+.pool-cap-stack { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 0; }
+.pool-cap { font-size: var(--fs-cap); font-weight: var(--fw-bold); line-height: 1; text-align: right; font-variant-numeric: tabular-nums; }
+.pool-avg { font-size: var(--fs-sm); font-weight: var(--fw-bold); letter-spacing: var(--ls-wide); color: #9d9ea6; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+/* Quick-add: a self-contained button, visually independent from the
+   player row. It carries its own filled/elevated background, solid
+   border, shadow and 44px tap target, and sits across a real gap from
+   the player content (.pool-info), so the two targets never blend.
+   Its :active fill is its alone — the button is NOT inside .pool-info,
+   so pressing it cannot light the row body, and pressing the row body
+   (inside .pool-info) cannot light the button. */
+.pool-quick {
+  display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+  align-self: center;
+  width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border-radius: 999px;
+  border: 1px solid #d8b45a;
+  background: #d8b45a; color: #1d1d23;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+  font-size: var(--fs-icon-lg); font-weight: var(--fw-extrabold); line-height: 1; cursor: pointer;
+}
+.pool-quick:active {
+  background: #bd9732; border-color: #bd9732;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+.pool-quick:disabled { opacity: 0.35; cursor: default; }
+.pool-quick:disabled:active {
+  background: #d8b45a; border-color: #d8b45a;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+.pool-quick.is-remove {
+  border-color: #d92d20; background: #d92d20; color: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  font-size: var(--fs-icon-md);
+}
+.pool-quick.is-remove:active {
+  background: #b42318; border-color: #b42318;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+/* Circular team-icon preview at the left of a picker row (and, in its
+   larger form, at the top of the player detail body): a neutral circle
+   holding the NFL team logo, with the team abbreviation as fallback
+   content if the logo fails to load — JS adds .is-fallback on error,
+   hiding the broken img so no broken-image glyph ever shows. */
+.pool-avatar {
+  position: relative; flex: 0 0 auto; align-self: center;
+  width: 38px; height: 38px; border-radius: 50%; overflow: hidden;
+  background: #e8e6dd;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+.pool-avatar-img {
+  display: block; width: 100%; height: 100%;
+  object-fit: contain; padding: 5px;
+}
+.pool-avatar-fallback {
+  display: none; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  font-size: var(--fs-xs); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-wide); color: #33333c;
+}
+.pool-avatar.is-fallback .pool-avatar-img { display: none; }
+.pool-avatar.is-fallback .pool-avatar-fallback { display: flex; }
+.pool-avatar-lg { width: 60px; height: 60px; }
+.pool-avatar-lg .pool-avatar-img { padding: 8px; }
+.pool-avatar-lg .pool-avatar-fallback { font-size: var(--fs-value); }
+/* no hairline divider under the search field (the input keeps its own
+   field border, below); the removed 1px is kept as padding so the
+   wrap's total height is unchanged */
+.pool-search-wrap { padding: 12px 14px 13px; border-bottom: none; }
+#pool-search {
+  width: 100%; padding: 11px 12px; border-radius: 10px;
+  border: 1px solid #33333c; background: #28282f; color: #f1efe7;
+  font: inherit; font-size: var(--fs-base);
+}
+#pool-search::placeholder { color: #8b929c; }
+#pool-current { padding: 12px 14px 0; }
+#pool-list { display: flex; flex-direction: column; gap: 10px; padding: 10px 14px 0; }
+#pool-list:empty { padding: 0; }
+.pool-row {
+  display: flex; align-items: center; gap: 16px; width: 100%;
+  /* Fixed three-line block: name (23px) + meta (13px) + average (13px)
+     with 5px line gaps, inside the info/row padding — one consistent
+     min-height so every picker row (pinned card included) is the
+     same height across positions and slates. */
+  min-height: 96px; padding: 12px 14px;
+  background: #28282f;
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  color: inherit; font: inherit; text-align: left; cursor: pointer;
+}
+/* The player content lives in its own area (.pool-info) that ends
+   before the 16px gap and the quick-add button. Press feedback belongs
+   to this area only: pressing the separate button (outside .pool-info)
+   never lights the row body, and pressing the row body never touches
+   the button's fill. The card itself (.pool-row) carries the rounded
+   rectangle, its own background fill and the list gap — no separators. */
+.pool-info {
+  flex: 1 1 auto; min-width: 0; align-self: stretch;
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 2px; border-radius: 10px;
+}
+.pool-info:active { background: rgba(255, 255, 255, 0.06); }
+.pool-row.current { background: rgba(216, 180, 90, 0.12); box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(216, 180, 90, 0.38); }
+/* In-place clear exit: the pinned card collapses/fades out in the
+   sheet's motion language (same cubic-bezier family as the sheets)
+   before the list re-renders in its empty state — the sheet itself
+   never closes. JS sets an explicit start height, adds this class,
+   then forces height to 0; the transition carries the collapse. */
+.pool-row.is-exiting {
+  transition: opacity 320ms cubic-bezier(0.32, 0.72, 0, 1), transform 320ms cubic-bezier(0.32, 0.72, 0, 1), height 320ms cubic-bezier(0.32, 0.72, 0, 1), padding-top 320ms cubic-bezier(0.32, 0.72, 0, 1), padding-bottom 320ms cubic-bezier(0.32, 0.72, 0, 1), min-height 320ms cubic-bezier(0.32, 0.72, 0, 1);
+  opacity: 0;
+  transform: translateY(-6px) scale(0.985);
+  overflow: hidden;
+  pointer-events: none;
+}
+.pool-row.current .pool-info { background: transparent; }
+.pool-row.current .pool-info:active { background: rgba(216, 180, 90, 0.15); }
+.pool-row.disabled, .pool-row.over-budget { opacity: 0.38; cursor: default; }
+.pool-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+.pool-row .name-line { display: flex; align-items: center; min-width: 0; min-height: 23px; }
+.pool-row .player-name {
+  font-family: var(--font-player-list);
+  font-size: var(--fs-player-list); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  min-width: 0;
+}
+/* The position span treatment is shared verbatim with filled Team
+   slot rows (.team-slot-row) and roster rows (.player-row): same
+   inline span after the name, the name's own font at the name's
+   size/weight/spacing, one dimmer tone (#c9cbd1) — one rule, so the
+   surfaces cannot drift apart. */
+.pool-row .player-pos, .team-slot-row .player-pos, .player-row .player-pos {
+  flex: 0 0 auto; margin-left: 6px;
+  font-family: var(--font-player-list);
+  font-size: var(--fs-player-list); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  white-space: nowrap;
+  color: #c9cbd1;
+}
+.pool-row .meta-line, .team-slot-row .meta-line { display: flex; flex-wrap: wrap; align-items: center; gap: 5px 10px; margin-top: 5px; min-height: 13px; line-height: 1.3; }
+.pool-row .matchup { font-size: var(--fs-compact); font-weight: var(--fw-bold); letter-spacing: var(--ls-normal); color: #8b929c; }
+/* Line 3 of the fixed three-line picker row: a dedicated line holding
+   ONLY the player's average fantasy score (.pool-fppg, unchanged
+   value/format/styling — it moved here from the meta line). The line
+   always renders with a fixed min-height, even when no FPPG segment
+   is present, so the row never collapses to two lines. The injury
+   badge in the meta line keeps its name-line offset removed there. */
+.pool-row .avg-line, .pool-row .pool-avg-line, .team-slot-row .avg-line {
+  display: flex; align-items: center; gap: 5px 10px; margin-top: 5px;
+  min-height: 13px; line-height: 1.3;
+}
+.pool-row .meta-line .inj-badge, .team-slot-row .meta-line .inj-badge { margin-left: 0; }
+.pool-fppg { font-size: var(--fs-compact); font-weight: var(--fw-bold); color: #9d9ea6; }
+.pool-tag {
+  flex: 0 0 auto; margin-left: 7px; padding: 2px 7px; border-radius: 999px;
+  font-size: var(--fs-2xs); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-tag); text-transform: uppercase;
+  color: var(--gold); background: rgba(216, 180, 90, 0.14);
+}
+.pool-salary { flex: 0 0 auto; font-size: var(--fs-value); font-weight: var(--fw-bold); font-variant-numeric: tabular-nums; }
+.pool-empty { padding: 22px 14px; font-size: var(--fs-body-sm); color: #9d9ea6; text-align: center; }
+/* ---------- player detail pane (drill-in within the pool page) ---------- */
+#pool-detail {
+  position: absolute; inset: 0; z-index: 6;
+  background: #1d1d23; color: #f1efe7;
+  display: flex; flex-direction: column;
+  animation: poolDetailIn 220ms ease-out;
+}
+#pool-detail[hidden] { display: none !important; }
+#pool-detail.is-exiting {
+  transition: opacity 280ms cubic-bezier(0.32, 0.72, 0, 1), transform 280ms cubic-bezier(0.32, 0.72, 0, 1);
+  opacity: 0;
+  transform: translateX(28px);
+  animation: none;
+  pointer-events: none;
+}
+@keyframes poolDetailIn { from { transform: translateX(28px); opacity: 0.6; } to { transform: none; opacity: 1; } }
+.pool-detail-scroll { flex: 1 1 auto; overflow-y: auto; max-width: 720px; width: 100%; margin: 0 auto; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+.pool-detail-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px; position: sticky; top: 0; z-index: 2;
+  /* No title and no fill: the detail header band is fully transparent
+     (no glass tint, no backdrop blur), so the circular Back button
+     floats over the content scrolling beneath it. The band keeps the
+     shared 90px height so its geometry — and the Back button's pinned
+     position at the top of the pane — is exactly as before. */
+  background: transparent;
+  border-bottom: none;
+  height: var(--flow-header-h); min-height: var(--flow-header-h);
+}
+/* Graphical hero: the player's identity block at the top of the body,
+   presented as a card in the app's card style (the picker rows' /
+   history card's #28282f fill, 14px radius, layered shadow), inset
+   14px from the pane edges like the cards below it. Inside, the
+   large circular team-icon avatar leads — promoted to 88px so it
+   reads as the hero's graphic anchor — beside the name block: the
+   name with its position inline (the existing .pool-detail-name /
+   .pool-detail-pos Delirium treatment, unchanged) and the meta lines
+   under it (team, opponent-only matchup, kickoff, salary, average —
+   the existing .pool-detail-meta-line styles, unchanged). The
+   inline Add/Remove quick pill (.pool-quick) closes the row on the
+   right, vertically centered against the whole block. */
+.pool-detail-hero {
+  display: flex; align-items: center; gap: 16px;
+  margin: 4px 14px 0; padding: 18px 16px;
+  background: #28282f;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.pool-detail-hero .pool-avatar-lg { width: 88px; height: 88px; }
+.pool-detail-hero .pool-avatar-lg .pool-avatar-img { padding: 12px; }
+.pool-detail-hero .pool-avatar-lg .pool-avatar-fallback { font-size: var(--fs-icon-lg); }
+.pool-detail-avatar { flex: 0 0 auto; display: flex; }
+.pool-detail-avatar:empty { display: none; }
+.pool-detail-hero-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.pool-detail-name {
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: var(--fs-detail); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  min-width: 0;
+}
+.pool-detail-name-text {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 0 1 auto;
+}
+.pool-detail-pos {
+  flex: 0 0 auto; white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: var(--fs-detail); font-weight: var(--fw-semibold); line-height: 1.15; letter-spacing: var(--ls-normal);
+  text-transform: uppercase; font-synthesis: none;
+  color: #c9cbd1;
+}
+.pool-detail-pos:empty { display: none; }
+.pool-detail-hero .pool-detail-meta { padding: 0; }
+.pool-detail-back {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0; flex: 0 0 auto;
+  width: 38px; height: 38px; min-width: 38px; min-height: 38px; padding: 0; border-radius: 50%; border: 1px solid #33333c;
+  background: rgba(255,255,255,0.06); color: #f1efe7;
+  font: inherit; font-size: var(--fs-body-sm); font-weight: var(--fw-bold); cursor: pointer;
+}
+.pool-detail-back svg { display: block; flex: 0 0 auto; }
+.pool-detail-back:active { background: rgba(255,255,255,0.14); }
+.pool-detail-meta { padding: 16px 14px 6px; display: flex; flex-direction: column; gap: 8px; }
+.pool-detail-meta-line { font-size: var(--fs-body-sm); font-weight: var(--fw-bold); color: #c9cbd1; letter-spacing: var(--ls-normal); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.pool-detail-meta-line .pool-detail-salary { color: #f1efe7; font-weight: var(--fw-bold); }
+.pool-detail-meta-line .pool-detail-fppg { color: #9d9ea6; }
+.pool-detail-section-label {
+  padding: 16px 14px 8px; font-size: var(--fs-sm); font-weight: var(--fw-extrabold); letter-spacing: var(--ls-widest);
+  text-transform: uppercase; color: #9d9ea6;
+}
+/* The history table sits inside a card in the player list view's
+   card style — the picker rows' (.pool-row) treatment verbatim:
+   #28282f fill, 14px radius, the same layered shadow — inset 14px
+   from the pane edges like the picker list's own side padding, with
+   a little vertical padding so the first and last rows breathe
+   against the card's edges. The "Score History" section label stays
+   above the card as the section heading, and the empty state
+   renders inside the card too.
+   Scoped exception to the divider sweep: INSIDE this card only, the
+   week rows are separated by subtle hairline dividers (and the last
+   row carries none — the card's bottom edge serves). The sweep
+   stays in force everywhere else. Each row's bottom padding gives
+   back the divider's 1px (12px + 1px border in place of the old
+   13px), so row heights are unchanged. */
+#pool-detail-history {
+  margin: 0 14px;
+  padding: 6px 0;
+  background: #28282f;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.history-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.history-row:last-child { border-bottom: none; }
+.history-week { flex: 0 0 auto; font-size: var(--fs-body); font-weight: var(--fw-bold); }
+.history-matchup { flex: 1 1 auto; min-width: 0; font-size: var(--fs-xs); font-weight: var(--fw-bold); color: #8b929c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.history-pts { flex: 0 0 auto; font-family: var(--font-ui); font-size: var(--fs-icon-md); font-weight: var(--fw-bold); font-variant-numeric: tabular-nums; }
+.pool-detail-empty { padding: 22px 14px; font-size: var(--fs-body-sm); color: #9d9ea6; text-align: center; }
+/* Player News card: the same card treatment as the history card
+   above it (#28282f fill, 14px radius, the same layered shadow),
+   inset 14px from the pane edges; the "Player News" section label
+   sits above it as the section heading. Placeholder content only
+   for now — no news source is wired up yet. The pane's existing
+   scroll padding-bottom clears the bottom nav, so the card is
+   fully readable when scrolled to the end. */
+#pool-detail-news {
+  margin: 0 14px;
+  padding: 18px 14px;
+  background: #28282f;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.pool-detail-news-placeholder { font-size: var(--fs-body-sm); color: #9d9ea6; text-align: center; line-height: 1.5; }
+
 /* ---------- bottom nav ---------- */
 #bottomnav {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
@@ -420,17 +1328,24 @@ body {
 }
 #bottomnav button {
   flex: 1; background: none; border: none; color: rgba(255,255,255,0.42);
-  font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer;
-  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: var(--fs-sm); font-weight: var(--fw-semibold); letter-spacing: var(--ls-widest); text-transform: uppercase; cursor: pointer;
+  font-family: var(--font-ui);
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
   padding: 8px 0 4px; min-height: 56px; border-radius: 8px;
 }
 #bottomnav button svg { display: block; flex: none; }
+/* Inactive nav icons render in an OPAQUE grey rather than the button's
+   translucent text color: the icons' overlapping stroke shapes would
+   otherwise double-paint the translucency into brighter overlap
+   artifacts. #767676 matches the old 0.42-white composite over the
+   dark bar. Scoped to the svg only — the labels keep the buttons' text color,
+   and the active tab's icon keeps the buttons' active color. */
+#bottomnav button:not(.active) svg { color: #767676; }
 #bottomnav button span { line-height: 1; }
 #bottomnav button.active { color: rgba(255,255,255,0.96); }
 #bottomnav button:active { background: rgba(255,255,255,0.10); }
 
 @media (min-width: 760px) {
   #leaderboard, #roster-view { max-width: 860px; }
-  .team-row .team-name { font-size: 30px; }
+  .team-row .team-name { font-size: var(--fs-cap); }
 }
