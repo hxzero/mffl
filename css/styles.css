@@ -142,6 +142,19 @@ body {
 
 /* ---------- app frame ---------- */
 #app { position: relative; z-index: 1; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
+/* iOS installed PWA only (the .ios-standalone class is set on <html>
+   at boot by the detection script in index.html — iOS device AND
+   standalone display; never in a browser tab, on Android, or on
+   desktop): extra top padding on the app frame so the first-screen
+   content — the Scores helmet/countdown header, and the top areas of
+   the Standings, Team and sign-in gate views, all of which live
+   inside #app — clears the iOS status bar / notch. The padding sits
+   on #app, OUTSIDE #helmet-wrap, so the helmet/countdown height
+   matching is untouched. Sized from the safe-area inset with a 24px
+   floor: max() yields env(safe-area-inset-top) whenever it exceeds
+   24px (notch / Dynamic Island devices) and 24px whenever the inset
+   resolves to 0 or is unavailable. */
+html.ios-standalone #app { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
 /* While the Team view is active, the bottom nav clearance moves INSIDE
    #team-view (its own padding-bottom below, the Standings pattern), so
    #app's bottom padding is zeroed: the total clearance below the Team

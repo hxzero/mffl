@@ -3,8 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<script>
+/* iOS installed-PWA detection — runs at boot, before first paint, so
+   the layout class is settled before styles apply. When BOTH hold,
+   the <html> element gets .ios-standalone and styles.css adds
+   safe-area top padding to #app (see the html.ios-standalone rule
+   there):
+   - iOS device: an iPhone/iPad/iPod user agent, or the iPadOS
+     desktop-UA case (platform MacIntel with multi-touch);
+   - installed/standalone: navigator.standalone === true (iOS) or
+     the (display-mode: standalone) media query matches.
+   Every other context — a normal browser tab on any platform,
+   Android, desktop — gets no class and no change. Best-effort: any
+   failure leaves the default tab experience untouched. */
+(function () {
+  try {
+    var ua = navigator.userAgent || '';
+    var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (!isIOS) return;
+    var standalone = navigator.standalone === true ||
+      (typeof window.matchMedia === 'function' &&
+        window.matchMedia('(display-mode: standalone)').matches);
+    if (standalone) document.documentElement.classList.add('ios-standalone');
+  } catch (e) { /* detection is best-effort; the tab experience is the default */ }
+})();
+</script>
 <title>Meaningless Fantasy Football League 2026</title>
-<link rel="stylesheet" href="css/styles.css?v=20261024c">
+<link rel="stylesheet" href="css/styles.css?v=20261024d">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#101014">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/icon-192.png">
@@ -242,10 +268,10 @@
     </button>
   </nav>
 
-  <script src="js/pool.js?v=20261024c"></script>
-  <script src="js/history.js?v=20261024c"></script>
-  <script src="js/pool-extended.js?v=20261024c"></script>
-  <script src="js/bg3d.js?v=20261024c"></script>
-  <script src="js/app.js?v=20261024c"></script>
+  <script src="js/pool.js?v=20261024d"></script>
+  <script src="js/history.js?v=20261024d"></script>
+  <script src="js/pool-extended.js?v=20261024d"></script>
+  <script src="js/bg3d.js?v=20261024d"></script>
+  <script src="js/app.js?v=20261024d"></script>
 </body>
 </html>
