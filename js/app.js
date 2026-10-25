@@ -1625,6 +1625,27 @@ function poolKickoff(p) {
     return '';
   }
 }
+/* The kickoff INSTANT (epoch ms) of a pool player's game, from the
+   same two games maps poolKickoff() reads (official pool first, then
+   the derived extension). Null when the game is absent from both maps
+   or its instant is unparseable — an unknown kickoff is never guessed. */
+function poolKickoffTime(p) {
+  if (!p || !p.game) return null;
+  var pool = poolData();
+  var ext = poolExtendedData();
+  var iso = (pool && pool.games && pool.games[p.game]) ||
+            (ext && ext.games && ext.games[p.game]);
+  if (!iso) return null;
+  var t = new Date(iso).getTime();
+  return isNaN(t) ? null : t;
+}
+/* Whether a pool player's game has started: now at or past that game's
+   own kickoff (exactly at kickoff counts as started). Per player —
+   a player in a later game stays unlocked after earlier games start. */
+function playerGameStarted(p) {
+  var t = poolKickoffTime(p);
+  return t !== null && Date.now() >= t;
+}
 function teamSpent() {
   var total = 0;
   Object.keys(state.team.picks).forEach(function (k) {
@@ -2274,6 +2295,9 @@ function renderTeamLockLine(text, cls) {
 function updateTeamLockLine() {
   var el = $('team-week');
   if (!el) return;
+  /* the same 1s tick drives the per-player swap locks: a filled
+     player's swap button flips to locked as their kickoff passes */
+  refreshTeamSwapLocks();
   var weekLabel = teamWeekLabel();
   if (teamSubmitted()) {
     renderTeamLockLine(weekLabel + ' lineup submitted', 'is-submitted');
@@ -2307,6 +2331,33 @@ function startTeamLockTimer() {
   if (teamLockTimer) return;
   teamLockTimer = setInterval(updateTeamLockLine, 1000);
 }
+/* Per-player swap-lock signature: one character per slot — '1' when
+   the slot's filled player's game has started (swap locked), '0' when
+   filled and still swappable, '-' when empty. renderTeam records the
+   signature it rendered with; the 1s lock-line tick compares the live
+   signature against it and re-renders the Team rows the moment any
+   filled player's lock state flips, so a swap button locks itself at
+   that player's kickoff with no page reload. While the picker/detail
+   sheet is open the re-render is deferred (the sheet's close path
+   re-renders the Team view anyway), so an in-progress interaction is
+   never rebuilt under the user. */
+var teamSwapLockRendered = null;
+function swapLockSignature() {
+  var picks = (state.team && state.team.picks) || {};
+  var sig = '';
+  TEAM_SLOTS.forEach(function (s) {
+    var p = poolPlayer(picks[s.key]);
+    sig += !p ? '-' : (playerGameStarted(p) ? '1' : '0');
+  });
+  return sig;
+}
+function refreshTeamSwapLocks() {
+  if (state.view !== 'team') return;
+  if (poolSheetSlot) return;
+  if (teamSwapLockRendered === null) return;
+  if (swapLockSignature() === teamSwapLockRendered) return;
+  renderTeam();
+}
 
 /* Budget bar first-load suppression (20261023n): the bar carries
    .no-anim from markup, which disables its collapse/expand
@@ -2336,6 +2387,7 @@ function primeTeamBudgetAnimation(bar) {
 
 function renderTeam() {
   var picks = state.team.picks || {};
+  teamSwapLockRendered = swapLockSignature();
   var filled = 0;
   TEAM_SLOTS.forEach(function (s) { if (poolPlayer(picks[s.key])) filled++; });
   /* One shared total computation drives the budget bar AND the Submit
@@ -2426,7 +2478,11 @@ function renderTeam() {
       var metaText = escapeHtml(poolMatchup(p)) + (kickoff ? ' · ' + escapeHtml(kickoff) : '');
       row.classList.add('has-avatar');
       var lockSvg = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
-      var swapBtnHtml = isSubmittedNow
+      /* Locked under the pre-existing submitted condition OR once
+         THIS player's own game has started (per-player: later games
+         stay swappable). Both render the identical locked treatment;
+         the click handler below already no-ops on .is-locked. */
+      var swapBtnHtml = (isSubmittedNow || playerGameStarted(p))
         ? '<button type="button" class="team-swap is-locked" data-action="swap" aria-label="Locked ' + s.label + ': ' + escapeHtml(p.name) + '" aria-disabled="true">' + lockSvg + '</button>'
         : '<button type="button" class="team-swap" data-action="swap" aria-label="Swap ' + s.label + ': ' + escapeHtml(p.name) + '">⇅</button>';
       row.innerHTML =
