@@ -493,26 +493,55 @@ html.ios-standalone.team #app { padding-top: 0; }
    When a new week-doc snapshot moves a team's total, app.js emits a
    .score-delta span immediately before the score number — inside the
    leaderboard row's .team-score and inside the roster header's
-   .roster-total. It reads in Barlow Semi Condensed semibold at a
-   fraction of the score's size, in the live green; a negative change
-   takes the dropped-week red (#d92d20). The lifecycle is ONE
-   animation: fully visible for 15s (93.75% of 16s), then a 1s fade
-   to opacity 0, fill forwards so it stays invisible until the next
-   render drops it. app.js sets a negative animation-delay on
-   re-created chips so a re-render resumes the phase instead of
-   restarting the clock. pointer-events: none — the chip never
-   intercepts the row's tap. */
+   .roster-total. It reads in the Delirium display font at the SAME
+   size as the score it sits next to (user direction 2026-10-25), in
+   the live green; a negative change takes the dropped-week red
+   (#d92d20). The size is NOT a fixed copy: the contextual rules
+   below reference the identical --fs-score / --fs-score-lg tokens
+   and the identical breakpoints the adjacent score uses in each
+   placement (leaderboard score steps up at 760px, the roster total
+   at 1024px), so chip and score track together at every viewport
+   width. The base rule's var(--fs-score) is only the sub-760px /
+   pre-context fallback. Alignment: the chip is an inline-block on
+   the score's own baseline (vertical-align: baseline, line-height
+   1), inside a fixed-height 72px row whose score already renders at
+   this size — it can widen the score area (the team name, flexed
+   with min-width: 0 and nowrap/ellipsis, absorbs that) but it
+   cannot change the row height or shift the score vertically. The
+   lifecycle is ONE animation: fully visible for 15s (93.75% of
+   16s), then a 1s fade to opacity 0, fill forwards so it stays
+   invisible until the next render drops it. app.js sets a negative
+   animation-delay on re-created chips so a re-render resumes the
+   phase instead of restarting the clock. pointer-events: none —
+   the chip never intercepts the row's tap. */
 .score-delta {
   display: inline-block;
-  font-family: var(--font-ui);
-  font-size: 16px;
-  font-weight: var(--fw-semibold);
+  font-family: var(--font-display);
+  font-size: var(--fs-score);
+  font-weight: var(--fw-regular);
+  font-synthesis: none; /* Delirium is single-weight; never fake-bold it (same treatment as the scores) */
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--ls-normal);
+  line-height: 1;
+  vertical-align: baseline;
   color: var(--live-green);
   margin-right: 8px;
   pointer-events: none;
   animation: scoreDeltaLife 16s linear forwards;
+}
+/* Matched-size rules, one per placement, mirroring the adjacent
+   score's own size rules exactly:
+   - leaderboard: .team-row .team-score is var(--fs-score), stepping
+     to var(--fs-score-lg) at >= 760px;
+   - roster header: .roster-total is var(--fs-score), stepping to
+     var(--fs-score-lg) at >= 1024px (the desktop roster block). */
+.team-row .team-score .score-delta { font-size: var(--fs-score); }
+.roster-total .score-delta { font-size: var(--fs-score); }
+@media (min-width: 760px) {
+  .team-row .team-score .score-delta { font-size: var(--fs-score-lg); }
+}
+@media (min-width: 1024px) {
+  .roster-total .score-delta { font-size: var(--fs-score-lg); }
 }
 .score-delta.is-neg { color: #d92d20; }
 @keyframes scoreDeltaLife {
