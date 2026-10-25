@@ -258,25 +258,35 @@ function selectWeek(W) {
 
 /* A team's season series for the standings/drop computation: every final
    week's total, plus the current week once it is final or the team has
-   actually scored (a pre-kickoff 0.00 is not data). */
+   actually scored (a pre-kickoff 0.00 is not data). Entries carry a
+   `final` flag: past weeks are final, and so is the current week once
+   its document is final; the current week while its document is still
+   live is not — it counts toward the displayed total at face value but
+   can never be the dropped week (see droppedWeekFor). */
 function weekSeries(tid) {
   var out = [];
   for (var w = 1; w <= WEEK; w++) {
     var doc = state.weekDocs[String(w)];
     var t = doc && doc.teams && doc.teams[tid] ? (doc.teams[tid].total || 0) : 0;
-    if (w < WEEK) out.push({ week: w, total: t });
-    else if (doc && doc.final) out.push({ week: w, total: t });
-    else if (t > 0) out.push({ week: w, total: t });
+    if (w < WEEK) out.push({ week: w, total: t, final: true });
+    else if (doc && doc.final) out.push({ week: w, total: t, final: true });
+    else if (t > 0) out.push({ week: w, total: t, final: false });
   }
   return out;
 }
 /* The single week dropped from a team's season total (earliest week wins
-   ties), or null when fewer than two weeks count. */
+   ties), chosen over FINAL weeks only, or null when fewer than two weeks
+   count or no final week exists yet. While the current week is live its
+   partial score is never dropped and never carries the dropped styling;
+   once its document turns final it joins the candidates and the plain
+   worst-week rule resumes exactly as before. */
 function droppedWeekFor(tid) {
   var s = weekSeries(tid);
   if (s.length < 2) return null;
-  var drop = s[0];
-  s.forEach(function (e) { if (e.total < drop.total) drop = e; });
+  var finals = s.filter(function (e) { return e.final; });
+  if (!finals.length) return null;
+  var drop = finals[0];
+  finals.forEach(function (e) { if (e.total < drop.total) drop = e; });
   return drop.week;
 }
 
@@ -361,6 +371,49 @@ function firstKickoff() {
   return t;
 }
 var countdownTimer = null;
+/* Tick cadence for the countdown: 30s normally, 1s inside the final
+   30 minutes so the seconds segment (shown only in that window —
+   see formatCountdownDuration) counts down live. syncCountdownTick
+   owns the single interval: a cadence change clears and re-arms it,
+   so timers never stack. updateCountdown() drives it on every pass;
+   startCountdown() only guarantees an armed timer at boot. */
+var countdownTickMs = 0;
+function syncCountdownTick(fast) {
+  var ms = fast ? 1000 : 30000;
+  if (countdownTimer && countdownTickMs === ms) return;
+  if (countdownTimer) clearInterval(countdownTimer);
+  countdownTickMs = ms;
+  countdownTimer = setInterval(updateCountdown, ms);
+}
+/* The Scores countdown's duration format: unit letters, space
+   separated, with ZERO LEADING UNITS OMITTED — the day segment
+   drops at 0 days, the hours segment at 0 hours, and the minutes
+   segment in the final minute. The leading shown unit is unpadded,
+   except the hours, which keep their established zero-padding when
+   they lead ("04h 12m"); units after the leading one are
+   zero-padded to 2 ("1d 04h 12m"). Seconds appear ONLY inside the
+   final 30 minutes — the 2026-10-22 Team-timer rule, applied to
+   Scores — ticking on the 1s cadence syncCountdownTick arms for
+   that window: "29m 41s", and "41s" alone in the final minute. */
+function formatCountdownDuration(diff) {
+  var totalSec = Math.floor(diff / 1000);
+  var d = Math.floor(totalSec / 86400),
+      h = Math.floor(totalSec % 86400 / 3600),
+      m = Math.floor(totalSec % 3600 / 60),
+      s = totalSec % 60;
+  var parts = [];
+  if (d > 0) parts.push(d + 'd');
+  if (d > 0 || h > 0) parts.push(String(h).padStart(2, '0') + 'h');
+  if (d > 0 || h > 0) parts.push(String(m).padStart(2, '0') + 'm');
+  else if (m > 0) parts.push(m + 'm');
+  if (diff < 30 * 60000) {
+    /* Inside 30 minutes d and h are necessarily 0, so the seconds
+       follow the (unpadded, leading) minutes, zero-padded — or
+       lead alone, unpadded, in the final minute. */
+    parts.push(m > 0 ? String(s).padStart(2, '0') + 's' : s + 's');
+  }
+  return parts.join(' ');
+}
 /* ---------------- countdown mode ----------------
    Countdown mode is a per-viewed-week Scores state: it applies
    exactly while updateCountdown() would display the countdown for
@@ -376,13 +429,67 @@ var countdownTimer = null;
    wall reads MFFL in the neutral charcoal theme (COUNTDOWN_THEME
    above). Enter/exit is driven
    from the existing render flow — renderHeader() and
-   updateCountdown() below; no new timers or polling are added. */
+   updateCountdown() below; the only timer is the countdown's own
+   (30s, tightening to 1s inside the final 30 minutes — see
+   syncCountdownTick above). */
 var countdownMode = false;
 function computeCountdownActive() {
   if (state.scoresWeek !== CAL_WEEK) return false;
   var target = state.pending ? pendingKickoff(state.scoresWeek) : firstKickoff();
   if (!isFinite(target)) return false;
   return (target - Date.now()) > 0;
+}
+/* ---------------- zeros reveal (countdown-end flip) ----------------
+   One-shot companion to the helmet swap-in at the countdown-end
+   flip. While the user is VIEWING the calendar week on Scores in
+   countdown mode, the leaderboard rows render with EMPTY score
+   areas (the pending state fabricates no numbers). When the
+   countdown reaches zero and the mode exits — the same flip that
+   runs renderHeader's presented-leader swap-in — the rows' real
+   totals (0.00 for every team at kickoff) whisper in through the
+   #leaderboard.zeros-reveal CSS animation (see styles.css).
+   noteCountdownState() is the single choke point: renderHeader()
+   and updateCountdown() both recompute countdownMode and either
+   may observe the exit first (a data render can flip the mode
+   before the tick does, and the tick's own exit path calls
+   renderHeader), so the arm/consume logic lives here and fires at
+   most once per mode entry. It can only fire when the exit is the
+   countdown reaching zero on the viewed calendar week: a week
+   switch (the viewed week changes, or its target is not yet
+   reached), a switch away from Scores, and boot straight into a
+   live week (the mode was never active, so nothing was armed) all
+   disarm silently. zerosReveal is then consumed by the first
+   renderLeaderboard that actually paints totals for the calendar
+   week — if the week document has not landed yet at the flip, one
+   scoresUpdate() is kicked so the totals arrive in the same beat
+   as the helmet; whenever they land, that render animates the
+   ACTUAL totals, never forced zeros. */
+var zerosArmed = false;
+var zerosReveal = false;
+var zerosCleanupTimer = null;
+function noteCountdownState() {
+  if (countdownMode) {
+    if (state.view === 'scores' && state.scoresWeek === CAL_WEEK) zerosArmed = true;
+    return;
+  }
+  if (!zerosArmed) return;
+  zerosArmed = false;
+  if (state.view !== 'scores' || state.scoresWeek !== CAL_WEEK) return;
+  var target = state.pending ? pendingKickoff(state.scoresWeek) : firstKickoff();
+  if (!isFinite(target) || target - Date.now() > 0) return;
+  zerosReveal = true;
+  /* The week document lands right at kickoff (the poller publishes
+     it as its Sunday window opens): pull it now instead of waiting
+     for the next 120s poll tick, so the totals render — and
+     animate — alongside the helmet swap-in. Best-effort: a failed
+     or empty pull leaves zerosReveal set for the render that does
+     land the document. */
+  if (state.pending) {
+    try {
+      var p = scoresUpdate();
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) { /* the poll lands it instead */ }
+  }
 }
 /* The countdown element is STATIC markup in #helmet-wrap (the helmet
    space): the script only toggles its hidden flag and its text, and
@@ -440,7 +547,14 @@ function ensureCountdown() {
 }
 function hideCountdown() {
   var el = $('countdown');
-  if (el) el.hidden = true;
+  if (el) {
+    el.hidden = true;
+    /* The final-minute gold on the clock value clears with the
+       countdown itself, so it can never linger into the helmet
+       state or a later week's countdown. */
+    var value = el.querySelector('.countdown-value');
+    if (value) value.classList.remove('is-final-minute');
+  }
 }
 function updateCountdown() {
   /* The countdown is shown ONLY in countdown mode (see above): the
@@ -456,11 +570,13 @@ function updateCountdown() {
   try {
     var wasMode = countdownMode;
     countdownMode = computeCountdownActive();
+    noteCountdownState();
     var wrap = $('helmet-wrap');
     if (wrap) wrap.classList.toggle('countdown-mode', countdownMode);
     ensureCountdown();
     if (state.view !== 'scores' || !countdownMode) {
       hideCountdown();
+      syncCountdownTick(false);
       /* Exit driven from here (the existing 30s countdown tick
          crossing kickoff with no data render in between): removing
          the mode is not enough — the helmet slot must present the
@@ -475,28 +591,37 @@ function updateCountdown() {
        targets that week's Sunday 10:00 AM PT main-slate kickoff. */
     var target = state.pending ? pendingKickoff(state.scoresWeek) : firstKickoff();
     var diff = target - Date.now();
-    if (!isFinite(target) || diff <= 0) { hideCountdown(); return; }
+    if (!isFinite(target) || diff <= 0) { hideCountdown(); syncCountdownTick(false); return; }
     var el = ensureCountdown();
     if (!el) return;
-    var d = Math.floor(diff / 86400000),
-        h = Math.floor(diff % 86400000 / 3600000),
-        m = Math.floor(diff % 3600000 / 60000);
+    /* Inside the final 30 minutes the tick tightens to 1s so the
+       seconds segment counts down live; outside that window the
+       cadence stays 30s. */
+    syncCountdownTick(diff < 30 * 60000);
     /* Two lines: the label names the viewed week that is counting
        down (refreshed here every tick, so it follows week changes),
-       and the value is the timer duration in the existing format
-       (day segment only when > 0) WITHOUT the old "Kickoff in "
+       and the value is the timer duration in
+       formatCountdownDuration's format WITHOUT the old "Kickoff in "
        prefix — the label line replaces it. Never set el.textContent:
-       that would wipe the two line spans. */
+       that would wipe the two line spans. In the final minute the
+       VALUE alone takes the app gold (.is-final-minute); the label
+       keeps the pure-white treatment, and hideCountdown() clears
+       the class on exit. */
     var lines = ensureCountdownLines(el);
     if (lines.label) lines.label.textContent = 'Week ' + state.scoresWeek + ' Kickoff:';
-    if (lines.value) lines.value.textContent = (d > 0 ? d + 'd ' : '') + String(h).padStart(2, '0') + 'h ' + String(m).padStart(2, '0') + 'm';
+    if (lines.value) {
+      lines.value.textContent = formatCountdownDuration(diff);
+      lines.value.classList.toggle('is-final-minute', diff < 60000);
+    }
     el.hidden = !helmetShimmerDismissed;
   } catch (e) { /* never let the countdown break the page */ }
 }
 function startCountdown() {
   updateCountdown();
-  if (countdownTimer) clearInterval(countdownTimer);
-  countdownTimer = setInterval(updateCountdown, 30000);
+  /* updateCountdown() arms the cadence-appropriate tick through
+     syncCountdownTick on every pass; arm the standard 30s tick here
+     only if it somehow left no timer running. */
+  if (!countdownTimer) syncCountdownTick(false);
 }
 
 /* ---------------- rendering ---------------- */
@@ -671,6 +796,7 @@ function renderHeader() {
      helmet enters with its usual swap-in, alongside the wall's
      transition from MFFL/charcoal to the leader's name and theme. */
   countdownMode = computeCountdownActive();
+  noteCountdownState();
   if (countdownMode) {
     if (helmetSwap) {
       clearTimeout(helmetSwap.outTimer);
@@ -838,6 +964,23 @@ function dismissShimmer() {
 function renderLeaderboard() {
   var board = $('leaderboard');
   dismissShimmer();
+  /* Zeros reveal (see noteCountdownState): the first render after
+     the countdown-end flip that actually paints totals for the
+     calendar week carries the one-shot slide/fade-in. Consumed
+     exactly once, here — every refresh render after it finds the
+     flag gone and paints totals plainly. The class removes itself
+     shortly after the last row lands (0.4s stagger + 0.7s run), so
+     the ladder reorder, later updates and week switches all see a
+     clean board with the numbers in their normal final state. */
+  if (zerosReveal && !state.pending && state.scoresWeek === CAL_WEEK) {
+    zerosReveal = false;
+    board.classList.add('zeros-reveal');
+    if (zerosCleanupTimer) clearTimeout(zerosCleanupTimer);
+    zerosCleanupTimer = setTimeout(function () {
+      zerosCleanupTimer = null;
+      board.classList.remove('zeros-reveal');
+    }, 1400);
+  }
   var order = sortedTeams();
   /* FLIP: record positions before reorder */
   var prevTops = {};
@@ -869,11 +1012,13 @@ function renderLeaderboard() {
       scoreEl.innerHTML = fmtScoreHTML(state.scores[tid] || 0);
       /* dropped-week indicator, merged from the old standings week views:
          strike the score when the viewed week is the one this team drops
-         from its season total */
+         from its season total. droppedWeekFor only ever names a final
+         week, so a week that is still live never shows the strike. */
       scoreEl.classList.toggle('dropped', droppedWeekFor(tid) === state.scoresWeek);
     }
     /* per-player state dots under the team name: one per rostered player,
-       in slot order — upcoming (dim) / live (red, pulsing) / final (gold) */
+       in slot order — upcoming (white at 40% opacity) / live (green) /
+       final (faint white) */
     var dotsEl = row.querySelector('.dots');
     if (dotsEl) {
       var entry = state.rosters && state.rosters.teams ? state.rosters.teams[tid] : null;
@@ -1073,7 +1218,7 @@ function renderRoster(tid) {
       row.className = 'player-row concealed';
       row.innerHTML =
         '<div class="player-main">' +
-          '<div class="name-line"><span class="player-name">Revealed at kickoff</span></div>' +
+          '<div class="name-line"><span class="player-name">Revealed at kickoff</span><span class="player-pos">' + escapeHtml(displayPos(slot)) + '</span></div>' +
         '</div>' +
         '<span class="roster-score display">—</span>';
       list.appendChild(row);
@@ -1087,17 +1232,30 @@ function renderRoster(tid) {
     (cap > 0 ? ' · $' + cap.toLocaleString('en-US') + ' cap used' : '');
   var statsMap = (state.playerStats || {})[tid] || {};
   var now = Date.now();
-  entry.players.forEach(function (pl) {
+  /* One concealed row — the hidden-until-kickoff treatment a real
+     player gets before their game starts. Shared by concealed
+     players and by the missing-slot placeholders below, so the two
+     can never drift apart. The name stays concealed; only the slot
+     previews, as a .player-pos span inline after the name — the
+     same position treatment revealed rows use (via displayPos, so
+     defenses read "DEF"). The slot is the sheet's own fixed
+     structure, never player-identifying information. */
+  function concealedRow(slot) {
+    var row = document.createElement('div');
+    row.className = 'player-row concealed';
+    row.innerHTML =
+      '<div class="player-main">' +
+        '<div class="name-line"><span class="player-name">Revealed at kickoff</span><span class="player-pos">' + escapeHtml(displayPos(slot)) + '</span></div>' +
+        '<div class="meta-line"><span class="meta-hidden">Player info hidden until the game starts</span></div>' +
+      '</div>' +
+      '<span class="roster-score display">—</span>';
+    return row;
+  }
+  function appendPlayerRow(pl) {
     var row = document.createElement('div');
     var concealed = now < new Date(pl.kickoff).getTime();
     if (concealed) {
-      row.className = 'player-row concealed';
-      row.innerHTML =
-        '<div class="player-main">' +
-          '<div class="name-line"><span class="player-name">Revealed at kickoff</span></div>' +
-          '<div class="meta-line"><span class="meta-hidden">Player info hidden until the game starts</span></div>' +
-        '</div>' +
-        '<span class="roster-score display">—</span>';
+      row = concealedRow(pl.slot);
     } else {
       var gs = gameState(pl, now);
       var live = gs === 'live';
@@ -1124,7 +1282,36 @@ function renderRoster(tid) {
       wireAvatarFallback(row);
     }
     list.appendChild(row);
+  }
+  /* Missing slots: a partial roster in the week document (fewer
+     than nine players — e.g. a FanDuel team whose late-wave players
+     are not in the document yet) still renders the full nine-row
+     sheet. The absent slots — the standard slot sequence minus the
+     slots the document's players actually occupy, duplicate RB/WR
+     slots counted individually — render as concealed rows identical
+     to a hidden-until-kickoff player, in their sequence positions,
+     with the known players interleaved in document order. The
+     placeholders are pure presentation: the lineup bar above was
+     already computed from the document's actual players only, so a
+     placeholder adds no roster spot, salary, or points, and when a
+     later document carries the real player for a slot the
+     placeholder is simply gone. A player the sequence cannot place
+     (an unrecognized slot, or more of a slot than the sequence
+     holds) still renders, in document order, after the sequenced
+     rows — no known player is ever dropped. */
+  var SLOT_SEQUENCE = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DEF'];
+  var placed = entry.players.map(function () { return false; });
+  function slotKey(slot) { return slot === 'D' ? 'DEF' : slot; }
+  SLOT_SEQUENCE.forEach(function (slot) {
+    var idx = -1;
+    for (var i = 0; i < entry.players.length; i++) {
+      if (!placed[i] && slotKey(entry.players[i].slot) === slot) { idx = i; break; }
+    }
+    if (idx < 0) { list.appendChild(concealedRow(slot)); return; }
+    placed[idx] = true;
+    appendPlayerRow(entry.players[idx]);
   });
+  entry.players.forEach(function (pl, i) { if (!placed[i]) appendPlayerRow(pl); });
 }
 
 function escapeHtml(s) {
@@ -1212,6 +1399,9 @@ function setView(v) {
     if (name === v) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   });
+  /* Leaving Scores abandons a pending zeros reveal (see
+     noteCountdownState): it fires only while viewing the flip. */
+  if (v !== 'scores') zerosReveal = false;
   $('scores-wrap').hidden = v !== 'scores';
   $('standings-view').hidden = v !== 'standings';
   $('team-view').hidden = v !== 'team';
@@ -1242,6 +1432,12 @@ function setScoresWeek(w) {
   $('week-name').textContent = 'WEEK ' + w;
   if (w === state.scoresWeek) { updatePickerButtons(); updateCountdown(); return; }
   if (state.rosterTeam) closeRoster();
+  /* Paging away abandons a pending zeros reveal: it belongs to the
+     countdown flip on the calendar week, never to a week the user
+     pages into afterwards. */
+  zerosReveal = false;
+  var zb = $('leaderboard');
+  if (zb) zb.classList.remove('zeros-reveal');
   selectWeek(w);
   updatePickerButtons();
   renderHeader();

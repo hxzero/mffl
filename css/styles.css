@@ -94,6 +94,7 @@
   --flow-header-h: 90px;      /* shared header height for the My Team flow, set to the SHORTER value: the height of the Team view's TITLE ROW alone (title + week label + Submit pill, with its own padding). The Team budget row is NOT part of the header height — it keeps its natural height beneath the title row. The picker header and the player detail header use this same height so the band never jumps between views; their contents (picker budget stack, circular Back) fit fully inside it. */
   --flow-header-bg: rgba(40, 40, 47, 0.72);  /* glass tint: the #28282f brighter tone (one step brighter than the Team-flow view background #1d1d23) at the bottom nav's 0.72 alpha — the Team sticky header, the picker header and the player detail header share this translucent fill with the nav's backdrop blur so scrolled content shows through, blurred, while the band still reads a step brighter than the views behind it */
   --gold: #d8b45a;
+  --live-green: #34c759;   /* live game-state green: the player state dots, the roster Live pill and the live row edge all share this one green wherever a game is shown as live */
   --ink: #f4f2ea;
   --ink-dim: rgba(244, 242, 234, 0.62);
 }
@@ -232,6 +233,14 @@ html.ios-standalone.team #app { padding-top: 0; }
    centered). They carry no margins of their own, so the pair's height
    is exactly two title lines. */
 .countdown-label, .countdown-value { display: block; }
+/* Final minute (app.js toggles .is-final-minute on the value span
+   while under 60s remain): ONLY the clock turns the app gold — the
+   "Week <n> Kickoff:" label line keeps the pure-white treatment
+   above. The hairline stroke is inherited from #countdown and is
+   untouched. app.js removes the class whenever the countdown
+   hides, so no gold can linger into the helmet state or a later
+   week's countdown. */
+#helmet-wrap #countdown .countdown-value.is-final-minute { color: var(--gold); }
 /* Container height = helmet height: in countdown mode the countdown
    box is given the helmet's own rendered height — the helmet is
    247px wide capped at 70vw (see #leader-helmet) at a 1500/856
@@ -420,8 +429,8 @@ html.ios-standalone.team #app { padding-top: 0; }
 }
 .team-row .dots { display: flex; gap: 5px; margin-top: 6px; height: 6px; }
 .team-row .dot { width: 6px; height: 6px; border-radius: 50%; flex: 0 0 auto; }
-.team-row .dot-pre { background: #ffffff; }
-.team-row .dot-live { background: #e55252; }
+.team-row .dot-pre { background: #ffffff; opacity: 0.4; }
+.team-row .dot-live { background: var(--live-green); }
 .team-row .dot-final { background: rgba(255, 255, 255, 0.22); }
 .team-row .team-score {
   flex: 0 0 auto; font-size: var(--fs-score); font-weight: var(--fw-bold); font-variant-numeric: tabular-nums;
@@ -431,6 +440,35 @@ html.ios-standalone.team #app { padding-top: 0; }
 @media (min-width: 760px) { .team-row .team-score { font-size: var(--fs-score-lg); } }
 .team-row .row-arrow { flex: 0 0 18px; margin-left: 7px; display: grid; place-items: center; }
 .team-row.pending .team-score { color: var(--ink-dim); font-size: var(--fs-lg); letter-spacing: var(--ls-wider); }
+/* ---------- zeros reveal (Scores, countdown-end flip) ----------
+   One-shot and class-driven: app.js adds .zeros-reveal to
+   #leaderboard on the first totals-painting render after the
+   viewed calendar week's countdown reaches zero (the same flip as
+   the helmet swap-in) and removes it ~1.4s later. Each row's total
+   whispers in from a few px LEFT of its resting spot (translateX
+   settling to 0 — no vertical travel) while fading 0 -> 1,
+   staggered exactly 0.1s per row in display order; with a 700ms
+   run the last row lands at 0.4s + 0.7s = 1.1s, inside the helmet
+   swap's ~1200ms envelope. The keyframes carry the score's
+   standing optical offset (translateY(0.114em), see .team-score
+   above) so the number settles exactly on its normal spot, and
+   the `to` state IS the resting state — once the class is gone
+   nothing lingers: no stuck transforms or opacity on later
+   renders, reorders or updates. */
+#leaderboard.zeros-reveal .team-row .team-score {
+  animation: zerosIn 700ms ease-out both;
+}
+#leaderboard.zeros-reveal .team-row:nth-child(2) .team-score { animation-delay: 100ms; }
+#leaderboard.zeros-reveal .team-row:nth-child(3) .team-score { animation-delay: 200ms; }
+#leaderboard.zeros-reveal .team-row:nth-child(4) .team-score { animation-delay: 300ms; }
+#leaderboard.zeros-reveal .team-row:nth-child(5) .team-score { animation-delay: 400ms; }
+@keyframes zerosIn {
+  from { opacity: 0; transform: translate(-6px, 0.114em); }
+  to { opacity: 1; transform: translate(0, 0.114em); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #leaderboard.zeros-reveal .team-row .team-score { animation: none; }
+}
 /* dropped-week indicator on the Scores rows (same treatment as the old
    standings week views): the viewed week is dropped from the season total.
    The strike is ONE straight line across the whole number, drawn by a
@@ -515,7 +553,7 @@ html.ios-standalone.team #app { padding-top: 0; }
 .player-row:last-child { border-bottom: none; }
 .player-row.live::before {
   content: ''; position: absolute; top: 13px; bottom: 13px; left: 0;
-  width: 2px; border-radius: 2px; background: #e55252;
+  width: 2px; border-radius: 2px; background: var(--live-green);
 }
 .player-row .slot {
   display: flex; align-items: center; justify-content: center;
@@ -541,8 +579,8 @@ html.ios-standalone.team #app { padding-top: 0; }
    avatar: just the main block and the score placeholder. */
 .player-row.concealed { grid-template-columns: minmax(0, 1fr) 56px; }
 .pill { display: inline-flex; align-items: center; gap: 4px; min-height: 19px; padding: 2px 6px; border-radius: 999px; font-size: var(--fs-2xs); font-weight: var(--fw-bold); white-space: nowrap; }
-.pill.live { background: rgba(229, 82, 82, 0.16); color: #ff7878; }
-.pill.live i { display: block; width: 5px; height: 5px; border-radius: 50%; background: #e55252; }
+.pill.live { background: rgba(52, 199, 89, 0.16); color: #7ee2a0; }
+.pill.live i { display: block; width: 5px; height: 5px; border-radius: 50%; background: var(--live-green); }
 .pill.final { background: rgba(217, 184, 74, 0.16); color: #d9b84a; }
 .player-row .stat-line { font-size: var(--fs-compact); line-height: 1.3; color: #9d9ea6; margin-top: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .player-row .roster-score {
