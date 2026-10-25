@@ -651,7 +651,12 @@ html.ios-standalone.team #app { padding-top: 0; }
         rgba(12,12,16,0.30)),
       rgba(32, 32, 40, 0.68);
   }
-  #roster-view { position: static; height: 100%; min-height: 0; border: 1px solid #33333c; border-radius: 12px; padding-bottom: 0; }
+  /* position: relative (not static): the panel is the positioning
+     context for its own in-panel close button (#sheet-close, a real
+     child of #roster-view), whose desktop rule below centers it on
+     THIS box with left:50% + translateX(-50%). Layout is unchanged —
+     relative places the grid item exactly where static did. */
+  #roster-view { position: relative; height: 100%; min-height: 0; border: 1px solid #33333c; border-radius: 12px; padding-bottom: 0; }
   .roster-scroll { padding-bottom: 0; }
   .roster-head { gap: 12px; padding: 18px 14px 14px; }
   .roster-total { font-size: var(--fs-score-lg); }
@@ -763,52 +768,51 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
 /* The picker itself never changes on mobile: the bottom sheet slides
    over it untouched and carries its own close button (#sheet-close),
    which rides the sheet's travel and stays fixed against the panel
-   while the lineup scrolls. On desktop the roster is an in-flow panel,
-   so there the picker still swaps to its own close button. */
+   while the lineup scrolls. On desktop the roster is an in-flow
+   panel and the SAME in-panel #sheet-close is the dismiss control
+   there too (see the >=1024px block below) — the picker's own close
+   button (#picker-close) is never shown in the roster-open state. */
 #week-picker #picker-close { display: none; }
 @media (min-width: 1024px) {
-  /* Roster dismiss (x) in the two-column state: stacking + centering.
-     Before: #scores-bottom-stack was z-index 5 (base rule above) and
-     #roster-view is z-index 8, so the roster column painted OVER the
-     stack and hid the x; the stack was also a max-width:430px box
-     centered on the whole viewport, so the x centered on the page,
-     not on the roster column.
-     After (this block, roster-open + two-column only): the stack is
-     raised to z-index 10 — above #roster-view's 8, below nothing else
-     that competes here (the bottom nav is a separate fixed bar the
-     stack already sits above in the page flow, and no other overlay
-     lives in this state) — so the x paints on top of the roster
-     column and stays clickable (its own pointer-events: auto below
-     is unchanged). The stack also spans the full width as a grid
-     mirroring #scores-wrap.roster-open's exact column template and
-     16px gap, with the week picker placed in column 2 and centered
-     in it, so the x's horizontal center is the roster (second)
-     column's center. Its vertical placement is untouched: the
-     stack's fixed bottom offset from the base rule still applies.
-     Single-column/mobile never matches body.roster-open at this
-     breakpoint for the stack, and the mobile sheet keeps its own
-     #sheet-close exactly as before. */
-  body.roster-open #scores-bottom-stack {
-    z-index: 10;
-    left: 0; right: 0;
-    max-width: none; margin: 0;
-    display: grid;
-    grid-template-columns: minmax(310px, 0.78fr) minmax(430px, 1.22fr);
-    column-gap: 16px;
-    align-items: center;
-  }
-  body.roster-open #week-picker {
-    grid-column: 2;
-    justify-self: center;
-    justify-content: center;
-    background: transparent; border-color: transparent; box-shadow: none;
-    -webkit-backdrop-filter: none; backdrop-filter: none;
-    pointer-events: none;
-  }
-  body.roster-open #week-picker #week-prev,
-  body.roster-open #week-picker #week-next,
-  body.roster-open #week-picker .week-name { display: none; }
-  body.roster-open #week-picker #picker-close { display: flex; pointer-events: auto; position: relative; z-index: 10; }
+  /* Roster dismiss (x) in the two-column state: centered on the
+     ROSTER PANEL's own box, not on the second column's track.
+     Why the previous fix missed: it centered #picker-close on the
+     second column track (a mirrored grid on #scores-bottom-stack),
+     but the panel inside that track is width-capped —
+     `@media (min-width: 760px) { #roster-view { max-width: 860px } }`
+     — and a capped grid item aligns to the track's START, so the
+     panel's center sits (trackWidth - min(trackWidth, 860px)) / 2
+     to the LEFT of the track center: ~5px at 1440px wide, ~150px at
+     1920px, ~190px at 2048px. The wider the screen, the further
+     the x drifted from the panel it dismisses.
+     Now: while the roster is open at this breakpoint the whole week
+     picker is hidden (its #picker-close with it — the node stays in
+     the DOM, only display:none in this state, because app.js's
+     wireNav binds it unconditionally), and the panel's own child
+     #sheet-close — already in #roster-view's markup and already
+     wired to the same closeRoster handler — is shown instead,
+     positioned absolute against the panel (#roster-view is
+     position: relative in this breakpoint; see the roster-open
+     media query above) with left:50% + translateX(-50%), so its
+     center is computed from the panel's rendered width at ANY
+     viewport width. No JS, no reparenting, no overlay: the button
+     cannot be separated from the box it is centered on. Its size,
+     pill treatment and bottom inset mirror the mobile sheet's
+     button, with the inset measured from the panel's bottom edge
+     (the panel already stops above the bottom nav at this
+     breakpoint). When the roster closes, #roster-view's [hidden]
+     rule takes the button with it and the picker returns as
+     body.roster-open is removed — exactly one x is ever visible.
+     Mobile / single-column is untouched: below 1024px the sheet
+     keeps its own #sheet-close rule (max-width:1023px block below)
+     and #picker-close stays display:none as before. */
+  body.roster-open #week-picker { display: none; }
+  body.roster-open #week-picker #picker-close { display: none; }
+  /* The desktop #sheet-close rule itself sits below, right after the
+     mobile one: the base `#sheet-close { display: none; }` rule
+     follows this block in the file, so a same-specificity rule here
+     would lose to it on source order — the mobile rule already
+     lives after that base rule for exactly that reason. */
 }
 #sheet-close { display: none; }
 @media (max-width: 1023px) {
@@ -816,6 +820,31 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
     display: flex; align-items: center; justify-content: center;
     position: absolute; left: 50%; transform: translateX(-50%); z-index: 3;
     bottom: calc(68px + env(safe-area-inset-bottom, 0px) + 14px);
+    width: 58px; height: 38px; padding: 0; border: none; border-radius: 999px;
+    cursor: pointer; color: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.20);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.20);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  }
+  #sheet-close:active { background: rgba(255, 255, 255, 0.30); }
+}
+@media (min-width: 1024px) {
+  /* Desktop roster dismiss: the SAME #sheet-close the mobile sheet
+     uses, shown whenever #roster-view is presented at this
+     breakpoint (the panel's [hidden] rule hides it with the panel
+     when the roster is closed). Same 58x38 pill and treatment as
+     the mobile rule above (only the bottom inset differs: measured
+     from the panel's own bottom edge here, since the in-flow panel
+     already stops above the bottom nav — on mobile the sheet is a
+     full-viewport fixed panel, so its inset must clear the nav).
+     Centering is left:50% + translateX(-50%) against the panel
+     itself (#roster-view is position: relative at this breakpoint),
+     so the button's center is the PANEL's center at any width —
+     see the roster-open block above for why track-centering missed. */
+  #sheet-close {
+    display: flex; align-items: center; justify-content: center;
+    position: absolute; left: 50%; transform: translateX(-50%); z-index: 3;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
     width: 58px; height: 38px; padding: 0; border: none; border-radius: 999px;
     cursor: pointer; color: rgba(255, 255, 255, 0.92);
     background: rgba(255, 255, 255, 0.20);

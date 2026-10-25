@@ -1078,16 +1078,46 @@ function renderLeaderboard() {
          week, so a week that is still live never shows the strike. */
       scoreEl.classList.toggle('dropped', droppedWeekFor(tid) === state.scoresWeek);
     }
-    /* per-player state dots under the team name: one per rostered player,
+    /* per-player state dots under the team name: one per roster spot,
        in slot order — upcoming (white at 40% opacity) / live (green) /
-       final (faint white) */
+       final (faint white). Hidden players count too: a team that has
+       entered can have FEWER than nine players in the week document
+       because FanDuel masks each player until their game starts, so
+       the slots missing from the document are exactly its
+       not-yet-started players (the roster sheet renders those same
+       slots as concealed placeholder rows). Walk the standard slot
+       sequence like renderRoster does: each sequence slot the
+       document fills takes that player's state, and each slot it
+       leaves empty takes a hidden player's state — 'pre' while the
+       week is live, 'final' once the week is final (the same state
+       gameState assigns then). Without this the dots undercount a
+       partial roster, and a team whose known players are all final
+       would lose its dots entirely while hidden players are still
+       yet to play. Players the sequence cannot place still get a
+       dot, in document order, after the sequenced ones. */
     var dotsEl = row.querySelector('.dots');
     if (dotsEl) {
       var entry = state.rosters && state.rosters.teams ? state.rosters.teams[tid] : null;
       var players = entry && entry.players ? entry.players : [];
       if (players.length) {
         var nowD = Date.now();
-        var states = players.map(function (pl) { return gameState(pl, nowD); });
+        var DOT_SLOT_SEQUENCE = ['QB', 'RB', 'RB', 'WR', 'WR', 'WR', 'TE', 'FLEX', 'DEF'];
+        var hiddenState = state.scoresFinal ? 'final' : 'pre';
+        var placedDots = players.map(function () { return false; });
+        var states = [];
+        DOT_SLOT_SEQUENCE.forEach(function (slot) {
+          var idx = -1;
+          for (var i = 0; i < players.length; i++) {
+            var pSlot = players[i].slot === 'D' ? 'DEF' : players[i].slot;
+            if (!placedDots[i] && pSlot === slot) { idx = i; break; }
+          }
+          if (idx < 0) { states.push(hiddenState); return; }
+          placedDots[idx] = true;
+          states.push(gameState(players[idx], nowD));
+        });
+        players.forEach(function (pl, i) {
+          if (!placedDots[i]) states.push(gameState(pl, nowD));
+        });
         /* all players final -> the dots carry no information; hide them */
         if (states.every(function (s) { return s === 'final'; })) {
           dotsEl.innerHTML = '';
