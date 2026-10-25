@@ -104,6 +104,8 @@ var state = {
   lineupStatus: {},     /* week number -> { tid: {entered, submitted, updatedAt} } | null (public /lineupStatus/<n>; null = fetched, no data / fetch failed) */
   rosters: null,        /* roster state for the SELECTED week (see applyWeek) */
   scores: {},           /* teamId -> total for the SELECTED week */
+  prevTotals: {},       /* week -> { teamId -> total }: the last totals a doc snapshot rendered, per week (score-delta baseline) */
+  scoreDeltas: {},      /* week -> { teamId -> { amount, startedAt } }: live score-change chips (see noteScoreChanges) */
   playerScores: {},     /* teamId -> { name -> pts } for the selected week */
   playerStats: {},      /* teamId -> { name -> stat line } for the selected week */
   gamesLive: false,
@@ -226,6 +228,59 @@ function applyWeek(W) {
   state.rosters = { season: doc.season, slate: doc.slate, week: W, teams: rTeams };
   state.scoresFinal = !!doc.final;
   state.gamesLive = W === WEEK ? !!doc.live : false;
+  noteScoreChanges(W, doc);
+}
+
+/* ---------------- score-change delta chips ----------------
+   When a new week-doc snapshot moves a team's total, the signed
+   change is shown as a small chip beside that team's score — in
+   the leaderboard row and in the roster sheet header — for 15s,
+   then faded out over 1s by the .score-delta CSS animation (16s
+   total life; see styles.css). Detection compares each applied
+   snapshot's totals against the last totals rendered for the SAME
+   week: prevTotals[week][tid] is the baseline and
+   scoreDeltas[week][tid] the active chip { amount, startedAt }.
+   A week's first sight only seeds the baseline — initial load, a
+   week switch and the pending -> rostered transition never chip.
+   A fresh change while a chip is live replaces the amount and
+   restarts the clock. Team totals only: no player-row chips, and
+   the Standings tab never reads this state. */
+var SCORE_DELTA_LIFE_MS = 16000; /* 15s hold + 1s fade (styles.css) */
+function noteScoreChanges(W, doc) {
+  var key = String(W);
+  var prev = state.prevTotals[key];
+  var firstSight = !prev;
+  if (firstSight) { prev = {}; state.prevTotals[key] = prev; }
+  var now = Date.now();
+  TEAMS.forEach(function (tid) {
+    var e = doc.teams[tid];
+    if (!e) return;
+    var total = e.total || 0;
+    if (!firstSight && prev[tid] !== undefined) {
+      var d = Math.round((total - prev[tid]) * 100) / 100;
+      if (d !== 0) {
+        if (!state.scoreDeltas[key]) state.scoreDeltas[key] = {};
+        state.scoreDeltas[key][tid] = { amount: d, startedAt: now };
+      }
+    }
+    prev[tid] = total;
+  });
+}
+/* The chip markup for one team in the viewed week, or '' when the
+   team has no live chip. A chip whose 16s life has run out is
+   dropped here and never emitted again. Rows are rebuilt on every
+   render, which would restart the CSS animation from zero; the
+   negative animation-delay resumes the recreated element at the
+   phase the original had reached. */
+function scoreDeltaChipHTML(tid) {
+  var map = state.scoreDeltas[String(state.scoresWeek)];
+  var d = map && map[tid];
+  if (!d) return '';
+  var elapsed = Date.now() - d.startedAt;
+  if (elapsed >= SCORE_DELTA_LIFE_MS) { delete map[tid]; return ''; }
+  var text = (d.amount < 0 ? '-' : '+') + fmt(Math.abs(d.amount));
+  var delay = elapsed > 0 ? ' style="animation-delay:-' + (elapsed / 1000).toFixed(3) + 's"' : '';
+  return '<span class="score-delta' + (d.amount < 0 ? ' is-neg' : '') + '"' + delay + '>' + text + '</span>';
 }
 
 /* A week "has rosters" when its document exists and at least one team
@@ -1003,13 +1058,20 @@ function renderLeaderboard() {
       board.appendChild(row);
     }
     row.classList.toggle('pending', state.pending);
+    /* Selected-row marker for the two-column highlight (styled only
+       inside the >=1024px roster-open media query in styles.css, so
+       the single-column layout never shows it): the row whose roster
+       is currently open carries .is-selected. Kept in sync here on
+       every leaderboard render, and by syncSelectedRow() on
+       open/close/switch, which happen without a leaderboard render. */
+    row.classList.toggle('is-selected', state.rosterTeam === tid);
     var scoreEl = row.querySelector('.team-score');
     if (state.pending) {
       /* pending week: the score area stays quiet — no fabricated 0.00 */
       scoreEl.innerHTML = '';
       scoreEl.classList.remove('dropped');
     } else {
-      scoreEl.innerHTML = fmtScoreHTML(state.scores[tid] || 0);
+      scoreEl.innerHTML = scoreDeltaChipHTML(tid) + fmtScoreHTML(state.scores[tid] || 0);
       /* dropped-week indicator, merged from the old standings week views:
          strike the score when the viewed week is the one this team drops
          from its season total. droppedWeekFor only ever names a final
@@ -1067,8 +1129,21 @@ function renderLeaderboard() {
    on open and slides back down on close (the hidden attribute lands
    only after the slide finishes). Desktop keeps the instant swap. */
 var sheetHideTimer = null;
+/* Move / clear the .is-selected marker on the leaderboard rows to
+   match state.rosterTeam: set on the open team's row, moved when
+   openRoster is called for a different team, removed from every row
+   when the roster closes (rosterTeam null). The visual treatment is
+   scoped to the two-column media query in styles.css. */
+function syncSelectedRow() {
+  var board = $('leaderboard');
+  if (!board) return;
+  Array.prototype.forEach.call(board.querySelectorAll('.team-row'), function (row) {
+    row.classList.toggle('is-selected', !!state.rosterTeam && row.dataset.team === state.rosterTeam);
+  });
+}
 function openRoster(tid) {
   state.rosterTeam = tid;
+  syncSelectedRow();
   $('scores-wrap').classList.add('roster-open');
   document.body.classList.add('roster-open');
   var rv = $('roster-view');
@@ -1083,6 +1158,7 @@ function openRoster(tid) {
 }
 function closeRoster() {
   state.rosterTeam = null;
+  syncSelectedRow();
   var rv = $('roster-view');
   rv.classList.remove('sheet-open');
   if (window.matchMedia('(min-width: 1024px)').matches) {
@@ -1176,7 +1252,7 @@ function renderRoster(tid) {
   $('roster-team-name').textContent = TEAM_LABEL[tid];
   $('roster-badge').src = 'assets/img/team-' + tid + '.png';
   $('roster-state').textContent = 'WEEK ' + state.scoresWeek;
-  $('roster-total').innerHTML = state.pending ? '' : fmtScoreHTML(state.scores[tid] || 0);
+  $('roster-total').innerHTML = state.pending ? '' : scoreDeltaChipHTML(tid) + fmtScoreHTML(state.scores[tid] || 0);
   var list = $('roster-list');
   list.innerHTML = '';
   var entry = state.rosters.teams[tid];

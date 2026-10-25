@@ -489,6 +489,37 @@ html.ios-standalone.team #app { padding-top: 0; }
   transform: translateY(-50%); pointer-events: none;
 }
 
+/* ---------- score-change delta chips (Scores rows + roster header) ----------
+   When a new week-doc snapshot moves a team's total, app.js emits a
+   .score-delta span immediately before the score number — inside the
+   leaderboard row's .team-score and inside the roster header's
+   .roster-total. It reads in Barlow Semi Condensed semibold at a
+   fraction of the score's size, in the live green; a negative change
+   takes the dropped-week red (#d92d20). The lifecycle is ONE
+   animation: fully visible for 15s (93.75% of 16s), then a 1s fade
+   to opacity 0, fill forwards so it stays invisible until the next
+   render drops it. app.js sets a negative animation-delay on
+   re-created chips so a re-render resumes the phase instead of
+   restarting the clock. pointer-events: none — the chip never
+   intercepts the row's tap. */
+.score-delta {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 16px;
+  font-weight: var(--fw-semibold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ls-normal);
+  color: var(--live-green);
+  margin-right: 8px;
+  pointer-events: none;
+  animation: scoreDeltaLife 16s linear forwards;
+}
+.score-delta.is-neg { color: #d92d20; }
+@keyframes scoreDeltaLife {
+  0%, 93.75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 /* ---------- roster view (aligned to the tracker) ---------- */
 #roster-view {
   position: fixed; inset: 0; z-index: 8; overflow: hidden;
@@ -601,6 +632,25 @@ html.ios-standalone.team #app { padding-top: 0; }
   #scores-wrap.roster-open #helmet-wrap { grid-area: helmet; }
   #scores-wrap.roster-open #leaderboard { grid-area: board; overflow: hidden; min-height: 0; }
   #scores-wrap.roster-open #roster-view { grid-area: roster; }
+  /* Selected team's leaderboard row (two-column state only): while a
+     team's roster is open in the second column, its row in the left
+     column carries a slightly brighter, less transparent background
+     than the standard glassy row — the same gradient family and base
+     hue, stepped up: gradient whites 0.14/0.045/0.025 -> 0.20/0.075/
+     0.045 and the base fill rgba(20,20,26,0.52) -> rgba(32,32,40,0.68).
+     The .is-selected marker is owned by app.js (renderLeaderboard /
+     openRoster / closeRoster, keyed off state.rosterTeam) and this
+     rule lives inside the two-column media query, so the
+     single-column layout never shows it. */
+  #scores-wrap.roster-open .team-row.is-selected {
+    background:
+      linear-gradient(115deg,
+        rgba(255,255,255,0.20),
+        rgba(255,255,255,0.075) 38%,
+        rgba(255,255,255,0.045) 62%,
+        rgba(12,12,16,0.30)),
+      rgba(32, 32, 40, 0.68);
+  }
   #roster-view { position: static; height: 100%; min-height: 0; border: 1px solid #33333c; border-radius: 12px; padding-bottom: 0; }
   .roster-scroll { padding-bottom: 0; }
   .roster-head { gap: 12px; padding: 18px 14px 14px; }
@@ -717,7 +767,39 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
    so there the picker still swaps to its own close button. */
 #week-picker #picker-close { display: none; }
 @media (min-width: 1024px) {
+  /* Roster dismiss (x) in the two-column state: stacking + centering.
+     Before: #scores-bottom-stack was z-index 5 (base rule above) and
+     #roster-view is z-index 8, so the roster column painted OVER the
+     stack and hid the x; the stack was also a max-width:430px box
+     centered on the whole viewport, so the x centered on the page,
+     not on the roster column.
+     After (this block, roster-open + two-column only): the stack is
+     raised to z-index 10 — above #roster-view's 8, below nothing else
+     that competes here (the bottom nav is a separate fixed bar the
+     stack already sits above in the page flow, and no other overlay
+     lives in this state) — so the x paints on top of the roster
+     column and stays clickable (its own pointer-events: auto below
+     is unchanged). The stack also spans the full width as a grid
+     mirroring #scores-wrap.roster-open's exact column template and
+     16px gap, with the week picker placed in column 2 and centered
+     in it, so the x's horizontal center is the roster (second)
+     column's center. Its vertical placement is untouched: the
+     stack's fixed bottom offset from the base rule still applies.
+     Single-column/mobile never matches body.roster-open at this
+     breakpoint for the stack, and the mobile sheet keeps its own
+     #sheet-close exactly as before. */
+  body.roster-open #scores-bottom-stack {
+    z-index: 10;
+    left: 0; right: 0;
+    max-width: none; margin: 0;
+    display: grid;
+    grid-template-columns: minmax(310px, 0.78fr) minmax(430px, 1.22fr);
+    column-gap: 16px;
+    align-items: center;
+  }
   body.roster-open #week-picker {
+    grid-column: 2;
+    justify-self: center;
     justify-content: center;
     background: transparent; border-color: transparent; box-shadow: none;
     -webkit-backdrop-filter: none; backdrop-filter: none;
@@ -726,7 +808,7 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
   body.roster-open #week-picker #week-prev,
   body.roster-open #week-picker #week-next,
   body.roster-open #week-picker .week-name { display: none; }
-  body.roster-open #week-picker #picker-close { display: flex; pointer-events: auto; }
+  body.roster-open #week-picker #picker-close { display: flex; pointer-events: auto; position: relative; z-index: 10; }
 }
 #sheet-close { display: none; }
 @media (max-width: 1023px) {
