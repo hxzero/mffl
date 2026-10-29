@@ -39,19 +39,21 @@ var COUNTDOWN_THEME = ['#66686f', '#1f1f27'];
 
 /* WEEK is the newest week document in Firebase (the newest week that
    has rosters): the Standings derivation and the live poll key off it.
-   It is detected at boot, so standings rollovers need no redeploy. The
-   Scores DISPLAY week is a separate, calendar-driven value — CAL_WEEK
-   below. SEASON likewise comes from the standings/rosters docs. */
+   It is detected at boot, so standings rollovers need no redeploy.
+   CAL_WEEK below is the app's current-week clock for Scores AND Team.
+   SEASON likewise comes from the standings/rosters docs. */
 var WEEK = 6, SEASON = 2026;
 
-/* ---------------- calendar display week ----------------
-   The Scores tab's week is a pure function of the date: Week 1's
-   Tuesday is 2026-09-08 (America/Los_Angeles) and each week rolls over
-   Tuesday 00:00 PT, clamped to the 18-week season. A calendar week
-   whose document has no rosters yet renders in the pending state (see
-   selectWeek). Standings never consult this — they derive solely from
-   week documents, so a roster-less calendar week cannot leak into
-   their weeks, totals, or defaults. */
+/* ---------------- calendar current week ----------------
+   The current week is a pure function of the date: Week 1's Tuesday
+   is 2026-09-08 (America/Los_Angeles) and each week rolls over Tuesday
+   00:00 PT, clamped to the 18-week season. A calendar week whose
+   document has no rosters yet renders in the pending state (see
+   selectWeek). Standings derive solely from week documents, so a
+   roster-less calendar week cannot leak into their totals. The Team
+   tab uses this same week for its label, lineup record and lock; its
+   static pool is usable only when pool.week matches it exactly, so a
+   stale pool can never masquerade as the new week's lineup. */
 var CAL_WEEK = 6;
 function ptDateMs(now) {
   var parts = {};
@@ -121,6 +123,41 @@ var state = {
 
 function $(id) { return document.getElementById(id); }
 function fmt(n) { return (Math.round(n * 100) / 100).toFixed(2); }
+
+/* ---------------- synchronized week rollover ----------------
+   CAL_WEEK is the app's ONE current-week clock: Scores display and
+   the Team lineup both key off it, and this is the single rollover
+   path when the Tuesday 00:00 PT boundary passes while the app is
+   open. It moves the calendar week, discards the previous week's
+   in-session Team picks/submitted fingerprint, closes any picker,
+   follows the Scores view only if it was showing the old current
+   week (a past week the user chose stays put), pulls the new week's
+   document, and re-renders the visible surface. The poller uses the
+   same Tuesday anchor in its own calendarWeekPT(). */
+function syncWeekRollover() {
+  var w = calendarWeek(new Date());
+  if (w === CAL_WEEK) return false;
+  var wasCurrent = state.scoresWeek === CAL_WEEK;
+  CAL_WEEK = w;
+  state.team.picks = {};
+  state.team.submittedKey = null;
+  teamLineupLoadedKey = null;
+  teamLockLastRender = null;
+  if (poolSheetSlot) forceClosePoolSheet();
+  if (wasCurrent) {
+    state.scoresWeek = w;
+    state.pending = true;
+    state.rosters = { teams: {} };
+    var wn = $('week-name');
+    if (wn) wn.textContent = 'WEEK ' + w;
+    selectWeek(w);
+  }
+  updatePickerButtons();
+  scoresUpdate();
+  if (state.view === 'team') { loadTeamLineup(); renderTeam(); }
+  else if (state.view === 'standings') renderStandings();
+  return true;
+}
 
 /* ---------------- boot ----------------
    Canonical store (2026-10-19 migration): one document per week at
@@ -623,6 +660,7 @@ function updateCountdown() {
      is guarded: the countdown is decoration and must never throw
      into boot, rendering, or view switching. */
   try {
+    syncWeekRollover();
     var wasMode = countdownMode;
     countdownMode = computeCountdownActive();
     noteCountdownState();
@@ -1585,6 +1623,16 @@ var SLOT_POS = {
 };
 
 function poolData() { return window.MFFL_POOL || null; }
+/* The Team tab's week is the app's calendar week — never the static
+   pool's week on its own. The pool is ready only on an exact match:
+   if the calendar has rolled but the deployed pool has not, Team
+   shows the new week as pending instead of loading, showing or
+   saving the previous week's lineup. */
+function teamWeek() { return CAL_WEEK; }
+function teamPoolReady() {
+  var pool = poolData();
+  return !!pool && pool.week === teamWeek();
+}
 /* Derived pool extension (js/pool-extended.js -> window.MFFL_POOL_EXTENDED):
    the producers-only, model-priced records for the 4 non-main-slate
    games, kept in their own file so they never mix with FanDuel's
@@ -2200,7 +2248,7 @@ function officialPoolPlayer(id) {
    nothing unvalidated is ever persisted as submitted. */
 function validateLineupForSubmit() {
   var pool = poolData();
-  if (!pool) return false;
+  if (!teamPoolReady() || !pool) return false;
   var cap = typeof pool.cap === 'number' ? pool.cap : state.team.cap;
   var seen = {};
   var total = 0;
@@ -2276,17 +2324,17 @@ function putLineupStatus(week, team, record) {
     });
 }
 function persistTeamLineup(submitted) {
-  var pool = poolData();
-  if (!pool || typeof pool.week !== 'number') return Promise.resolve(false);
+  if (!teamPoolReady()) return Promise.resolve(false);
   if (auth.status !== 'signed-in' || !auth.team) return Promise.resolve(false);
+  var week = teamWeek();
   var record = {
-    week: pool.week,
+    week: week,
     team: auth.team,
     picks: currentPicksObject(),
     submitted: submitted,
     updatedAt: new Date().toISOString()
   };
-  return authedDbFetch('/lineups/' + pool.week + '/' + auth.team + '.json', {
+  return authedDbFetch('/lineups/' + week + '/' + auth.team + '.json', {
     method: 'PUT',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(record)
@@ -2294,10 +2342,10 @@ function persistTeamLineup(submitted) {
     if (!res || !res.ok) return false;
     /* the lineup is saved — mirror its status (failure-tolerant:
        putLineupStatus never rejects and its result is ignored) */
-    return putLineupStatus(pool.week, auth.team, record).then(function () { return true; });
+    return putLineupStatus(week, auth.team, record).then(function () { return true; });
   }, function () { return false; });
 }
-/* Restore the saved record for (pool week, signed-in team) the
+/* Restore the saved record for (calendar week, signed-in team) the
    first time the Team view is shown for that team. Picks rehydrate
    from the pool by Id; a saved Id the official pool no longer
    carries degrades to an empty slot rather than breaking the
@@ -2308,13 +2356,13 @@ function persistTeamLineup(submitted) {
    signed-in team there is nothing to load: the gate owns the view. */
 function loadTeamLineup() {
   if (auth.status !== 'signed-in' || !auth.team) return;
-  var pool = poolData();
-  if (!pool || typeof pool.week !== 'number') return;
-  var key = pool.week + ':' + auth.team;
+  if (!teamPoolReady()) return;
+  var week = teamWeek();
+  var key = week + ':' + auth.team;
   if (teamLineupLoadedKey === key) return;
   teamLineupLoadedKey = key;
   var keyAtStart = lineupKey();
-  authedDbFetch('/lineups/' + pool.week + '/' + auth.team + '.json', { method: 'GET' })
+  authedDbFetch('/lineups/' + week + '/' + auth.team + '.json', { method: 'GET' })
     .then(function (res) {
       if (!res || !res.ok) return null;
       return res.json();
@@ -2327,7 +2375,7 @@ function loadTeamLineup() {
          /lineupStatus entry (re)derived here, once per load.
          Fire-and-forget: putLineupStatus never rejects and its
          outcome never affects the restore. */
-      putLineupStatus(pool.week, auth.team, rec);
+      putLineupStatus(week, auth.team, rec);
       /* the user started picking before the record arrived: their
          in-progress edits win, the stale restore is dropped */
       if (lineupKey() !== keyAtStart) return;
@@ -2372,7 +2420,7 @@ function poolLockTime() {
        its existing unit-letter style, space-separated, no colons,
        zero leading units omitted ("12h 33m" under a day, "33m"
        under an hour), no seconds; the week number is dynamic (the
-       pool's current week, WEEK as fallback), never hardcoded.
+       app's calendar week), never hardcoded.
    Urgency treatments (countdown state only): under a day remaining
    the text is gold (.is-soon); under 30 minutes the SECONDS COME
    BACK in the same unit format ("29m 41s") and the text turns the
@@ -2384,8 +2432,7 @@ function poolLockTime() {
    actually changes — at/above 30 minutes that is once a minute,
    exactly as before. */
 function teamWeekLabel() {
-  var pool = poolData();
-  return 'Week ' + (pool && pool.week != null ? pool.week : WEEK);
+  return 'Week ' + teamWeek();
 }
 var teamLockLastRender = null;
 function renderTeamLockLine(text, cls) {
@@ -2401,10 +2448,15 @@ function renderTeamLockLine(text, cls) {
 function updateTeamLockLine() {
   var el = $('team-week');
   if (!el) return;
+  syncWeekRollover();
   /* the same 1s tick drives the per-player swap locks: a filled
      player's swap button flips to locked as their kickoff passes */
   refreshTeamSwapLocks();
   var weekLabel = teamWeekLabel();
+  if (!teamPoolReady()) {
+    renderTeamLockLine(weekLabel + ' · Pool update pending', '');
+    return;
+  }
   if (teamSubmitted()) {
     renderTeamLockLine(weekLabel + ' lineup submitted', 'is-submitted');
     return;
@@ -2526,7 +2578,7 @@ function renderTeam() {
     budgetBar.classList.toggle('is-hidden', isSubmittedNow);
     primeTeamBudgetAnimation(budgetBar);
   }
-  var isEligibleNow = filled === TEAM_SLOTS.length && spent <= state.team.cap;
+  var isEligibleNow = teamPoolReady() && filled === TEAM_SLOTS.length && spent <= state.team.cap;
   if (submitBtn) {
     if (isSubmittedNow) {
       submitBtn.textContent = 'Unlock';
@@ -2644,6 +2696,10 @@ function renderTeam() {
       }
       var addBtn = row.querySelector('.team-add-pill');
       if (addBtn) {
+        if (!teamPoolReady()) {
+          addBtn.disabled = true;
+          addBtn.setAttribute('aria-label', 'Pool update pending');
+        }
         addBtn.addEventListener('click', function (e) {
           e.stopPropagation();
           openPoolSheet(s.key);
@@ -2683,7 +2739,7 @@ function openPoolSheetDetail(slotKey) {
   openPlayerDetail(cur.id, 'team');
 }
 function openPoolSheet(slotKey) {
-  if (!slotDef(slotKey)) return;
+  if (!teamPoolReady() || !slotDef(slotKey)) return;
   poolSheetSlot = slotKey;
   closePlayerDetail();
   var sheet = $('pool-sheet');
