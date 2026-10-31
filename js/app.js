@@ -1641,8 +1641,20 @@ function teamPoolReady() {
    verified against a future FanDuel CSV: no code path may put a
    derived player into state.team.picks. pool.js / history.js are
    untouched; the official pool object stays pristine (the lock
-   countdown below reads its games map ONLY). */
-function poolExtendedData() { return window.MFFL_POOL_EXTENDED || null; }
+   countdown below reads its games map ONLY).
+   The extension is week-gated exactly like the official pool is
+   (teamPoolReady): it merges in ONLY when its week matches the
+   official pool's week. The extension file is regenerated per week
+   like the pool, so a stale file (last week's derived players and
+   games) must contribute nothing — no players, no games, no history —
+   until a same-week extension ships. */
+function poolExtendedData() {
+  var ext = window.MFFL_POOL_EXTENDED || null;
+  if (!ext) return null;
+  var pool = poolData();
+  if (!pool || ext.week !== pool.week) return null;
+  return ext;
+}
 function isDerivedPlayer(p) { return !!(p && p.derived); }
 /* The merged, displayable player universe: official players first,
    then the derived extension's players (absent file = official only,
@@ -2832,11 +2844,14 @@ function normalizePlayerName(s) {
 }
 
 function playerHistoryFor(p) {
-  /* Full-pool history from js/history.js -> window.MFFL_HISTORY
-     ({ weeks: [1..6], byId: { <pool id>: [{week, pts, opp}] } }),
-     computed from ESPN with the league's FanDuel formula. Defensive:
-     any missing or malformed history data falls back to the empty
-     state rather than erroring. */
+  /* Full-pool history from js/history.js -> window.MFFL_HISTORY,
+     computed from ESPN with the league's FanDuel formula. The file's
+     shape has been BOTH a direct map ({ <pool id>: [{week, pts,
+     opp}] } — the current Weeks 1-7 rebuild) and the older wrapped
+     shape ({ weeks: [...], byId: { <pool id>: [...] } }); accept
+     either so a data-file rebuild never orphans the values again.
+     Defensive: any missing or malformed history data falls back to
+     the empty state rather than erroring. */
   try {
     if (!p || !p.id) return [];
     var arr = null;
@@ -2844,14 +2859,19 @@ function playerHistoryFor(p) {
       /* Derived players' history lives in the extension file's own
          map (window.MFFL_HISTORY_EXTENDED: EXT-Id -> [{week, pts,
          opp}]) — same record shape, separate store, never merged
-         into MFFL_HISTORY. */
+         into MFFL_HISTORY. It rides on the same week gate as the
+         extension itself: a stale extension contributes no history. */
+      if (!poolExtendedData()) return [];
       var HE = (typeof window !== 'undefined') ? window.MFFL_HISTORY_EXTENDED : null;
       if (!HE || typeof HE !== 'object') return [];
       arr = HE[p.id];
     } else {
       var H = (typeof window !== 'undefined') ? window.MFFL_HISTORY : null;
-      if (!H || typeof H !== 'object' || !H.byId || typeof H.byId !== 'object') return [];
-      arr = H.byId[p.id];
+      if (!H || typeof H !== 'object') return [];
+      /* Wrapped shape reads through .byId; the direct map IS the
+         id -> weeks map. Values are read only — never altered. */
+      var byId = (H.byId && typeof H.byId === 'object') ? H.byId : H;
+      arr = byId[p.id];
     }
     if (!Array.isArray(arr)) return [];
     var out = [];

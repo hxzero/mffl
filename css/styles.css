@@ -184,7 +184,11 @@ html.standings #app { padding-bottom: 0; }
    max(24px, env(safe-area-inset-top)) moves INSIDE the views
    (see the html.ios-standalone.standings / .team rules at
    #standings-view and #team-view below), where their #1d1d23
-   backgrounds paint it. Scores is untouched: no standings/team
+   backgrounds paint it. For the Team builder the inset lands one
+   level deeper — inside the sticky header itself (see the
+   html.ios-standalone.team .team-sticky-head rule there) — so the
+   clearance survives the header pinning to the viewport top.
+   Scores is untouched: no standings/team
    class, so its #app top padding and strip stay as designed. */
 html.ios-standalone.standings #app,
 html.ios-standalone.team #app { padding-top: 0; }
@@ -897,14 +901,21 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
    above), so the last row's resting clearance above the fixed bottom
    nav is unchanged. */
 #team-view { background: #1d1d23; color: #f1efe7; min-height: 100vh; min-height: 100dvh; padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px); }
-/* iOS standalone only (see the #app top-strip note above): the
-   status-bar clearance lives INSIDE #team-view so its #1d1d23
-   background paints it — above the sticky head and, while gated,
-   above the sign-in gate (whose internal layout is unchanged;
-   it simply gains this clearance over it). Team stays scrollable
-   exactly as before. Scoped to html.team so no other view, and no
-   non-standalone context, sees it. */
-html.ios-standalone.team #team-view { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
+/* iOS standalone only (see the #app top-strip note above): while
+   the sign-in gate is up, the status-bar clearance lives INSIDE
+   #team-view as its own padding-top, so #team-view's #1d1d23
+   background paints it above the gate (whose internal layout is
+   unchanged; it simply gains this clearance over it). Once the
+   gate lifts (.auth-gated removed) this padding goes away: the
+   lineup builder's clearance moves INTO the sticky header itself
+   (see the html.ios-standalone.team .team-sticky-head rule below),
+   because padding on #team-view only holds the header clear at
+   rest — the moment the page scrolls, the sticky block pins at
+   top: 0 and the view's padding scrolls away above it, leaving
+   the pinned title/budget rows under the iOS status bar / notch.
+   Scoped to html.team + .auth-gated so no other view, state, or
+   non-standalone context sees it. */
+html.ios-standalone.team #team-view.auth-gated { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
 /* Sticky Team header block: the "My Team" title row and the budget bar
    ride as ONE sticky block at the top of the page scroll while the slot
    list moves beneath it — the roster sheet's sticky-header pattern
@@ -930,6 +941,22 @@ html.ios-standalone.team #team-view { padding-top: max(24px, env(safe-area-inset
   -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
   border-bottom: none;
 }
+/* iOS standalone only: the status-bar clearance rides INSIDE the
+   sticky block as its own top padding, so it holds in BOTH header
+   states — at rest the title row sits exactly where the old
+   #team-view padding put it (this padding replaces that padding
+   for the builder; the gated-only #team-view rule above keeps the
+   two from ever stacking, so there is no double clearance), and
+   once pinned at top: 0 the block's glass background extends to
+   the viewport's top edge, painting the status-bar strip in the
+   header's own tint/blur while the title and budget rows stay
+   below the inset, never under the status bar / notch and never
+   clipped. The block has no fixed height, so the padding simply
+   grows the band by the inset in both states — the title row's
+   --flow-header-h geometry and the budget collapse are untouched.
+   Scoped to html.ios-standalone.team: browser tabs, Android,
+   desktop, and the other views render exactly as before. */
+html.ios-standalone.team .team-sticky-head { padding-top: max(24px, env(safe-area-inset-top, 0px)); }
 .team-head { width: 100%; max-width: 720px; margin: 0 auto; padding: 20px 14px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; height: var(--flow-header-h); min-height: var(--flow-header-h); }
 .team-head-main { flex: 1 1 auto; min-width: 0; }
 .team-head h2 {
