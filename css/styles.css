@@ -723,21 +723,53 @@ html.ios-standalone.standings #standings-view { padding-top: calc(15.56px + max(
   display: flex; align-items: center; gap: 12px;
   min-height: 78px; padding: 12px 14px;
   border-bottom: 1px solid #33333c;
+  position: relative; /* anchors the .standings-move triangle */
 }
 .standing-row:last-child { border-bottom: none; }
 .standing-row .badge { width: 52px; height: 52px; object-fit: contain; flex: 0 0 auto; }
-/* Optical centering for both standings texts: Delirium's glyphs sit on
+/* Optical centering for the standings texts: Delirium's glyphs sit on
    the baseline (ink spans 0..0.728em) while the font reserves a 0.75em
-   ascent and 0.25em descent, so the ink's center rides 0.114em above
-   the line box's midpoint — and flex align-items centers the box, not
-   the ink. There is no secondary row under the name; the offset is the
-   empty descent space inside its own line box. The Scores rows already
-   nudge their score down by this amount (.team-row .team-score); the
-   standings name and number get the same correction so both sit on
-   the badge's center line. Em-relative: it scales with the 42px
-   number size at >= 760px. The dropped strike is a child of the
-   number, so it travels with it and stays glued to the digits. */
-.standing-row .standings-name { flex: 1 1 auto; font-size: var(--fs-name); font-weight: var(--fw-semibold); letter-spacing: var(--ls-normal); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transform: translateY(0.114em); }
+   ascent and 0.25em descent, so a line's ink center rides above its
+   line box's midpoint — and flex align-items centers the box, not
+   the ink. The number is still a single line and keeps the original
+   correction, translateY(0.114em) — the same nudge the Scores rows
+   give their score (.team-row .team-score) — so it sits on the
+   badge's center line. Em-relative: it scales with the 42px number
+   size at >= 760px. The dropped strike is a child of the number, so
+   it travels with it and stays glued to the digits.
+   The name now heads a two-line stack (.standings-id: the name over
+   the movement margin line, .standings-sub), so its correction is
+   re-derived for the stack as a whole and applied to the stack, not
+   the name — keeping 0.114em on the name as well would push the
+   combined ink below center. Measured on the stack: the name line
+   (28.5px at line-height 1.1) puts its ink center 12.43px below the
+   stack top and the margin line's ink (12px at line-height 1.25)
+   ends 41.85px below it, so the combined ink's center sits 21.95px
+   down against the stack box's own center at 23.18px — hence the
+   stack's translateY(1.2px), which puts the combined ink on the
+   badge's center line the way the lone name sat there before. The
+   stack (46.35px) stays inside the 52px badge height, so the 78px
+   row is untouched. */
+.standing-row .standings-id { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; transform: translateY(1.2px); }
+.standing-row .standings-name { font-size: var(--fs-name); font-weight: var(--fw-semibold); letter-spacing: var(--ls-normal); line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Movement margin line: the points gained or lost relative to the
+   leader across the latest final week (see standingsMovement in
+   app.js). Rendered in EVERY state — empty when the movement
+   package is off — with min-height reserving its line box (an empty
+   flex item would otherwise collapse to 0), so the stack's geometry
+   and the name's position are identical whether the indicators show
+   or not. Colors follow the Scores delta chip: green gained, the
+   dropped-week red lost, muted for an exact 0.00. */
+.standing-row .standings-sub { font-family: var(--font-display); font-weight: var(--fw-semibold); font-synthesis: none; font-size: 12px; line-height: 1.25; min-height: 15px; white-space: nowrap; color: #9d9ea6; }
+.standing-row .standings-sub.is-pos { color: var(--live-green); }
+.standing-row .standings-sub.is-neg { color: #d92d20; }
+.standing-row .standings-sub.is-zero { color: #9d9ea6; }
+/* Movement triangle: absolutely positioned in the row's left padding
+   zone (14px) so the badge, name and total keep exactly their
+   pre-package positions. A ~10px glyph, centered on the row. */
+.standing-row .standings-move { position: absolute; left: 3px; top: 50%; transform: translateY(-50%); font-size: 10px; line-height: 1; pointer-events: none; }
+.standing-row .standings-move.up { color: var(--live-green); }
+.standing-row .standings-move.down { color: #d92d20; }
 .standing-row .standings-num { flex: 0 0 auto; font-size: var(--fs-score); font-weight: var(--fw-bold); line-height: 1; font-variant-numeric: tabular-nums; color: #f1efe7; transform: translateY(0.114em); }
 /* same single-line strike as the Scores rows: one straight pseudo-element
    line across the whole number at a single height (see .team-score.dropped) */

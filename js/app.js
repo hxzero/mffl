@@ -382,6 +382,109 @@ function droppedWeekFor(tid) {
   return drop.week;
 }
 
+/* ---------------- standings movement indicators ----------------
+   The movement package on each Standings row shows what the LATEST
+   final week did to the season table: a triangle when the team's
+   rank moved, and the points gained or lost relative to the leader.
+   Both snapshots use the season drop model restricted to FINAL weeks
+   only (finalSeasonTotal below), so the numbers reconcile with the
+   displayed totals once the newest week is final. The package shows
+   from the moment week F finalizes until the NEXT week actually goes
+   live; a pre-kickoff skeleton document (rosters in, every total 0)
+   does not end it. */
+
+/* Season total through week `through` counting FINAL weeks only:
+   the sum of the team's final week totals for weeks 1..through,
+   minus the single worst of them (earliest week wins ties) when at
+   least two count. standingsRows()' model with the series restricted
+   to final documents — a week with no final document is not data and
+   contributes nothing, not even a 0. */
+function finalSeasonTotal(tid, through) {
+  var entries = [];
+  for (var w = 1; w <= through; w++) {
+    var doc = state.weekDocs[String(w)];
+    if (doc && doc.final) {
+      var t = doc.teams && doc.teams[tid] ? (doc.teams[tid].total || 0) : 0;
+      entries.push({ week: w, total: t });
+    }
+  }
+  var total = 0;
+  entries.forEach(function (e) { total += e.total; });
+  if (entries.length >= 2) {
+    var drop = entries[0];
+    entries.forEach(function (e) { if (e.total < drop.total) drop = e; });
+    total -= drop.total;
+  }
+  return total;
+}
+
+/* The newest week whose document is final, or 0 when none is. */
+function latestFinalWeek() {
+  var F = 0;
+  for (var w = 1; w <= WEEK; w++) {
+    var doc = state.weekDocs[String(w)];
+    if (doc && doc.final) F = w;
+  }
+  return F;
+}
+
+/* Whether the newest week's document is a week in progress: flagged
+   live, or not final with at least one team on the board. A skeleton
+   document (teams present, all totals 0, neither flag set) is a week
+   that has not started, not a live week. */
+function newestWeekLive() {
+  var doc = state.weekDocs[String(WEEK)];
+  if (!doc) return false;
+  if (doc.live) return true;
+  if (doc.final) return false;
+  var any = false;
+  TEAMS.forEach(function (tid) {
+    var t = doc.teams && doc.teams[tid] ? (doc.teams[tid].total || 0) : 0;
+    if (t > 0) any = true;
+  });
+  return any;
+}
+
+/* Ranks (1 = first) for a { tid: total } snapshot, best first; ties
+   keep TEAMS order, the same ordering standingsRows() displays. */
+function snapshotRanks(totals) {
+  var order = TEAMS.slice().sort(function (a, b) { return totals[b] - totals[a]; });
+  var ranks = {};
+  order.forEach(function (tid, i) { ranks[tid] = i + 1; });
+  return ranks;
+}
+
+/* The movement package per team, or null when it must not show:
+   fewer than two final weeks, or a week currently live. `dir` is
+   'up' / 'down' when the rank moved across the latest final week,
+   '' when it held. `gained` is the change in the team's margin to
+   the best OTHER total — for the leader, the change in their lead;
+   for everyone else, the change in their deficit to the leader. */
+function standingsMovement() {
+  var F = latestFinalWeek();
+  if (F < 2 || newestWeekLive()) return null;
+  var before = {}, after = {};
+  TEAMS.forEach(function (tid) {
+    before[tid] = finalSeasonTotal(tid, F - 1);
+    after[tid] = finalSeasonTotal(tid, F);
+  });
+  var rankBefore = snapshotRanks(before), rankAfter = snapshotRanks(after);
+  var out = {};
+  TEAMS.forEach(function (tid) {
+    var bestBefore = null, bestAfter = null;
+    TEAMS.forEach(function (o) {
+      if (o === tid) return;
+      if (bestBefore === null || before[o] > bestBefore) bestBefore = before[o];
+      if (bestAfter === null || after[o] > bestAfter) bestAfter = after[o];
+    });
+    out[tid] = {
+      dir: rankAfter[tid] < rankBefore[tid] ? 'up' : (rankAfter[tid] > rankBefore[tid] ? 'down' : ''),
+      gained: (after[tid] - bestAfter) - (before[tid] - bestBefore)
+    };
+  });
+  return out;
+}
+
 async function boot() {
   /* The Scores display week is the calendar week; the header week label
      is set from it below. Standings and the live poll keep keying off
@@ -3255,12 +3358,43 @@ function renderStandings() {
      palette. Rendering Standings never calls the Scores-only
      applyScoresTheme(), so the text wall and its tint are left exactly
      as the Scores view set them. */
+  var move = standingsMovement();
   standingsRows().forEach(function (r) {
     var row = document.createElement('div');
     row.className = 'standing-row';
+    var m = move ? move[r.team] : null;
+    /* Movement package (see standingsMovement): the triangle is
+       absolutely positioned in the row's left padding, so the badge,
+       name and total keep exactly their pre-package positions; the
+       margin number rides in the secondary line under the name, which
+       renders in every state (empty when the package is off) with its
+       height reserved, so the name never shifts between states. */
+    var tri = '';
+    if (m && m.dir) {
+      tri = '<span class="standings-move ' + m.dir + '" aria-hidden="true">' +
+        (m.dir === 'up' ? '▲' : '▼') + '</span>';
+    }
+    var sub = '<span class="standings-sub"></span>';
+    if (m) {
+      var cents = Math.round(m.gained * 100);
+      var cls = cents > 0 ? 'is-pos' : (cents < 0 ? 'is-neg' : 'is-zero');
+      var txt = cents > 0 ? '+' + fmt(cents / 100) : fmt(cents / 100);
+      sub = '<span class="standings-sub ' + cls + '">' + txt + '</span>';
+      /* The triangle is aria-hidden and the margin number is bare
+         text, so summarize the package on the row itself for
+         assistive tech: direction of the rank move (if any) plus
+         the margin change against the leader. */
+      var spoken = m.dir === 'up' ? 'Moved up. ' : (m.dir === 'down' ? 'Moved down. ' : 'Rank unchanged. ');
+      spoken += cents > 0 ? 'Gained ' + fmt(cents / 100) + ' on the leader.'
+        : (cents < 0 ? 'Lost ' + fmt(-cents / 100) + ' to the leader.' : 'No change against the leader.');
+      row.setAttribute('aria-label', TEAM_LABEL[r.team] + ', ' + fmt(r.total) + '. ' + spoken);
+    }
     row.innerHTML =
+      tri +
       '<img class="badge" src="assets/img/team-' + r.team + '.png" alt="">' +
-      '<span class="standings-name">' + TEAM_LABEL[r.team] + '</span>' +
+      '<span class="standings-id">' +
+        '<span class="standings-name">' + TEAM_LABEL[r.team] + '</span>' + sub +
+      '</span>' +
       '<span class="standings-num">' + fmt(r.total) + '</span>';
     list.appendChild(row);
   });
