@@ -3,15 +3,15 @@
    requests are never intercepted). Navigations are network-first so a
    fresh deploy shows up immediately; static shell files are cache-first
    and refreshed in the background. Bump CACHE on each build. */
-var CACHE = 'mffl-shell-v73';
+var CACHE = 'mffl-shell-v74';
 var SHELL = [
   './',
-  'css/styles.css?v=20261103a',
-  'js/app.js?v=20261103a',
-  'js/bg3d.js?v=20261103a',
-  'js/pool.js?v=20261103a',
-  'js/history.js?v=20261103a',
-  'js/pool-extended.js?v=20261103a',
+  'css/styles.css?v=20261110a',
+  'js/app.js?v=20261110a',
+  'js/bg3d.js?v=20261110a',
+  'js/pool.js?v=20261110a',
+  'js/history.js?v=20261110a',
+  'js/pool-extended.js?v=20261110a',
   'manifest.webmanifest',
   'assets/img/icon-192.png',
   'assets/img/icon-512.png',
