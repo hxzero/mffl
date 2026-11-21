@@ -1,10 +1,10 @@
-/* MFFL Week 10 DERIVED player pool extension — producers only (Option 2).
-   Source: ESPN rosters / game summaries, computed 2026-11-10 by
-   pool-roll-week10 build-pool-extended-week10.mjs per pool-extension-investigation.md.
-   These players are NOT in FanDuel's Week 10 Sunday-main contest pool:
-   they are the producers (Weeks 1-9 stat lines) of the 8 teams in the
-   4 non-main-slate games (WSH@NYG, NE@DET, PIT@CIN, LAC@BAL), plus the
-   8 team defenses. FPPG = ESPN-computed FanDuel points / games appeared.
+/* MFFL Week 11 DERIVED player pool extension — producers only (Option 2).
+   Source: ESPN rosters / game summaries, computed 2026-11-20 by
+   pool-roll-week11 build-pool-extended-week11.mjs per pool-extension-investigation.md.
+   These players are NOT in FanDuel's Week 11 Sunday-main contest pool:
+   they are the producers (Weeks 1-10 stat lines) of the 6 teams in the
+   3 non-main-slate games (IND@HOU, MIN@SF, CIN@WSH), plus the
+   6 team defenses. FPPG = ESPN-computed FanDuel points / games appeared.
    Salary = per-position model (floor + slope x FPPG, clamped at the
    positional floor, rounded to $100) — MODELED, not FanDuel-official.
    Every record carries derived: true and a priceTier:
@@ -16,51 +16,24 @@
    file never modifies. Loaded after js/pool.js; app code reads
    window.MFFL_POOL_EXTENDED / window.MFFL_HISTORY_EXTENDED. */
 window.MFFL_POOL_EXTENDED = {
- "week": 10,
+ "week": 11,
  "cap": 60000,
  "source": "espn-derived",
  "games": {
-  "WSH@NYG": "2026-11-13T01:15Z",
-  "NE@DET": "2026-11-15T14:30Z",
-  "PIT@CIN": "2026-11-16T01:20Z",
-  "LAC@BAL": "2026-11-17T01:15Z"
+  "IND@HOU": "2026-11-20T01:15Z",
+  "MIN@SF": "2026-11-23T01:20Z",
+  "CIN@WSH": "2026-11-24T01:15Z"
  },
  "players": [
   {
-   "id": "EXT-4429795",
-   "name": "Jahmyr Gibbs",
+   "id": "EXT-3117251",
+   "name": "Christian McCaffrey",
    "pos": "RB",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 9200,
-   "fppg": 25.5,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3915511",
-   "name": "Joe Burrow",
-   "pos": "QB",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 8000,
-   "fppg": 26.4,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4239993",
-   "name": "Tee Higgins",
-   "pos": "WR",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 7900,
-   "fppg": 18.1,
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 8400,
+   "fppg": 21.8,
    "inj": "",
    "derived": true,
    "priceTier": "flagged"
@@ -70,36 +43,62 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Ja'Marr Chase",
    "pos": "WR",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 7800,
-   "fppg": 17.4,
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 8100,
+   "fppg": 19,
    "inj": "",
    "derived": true,
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-4431452",
-   "name": "Drake Maye",
+   "id": "EXT-3915511",
+   "name": "Joe Burrow",
    "pos": "QB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 7700,
-   "fppg": 21.8,
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 8100,
+   "fppg": 27.5,
    "inj": "",
    "derived": true,
-   "priceTier": "model"
+   "priceTier": "flagged"
   },
   {
-   "id": "EXT-4374302",
-   "name": "Amon-Ra St. Brown",
+   "id": "EXT-4361741",
+   "name": "Brock Purdy",
+   "pos": "QB",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 7800,
+   "fppg": 23.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4432577",
+   "name": "C.J. Stroud",
+   "pos": "QB",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 7700,
+   "fppg": 22.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4239993",
+   "name": "Tee Higgins",
    "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 7600,
-   "fppg": 16.6,
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 7700,
+   "fppg": 17.1,
    "inj": "",
    "derived": true,
    "priceTier": "flagged"
@@ -109,73 +108,34 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Jayden Daniels",
    "pos": "QB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 7600,
-   "fppg": 20.2,
+   "fppg": 20.6,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-3046779",
-   "name": "Jared Goff",
-   "pos": "QB",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 7500,
-   "fppg": 19.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4569987",
-   "name": "Jaylen Warren",
+   "id": "EXT-4242335",
+   "name": "Jonathan Taylor",
    "pos": "RB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 7500,
-   "fppg": 17.5,
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 7100,
+   "fppg": 15.2,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-8439",
-   "name": "Aaron Rodgers",
-   "pos": "QB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 7200,
-   "fppg": 15.4,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-3043078",
-   "name": "Derrick Henry",
-   "pos": "RB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 7200,
-   "fppg": 15.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4595348",
-   "name": "Malik Nabers",
+   "id": "EXT-4258173",
+   "name": "Nico Collins",
    "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 7100,
    "fppg": 14.4,
    "inj": "",
@@ -183,15 +143,15 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-4429615",
-   "name": "Zay Flowers",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 7100,
-   "fppg": 14.4,
-   "inj": "",
+   "id": "EXT-3917315",
+   "name": "Kyler Murray",
+   "pos": "QB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 7000,
+   "fppg": 12.8,
+   "inj": "O",
    "derived": true,
    "priceTier": "flagged"
   },
@@ -200,8 +160,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Athan Kaliakmanis",
    "pos": "QB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 6900,
    "fppg": 12,
    "inj": "",
@@ -209,38 +169,12 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-2969939",
-   "name": "Jameis Winston",
-   "pos": "QB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 6900,
-   "fppg": 11.6,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4038941",
-   "name": "Justin Herbert",
-   "pos": "QB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 6900,
-   "fppg": 11.5,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
    "id": "EXT-2576980",
    "name": "Marcus Mariota",
    "pos": "QB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 6900,
    "fppg": 11.5,
    "inj": "",
@@ -248,67 +182,80 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "model"
   },
   {
-   "id": "EXT-4433970",
-   "name": "J.J. McCarthy",
-   "pos": "QB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 6700,
-   "fppg": 8.7,
+   "id": "EXT-16737",
+   "name": "Mike Evans",
+   "pos": "WR",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 6900,
+   "fppg": 13.1,
    "inj": "Q",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4426388",
-   "name": "Jameson Williams",
-   "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 6600,
-   "fppg": 11.8,
+   "id": "EXT-3917792",
+   "name": "Daniel Jones",
+   "pos": "QB",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 6800,
+   "fppg": 9.9,
    "inj": "",
    "derived": true,
-   "priceTier": "flagged"
+   "priceTier": "model"
   },
   {
-   "id": "EXT-4429020",
-   "name": "DJ Uiagalelei",
-   "pos": "QB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 6400,
-   "fppg": 5,
+   "id": "EXT-3126486",
+   "name": "Deebo Samuel Sr.",
+   "pos": "WR",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 6800,
+   "fppg": 12.8,
    "inj": "",
    "derived": true,
-   "priceTier": "flagged"
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-2573079",
+   "name": "Carson Wentz",
+   "pos": "QB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 6600,
+   "fppg": 8.3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4262921",
+   "name": "Justin Jefferson",
+   "pos": "WR",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 6500,
+   "fppg": 11.5,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
   },
   {
    "id": "EXT-2976212",
    "name": "Stefon Diggs",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 6400,
-   "fppg": 10.8,
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 6500,
+   "fppg": 11.6,
    "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4569173",
-   "name": "Rhamondre Stevenson",
-   "pos": "RB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 6300,
-   "fppg": 11.2,
-   "inj": "Q",
    "derived": true,
    "priceTier": "model"
   },
@@ -317,140 +264,140 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Chase Brown",
    "pos": "RB",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 6100,
-   "fppg": 10.2,
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 6400,
+   "fppg": 11.8,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4429582",
-   "name": "Joe Fagnano",
-   "pos": "QB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 6100,
-   "fppg": 1.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4240391",
-   "name": "Tommy DeVito",
-   "pos": "QB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 6100,
-   "fppg": 1.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4696981",
-   "name": "Cam Skattebo",
+   "id": "EXT-4429939",
+   "name": "Jawhar Jordan",
    "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 6300,
+   "fppg": 11.5,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4573398",
+   "name": "Max Brosmer",
+   "pos": "QB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 6200,
+   "fppg": 2.3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4366031",
+   "name": "Tank Dell",
+   "pos": "WR",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 6200,
+   "fppg": 10,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-3042519",
+   "name": "Aaron Jones Sr.",
+   "pos": "RB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 6100,
+   "fppg": 10.3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-14880",
+   "name": "Kirk Cousins",
+   "pos": "QB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 6100,
+   "fppg": 1.8,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4429084",
+   "name": "Anthony Richardson Sr.",
+   "pos": "QB",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 6000,
-   "fppg": 9.7,
+   "fppg": 0.7,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4242546",
+   "name": "Davis Mills",
+   "pos": "QB",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 6000,
+   "fppg": 0.1,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4241464",
+   "name": "Mac Jones",
+   "pos": "QB",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 6000,
+   "fppg": -0.2,
    "inj": "Q",
    "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4035538",
+   "name": "David Montgomery",
+   "pos": "RB",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 5700,
+   "fppg": 8.4,
+   "inj": "",
+   "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4427095",
-   "name": "DeMario Douglas",
+   "id": "EXT-15818",
+   "name": "Keenan Allen",
    "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 6000,
-   "fppg": 9.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4689114",
-   "name": "Jaxson Dart",
-   "pos": "QB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 6000,
-   "fppg": 13.7,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3916387",
-   "name": "Lamar Jackson",
-   "pos": "QB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 6000,
-   "fppg": 16.6,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3116407",
-   "name": "Mason Rudolph",
-   "pos": "QB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 6000,
-   "fppg": 0,
-   "inj": "",
-   "derived": true,
-   "priceTier": "floor"
-  },
-  {
-   "id": "EXT-4035671",
-   "name": "Tyler Huntley",
-   "pos": "QB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 6000,
-   "fppg": 11.1,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4361050",
-   "name": "Isaiah Likely",
-   "pos": "TE",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 5900,
-   "fppg": 13.2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4047650",
-   "name": "DK Metcalf",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 5800,
-   "fppg": 8.1,
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 5700,
+   "fppg": 7.7,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -460,62 +407,88 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Rachaad White",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 5800,
-   "fppg": 8.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-2991662",
-   "name": "Mack Hollins",
-   "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 5700,
-   "fppg": 7.9,
+   "fppg": 8.3,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4612826",
-   "name": "Ladd McConkey",
+   "id": "EXT-4686422",
+   "name": "Xavier Hutchinson",
    "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 5600,
-   "fppg": 7.2,
-   "inj": "Q",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 5700,
+   "fppg": 7.6,
+   "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4685382",
-   "name": "Omarion Hampton",
+   "id": "EXT-3040151",
+   "name": "George Kittle",
+   "pos": "TE",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 5600,
+   "fppg": 11.7,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4429059",
+   "name": "Woody Marks",
    "pos": "RB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 5600,
    "fppg": 7.8,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-5081432",
+   "name": "Antonio Williams",
+   "pos": "WR",
+   "team": "WSH",
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 5400,
+   "fppg": 6.5,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4038815",
-   "name": "Rico Dowdle",
-   "pos": "RB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 5600,
-   "fppg": 7.6,
+   "id": "EXT-4429205",
+   "name": "Jordan Addison",
+   "pos": "WR",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 5400,
+   "fppg": 6.4,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4429022",
+   "name": "Kayshon Boutte",
+   "pos": "WR",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 5400,
+   "fppg": 6.3,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -525,34 +498,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Treylon Burks",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 5500,
-   "fppg": 6.9,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4040761",
-   "name": "Devin Singletary",
-   "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 5400,
-   "fppg": 6.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4685261",
-   "name": "Germie Bernard",
-   "pos": "WR",
-   "team": "PIT",
    "opp": "CIN",
-   "game": "PIT@CIN",
+   "game": "CIN@WSH",
    "salary": 5400,
    "fppg": 6.4,
    "inj": "",
@@ -560,12 +507,25 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "model"
   },
   {
-   "id": "EXT-5081432",
-   "name": "Antonio Williams",
+   "id": "EXT-4360569",
+   "name": "Jordan Mason",
+   "pos": "RB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 5300,
+   "fppg": 6.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4688813",
+   "name": "Josh Downs",
    "pos": "WR",
-   "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 5300,
    "fppg": 5.9,
    "inj": "",
@@ -573,39 +533,91 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "model"
   },
   {
-   "id": "EXT-4430027",
-   "name": "Sam LaPorta",
+   "id": "EXT-4036133",
+   "name": "T.J. Hockenson",
    "pos": "TE",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
    "salary": 5300,
-   "fppg": 9.5,
-   "inj": "",
+   "fppg": 8.9,
+   "inj": "Q",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4038441",
-   "name": "Justice Hill",
-   "pos": "RB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 5200,
-   "fppg": 5.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4682648",
-   "name": "Malachi Fields",
+   "id": "EXT-4431466",
+   "name": "Jordan Watkins",
    "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
    "salary": 5200,
+   "fppg": 5.6,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-3116389",
+   "name": "Samaje Perine",
+   "pos": "RB",
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 5200,
+   "fppg": 5.9,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4431459",
+   "name": "Tyler Warren",
+   "pos": "TE",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 5200,
+   "fppg": 8.3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-3043116",
+   "name": "Demarcus Robinson",
+   "pos": "WR",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 5100,
+   "fppg": 5.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4384852",
+   "name": "Dohnte Meyers",
+   "pos": "WR",
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 5100,
+   "fppg": 4.8,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4696044",
+   "name": "Kaelon Black",
+   "pos": "RB",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 5100,
    "fppg": 5.5,
    "inj": "",
    "derived": true,
@@ -616,192 +628,23 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Mike Gesicki",
    "pos": "TE",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 5200,
-   "fppg": 8.8,
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 5100,
+   "fppg": 8,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4361411",
-   "name": "Pat Freiermuth",
+   "id": "EXT-3117256",
+   "name": "Dalton Schultz",
    "pos": "TE",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 5200,
-   "fppg": 8.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4429025",
-   "name": "Quentin Johnston",
-   "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 5200,
-   "fppg": 5.6,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4047646",
-   "name": "A.J. Brown",
-   "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 5100,
-   "fppg": 4.9,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4695193",
-   "name": "Efton Chism III",
-   "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 5100,
-   "fppg": 5.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4596334",
-   "name": "Keaton Mitchell",
-   "pos": "RB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 5100,
-   "fppg": 5.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4360939",
-   "name": "Rashod Bateman",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 5100,
-   "fppg": 5,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-3116389",
-   "name": "Samaje Perine",
-   "pos": "RB",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 5100,
-   "fppg": 5.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4686612",
-   "name": "Tre' Harris",
-   "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 5100,
-   "fppg": 5.2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4432710",
-   "name": "TreVeyon Henderson",
-   "pos": "RB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 5100,
-   "fppg": 5.2,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-3930066",
-   "name": "Van Jefferson",
-   "pos": "WR",
-   "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 5100,
-   "fppg": 4.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-3046439",
-   "name": "Hunter Henry",
-   "pos": "TE",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 5000,
-   "fppg": 7.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4430968",
-   "name": "Kimani Vidal",
-   "pos": "RB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 5000,
-   "fppg": 4.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4430802",
-   "name": "Darnell Washington",
-   "pos": "TE",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4900,
-   "fppg": 6.6,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4384852",
-   "name": "Dohnte Meyers",
-   "pos": "WR",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 4900,
-   "fppg": 4.2,
+   "fppg": 7.2,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -811,10 +654,49 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Austin Ekeler",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 4900,
+   "fppg": 4.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-3051889",
+   "name": "Laquon Treadwell",
+   "pos": "WR",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4900,
+   "fppg": 3.9,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4686468",
+   "name": "Seth McGowan",
+   "pos": "RB",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4900,
+   "fppg": 4.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4061956",
+   "name": "Ashton Dulin",
+   "pos": "WR",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 4800,
-   "fppg": 3.6,
+   "fppg": 3.4,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -824,400 +706,114 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Chig Okonkwo",
    "pos": "TE",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4800,
-   "fppg": 5.6,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-2576581",
-   "name": "Chris Moore",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4800,
-   "fppg": 3.5,
+   "fppg": 5.4,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4613202",
-   "name": "Kyle Williams",
+   "id": "EXT-3930066",
+   "name": "Van Jefferson",
    "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "team": "WSH",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4800,
-   "fppg": 3.8,
+   "fppg": 3.6,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4431431",
-   "name": "Corey Kiner",
-   "pos": "RB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "id": "EXT-DEF-MIN",
+   "name": "Minnesota Vikings",
+   "pos": "D",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
    "salary": 4700,
+   "fppg": 11.6,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-16731",
+   "name": "Brandin Cooks",
+   "pos": "WR",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4600,
+   "fppg": 2.9,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-16002",
+   "name": "Kyle Juszczyk",
+   "pos": "RB",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4600,
+   "fppg": 3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4874509",
+   "name": "DJ Giddens",
+   "pos": "RB",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4500,
+   "fppg": 2.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-3843945",
+   "name": "Foster Moreau",
+   "pos": "TE",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4500,
    "fppg": 3.4,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4040655",
-   "name": "Darnell Mooney",
+   "id": "EXT-4432708",
+   "name": "Marvin Harrison Jr.",
    "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4700,
-   "fppg": 3.2,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4831959",
-   "name": "Eli Raridon",
-   "pos": "TE",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 4700,
-   "fppg": 5.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-5123663",
-   "name": "Isaac TeSlaa",
-   "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 4700,
-   "fppg": 3.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-3116365",
-   "name": "Mark Andrews",
-   "pos": "TE",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4700,
-   "fppg": 4.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4870847",
-   "name": "Ja'Kobi Lane",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4600,
-   "fppg": 2.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4595342",
-   "name": "Oronde Gadsden",
-   "pos": "TE",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4600,
-   "fppg": 4.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4912274",
-   "name": "Sione Vaki",
-   "pos": "RB",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 4600,
-   "fppg": 2.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4426535",
-   "name": "Theo Wease Jr.",
-   "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4600,
-   "fppg": 2.6,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4035656",
-   "name": "Ben Skowronek",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 4500,
    "fppg": 2.1,
-   "inj": "Q",
+   "inj": "O",
    "derived": true,
-   "priceTier": "model"
+   "priceTier": "flagged"
   },
   {
-   "id": "EXT-4430870",
-   "name": "KeAndre Lambert-Smith",
+   "id": "EXT-4430656",
+   "name": "Myles Price",
    "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4500,
-   "fppg": 2.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4690070",
-   "name": "Mitchell Tinsley",
-   "pos": "WR",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
    "salary": 4500,
    "fppg": 2.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4241457",
-   "name": "Najee Harris",
-   "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4500,
-   "fppg": 2.2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4241263",
-   "name": "Charlie Kolar",
-   "pos": "TE",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4400,
-   "fppg": 2.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4696882",
-   "name": "Devontez Walker",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4400,
-   "fppg": 1.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-5088338",
-   "name": "Elijah Sarratt",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4400,
-   "fppg": 1.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4691889",
-   "name": "Greg Desrosiers Jr.",
-   "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4400,
-   "fppg": 2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4683111",
-   "name": "Jaden Bradley",
-   "pos": "WR",
-   "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 4400,
-   "fppg": 1.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4876132",
-   "name": "Josh Cuevas",
-   "pos": "TE",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4400,
-   "fppg": 2.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-DEF-PIT",
-   "name": "Pittsburgh Steelers",
-   "pos": "D",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4400,
-   "fppg": 9.4,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3051738",
-   "name": "Marquez Valdes-Scantling",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4300,
-   "fppg": 1.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4432260",
-   "name": "Matt Hibner",
-   "pos": "TE",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4300,
-   "fppg": 2.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4429148",
-   "name": "Theo Johnson",
-   "pos": "TE",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4300,
-   "fppg": 2.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4240577",
-   "name": "Brandon Smith",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4200,
-   "fppg": 0.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4685553",
-   "name": "Brenen Thompson",
-   "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4200,
-   "fppg": 0.9,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4257188",
-   "name": "Charlie Jones",
-   "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4200,
-   "fppg": 0.7,
-   "inj": "Q",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-DEF-CIN",
-   "name": "Cincinnati Bengals",
-   "pos": "D",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 4200,
-   "fppg": 7.8,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4362477",
-   "name": "Derius Davis",
-   "pos": "WR",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4200,
-   "fppg": 0.9,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -1227,23 +823,192 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Drew Sample",
    "pos": "TE",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 4200,
-   "fppg": 1.8,
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 4400,
+   "fppg": 2.6,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4428396",
-   "name": "Hayden Rucci",
-   "pos": "TE",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4200,
+   "id": "EXT-4683111",
+   "name": "Jaden Bradley",
+   "pos": "WR",
+   "team": "WSH",
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 4400,
+   "fppg": 1.7,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4690070",
+   "name": "Mitchell Tinsley",
+   "pos": "WR",
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 4400,
+   "fppg": 1.7,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4683151",
+   "name": "Deion Burks",
+   "pos": "WR",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4300,
+   "fppg": 1.1,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4362478",
+   "name": "Emari Demercado",
+   "pos": "RB",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4300,
    "fppg": 1.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4708049",
+   "name": "Gavin Bartholomew",
+   "pos": "TE",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4300,
+   "fppg": 2.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4430681",
+   "name": "Jared Wayne",
+   "pos": "WR",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4300,
+   "fppg": 1.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-3886598",
+   "name": "Jauan Jennings",
+   "pos": "WR",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4300,
+   "fppg": 1.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4360637",
+   "name": "Jeshaun Jones",
+   "pos": "WR",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4300,
+   "fppg": 1.2,
+   "inj": "Q",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-3047876",
+   "name": "KhaDarel Hodge",
+   "pos": "WR",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4300,
+   "fppg": 1.1,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4565185",
+   "name": "Tai Felton",
+   "pos": "WR",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4300,
+   "fppg": 1.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4429684",
+   "name": "Anthony Gould",
+   "pos": "WR",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4200,
+   "fppg": 0.8,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4690923",
+   "name": "Ben Sinnott",
+   "pos": "TE",
+   "team": "WSH",
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 4200,
+   "fppg": 1.5,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4433959",
+   "name": "Ben Yurosek",
+   "pos": "TE",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4200,
+   "fppg": 1.1,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4240631",
+   "name": "DeeJay Dallas",
+   "pos": "RB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4200,
+   "fppg": 0.8,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -1253,86 +1018,86 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Jack Endries",
    "pos": "TE",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 4200,
-   "fppg": 1.5,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4690143",
-   "name": "LaJohntay Wester",
-   "pos": "WR",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4200,
-   "fppg": 0.7,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4698253",
-   "name": "Lan Larison",
-   "pos": "RB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 4200,
-   "fppg": 1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4590292",
-   "name": "Thomas Fidone II",
-   "pos": "TE",
-   "team": "NYG",
    "opp": "WSH",
-   "game": "WSH@NYG",
+   "game": "CIN@WSH",
    "salary": 4200,
-   "fppg": 1.1,
+   "fppg": 1.4,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4035198",
-   "name": "Brandon Johnson",
+   "id": "EXT-4575665",
+   "name": "Jacob Cowing",
    "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4100,
-   "fppg": 0.5,
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4200,
+   "fppg": 0.8,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4242392",
-   "name": "Brock Wright",
+   "id": "EXT-4685397",
+   "name": "Jordan James",
+   "pos": "RB",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4200,
+   "fppg": 0.7,
+   "inj": "Q",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4362504",
+   "name": "Brevin Jordan",
    "pos": "TE",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4100,
+   "fppg": 0.4,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4426496",
+   "name": "Cade Stover",
+   "pos": "TE",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 4100,
    "fppg": 0.7,
    "inj": "",
    "derived": true,
    "priceTier": "model"
+  },
+  {
+   "id": "EXT-DEF-CIN",
+   "name": "Cincinnati Bengals",
+   "pos": "D",
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 4100,
+   "fppg": 7.3,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
   },
   {
    "id": "EXT-5092508",
    "name": "Colbie Young",
    "pos": "WR",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
    "salary": 4100,
    "fppg": 0.3,
    "inj": "",
@@ -1344,11 +1109,11 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Colson Yankoff",
    "pos": "TE",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4100,
    "fppg": 0.5,
-   "inj": "Q",
+   "inj": "",
    "derived": true,
    "priceTier": "model"
   },
@@ -1357,8 +1122,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Craig Reynolds",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4100,
    "fppg": 0.4,
    "inj": "",
@@ -1366,27 +1131,27 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-2580216",
-   "name": "DeAndre Carter",
-   "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
+   "id": "EXT-2983509",
+   "name": "Dare Ogunbowale",
+   "pos": "RB",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 4100,
-   "fppg": 0.3,
+   "fppg": 0.5,
    "inj": "",
    "derived": true,
    "priceTier": "model"
   },
   {
-   "id": "EXT-4602788",
-   "name": "Jackson Meeks",
-   "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
+   "id": "EXT-4722908",
+   "name": "Drew Ogletree",
+   "pos": "TE",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 4100,
-   "fppg": 0.3,
+   "fppg": 0.4,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -1396,10 +1161,10 @@ window.MFFL_POOL_EXTENDED = {
    "name": "John Bates",
    "pos": "TE",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4100,
-   "fppg": 0.7,
+   "fppg": 0.6,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -1409,10 +1174,23 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Kaytron Allen",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4100,
-   "fppg": 0.6,
+   "fppg": 0.5,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4040612",
+   "name": "Luke Farrell",
+   "pos": "TE",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4100,
+   "fppg": 0.5,
    "inj": "",
    "derived": true,
    "priceTier": "model"
@@ -1422,47 +1200,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Luke McCaffrey",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 4100,
-   "fppg": 0.2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4690013",
-   "name": "Rasheen Ali",
-   "pos": "RB",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4100,
-   "fppg": 0.3,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4245144",
-   "name": "Tay Martin",
-   "pos": "WR",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 4100,
-   "fppg": 0.2,
-   "inj": "",
-   "derived": true,
-   "priceTier": "model"
-  },
-  {
-   "id": "EXT-4037457",
-   "name": "Travis Homer",
-   "pos": "RB",
-   "team": "PIT",
    "opp": "CIN",
-   "game": "PIT@CIN",
+   "game": "CIN@WSH",
    "salary": 4100,
    "fppg": 0.2,
    "inj": "",
@@ -1470,12 +1209,12 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "model"
   },
   {
-   "id": "EXT-3915486",
-   "name": "Tyler Conklin",
+   "id": "EXT-4695705",
+   "name": "Marlin Klein",
    "pos": "TE",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
    "salary": 4100,
    "fppg": 0.4,
    "inj": "",
@@ -1483,14 +1222,79 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "model"
   },
   {
-   "id": "EXT-3917668",
-   "name": "Alec Ingold",
+   "id": "EXT-2971281",
+   "name": "Pharaoh Brown",
+   "pos": "TE",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4100,
+   "fppg": 0.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-5151317",
+   "name": "Robert Henry Jr.",
    "pos": "RB",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4000,
+   "team": "WSH",
+   "opp": "CIN",
+   "game": "CIN@WSH",
+   "salary": 4100,
+   "fppg": 0.4,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-DEF-SF",
+   "name": "San Francisco 49ers",
+   "pos": "D",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
+   "salary": 4100,
+   "fppg": 6.7,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4429299",
+   "name": "Tahj Brooks",
+   "pos": "RB",
+   "team": "CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
+   "salary": 4100,
+   "fppg": 0.2,
+   "inj": "",
+   "derived": true,
+   "priceTier": "model"
+  },
+  {
+   "id": "EXT-4362523",
+   "name": "Will Mallory",
+   "pos": "TE",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4100,
    "fppg": 1,
+   "inj": "O",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4360078",
+   "name": "Alec Pierce",
+   "pos": "WR",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
+   "salary": 4000,
+   "fppg": 4.9,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
@@ -1500,8 +1304,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Andrei Iosivas",
    "pos": "WR",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 1.7,
    "inj": "IR",
@@ -1509,53 +1313,27 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-4690923",
-   "name": "Ben Sinnott",
+   "id": "EXT-4360290",
+   "name": "Brayden Willis",
    "pos": "TE",
-   "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "team": "SF",
+   "opp": "MIN",
+   "game": "MIN@SF",
    "salary": 4000,
-   "fppg": 0.1,
+   "fppg": 0,
    "inj": "",
    "derived": true,
    "priceTier": "floor"
   },
   {
-   "id": "EXT-3123075",
-   "name": "Braxton Berrios",
-   "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
+   "id": "EXT-4832846",
+   "name": "Demond Claiborne",
+   "pos": "RB",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
    "salary": 4000,
-   "fppg": 0,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3123076",
-   "name": "David Njoku",
-   "pos": "TE",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 4000,
-   "fppg": 4.9,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-3052897",
-   "name": "Durham Smythe",
-   "pos": "TE",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
-   "salary": 4000,
-   "fppg": 0.2,
+   "fppg": 0.8,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
@@ -1565,8 +1343,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Dyami Brown",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 1.7,
    "inj": "IR",
@@ -1578,11 +1356,24 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Erick All Jr.",
    "pos": "TE",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 1.6,
    "inj": "IR",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-DEF-HOU",
+   "name": "Houston Texans",
+   "pos": "D",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4000,
+   "fppg": 6.2,
+   "inj": "",
    "derived": true,
    "priceTier": "flagged"
   },
@@ -1591,24 +1382,11 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Jacory Croskey-Merritt",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 8.5,
    "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4692590",
-   "name": "Jalin Hyatt",
-   "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4000,
-   "fppg": 0,
-   "inj": "",
    "derived": true,
    "priceTier": "flagged"
   },
@@ -1617,10 +1395,23 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Jaylin Lane",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 0.9,
+   "inj": "IR",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4586312",
+   "name": "Jaylin Noel",
+   "pos": "WR",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4000,
+   "fppg": 8.6,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
@@ -1630,10 +1421,23 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Jeremy McNichols",
    "pos": "RB",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 2.3,
+   "inj": "IR",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-3921690",
+   "name": "Josh Oliver",
+   "pos": "TE",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
+   "salary": 4000,
+   "fppg": 2,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
@@ -1643,8 +1447,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Ke'Shawn Williams",
    "pos": "WR",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": -2,
    "inj": "",
@@ -1652,51 +1456,25 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-4428119",
-   "name": "Lew Nichols",
+   "id": "EXT-4683159",
+   "name": "Lewis Bond",
+   "pos": "WR",
+   "team": "HOU",
+   "opp": "IND",
+   "game": "IND@HOU",
+   "salary": 4000,
+   "fppg": 0,
+   "inj": "",
+   "derived": true,
+   "priceTier": "flagged"
+  },
+  {
+   "id": "EXT-4878695",
+   "name": "Max Bredeson",
    "pos": "RB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4000,
-   "fppg": 0.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "floor"
-  },
-  {
-   "id": "EXT-4035687",
-   "name": "Michael Pittman Jr.",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4000,
-   "fppg": 4.1,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-DEF-NYG",
-   "name": "New York Giants",
-   "pos": "D",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4000,
-   "fppg": 6.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-16733",
-   "name": "Odell Beckham Jr.",
-   "pos": "WR",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
+   "team": "MIN",
+   "opp": "SF",
+   "game": "MIN@SF",
    "salary": 4000,
    "fppg": 0,
    "inj": "",
@@ -1704,92 +1482,27 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "floor"
   },
   {
-   "id": "EXT-2975417",
-   "name": "Patrick Ricard",
-   "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4000,
-   "fppg": 0.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "floor"
-  },
-  {
-   "id": "EXT-4039505",
-   "name": "Reggie Gilliam",
-   "pos": "RB",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
-   "salary": 4000,
-   "fppg": 0.2,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4693370",
-   "name": "Riley Nowakowski",
-   "pos": "RB",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4000,
-   "fppg": 0,
-   "inj": "",
-   "derived": true,
-   "priceTier": "floor"
-  },
-  {
-   "id": "EXT-2975674",
-   "name": "Robert Tonyan",
+   "id": "EXT-2998565",
+   "name": "Mo Alie-Cox",
    "pos": "TE",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 4000,
-   "fppg": 0.1,
-   "inj": "",
-   "derived": true,
-   "priceTier": "floor"
-  },
-  {
-   "id": "EXT-4431492",
-   "name": "Roman Wilson",
-   "pos": "WR",
-   "team": "PIT",
-   "opp": "CIN",
-   "game": "PIT@CIN",
-   "salary": 4000,
-   "fppg": 7.6,
+   "fppg": 1.2,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-4361432",
-   "name": "Romeo Doubs",
+   "id": "EXT-3929785",
+   "name": "Nick Westbrook-Ikhine",
    "pos": "WR",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 4000,
-   "fppg": 8.5,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4429299",
-   "name": "Tahj Brooks",
-   "pos": "RB",
-   "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
-   "salary": 4000,
-   "fppg": 0.1,
+   "fppg": 0,
    "inj": "",
    "derived": true,
    "priceTier": "floor"
@@ -1799,8 +1512,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Tanner Hudson",
    "pos": "TE",
    "team": "CIN",
-   "opp": "PIT",
-   "game": "PIT@CIN",
+   "opp": "WSH",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 3.2,
    "inj": "IR",
@@ -1812,23 +1525,10 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Terry McLaurin",
    "pos": "WR",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 4000,
    "fppg": 7.7,
-   "inj": "IR",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-4360516",
-   "name": "Tyrone Tracy Jr.",
-   "pos": "RB",
-   "team": "NYG",
-   "opp": "WSH",
-   "game": "WSH@NYG",
-   "salary": 4000,
-   "fppg": 4.2,
    "inj": "IR",
    "derived": true,
    "priceTier": "flagged"
@@ -1838,34 +1538,8 @@ window.MFFL_POOL_EXTENDED = {
    "name": "Washington Commanders",
    "pos": "D",
    "team": "WSH",
-   "opp": "NYG",
-   "game": "WSH@NYG",
-   "salary": 4000,
-   "fppg": 5.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-DEF-DET",
-   "name": "Detroit Lions",
-   "pos": "D",
-   "team": "DET",
-   "opp": "NE",
-   "game": "NE@DET",
-   "salary": 3900,
-   "fppg": 5.6,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-DEF-NE",
-   "name": "New England Patriots",
-   "pos": "D",
-   "team": "NE",
-   "opp": "DET",
-   "game": "NE@DET",
+   "opp": "CIN",
+   "game": "CIN@WSH",
    "salary": 3900,
    "fppg": 5.8,
    "inj": "",
@@ -1873,27 +1547,14 @@ window.MFFL_POOL_EXTENDED = {
    "priceTier": "flagged"
   },
   {
-   "id": "EXT-DEF-BAL",
-   "name": "Baltimore Ravens",
+   "id": "EXT-DEF-IND",
+   "name": "Indianapolis Colts",
    "pos": "D",
-   "team": "BAL",
-   "opp": "LAC",
-   "game": "LAC@BAL",
+   "team": "IND",
+   "opp": "HOU",
+   "game": "IND@HOU",
    "salary": 3700,
-   "fppg": 3.9,
-   "inj": "",
-   "derived": true,
-   "priceTier": "flagged"
-  },
-  {
-   "id": "EXT-DEF-LAC",
-   "name": "Los Angeles Chargers",
-   "pos": "D",
-   "team": "LAC",
-   "opp": "BAL",
-   "game": "LAC@BAL",
-   "salary": 3700,
-   "fppg": 4,
+   "fppg": 4.3,
    "inj": "",
    "derived": true,
    "priceTier": "flagged"
@@ -1901,1131 +1562,658 @@ window.MFFL_POOL_EXTENDED = {
  ]
 };
 window.MFFL_HISTORY_EXTENDED = {
- "EXT-4431452": [
+ "EXT-4696044": [
   {
    "week": 1,
-   "pts": 12.82,
-   "opp": "SEA"
+   "pts": 7.5,
+   "opp": "LAR"
   },
   {
    "week": 2,
-   "pts": 9.02,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 5.76,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 27.16,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 42.46,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 23.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 31.44,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 22.46,
+   "pts": 2.5,
    "opp": "MIA"
   },
   {
-   "week": 9,
-   "pts": 21.26,
-   "opp": "GB"
-  }
- ],
- "EXT-2991662": [
-  {
-   "week": 1,
-   "pts": 7.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 2.8,
-   "opp": "PIT"
-  },
-  {
    "week": 3,
-   "pts": 11.7,
-   "opp": "JAX"
+   "pts": 1.7,
+   "opp": "ARI"
   },
   {
    "week": 4,
-   "pts": 6.8,
-   "opp": "BUF"
+   "pts": 1.3,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 4.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 10.4,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": 11.1,
-   "opp": "GB"
+   "pts": 7,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 13.6,
+   "opp": "DAL"
   }
  ],
- "EXT-4569173": [
+ "EXT-3117251": [
+  {
+   "week": 1,
+   "pts": 11.3,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 20.6,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 19.6,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 14.5,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 15.8,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 26.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 19,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 21.7,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 47.3,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-4361741": [
+  {
+   "week": 1,
+   "pts": 22.1,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 28.48,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 31.28,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 19.62,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 17.16,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 17.36,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 14.02,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 26.28,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 34.66,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-4040612": [
+  {
+   "week": 1,
+   "pts": 2.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "ARI"
+  },
+  {
+   "week": 5,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 7,
+   "pts": 1.9,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "LV"
+  }
+ ],
+ "EXT-3040151": [
+  {
+   "week": 1,
+   "pts": 2.2,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 16,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 23.2,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 15,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 4.9,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 15.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 10.8,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 7.8,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 10.4,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-3917792": [
+  {
+   "week": 1,
+   "pts": 10.04,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 12.4,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 8.9,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 8.92,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 11.08,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 15.76,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 4.62,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 8.46,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 11.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 7.22,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4242335": [
+  {
+   "week": 1,
+   "pts": 23.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 27.2,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 8.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 22.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 9.7,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 20.1,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 18,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 4.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 6.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 11.3,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4360078": [
+  {
+   "week": 1,
+   "pts": 8.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 1.6,
+   "opp": "KC"
+  }
+ ],
+ "EXT-3126486": [
+  {
+   "week": 1,
+   "pts": 15,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 5,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 15.4,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 15.5,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 1.5,
+   "opp": "SEA"
+  },
+  {
+   "week": 10,
+   "pts": 24.4,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-15818": [
+  {
+   "week": 1,
+   "pts": 6.2,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 1,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 15.3,
+   "opp": "HOU"
+  },
+  {
+   "week": 5,
+   "pts": 7,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 12.2,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 4.6,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 10.2,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 4.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 8.6,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-4431459": [
+  {
+   "week": 1,
+   "pts": 8.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 11.4,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 10.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 6.6,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 17.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 8,
+   "pts": 3.8,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 6.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4688813": [
+  {
+   "week": 1,
+   "pts": 4.7,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 10.7,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 10.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 3.1,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 6.2,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 6.7,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 2.8,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 10.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 3.9,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-3043116": [
   {
    "week": 1,
    "pts": 12,
-   "opp": "SEA"
+   "opp": "LAR"
   },
   {
    "week": 2,
-   "pts": 3.1,
-   "opp": "PIT"
+   "pts": 4.9,
+   "opp": "MIA"
   },
   {
-   "week": 3,
-   "pts": 5.3,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 16.9,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 16,
+   "week": 9,
+   "pts": 3.7,
    "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 3.6,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 20,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 10.5,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 13.3,
-   "opp": "GB"
   }
  ],
- "EXT-4431431": [
-  {
-   "week": 1,
-   "pts": 1.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 3.2,
-   "opp": "JAX"
-  },
-  {
-   "week": 5,
-   "pts": 4.4,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 5.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 1.3,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 3.8,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 11.5,
-   "opp": "GB"
-  }
- ],
- "EXT-4698253": [
-  {
-   "week": 1,
-   "pts": 1.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 0.6,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 0.4,
-   "opp": "GB"
-  }
- ],
- "EXT-4831959": [
-  {
-   "week": 1,
-   "pts": 6.7,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 3.5,
-   "opp": "PIT"
-  },
-  {
-   "week": 4,
-   "pts": 1.7,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 8.2,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 1.6,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 13.1,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 1,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 6.7,
-   "opp": "GB"
-  }
- ],
- "EXT-4427095": [
-  {
-   "week": 1,
-   "pts": 4.5,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 4.3,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 2.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 20.5,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 16.1,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 3.8,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 15.1,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 15.7,
-   "opp": "GB"
-  }
- ],
- "EXT-4361432": [
+ "EXT-3051889": [
   {
    "week": 1,
    "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 11.1,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 6.4,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 20.8,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 2.1,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 10.7,
-   "opp": "NYJ"
-  }
- ],
- "EXT-3916387": [
-  {
-   "week": 1,
-   "pts": 27.96,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 15.8,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 20.44,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 18.88,
-   "opp": "TEN"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "BUF"
-  }
- ],
- "EXT-3043078": [
-  {
-   "week": 1,
-   "pts": 37.8,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 16.2,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 21.4,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 14.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 23.5,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 4.5,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 5.4,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 13,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 5.58,
-   "opp": "JAX"
-  }
- ],
- "EXT-4038441": [
-  {
-   "week": 1,
-   "pts": 3.3,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 2.8,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 3.3,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 3.5,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 8.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 2.4,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4.8,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 5.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 16.7,
-   "opp": "JAX"
-  }
- ],
- "EXT-4047646": [
-  {
-   "week": 1,
-   "pts": 4.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 4.2,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 6.3,
-   "opp": "CHI"
-  }
- ],
- "EXT-4429615": [
-  {
-   "week": 1,
-   "pts": 26.5,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 12.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 24.8,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 10.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 9.7,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 26.7,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 3.8,
-   "opp": "JAX"
-  }
- ],
- "EXT-3116365": [
-  {
-   "week": 1,
-   "pts": 6.9,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 7.9,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 3.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 11.2,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 2.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 0.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 3.8,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 2.9,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 2.9,
-   "opp": "JAX"
-  }
- ],
- "EXT-2576581": [
-  {
-   "week": 1,
-   "pts": 5.8,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 1.1,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 6.9,
-   "opp": "DAL"
-  }
- ],
- "EXT-4690143": [
-  {
-   "week": 1,
-   "pts": 2.5,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 1.9,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "TEN"
-  },
-  {
-   "week": 7,
-   "pts": 2,
-   "opp": "CIN"
-  },
-  {
-   "week": 9,
-   "pts": -0.1,
-   "opp": "JAX"
-  }
- ],
- "EXT-4432260": [
-  {
-   "week": 1,
-   "pts": 1.8,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 9.3,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 4.4,
-   "opp": "TEN"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 1,
-   "opp": "JAX"
-  }
- ],
- "EXT-3046439": [
-  {
-   "week": 1,
-   "pts": 4.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 5.5,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 1,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 8.7,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 11.9,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 12.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 10.6,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 4.5,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 5,
-   "opp": "GB"
-  }
- ],
- "EXT-4870847": [
-  {
-   "week": 1,
-   "pts": 1.6,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 6,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 1.8,
-   "opp": "BUF"
-  }
- ],
- "EXT-4360939": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 18.3,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 4.7,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 5.6,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 8.7,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4.3,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 2.7,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 1.1,
-   "opp": "JAX"
-  }
- ],
- "EXT-3046779": [
-  {
-   "week": 1,
-   "pts": 16.44,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 32.78,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 19.36,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 23.48,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 28.94,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 21.02,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 10.04,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 6.3,
-   "opp": "MIA"
-  }
- ],
- "EXT-3052897": [
-  {
-   "week": 1,
-   "pts": 0.9,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "NO"
-  }
- ],
- "EXT-4429795": [
-  {
-   "week": 1,
-   "pts": 34.1,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 20.3,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 37.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 15.7,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 38.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 17.8,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 26.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 13.4,
-   "opp": "MIA"
-  }
- ],
- "EXT-4374302": [
-  {
-   "week": 1,
-   "pts": 23.7,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 33.7,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 9.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 11.5,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 9.9,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 22.7,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 9.1,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 12.6,
-   "opp": "MIA"
-  }
- ],
- "EXT-4912274": [
-  {
-   "week": 1,
-   "pts": 2.3,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 2.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 4.2,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 2.2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 0.5,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 7.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 3.1,
-   "opp": "MIA"
-  }
- ],
- "EXT-4430027": [
-  {
-   "week": 1,
-   "pts": 7.3,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 14.2,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 5.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 18.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 17.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 2.3,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 5,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 5.2,
-   "opp": "MIA"
-  }
- ],
- "EXT-4426388": [
-  {
-   "week": 1,
-   "pts": 6.5,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 4.3,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 6.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 16.2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 17.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 23.6,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 15,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 4.5,
-   "opp": "MIA"
-  }
- ],
- "EXT-5123663": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 3.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 8.1,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 11.5,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 1.5,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 1.4,
-   "opp": "MIA"
-  }
- ],
- "EXT-4242392": [
-  {
-   "week": 1,
-   "pts": 1,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 1.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 1.3,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 1.6,
-   "opp": "ARI"
-  }
- ],
- "EXT-3915511": [
-  {
-   "week": 1,
-   "pts": 15.16,
-   "opp": "TB"
-  },
-  {
-   "week": 2,
-   "pts": 16.18,
-   "opp": "HOU"
-  },
-  {
-   "week": 3,
-   "pts": 22.58,
-   "opp": "PIT"
-  },
-  {
-   "week": 4,
-   "pts": 28.72,
-   "opp": "JAX"
-  },
-  {
-   "week": 5,
-   "pts": 24.6,
-   "opp": "MIA"
-  },
-  {
-   "week": 7,
-   "pts": 28.88,
    "opp": "BAL"
   },
   {
-   "week": 8,
-   "pts": 45.48,
-   "opp": "TEN"
-  },
-  {
-   "week": 9,
-   "pts": 29.54,
-   "opp": "ATL"
-  }
- ],
- "EXT-3116389": [
-  {
-   "week": 1,
-   "pts": 6.5,
-   "opp": "TB"
-  },
-  {
    "week": 2,
-   "pts": 2.7,
-   "opp": "HOU"
-  },
-  {
-   "week": 3,
-   "pts": 1.9,
-   "opp": "PIT"
-  },
-  {
-   "week": 4,
-   "pts": 0.7,
-   "opp": "JAX"
-  },
-  {
-   "week": 5,
-   "pts": 14.8,
-   "opp": "MIA"
-  },
-  {
-   "week": 7,
    "pts": 7.6,
-   "opp": "BAL"
+   "opp": "KC"
   },
   {
-   "week": 8,
-   "pts": 2.4,
+   "week": 3,
+   "pts": 2.5,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 6.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 4.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 3.1,
    "opp": "TEN"
   },
   {
+   "week": 7,
+   "pts": 2.9,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 2.3,
+   "opp": "JAX"
+  },
+  {
    "week": 9,
-   "pts": 4.3,
-   "opp": "ATL"
+   "pts": 0,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 9.9,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4061956": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 4,
+   "pts": 4.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 8,
+   "pts": 0.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 12.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 3.5,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-16737": [
+  {
+   "week": 1,
+   "pts": 13.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 6.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 10.9,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 10.1,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 25.8,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 10.9,
+   "opp": "WSH"
+  }
+ ],
+ "EXT-4722908": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "KC"
+  },
+  {
+   "week": 5,
+   "pts": 0.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "MIN"
+  },
+  {
+   "week": 10,
+   "pts": 1,
+   "opp": "MIA"
   }
  ],
  "EXT-4362238": [
@@ -3068,6 +2256,199 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 9,
    "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 24.3,
+   "opp": "PIT"
+  }
+ ],
+ "EXT-4686468": [
+  {
+   "week": 1,
+   "pts": 0.5,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 1.4,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 4.3,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 2.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 2.7,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 5.3,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 2.9,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 10.7,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 13.7,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-3915511": [
+  {
+   "week": 1,
+   "pts": 15.16,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 16.18,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 22.58,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 28.72,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 24.6,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 28.88,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 45.48,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 29.54,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 36.16,
+   "opp": "PIT"
+  }
+ ],
+ "EXT-3116389": [
+  {
+   "week": 1,
+   "pts": 6.5,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 2.7,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 1.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 0.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 14.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 7.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 2.4,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 4.3,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 11.9,
+   "opp": "PIT"
+  }
+ ],
+ "EXT-3116164": [
+  {
+   "week": 1,
+   "pts": 16.3,
+   "opp": "TB"
+  },
+  {
+   "week": 3,
+   "pts": 11.2,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 11.5,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 6.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 15.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 2.1,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "PIT"
   }
  ],
  "EXT-4384852": [
@@ -3110,43 +2491,11 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 7.3,
    "opp": "ATL"
-  }
- ],
- "EXT-3116164": [
-  {
-   "week": 1,
-   "pts": 16.3,
-   "opp": "TB"
   },
   {
-   "week": 3,
-   "pts": 11.2,
+   "week": 10,
+   "pts": 9,
    "opp": "PIT"
-  },
-  {
-   "week": 4,
-   "pts": 11.5,
-   "opp": "JAX"
-  },
-  {
-   "week": 5,
-   "pts": 6.9,
-   "opp": "MIA"
-  },
-  {
-   "week": 7,
-   "pts": 7.1,
-   "opp": "BAL"
-  },
-  {
-   "week": 8,
-   "pts": 15.6,
-   "opp": "TEN"
-  },
-  {
-   "week": 9,
-   "pts": 2.1,
-   "opp": "ATL"
   }
  ],
  "EXT-4239993": [
@@ -3189,6 +2538,11 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 17.7,
    "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 9.1,
+   "opp": "PIT"
   }
  ],
  "EXT-3127310": [
@@ -3211,6 +2565,23 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 7,
    "pts": 9.4,
    "opp": "BAL"
+  },
+  {
+   "week": 10,
+   "pts": 9,
+   "opp": "PIT"
+  }
+ ],
+ "EXT-4368003": [
+  {
+   "week": 1,
+   "pts": 2.2,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 1.2,
+   "opp": "HOU"
   }
  ],
  "EXT-4362628": [
@@ -3253,18 +2624,11 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 29.5,
    "opp": "ATL"
-  }
- ],
- "EXT-4368003": [
-  {
-   "week": 1,
-   "pts": 2.2,
-   "opp": "TB"
   },
   {
-   "week": 2,
-   "pts": 1.2,
-   "opp": "HOU"
+   "week": 10,
+   "pts": 31.6,
+   "opp": "PIT"
   }
  ],
  "EXT-3050481": [
@@ -3289,258 +2653,706 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "MIA"
   }
  ],
- "EXT-8439": [
+ "EXT-4035538": [
   {
    "week": 1,
-   "pts": 12.54,
-   "opp": "ATL"
+   "pts": 27.4,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 4.98,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 23.68,
+   "pts": 3.4,
    "opp": "CIN"
   },
   {
-   "week": 4,
-   "pts": 23.96,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 22,
+   "week": 3,
+   "pts": 5.8,
    "opp": "IND"
   },
   {
-   "week": 6,
-   "pts": 17.02,
-   "opp": "TB"
+   "week": 4,
+   "pts": 4.3,
+   "opp": "DAL"
   },
   {
-   "week": 7,
-   "pts": 13.08,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 5.88,
-   "opp": "CLE"
+   "week": 5,
+   "pts": 1.1,
+   "opp": "TEN"
   }
  ],
- "EXT-4569987": [
+ "EXT-4432577": [
   {
    "week": 1,
-   "pts": 7.8,
-   "opp": "ATL"
+   "pts": 16.46,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 8.7,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 22.1,
+   "pts": 20.02,
    "opp": "CIN"
   },
   {
-   "week": 4,
-   "pts": 14.1,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 36.8,
+   "week": 3,
+   "pts": 11.68,
    "opp": "IND"
   },
   {
+   "week": 4,
+   "pts": 26.08,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 20.94,
+   "opp": "TEN"
+  },
+  {
    "week": 6,
-   "pts": 8.8,
-   "opp": "TB"
+   "pts": 26.98,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 18.2,
-   "opp": "NO"
+   "pts": 16.52,
+   "opp": "NYG"
   },
   {
-   "week": 8,
-   "pts": 23.8,
+   "week": 9,
+   "pts": 39.36,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 21.44,
    "opp": "CLE"
   }
  ],
- "EXT-4038815": [
+ "EXT-4258173": [
   {
    "week": 1,
-   "pts": 3.1,
-   "opp": "ATL"
+   "pts": 17.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 30.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 8.1,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 9.4,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 1.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 13.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 19.9,
+   "opp": "CLE"
+  }
+ ],
+ "EXT-4429059": [
+  {
+   "week": 1,
+   "pts": 4.5,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 5.4,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 6.4,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 11.6,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 11.6,
-   "opp": "CLE"
-  }
- ],
- "EXT-4047650": [
-  {
-   "week": 1,
    "pts": 6,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 4.7,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 10.6,
    "opp": "CIN"
   },
   {
-   "week": 4,
-   "pts": 17,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 3.8,
+   "week": 3,
+   "pts": 8.6,
    "opp": "IND"
   },
   {
+   "week": 4,
+   "pts": 8.2,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 10.5,
+   "opp": "TEN"
+  },
+  {
    "week": 6,
-   "pts": 14.8,
-   "opp": "TB"
+   "pts": 9.1,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 6.6,
-   "opp": "NO"
+   "pts": 8.6,
+   "opp": "NYG"
   },
   {
-   "week": 8,
-   "pts": 0.9,
+   "week": 9,
+   "pts": 7.9,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 7,
    "opp": "CLE"
   }
  ],
- "EXT-4361411": [
+ "EXT-3117256": [
   {
    "week": 1,
-   "pts": 13.1,
-   "opp": "ATL"
+   "pts": 5.5,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 5.4,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 4.1,
+   "pts": 23,
    "opp": "CIN"
   },
   {
-   "week": 4,
-   "pts": 9.2,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 19,
+   "week": 3,
+   "pts": 4.5,
    "opp": "IND"
   },
   {
+   "week": 4,
+   "pts": 1.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 4.5,
+   "opp": "TEN"
+  },
+  {
    "week": 6,
+   "pts": 5.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 7,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 5.2,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 7.6,
+   "opp": "CLE"
+  }
+ ],
+ "EXT-4586312": [
+  {
+   "week": 1,
+   "pts": 6.3,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 4.9,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 3.5,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 10.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 12.7,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 21.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 0.7,
+   "opp": "NYG"
+  }
+ ],
+ "EXT-4686422": [
+  {
+   "week": 1,
+   "pts": 4.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 5.2,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 7,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 6.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 8.5,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 2,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 10.4,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 10.4,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 13.8,
+   "opp": "CLE"
+  }
+ ],
+ "EXT-4695705": [
+  {
+   "week": 1,
    "pts": 2.1,
-   "opp": "TB"
+   "opp": "BUF"
+  }
+ ],
+ "EXT-4429022": [
+  {
+   "week": 1,
+   "pts": 2.6,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 5.2,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 3.1,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 5.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 5.3,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 2.6,
+   "opp": "JAX"
   },
   {
    "week": 7,
    "pts": 3,
-   "opp": "NO"
+   "opp": "NYG"
   },
   {
-   "week": 8,
-   "pts": 10.6,
+   "week": 9,
+   "pts": 29.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 0,
    "opp": "CLE"
   }
  ],
- "EXT-4035687": [
+ "EXT-4430681": [
   {
    "week": 1,
-   "pts": 7.3,
-   "opp": "ATL"
+   "pts": 1.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 4.3,
+   "opp": "CIN"
   },
   {
    "week": 3,
-   "pts": 2.6,
+   "pts": 2.5,
+   "opp": "IND"
+  }
+ ],
+ "EXT-3843945": [
+  {
+   "week": 1,
+   "pts": 2.5,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 4.4,
    "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 7.7,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 0.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 1.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 13.7,
+   "opp": "JAX"
+  }
+ ],
+ "EXT-2573079": [
+  {
+   "week": 1,
+   "pts": 19.22,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 6.32,
+   "opp": "CHI"
+  },
+  {
+   "week": 9,
+   "pts": -0.76,
+   "opp": "BUF"
+  }
+ ],
+ "EXT-3917315": [
+  {
+   "week": 1,
+   "pts": 0.62,
+   "opp": "GB"
+  },
+  {
+   "week": 3,
+   "pts": 11.42,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 11.48,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 18.26,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 13.9,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 20.9,
+   "opp": "DET"
+  }
+ ],
+ "EXT-4426496": [
+  {
+   "week": 1,
+   "pts": 0.3,
+   "opp": "BUF"
   },
   {
    "week": 4,
    "pts": 2.5,
-   "opp": "CLE"
-  }
- ],
- "EXT-4430802": [
-  {
-   "week": 1,
-   "pts": 2.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 1.2,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 8.2,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 10.2,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 2.2,
-   "opp": "IND"
+   "opp": "DAL"
   },
   {
    "week": 6,
-   "pts": 10.5,
-   "opp": "TB"
+   "pts": 0.5,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 6.9,
+   "pts": 2.4,
+   "opp": "NYG"
+  }
+ ],
+ "EXT-3042519": [
+  {
+   "week": 1,
+   "pts": 10,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 13.5,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 11.7,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 14.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 20.2,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 3.1,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 5,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 2.6,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 12,
+   "opp": "GB"
+  }
+ ],
+ "EXT-4360569": [
+  {
+   "week": 1,
+   "pts": 11.9,
+   "opp": "GB"
+  },
+  {
+   "week": 7,
+   "pts": 6.8,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 2,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 5.2,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 5.9,
+   "opp": "GB"
+  }
+ ],
+ "EXT-4036133": [
+  {
+   "week": 1,
+   "pts": 11.6,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 4.4,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 2.1,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 21.4,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.2,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 11.5,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 13.8,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 5.3,
+   "opp": "BUF"
+  }
+ ],
+ "EXT-3921690": [
+  {
+   "week": 1,
+   "pts": 3.2,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 2.9,
+   "opp": "CHI"
+  }
+ ],
+ "EXT-4262921": [
+  {
+   "week": 1,
+   "pts": 27.2,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 7,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 4.2,
+   "opp": "TB"
+  },
+  {
+   "week": 5,
+   "pts": 15.8,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 6.4,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 11.8,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 7.3,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 11.9,
+   "opp": "GB"
+  }
+ ],
+ "EXT-3886598": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "GB"
+  },
+  {
+   "week": 3,
+   "pts": 0.6,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 1.3,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 0,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 4.4,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 2.1,
+   "opp": "DET"
+  }
+ ],
+ "EXT-4240631": [
+  {
+   "week": 1,
+   "pts": 0.6,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 2.5,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 0.2,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 1.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
    "opp": "NO"
   },
   {
    "week": 8,
-   "pts": 10.9,
-   "opp": "CLE"
+   "pts": 0.4,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 0.7,
+   "opp": "BUF"
   }
  ],
  "EXT-4426348": [
@@ -3573,33 +3385,48 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 14.56,
    "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 22.76,
+   "opp": "NYG"
   }
  ],
- "EXT-4431492": [
+ "EXT-4429205": [
   {
    "week": 1,
-   "pts": 4.1,
-   "opp": "ATL"
+   "pts": 0,
+   "opp": "GB"
   },
   {
    "week": 2,
-   "pts": 5.3,
-   "opp": "NE"
+   "pts": 3.1,
+   "opp": "CHI"
   },
   {
    "week": 3,
-   "pts": 13.5,
-   "opp": "CIN"
+   "pts": 17.5,
+   "opp": "TB"
   },
   {
    "week": 4,
-   "pts": 14.9,
-   "opp": "CLE"
+   "pts": 7.1,
+   "opp": "MIA"
   },
   {
-   "week": 5,
-   "pts": 0,
+   "week": 7,
+   "pts": 3.3,
    "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 10.1,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 3.8,
+   "opp": "BUF"
   }
  ],
  "EXT-4575131": [
@@ -3627,6 +3454,23 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 5,
    "pts": 14.2,
    "opp": "NYG"
+  }
+ ],
+ "EXT-4685246": [
+  {
+   "week": 1,
+   "pts": 1.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 2.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 4,
+   "pts": 0.1,
+   "opp": "IND"
   }
  ],
  "EXT-4697815": [
@@ -3664,23 +3508,53 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 5.9,
    "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 5.7,
+   "opp": "NYG"
   }
  ],
- "EXT-4685246": [
+ "EXT-2976212": [
   {
    "week": 1,
-   "pts": 1.6,
+   "pts": 13.5,
    "opp": "PHI"
   },
   {
    "week": 2,
-   "pts": 2.4,
+   "pts": 19.2,
    "opp": "DAL"
   },
   {
+   "week": 3,
+   "pts": 5.3,
+   "opp": "SEA"
+  },
+  {
    "week": 4,
-   "pts": 0.1,
+   "pts": 6,
    "opp": "IND"
+  },
+  {
+   "week": 6,
+   "pts": 13.4,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 11.3,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 6.6,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 17.3,
+   "opp": "NYG"
   }
  ],
  "EXT-5081432": [
@@ -3723,43 +3597,38 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 4,
    "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 11.2,
+   "opp": "NYG"
   }
  ],
- "EXT-2976212": [
+ "EXT-3121422": [
   {
    "week": 1,
-   "pts": 13.5,
+   "pts": 2.4,
    "opp": "PHI"
   },
   {
    "week": 2,
-   "pts": 19.2,
+   "pts": 6,
    "opp": "DAL"
   },
   {
    "week": 3,
-   "pts": 5.3,
+   "pts": 16.7,
    "opp": "SEA"
   },
   {
-   "week": 4,
-   "pts": 6,
-   "opp": "IND"
+   "week": 5,
+   "pts": 10.2,
+   "opp": "NYG"
   },
   {
    "week": 6,
-   "pts": 13.4,
+   "pts": 3.2,
    "opp": "SF"
-  },
-  {
-   "week": 8,
-   "pts": 11.3,
-   "opp": "PHI"
-  },
-  {
-   "week": 9,
-   "pts": 6.6,
-   "opp": "LAR"
   }
  ],
  "EXT-4360635": [
@@ -3792,6 +3661,11 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 8.7,
    "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 4.4,
+   "opp": "NYG"
   }
  ],
  "EXT-4048228": [
@@ -3814,50 +3688,6 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 6,
    "pts": 0.9,
    "opp": "SF"
-  }
- ],
- "EXT-3121422": [
-  {
-   "week": 1,
-   "pts": 2.4,
-   "opp": "PHI"
-  },
-  {
-   "week": 2,
-   "pts": 6,
-   "opp": "DAL"
-  },
-  {
-   "week": 3,
-   "pts": 16.7,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 10.2,
-   "opp": "NYG"
-  },
-  {
-   "week": 6,
-   "pts": 3.2,
-   "opp": "SF"
-  }
- ],
- "EXT-4602667": [
-  {
-   "week": 1,
-   "pts": 0.9,
-   "opp": "PHI"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "DAL"
-  },
-  {
-   "week": 3,
-   "pts": 2.6,
-   "opp": "SEA"
   }
  ],
  "EXT-4361577": [
@@ -3892,911 +3722,92 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "SF"
   }
  ],
- "EXT-4696981": [
-  {
-   "week": 1,
-   "pts": 14.1,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 7.5,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 11.5,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 7.1,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 6.1,
-   "opp": "WSH"
-  },
-  {
-   "week": 7,
-   "pts": 21.6,
-   "opp": "HOU"
-  }
- ],
- "EXT-4689114": [
-  {
-   "week": 1,
-   "pts": 26.6,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0.8,
-   "opp": "LAR"
-  }
- ],
- "EXT-4040761": [
-  {
-   "week": 1,
-   "pts": 11.8,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0.9,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 3.8,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 13,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 4.9,
-   "opp": "PHI"
-  }
- ],
- "EXT-4360516": [
-  {
-   "week": 1,
-   "pts": -0.6,
-   "opp": "DAL"
-  },
-  {
-   "week": 3,
-   "pts": 0.3,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": -0.1,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 4.1,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 17.5,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 8.2,
-   "opp": "HOU"
-  }
- ],
- "EXT-4361050": [
-  {
-   "week": 1,
-   "pts": 23.8,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 2.3,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 10.1,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 26.9,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 20.9,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 2.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 13.8,
-   "opp": "PHI"
-  }
- ],
- "EXT-4595348": [
-  {
-   "week": 1,
-   "pts": 9.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0.6,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 5.1,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 23.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 26.6,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 25.5,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 17.6,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 6.8,
-   "opp": "PHI"
-  }
- ],
- "EXT-4040655": [
-  {
-   "week": 1,
-   "pts": 3.7,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 3.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 2.4,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 2,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 1.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 6.5,
-   "opp": "PHI"
-  }
- ],
- "EXT-4682648": [
-  {
-   "week": 1,
-   "pts": 3.5,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 4,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 2.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 12.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 3,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 2.9,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 10.3,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 5.5,
-   "opp": "PHI"
-  }
- ],
- "EXT-4429148": [
-  {
-   "week": 1,
-   "pts": 1.4,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 7.6,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 4.5,
-   "opp": "WSH"
-  }
- ],
- "EXT-2975417": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 0.6,
-   "opp": "ARI"
-  }
- ],
- "EXT-4038941": [
-  {
-   "week": 1,
-   "pts": 14.26,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 9.88,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 13.74,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 11.56,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 11.24,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 9.76,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 9.78,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 11.42,
-   "opp": "HOU"
-  }
- ],
- "EXT-4685382": [
-  {
-   "week": 1,
-   "pts": 8.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 16.5,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 5.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 12.3,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 4.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 5.9,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 3.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 6,
-   "opp": "HOU"
-  }
- ],
- "EXT-4596334": [
+ "EXT-4602667": [
   {
    "week": 1,
    "pts": 0.9,
-   "opp": "ARI"
+   "opp": "PHI"
   },
   {
    "week": 2,
-   "pts": 4.4,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 12.2,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 8.8,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 4.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 0.4,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 3.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 6.2,
-   "opp": "HOU"
-  }
- ],
- "EXT-4612826": [
-  {
-   "week": 1,
-   "pts": 16.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 5,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 8.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
    "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 2.2,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 10.6,
-   "opp": "LAR"
-  }
- ],
- "EXT-4595342": [
-  {
-   "week": 1,
-   "pts": 4.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 8.8,
-   "opp": "LV"
+   "opp": "DAL"
   },
   {
    "week": 3,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 6.3,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 3.2,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 7.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 2.7,
-   "opp": "HOU"
-  }
- ],
- "EXT-3123076": [
-  {
-   "week": 1,
-   "pts": 8.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "LV"
-  }
- ],
- "EXT-4686612": [
-  {
-   "week": 1,
-   "pts": 3.5,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 10.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 7.5,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
    "pts": 2.6,
-   "opp": "DEN"
+   "opp": "SEA"
+  }
+ ],
+ "EXT-4430656": [
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "CHI"
   },
   {
-   "week": 8,
-   "pts": 4.6,
-   "opp": "LAR"
+   "week": 4,
+   "pts": 1.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.5,
+   "opp": "NO"
   },
   {
    "week": 9,
-   "pts": 2.1,
-   "opp": "HOU"
-  }
- ],
- "EXT-4429025": [
-  {
-   "week": 1,
-   "pts": 2.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 1.9,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 5.5,
+   "pts": 1.1,
    "opp": "BUF"
   },
   {
-   "week": 4,
-   "pts": 4.5,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 6.2,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 5.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 12.8,
-   "opp": "HOU"
+   "week": 10,
+   "pts": 14.1,
+   "opp": "GB"
   }
  ],
- "EXT-4362477": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "ARI"
-  },
+ "EXT-4832846": [
   {
    "week": 2,
-   "pts": 0,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": -0.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 0.4,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 8,
-   "opp": "HOU"
-  }
- ],
- "EXT-3116407": [
-  {
-   "week": 2,
-   "pts": 0.3,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": -0.2,
-   "opp": "IND"
-  }
- ],
- "EXT-4685261": [
-  {
-   "week": 2,
-   "pts": 5.5,
-   "opp": "NE"
+   "pts": 0.7,
+   "opp": "CHI"
   },
   {
    "week": 3,
-   "pts": 1.9,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 2.1,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 11.4,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 20.2,
+   "pts": 0.1,
    "opp": "TB"
   },
   {
-   "week": 7,
-   "pts": 4.2,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 5.5,
-   "opp": "CLE"
-  }
- ],
- "EXT-4037457": [
-  {
-   "week": 2,
-   "pts": 1.6,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": -0.1,
-   "opp": "CLE"
-  }
- ],
- "EXT-4432710": [
-  {
-   "week": 2,
-   "pts": 13.6,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 3.4,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 4.2,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 4.3,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 2.5,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 3.3,
-   "opp": "CHI"
-  }
- ],
- "EXT-4035656": [
-  {
-   "week": 2,
-   "pts": 0.7,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 8.8,
-   "opp": "CIN"
-  },
-  {
    "week": 4,
    "pts": 1.2,
-   "opp": "CLE"
-  }
- ],
- "EXT-4039505": [
-  {
-   "week": 2,
-   "pts": 0.9,
-   "opp": "PIT"
-  }
- ],
- "EXT-4613202": [
-  {
-   "week": 2,
-   "pts": 1.5,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 3.9,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 16.6,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 1.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 10.8,
    "opp": "MIA"
   },
   {
-   "week": 9,
-   "pts": 0,
-   "opp": "GB"
-  }
- ],
- "EXT-5092508": [
-  {
-   "week": 2,
-   "pts": 1.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 3,
-   "pts": 0.7,
-   "opp": "PIT"
-  }
- ],
- "EXT-4695193": [
-  {
-   "week": 2,
-   "pts": 0.3,
-   "opp": "PIT"
-  },
-  {
-   "week": 3,
-   "pts": 1.24,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 11.2,
-   "opp": "BUF"
-  },
-  {
    "week": 5,
-   "pts": 8.4,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "NYJ"
-  },
-  {
-   "week": 7,
-   "pts": 2.1,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 4.2,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": 13.4,
-   "opp": "GB"
-  }
- ],
- "EXT-4427834": [
-  {
-   "week": 2,
-   "pts": 1.5,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 4,
-   "opp": "MIA"
-  },
-  {
-   "week": 7,
-   "pts": 4.1,
-   "opp": "BAL"
-  }
- ],
- "EXT-4696882": [
-  {
-   "week": 2,
-   "pts": 5.2,
+   "pts": 1.1,
    "opp": "NO"
-  },
+  }
+ ],
+ "EXT-4361088": [
   {
-   "week": 3,
-   "pts": 0,
+   "week": 2,
+   "pts": 1.9,
    "opp": "DAL"
   },
   {
+   "week": 3,
+   "pts": 0.7,
+   "opp": "SEA"
+  },
+  {
    "week": 4,
-   "pts": 2.4,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 7.9,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
    "pts": 0,
-   "opp": "CLE"
-  }
- ],
- "EXT-4241263": [
-  {
-   "week": 2,
-   "pts": 3.6,
-   "opp": "LV"
-  },
-  {
-   "week": 5,
-   "pts": 3.2,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 3.5,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 2.5,
-   "opp": "LAR"
+   "opp": "IND"
   },
   {
    "week": 9,
-   "pts": 4.9,
-   "opp": "HOU"
+   "pts": 1.1,
+   "opp": "LAR"
   }
  ],
  "EXT-2576980": [
@@ -4816,13 +3827,6 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "IND"
   }
  ],
- "EXT-4685553": [
-  {
-   "week": 2,
-   "pts": 1.8,
-   "opp": "LV"
-  }
- ],
  "EXT-4690923": [
   {
    "week": 2,
@@ -4833,6 +3837,23 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 3,
    "pts": 0,
    "opp": "SEA"
+  },
+  {
+   "week": 10,
+   "pts": 12.2,
+   "opp": "NYG"
+  }
+ ],
+ "EXT-5092508": [
+  {
+   "week": 2,
+   "pts": 1.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 0.7,
+   "opp": "PIT"
   }
  ],
  "EXT-4567156": [
@@ -4865,155 +3886,150 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 8,
    "pts": 9.6,
    "opp": "PHI"
-  }
- ],
- "EXT-4361088": [
-  {
-   "week": 2,
-   "pts": 1.9,
-   "opp": "DAL"
   },
   {
-   "week": 3,
-   "pts": 0.7,
-   "opp": "SEA"
+   "week": 10,
+   "pts": 3.7,
+   "opp": "NYG"
+  }
+ ],
+ "EXT-4683151": [
+  {
+   "week": 2,
+   "pts": 1.4,
+   "opp": "KC"
   },
   {
    "week": 4,
+   "pts": 1.1,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
    "pts": 0,
-   "opp": "IND"
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 5.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 1.6,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 0.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 0.5,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4427834": [
+  {
+   "week": 2,
+   "pts": 1.5,
+   "opp": "HOU"
+  },
+  {
+   "week": 5,
+   "pts": 4,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 4.1,
+   "opp": "BAL"
+  }
+ ],
+ "EXT-4241464": [
+  {
+   "week": 2,
+   "pts": -0.2,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": -0.3,
+   "opp": "LV"
+  }
+ ],
+ "EXT-4685397": [
+  {
+   "week": 2,
+   "pts": 1.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "ATL"
   },
   {
    "week": 9,
    "pts": 1.1,
-   "opp": "LAR"
+   "opp": "LV"
   }
  ],
- "EXT-2969939": [
+ "EXT-16002": [
   {
    "week": 2,
-   "pts": 3.54,
-   "opp": "LAR"
+   "pts": 9.7,
+   "opp": "MIA"
   },
   {
    "week": 3,
-   "pts": 6.12,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 20,
+   "pts": 0,
    "opp": "ARI"
   },
   {
-   "week": 5,
-   "pts": 28.74,
-   "opp": "WSH"
+   "week": 4,
+   "pts": 3.8,
+   "opp": "DEN"
   },
   {
    "week": 6,
-   "pts": 8.48,
-   "opp": "NO"
+   "pts": 1.5,
+   "opp": "WSH"
   },
   {
    "week": 7,
-   "pts": 6.4,
-   "opp": "HOU"
+   "pts": 8.6,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": 7.94,
-   "opp": "PHI"
+   "pts": 0.4,
+   "opp": "LV"
   }
  ],
- "EXT-4241457": [
+ "EXT-4683159": [
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "IND"
+  }
+ ],
+ "EXT-3047876": [
   {
    "week": 2,
-   "pts": 0.6,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 5.2,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 3,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 1.9,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 0.2,
-   "opp": "NO"
-  }
- ],
- "EXT-4430968": [
-  {
-   "week": 3,
-   "pts": 2.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 10.6,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 12.1,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 5.5,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 4,
-   "opp": "LAR"
+   "pts": 2.3,
+   "opp": "MIA"
   },
   {
    "week": 9,
-   "pts": 4.1,
-   "opp": "HOU"
-  }
- ],
- "EXT-3917668": [
-  {
-   "week": 3,
-   "pts": 5,
-   "opp": "BUF"
-  }
- ],
- "EXT-3051738": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 3.2,
-   "opp": "DEN"
-  }
- ],
- "EXT-16733": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "TEN"
+   "pts": 2.2,
+   "opp": "LV"
   }
  ],
  "EXT-4570738": [
@@ -5023,49 +4039,112 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "PIT"
   }
  ],
- "EXT-4602788": [
+ "EXT-2998565": [
   {
    "week": 3,
-   "pts": 1.3,
-   "opp": "NYJ"
-  }
- ],
- "EXT-2975674": [
-  {
-   "week": 3,
-   "pts": 0.7,
-   "opp": "CIN"
-  }
- ],
- "EXT-4428119": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "CIN"
+   "pts": 2.1,
+   "opp": "HOU"
   },
   {
    "week": 5,
-   "pts": 0.6,
-   "opp": "IND"
+   "pts": 2.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 6.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "MIN"
   }
  ],
- "EXT-4240391": [
+ "EXT-4575665": [
   {
    "week": 3,
-   "pts": 1.4,
-   "opp": "JAX"
+   "pts": 0,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 0.2,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": -0.6,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 6.3,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": 0.84,
-   "opp": "GB"
+   "pts": 1,
+   "opp": "LV"
   }
  ],
- "EXT-4432722": [
+ "EXT-4431466": [
+  {
+   "week": 3,
+   "pts": 7,
+   "opp": "ARI"
+  },
+  {
+   "week": 6,
+   "pts": 2.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 16.6,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 5.9,
+   "opp": "DAL"
+  }
+ ],
+ "EXT-4565185": [
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "TB"
+  },
   {
    "week": 4,
-   "pts": 12.04,
+   "pts": 1.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 3.7,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 0,
    "opp": "IND"
+  },
+  {
+   "week": 10,
+   "pts": 4.8,
+   "opp": "GB"
   }
  ],
  "EXT-3068267": [
@@ -5093,40 +4172,18 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 4.4,
    "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 7.2,
+   "opp": "NYG"
   }
  ],
- "EXT-4876132": [
-  {
-   "week": 3,
-   "pts": 1.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 5,
-   "pts": 3.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 12.4,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4.5,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 2,
-   "opp": "BUF"
-  }
- ],
- "EXT-3123075": [
+ "EXT-4432722": [
   {
    "week": 4,
-   "pts": 0,
-   "opp": "ARI"
+   "pts": 12.04,
+   "opp": "IND"
   }
  ],
  "EXT-4421446": [
@@ -5153,103 +4210,144 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "ATL"
   }
  ],
- "EXT-4035671": [
+ "EXT-4708049": [
   {
    "week": 4,
-   "pts": 4.12,
-   "opp": "TEN"
+   "pts": 0.9,
+   "opp": "MIA"
   },
   {
    "week": 5,
-   "pts": 24.04,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 13.4,
-   "opp": "CLE"
+   "pts": 5.8,
+   "opp": "NO"
   },
   {
    "week": 7,
-   "pts": 16.12,
-   "opp": "CIN"
+   "pts": 2.2,
+   "opp": "IND"
   },
   {
-   "week": 8,
-   "pts": -2,
-   "opp": "BUF"
+   "week": 10,
+   "pts": 11.1,
+   "opp": "GB"
   }
  ],
- "EXT-4426535": [
-  {
-   "week": 5,
-   "pts": 2.1,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 3.1,
-   "opp": "KC"
-  }
- ],
- "EXT-5088338": [
+ "EXT-4362504": [
   {
    "week": 4,
    "pts": 1.8,
-   "opp": "TEN"
-  }
- ],
- "EXT-4433970": [
-  {
-   "week": 5,
-   "pts": 0.2,
-   "opp": "WSH"
+   "opp": "DAL"
   },
   {
    "week": 6,
-   "pts": 17.32,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 10.18,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 7.28,
-   "opp": "PHI"
+   "pts": 0.4,
+   "opp": "JAX"
   }
  ],
- "EXT-4245144": [
+ "EXT-16731": [
   {
-   "week": 5,
+   "week": 4,
    "pts": 0,
-   "opp": "ARI"
+   "opp": "DEN"
   },
-  {
-   "week": 9,
-   "pts": 1.6,
-   "opp": "MIA"
-  }
- ],
- "EXT-4428396": [
   {
    "week": 5,
    "pts": 7.2,
-   "opp": "DEN"
-  }
- ],
- "EXT-4257188": [
+   "opp": "SEA"
+  },
   {
    "week": 6,
-   "pts": 5.6,
-   "opp": "NO"
+   "pts": 1.8,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 1.8,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": -2,
-   "opp": "PHI"
+   "pts": 3.5,
+   "opp": "LV"
+  }
+ ],
+ "EXT-4360290": [
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "DEN"
+  }
+ ],
+ "EXT-4360637": [
+  {
+   "week": 5,
+   "pts": 3.7,
+   "opp": "NO"
+  }
+ ],
+ "EXT-4433959": [
+  {
+   "week": 5,
+   "pts": 1.5,
+   "opp": "NO"
+  },
+  {
+   "week": 8,
+   "pts": 2.9,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 1.2,
+   "opp": "GB"
+  }
+ ],
+ "EXT-3929785": [
+  {
+   "week": 5,
+   "pts": 0,
+   "opp": "PIT"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "MIA"
+  }
+ ],
+ "EXT-4432708": [
+  {
+   "week": 6,
+   "pts": 4.9,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 3,
+   "opp": "LAC"
+  }
+ ],
+ "EXT-4429939": [
+  {
+   "week": 6,
+   "pts": 11.5,
+   "opp": "JAX"
+  }
+ ],
+ "EXT-2971281": [
+  {
+   "week": 6,
+   "pts": 1.2,
+   "opp": "TEN"
   }
  ],
  "EXT-3127586": [
@@ -5264,16 +4362,28 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "PHI"
   }
  ],
- "EXT-4430870": [
+ "EXT-4362523": [
   {
    "week": 6,
-   "pts": 3.7,
-   "opp": "KC"
+   "pts": 3,
+   "opp": "TEN"
   },
   {
-   "week": 9,
-   "pts": 5.5,
-   "opp": "HOU"
+   "week": 7,
+   "pts": 0,
+   "opp": "MIN"
+  }
+ ],
+ "EXT-4878695": [
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "IND"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "GB"
   }
  ],
  "EXT-4426948": [
@@ -5288,11 +4398,21 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "LAR"
   }
  ],
- "EXT-4240577": [
+ "EXT-4366031": [
   {
    "week": 7,
-   "pts": 3.4,
-   "opp": "NO"
+   "pts": 5,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 21.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 3.6,
+   "opp": "CLE"
   }
  ],
  "EXT-4429299": [
@@ -5300,42 +4420,25 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 7,
    "pts": 0.6,
    "opp": "BAL"
-  }
- ],
- "EXT-4590292": [
-  {
-   "week": 7,
-   "pts": 3.4,
-   "opp": "HOU"
-  }
- ],
- "EXT-4690013": [
-  {
-   "week": 7,
-   "pts": 1.9,
-   "opp": "CIN"
   },
   {
-   "week": 8,
-   "pts": 0.5,
-   "opp": "BUF"
-  }
- ],
- "EXT-3915486": [
-  {
-   "week": 7,
-   "pts": 0.9,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
+   "week": 10,
    "pts": 1.2,
-   "opp": "MIN"
-  },
+   "opp": "PIT"
+  }
+ ],
+ "EXT-4429084": [
   {
-   "week": 9,
-   "pts": 0,
-   "opp": "MIA"
+   "week": 8,
+   "pts": 0.72,
+   "opp": "JAX"
+  }
+ ],
+ "EXT-4874509": [
+  {
+   "week": 8,
+   "pts": 4.3,
+   "opp": "JAX"
   }
  ],
  "EXT-5085189": [
@@ -5348,25 +4451,23 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 0.9,
    "opp": "ATL"
-  }
- ],
- "EXT-4035198": [
-  {
-   "week": 8,
-   "pts": 1.4,
-   "opp": "CLE"
-  }
- ],
- "EXT-4429582": [
-  {
-   "week": 8,
-   "pts": 0.94,
-   "opp": "BUF"
   },
   {
+   "week": 10,
+   "pts": 0.9,
+   "opp": "PIT"
+  }
+ ],
+ "EXT-4429684": [
+  {
    "week": 9,
-   "pts": 1.7,
-   "opp": "JAX"
+   "pts": 2.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 3.8,
+   "opp": "MIA"
   }
  ],
  "EXT-3930066": [
@@ -5381,32 +4482,11 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "LAR"
   }
  ],
- "EXT-4693370": [
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "CLE"
-  }
- ],
- "EXT-4692590": [
+ "EXT-4242546": [
   {
    "week": 9,
-   "pts": 0,
-   "opp": "PHI"
-  }
- ],
- "EXT-2580216": [
-  {
-   "week": 9,
-   "pts": 1,
-   "opp": "MIA"
-  }
- ],
- "EXT-4691889": [
-  {
-   "week": 9,
-   "pts": 2,
-   "opp": "PHI"
+   "pts": 0.08,
+   "opp": "LAC"
   }
  ],
  "EXT-4683111": [
@@ -5416,226 +4496,242 @@ window.MFFL_HISTORY_EXTENDED = {
    "opp": "LAR"
   }
  ],
- "EXT-4429020": [
+ "EXT-4362478": [
   {
    "week": 9,
-   "pts": 4.96,
-   "opp": "HOU"
+   "pts": 2.9,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 2,
+   "opp": "CLE"
   }
  ],
- "EXT-DEF-WSH": [
+ "EXT-4573398": [
   {
-   "week": 1,
-   "pts": 3,
-   "opp": "PHI"
+   "week": 9,
+   "pts": 2.32,
+   "opp": "BUF"
+  }
+ ],
+ "EXT-2983509": [
+  {
+   "week": 9,
+   "pts": 0.8,
+   "opp": "LAC"
   },
   {
-   "week": 2,
-   "pts": -2,
-   "opp": "DAL"
-  },
+   "week": 10,
+   "pts": 2,
+   "opp": "CLE"
+  }
+ ],
+ "EXT-14880": [
   {
-   "week": 3,
-   "pts": 12,
-   "opp": "SEA"
-  },
+   "week": 10,
+   "pts": 16.38,
+   "opp": "GB"
+  }
+ ],
+ "EXT-5151317": [
   {
-   "week": 4,
-   "pts": 5,
-   "opp": "IND"
-  },
-  {
-   "week": 5,
-   "pts": 6,
+   "week": 10,
+   "pts": 0.4,
    "opp": "NYG"
-  },
-  {
-   "week": 6,
-   "pts": 4,
-   "opp": "SF"
-  },
-  {
-   "week": 8,
-   "pts": 13,
-   "opp": "PHI"
-  },
-  {
-   "week": 9,
-   "pts": 6,
-   "opp": "LAR"
   }
  ],
- "EXT-DEF-NYG": [
+ "EXT-DEF-IND": [
   {
    "week": 1,
-   "pts": 3,
-   "opp": "DAL"
+   "pts": 0,
+   "opp": "BAL"
   },
   {
    "week": 2,
-   "pts": 4,
-   "opp": "LAR"
+   "pts": 1,
+   "opp": "KC"
   },
   {
    "week": 3,
-   "pts": 8,
-   "opp": "TEN"
+   "pts": 4,
+   "opp": "HOU"
   },
   {
    "week": 4,
-   "pts": 14,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 5,
+   "pts": 8,
    "opp": "WSH"
   },
   {
-   "week": 6,
-   "pts": 1,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 1,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 13,
-   "opp": "PHI"
-  }
- ],
- "EXT-DEF-NE": [
-  {
-   "week": 1,
-   "pts": 6,
-   "opp": "SEA"
-  },
-  {
-   "week": 2,
-   "pts": 21,
+   "week": 5,
+   "pts": 0,
    "opp": "PIT"
   },
   {
-   "week": 3,
-   "pts": -1,
-   "opp": "JAX"
-  },
-  {
-   "week": 4,
-   "pts": 5,
-   "opp": "BUF"
-  },
-  {
-   "week": 5,
-   "pts": 6,
-   "opp": "LV"
-  },
-  {
    "week": 6,
-   "pts": 6,
-   "opp": "NYJ"
+   "pts": 4,
+   "opp": "TEN"
   },
   {
    "week": 7,
-   "pts": 2,
-   "opp": "CHI"
-  },
-  {
-   "week": 8,
-   "pts": 8,
-   "opp": "MIA"
-  },
-  {
-   "week": 9,
-   "pts": -1,
-   "opp": "GB"
-  }
- ],
- "EXT-DEF-DET": [
-  {
-   "week": 1,
-   "pts": 10,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": -2,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 7,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 6,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
    "pts": 6,
    "opp": "MIN"
   },
   {
+   "week": 8,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
    "week": 9,
-   "pts": 9,
+   "pts": 7,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 12,
    "opp": "MIA"
   }
  ],
- "EXT-DEF-PIT": [
+ "EXT-DEF-HOU": [
   {
    "week": 1,
-   "pts": 18,
-   "opp": "ATL"
+   "pts": -2,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 6,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 11,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 4,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 15,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 3,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 12,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 6,
+   "opp": "CLE"
+  }
+ ],
+ "EXT-DEF-MIN": [
+  {
+   "week": 1,
+   "pts": 8,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 17,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 17,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 8,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 11,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 10,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 7,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 6,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 20,
+   "opp": "GB"
+  }
+ ],
+ "EXT-DEF-SF": [
+  {
+   "week": 1,
+   "pts": 8,
+   "opp": "LAR"
   },
   {
    "week": 2,
    "pts": 8,
-   "opp": "NE"
+   "opp": "MIA"
   },
   {
    "week": 3,
-   "pts": 5,
-   "opp": "CIN"
+   "pts": 1,
+   "opp": "ARI"
   },
   {
    "week": 4,
-   "pts": 6,
-   "opp": "CLE"
+   "pts": 3,
+   "opp": "DEN"
   },
   {
    "week": 5,
-   "pts": 1,
-   "opp": "IND"
+   "pts": 18,
+   "opp": "SEA"
   },
   {
    "week": 6,
-   "pts": 10,
-   "opp": "TB"
+   "pts": 5,
+   "opp": "WSH"
   },
   {
    "week": 7,
-   "pts": 8,
-   "opp": "NO"
+   "pts": -1,
+   "opp": "ATL"
   },
   {
-   "week": 8,
-   "pts": 19,
-   "opp": "CLE"
+   "week": 9,
+   "pts": 17,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 1,
+   "opp": "DAL"
   }
  ],
  "EXT-DEF-CIN": [
@@ -5678,95 +4774,58 @@ window.MFFL_HISTORY_EXTENDED = {
    "week": 9,
    "pts": 3,
    "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 4,
+   "opp": "PIT"
   }
  ],
- "EXT-DEF-LAC": [
+ "EXT-DEF-WSH": [
   {
    "week": 1,
-   "pts": 1,
-   "opp": "ARI"
+   "pts": 3,
+   "opp": "PHI"
   },
   {
    "week": 2,
-   "pts": 4,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 14,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 4,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 3,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 4,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 3,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": -1,
-   "opp": "HOU"
-  }
- ],
- "EXT-DEF-BAL": [
-  {
-   "week": 1,
-   "pts": 6,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 4,
+   "pts": -2,
    "opp": "DAL"
   },
   {
+   "week": 3,
+   "pts": 12,
+   "opp": "SEA"
+  },
+  {
    "week": 4,
-   "pts": 6,
-   "opp": "TEN"
+   "pts": 5,
+   "opp": "IND"
   },
   {
    "week": 5,
    "pts": 6,
-   "opp": "ATL"
+   "opp": "NYG"
   },
   {
    "week": 6,
-   "pts": 11,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": -3,
-   "opp": "CIN"
+   "pts": 4,
+   "opp": "SF"
   },
   {
    "week": 8,
-   "pts": 1,
-   "opp": "BUF"
+   "pts": 13,
+   "opp": "PHI"
   },
   {
    "week": 9,
-   "pts": 1,
-   "opp": "JAX"
+   "pts": 6,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 5,
+   "opp": "NYG"
   }
  ]
 };
