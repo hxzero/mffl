@@ -1,250 +1,416 @@
 /* MFFL full-pool score history — vendored data file.
    Source: ESPN game summaries, computed with the league's exact
-   FanDuel formula (identical to the central poller) for Weeks 1-10;
+   FanDuel formula (identical to the central poller) for Weeks 1-11;
    validated against FanDuel's published game-log FP and the
    league's Firebase week docs. Converted field-for-field from
-   pool-history-week11.json (byPoolId) — values are carried through
+   pool-history-week12.json (byPoolId) — values are carried through
    exactly, never recomputed or rounded at import time.
    Loaded after js/pool.js and before js/app.js; app.js reads
    window.MFFL_HISTORY by FanDuel pool Id. Players with no entry
-   recorded no stats in Weeks 1-10. */
+   recorded no stats in Weeks 1-11. */
 window.MFFL_HISTORY = {
- "136799-129368": [
+ "137125-129458": [
   {
    "week": 1,
-   "pts": 34.1,
-   "opp": "NO"
+   "pts": 25.2,
+   "opp": "NE"
   },
   {
    "week": 2,
-   "pts": 20.3,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 37.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 15.7,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 38.2,
+   "pts": 41,
    "opp": "ARI"
   },
   {
-   "week": 7,
-   "pts": 17.8,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 26.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 13.4,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 43.7,
-   "opp": "NE"
-  }
- ],
- "136799-62239": [
-  {
-   "week": 1,
-   "pts": 38.66,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 40.82,
-   "opp": "DET"
-  },
-  {
    "week": 3,
-   "pts": 18.96,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 19.52,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 34.5,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 18.3,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 27.56,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 13.86,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 23.34,
-   "opp": "NYJ"
-  }
- ],
- "136799-103342": [
-  {
-   "week": 1,
-   "pts": 35.6,
-   "opp": "DEN"
-  },
-  {
-   "week": 2,
-   "pts": 23.8,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 20.3,
-   "opp": "MIA"
-  },
-  {
-   "week": 4,
-   "pts": 33.4,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 29.9,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 7.7,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 10.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 37.3,
-   "opp": "NYJ"
-  }
- ],
- "136799-86631": [
-  {
-   "week": 1,
-   "pts": 12.9,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 34.3,
+   "pts": 33.36,
    "opp": "WSH"
   },
   {
-   "week": 3,
-   "pts": 19.7,
-   "opp": "BAL"
-  },
-  {
    "week": 4,
-   "pts": 35.8,
-   "opp": "HOU"
+   "pts": 10.1,
+   "opp": "LAC"
   },
   {
    "week": 5,
-   "pts": 1.9,
-   "opp": "TB"
+   "pts": 23.3,
+   "opp": "SF"
   },
   {
    "week": 6,
-   "pts": 11.5,
-   "opp": "GB"
+   "pts": 22.4,
+   "opp": "DEN"
   },
   {
    "week": 7,
-   "pts": 21.9,
-   "opp": "PHI"
+   "pts": 29.8,
+   "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 9.3,
-   "opp": "ARI"
+   "pts": 23.8,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 31.5,
-   "opp": "IND"
+   "pts": 8.6,
+   "opp": "ARI"
   },
   {
    "week": 10,
-   "pts": 16.7,
-   "opp": "SF"
+   "pts": 30.1,
+   "opp": "LV"
   }
  ],
- "136799-86997": [
+ "137125-85701": [
   {
    "week": 1,
-   "pts": 23.7,
-   "opp": "NO"
+   "pts": 2.2,
+   "opp": "TB"
   },
   {
    "week": 2,
-   "pts": 33.7,
-   "opp": "BUF"
+   "pts": 23,
+   "opp": "HOU"
   },
   {
    "week": 3,
-   "pts": 9.9,
-   "opp": "NYJ"
+   "pts": 20.3,
+   "opp": "PIT"
   },
   {
    "week": 4,
-   "pts": 11.5,
-   "opp": "CAR"
+   "pts": 4.2,
+   "opp": "JAX"
   },
   {
    "week": 5,
-   "pts": 9.9,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 22.7,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 9.1,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 12.6,
+   "pts": 16.7,
    "opp": "MIA"
   },
   {
+   "week": 7,
+   "pts": 14.7,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 28.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 29.5,
+   "opp": "ATL"
+  },
+  {
    "week": 10,
-   "pts": 23.8,
-   "opp": "NE"
+   "pts": 31.6,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 5.6,
+   "opp": "WSH"
   }
  ],
- "136799-39280": [
+ "137125-55050": [
+  {
+   "week": 1,
+   "pts": 11.3,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 20.6,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 19.6,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 14.5,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 15.8,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 26.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 19,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 21.7,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 47.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 13.2,
+   "opp": "MIN"
+  }
+ ],
+ "137125-136855": [
+  {
+   "week": 1,
+   "pts": 27.3,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 9.6,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 37.3,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 30.2,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 13.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 6.3,
+   "opp": "CHI"
+  },
+  {
+   "week": 7,
+   "pts": 14.7,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 7.6,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 26.7,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 15.7,
+   "opp": "KC"
+  }
+ ],
+ "137125-63336": [
+  {
+   "week": 1,
+   "pts": 15.16,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 16.18,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 22.58,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 28.72,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 24.6,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 28.88,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 45.48,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 29.54,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 36.16,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 22.9,
+   "opp": "WSH"
+  }
+ ],
+ "137125-85607": [
+  {
+   "week": 1,
+   "pts": 22.1,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 28.48,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 31.28,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 19.62,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 17.16,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 17.36,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 14.02,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 26.28,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 34.66,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 22.2,
+   "opp": "MIN"
+  }
+ ],
+ "137125-85671": [
+  {
+   "week": 1,
+   "pts": 27.2,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 7,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 4.2,
+   "opp": "TB"
+  },
+  {
+   "week": 5,
+   "pts": 15.8,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 6.4,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 11.8,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 7.3,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 11.9,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 10.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-102785": [
+  {
+   "week": 1,
+   "pts": 17.66,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 14.74,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 35.26,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 24,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 14.98,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 14.56,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 22.76,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 17.06,
+   "opp": "CIN"
+  }
+ ],
+ "137125-39280": [
   {
    "week": 1,
    "pts": 37.8,
@@ -294,333 +460,71 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 16.5,
    "opp": "LAC"
-  }
- ],
- "136799-57439": [
-  {
-   "week": 1,
-   "pts": 22.66,
-   "opp": "DEN"
   },
   {
-   "week": 2,
-   "pts": 31.98,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 16.94,
-   "opp": "MIA"
-  },
-  {
-   "week": 4,
-   "pts": 17,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 11.48,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 7,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 28.44,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 16.48,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 38.42,
-   "opp": "ATL"
-  }
- ],
- "136799-91626": [
-  {
-   "week": 1,
-   "pts": 8.4,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 23.4,
-   "opp": "DET"
-  },
-  {
-   "week": 3,
-   "pts": 22.4,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 15.3,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 25.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 22.8,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
+   "week": 11,
    "pts": 17.1,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 19.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 24.7,
-   "opp": "NYJ"
-  }
- ],
- "136799-31716": [
-  {
-   "week": 1,
-   "pts": 15.4,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 29.76,
-   "opp": "WSH"
-  },
-  {
-   "week": 3,
-   "pts": 18.94,
-   "opp": "BAL"
-  },
-  {
-   "week": 4,
-   "pts": 21.1,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 17.64,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 13.02,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 23.28,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 19.8,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 22.5,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 38.42,
-   "opp": "SF"
-  }
- ],
- "136799-93541": [
-  {
-   "week": 1,
-   "pts": 21.7,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 6.5,
-   "opp": "WSH"
-  },
-  {
-   "week": 3,
-   "pts": 17.3,
-   "opp": "BAL"
-  },
-  {
-   "week": 4,
-   "pts": 28.8,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 13.2,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 12,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 24.5,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 6.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 23.4,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 7.2,
-   "opp": "SF"
-  }
- ],
- "136799-152113": [
-  {
-   "week": 1,
-   "pts": 37.26,
    "opp": "CAR"
+  }
+ ],
+ "137125-89675": [
+  {
+   "week": 1,
+   "pts": 23.6,
+   "opp": "BAL"
   },
   {
    "week": 2,
-   "pts": 8.72,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 19.5,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 25.12,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 13.98,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 16.76,
-   "opp": "TB"
-  }
- ],
- "136799-112295": [
-  {
-   "week": 1,
-   "pts": 26.5,
-   "opp": "IND"
+   "pts": 27.2,
+   "opp": "KC"
   },
   {
    "week": 3,
-   "pts": 12.9,
-   "opp": "DAL"
+   "pts": 8.2,
+   "opp": "HOU"
   },
   {
    "week": 4,
-   "pts": 24.8,
+   "pts": 22.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 9.7,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 20.1,
    "opp": "TEN"
   },
   {
-   "week": 5,
-   "pts": 10.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 9.7,
-   "opp": "CLE"
-  },
-  {
    "week": 7,
-   "pts": 26.7,
-   "opp": "CIN"
+   "pts": 18,
+   "opp": "MIN"
   },
   {
    "week": 8,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 3.8,
+   "pts": 4.7,
    "opp": "JAX"
   },
   {
-   "week": 10,
-   "pts": 8.4,
-   "opp": "LAC"
-  }
- ],
- "136799-87467": [
-  {
-   "week": 1,
-   "pts": 22.2,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 13.4,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 13,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 28.4,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 21.6,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 8,
-   "opp": "TB"
-  },
-  {
-   "week": 8,
-   "pts": 21.4,
-   "opp": "GB"
-  },
-  {
    "week": 9,
-   "pts": 11.6,
-   "opp": "DEN"
+   "pts": 6.9,
+   "opp": "DAL"
   },
   {
    "week": 10,
-   "pts": 31.7,
-   "opp": "NO"
+   "pts": 11.3,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 4.7,
+   "opp": "HOU"
   }
  ],
- "136799-89951": [
+ "137125-89951": [
   {
    "week": 1,
    "pts": 26.1,
@@ -665,56 +569,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 30.78,
    "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 17.74,
+   "opp": "NYG"
   }
  ],
- "136799-38435": [
-  {
-   "week": 1,
-   "pts": 16.44,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 32.78,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 19.36,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 23.48,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 28.94,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 21.02,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 10.04,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 6.3,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 25.42,
-   "opp": "NE"
-  }
- ],
- "136799-87770": [
+ "137125-87770": [
   {
    "week": 1,
    "pts": 26.2,
@@ -759,56 +621,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 4.5,
    "opp": "CAR"
-  }
- ],
- "136799-152664": [
-  {
-   "week": 1,
-   "pts": 16.8,
-   "opp": "CIN"
   },
   {
-   "week": 2,
-   "pts": 11,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 6.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 6.1,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 33.5,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 5.9,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 26.5,
-   "opp": "CAR"
-  },
-  {
-   "week": 8,
-   "pts": 24,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 26.5,
+   "week": 11,
+   "pts": 17.7,
    "opp": "CHI"
   }
  ],
- "136799-151761": [
+ "137125-151761": [
   {
    "week": 1,
    "pts": 9.9,
@@ -853,355 +673,264 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 4.9,
    "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 15,
+   "opp": "JAX"
   }
  ],
- "136799-119606": [
+ "137125-91419": [
   {
    "week": 1,
-   "pts": 35.44,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 24.08,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 14.64,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 24.46,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 19.84,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 7.42,
-   "opp": "TB"
-  },
-  {
-   "week": 8,
-   "pts": 11.36,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 21.34,
-   "opp": "DEN"
-  },
-  {
-   "week": 10,
-   "pts": 8.1,
-   "opp": "NO"
-  }
- ],
- "136799-151794": [
-  {
-   "week": 3,
-   "pts": 25.6,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 17.6,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 22,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 9,
+   "pts": 17.7,
    "opp": "BUF"
   },
   {
-   "week": 7,
-   "pts": 10.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 24.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": 21.8,
-   "opp": "SF"
-  },
-  {
-   "week": 10,
-   "pts": 2.8,
-   "opp": "SEA"
-  }
- ],
- "136799-112057": [
-  {
-   "week": 1,
-   "pts": 7.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 8.7,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 22.1,
-   "opp": "CIN"
-  },
-  {
    "week": 4,
-   "pts": 14.1,
-   "opp": "CLE"
+   "pts": 30.3,
+   "opp": "DAL"
   },
   {
    "week": 5,
-   "pts": 36.8,
-   "opp": "IND"
+   "pts": 8.1,
+   "opp": "TEN"
   },
   {
    "week": 6,
-   "pts": 8.8,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 18.2,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 23.8,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 6.6,
-   "opp": "CIN"
-  }
- ],
- "136799-102965": [
-  {
-   "week": 1,
-   "pts": 6.44,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 15.12,
+   "pts": 9.4,
    "opp": "JAX"
   },
   {
-   "week": 3,
-   "pts": 25.14,
-   "opp": "LAR"
+   "week": 7,
+   "pts": 1.6,
+   "opp": "NYG"
   },
   {
-   "week": 4,
-   "pts": 13.56,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 7.92,
+   "week": 9,
+   "pts": 13.5,
    "opp": "LAC"
   },
   {
-   "week": 6,
-   "pts": 4.48,
-   "opp": "SEA"
+   "week": 10,
+   "pts": 19.9,
+   "opp": "CLE"
   },
   {
-   "week": 7,
-   "pts": 26.18,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 19.28,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 16.68,
-   "opp": "CAR"
+   "week": 11,
+   "pts": 13.3,
+   "opp": "IND"
   }
  ],
- "136799-110246": [
+ "137125-129471": [
   {
    "week": 1,
-   "pts": 4.3,
-   "opp": "NYG"
+   "pts": 16.46,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 7,
-   "opp": "WSH"
+   "pts": 20.02,
+   "opp": "CIN"
   },
   {
    "week": 3,
-   "pts": 11.7,
-   "opp": "BAL"
+   "pts": 11.68,
+   "opp": "IND"
   },
   {
    "week": 4,
-   "pts": 8.5,
-   "opp": "HOU"
+   "pts": 26.08,
+   "opp": "DAL"
   },
   {
    "week": 5,
-   "pts": 26.5,
+   "pts": 20.94,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 26.98,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 16.52,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 39.36,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 21.44,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 21.46,
+   "opp": "IND"
+  }
+ ],
+ "137125-89981": [
+  {
+   "week": 1,
+   "pts": 7.4,
    "opp": "TB"
   },
   {
-   "week": 6,
-   "pts": 10.3,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 13.7,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 5.8,
-   "opp": "ARI"
-  },
-  {
-   "week": 10,
-   "pts": 41,
-   "opp": "SF"
-  }
- ],
- "136799-103564": [
-  {
-   "week": 1,
-   "pts": 10.9,
-   "opp": "TEN"
-  },
-  {
    "week": 2,
-   "pts": 14.2,
-   "opp": "GB"
+   "pts": 12,
+   "opp": "HOU"
   },
   {
    "week": 3,
-   "pts": 24.7,
-   "opp": "DET"
-  },
-  {
-   "week": 4,
-   "pts": 4.2,
-   "opp": "CHI"
-  },
-  {
-   "week": 5,
-   "pts": 22.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 6,
-   "pts": 6.4,
-   "opp": "NE"
-  },
-  {
-   "week": 7,
-   "pts": 3.6,
-   "opp": "MIA"
-  },
-  {
-   "week": 8,
-   "pts": 11.3,
-   "opp": "LV"
-  },
-  {
-   "week": 10,
-   "pts": 15.1,
-   "opp": "BUF"
-  }
- ],
- "136799-88431": [
-  {
-   "week": 1,
-   "pts": 28.2,
-   "opp": "DET"
-  },
-  {
-   "week": 2,
-   "pts": 22.38,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 24.8,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": 15.94,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
-   "pts": 1.84,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 26.96,
-   "opp": "NYG"
-  },
-  {
-   "week": 7,
-   "pts": 14.82,
+   "pts": 18,
    "opp": "PIT"
   },
   {
-   "week": 9,
-   "pts": 19.7,
-   "opp": "CLE"
+   "week": 4,
+   "pts": 24.2,
+   "opp": "JAX"
   },
   {
-   "week": 10,
-   "pts": 10.98,
-   "opp": "CAR"
-  }
- ],
- "136799-90576": [
-  {
-   "week": 1,
-   "pts": 6.8,
-   "opp": "WSH"
+   "week": 5,
+   "pts": 3.2,
+   "opp": "MIA"
   },
   {
-   "week": 2,
-   "pts": 25.7,
+   "week": 7,
+   "pts": 26.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 35.5,
    "opp": "TEN"
   },
   {
+   "week": 9,
+   "pts": 17.7,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 9.1,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 11.3,
+   "opp": "WSH"
+  }
+ ],
+ "137125-89493": [
+  {
+   "week": 1,
+   "pts": 16.3,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 9.7,
+   "opp": "HOU"
+  },
+  {
    "week": 3,
-   "pts": 9.5,
-   "opp": "CHI"
+   "pts": 7.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 13.6,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 5.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 7.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 12.1,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 9,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 24.3,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 6.1,
+   "opp": "WSH"
+  }
+ ],
+ "137125-112295": [
+  {
+   "week": 1,
+   "pts": 26.5,
+   "opp": "IND"
+  },
+  {
+   "week": 3,
+   "pts": 12.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 4,
+   "pts": 24.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 5,
+   "pts": 10.6,
+   "opp": "ATL"
   },
   {
    "week": 6,
-   "pts": 17,
+   "pts": 9.7,
+   "opp": "CLE"
+  },
+  {
+   "week": 7,
+   "pts": 26.7,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
+   "pts": 0,
+   "opp": "BUF"
+  },
+  {
+   "week": 9,
+   "pts": 3.8,
+   "opp": "JAX"
+  },
+  {
+   "week": 10,
+   "pts": 8.4,
+   "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 12.4,
    "opp": "CAR"
   }
  ],
- "136799-137516": [
+ "137125-137516": [
   {
    "week": 1,
    "pts": 16.8,
@@ -1246,88 +975,130 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 27.7,
    "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 17.3,
+   "opp": "NYG"
   }
  ],
- "136799-6894": [
+ "137125-88431": [
   {
    "week": 1,
-   "pts": 12.54,
-   "opp": "ATL"
+   "pts": 28.2,
+   "opp": "DET"
   },
   {
    "week": 2,
-   "pts": 4.98,
-   "opp": "NE"
+   "pts": 22.38,
+   "opp": "BAL"
   },
   {
    "week": 3,
-   "pts": 23.68,
-   "opp": "CIN"
+   "pts": 24.8,
+   "opp": "LV"
   },
   {
    "week": 4,
-   "pts": 23.96,
-   "opp": "CLE"
+   "pts": 15.94,
+   "opp": "ATL"
   },
   {
    "week": 5,
-   "pts": 22,
-   "opp": "IND"
+   "pts": 1.84,
+   "opp": "MIN"
   },
   {
    "week": 6,
-   "pts": 17.02,
-   "opp": "TB"
+   "pts": 26.96,
+   "opp": "NYG"
   },
   {
    "week": 7,
-   "pts": 13.08,
-   "opp": "NO"
+   "pts": 14.82,
+   "opp": "PIT"
   },
   {
-   "week": 8,
-   "pts": 5.88,
+   "week": 9,
+   "pts": 19.7,
    "opp": "CLE"
   },
   {
    "week": 10,
-   "pts": 15.62,
-   "opp": "CIN"
-  }
- ],
- "136799-41535": [
-  {
-   "week": 1,
-   "pts": 11.64,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 13.18,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 12.28,
-   "opp": "MIN"
-  },
-  {
-   "week": 7,
-   "pts": 6.66,
+   "pts": 10.98,
    "opp": "CAR"
   },
   {
-   "week": 8,
-   "pts": 1.4,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 9.72,
+   "week": 11,
+   "pts": 15.28,
    "opp": "CHI"
   }
  ],
- "136799-103064": [
+ "137125-112745": [
+  {
+   "week": 1,
+   "pts": 4.5,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 6.9,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 26.9,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 12.1,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 18.3,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 10.2,
+   "opp": "CHI"
+  },
+  {
+   "week": 7,
+   "pts": 16.1,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 1.3,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 9.3,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 16.9,
+   "opp": "KC"
+  }
+ ],
+ "137125-22038": [
+  {
+   "week": 10,
+   "pts": 16.38,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 8.4,
+   "opp": "SF"
+  }
+ ],
+ "137125-103064": [
   {
    "week": 1,
    "pts": 21.8,
@@ -1352,216 +1123,246 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 12.8,
    "opp": "BUF"
-  }
- ],
- "136799-167620": [
-  {
-   "week": 1,
-   "pts": 8,
-   "opp": "CHI"
   },
   {
-   "week": 2,
-   "pts": 15.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 2.7,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 41.2,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 11.6,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 6,
-   "opp": "TB"
-  },
-  {
-   "week": 8,
-   "pts": 8.8,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 13.6,
-   "opp": "DEN"
-  },
-  {
-   "week": 10,
-   "pts": 5,
-   "opp": "NO"
-  }
- ],
- "136799-30231": [
-  {
-   "week": 10,
-   "pts": 15.8,
+   "week": 11,
+   "pts": 17.5,
    "opp": "LAC"
   }
  ],
- "136799-111311": [
+ "137125-103564": [
   {
    "week": 1,
-   "pts": 8.9,
-   "opp": "DEN"
+   "pts": 10.9,
+   "opp": "TEN"
   },
   {
    "week": 2,
-   "pts": 10.3,
-   "opp": "IND"
+   "pts": 14.2,
+   "opp": "GB"
   },
   {
    "week": 3,
-   "pts": 12.3,
+   "pts": 24.7,
+   "opp": "DET"
+  },
+  {
+   "week": 4,
+   "pts": 4.2,
+   "opp": "CHI"
+  },
+  {
+   "week": 5,
+   "pts": 22.9,
+   "opp": "CLE"
+  },
+  {
+   "week": 6,
+   "pts": 6.4,
+   "opp": "NE"
+  },
+  {
+   "week": 7,
+   "pts": 3.6,
    "opp": "MIA"
   },
   {
    "week": 8,
-   "pts": 14.8,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 7.4,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 10.7,
-   "opp": "ATL"
-  }
- ],
- "136799-64401": [
-  {
-   "week": 1,
-   "pts": 8.5,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 2.5,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 8.5,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 1.5,
-   "opp": "LAR"
-  },
-  {
-   "week": 7,
-   "pts": 14.1,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 11.9,
-   "opp": "WSH"
-  },
-  {
-   "week": 9,
-   "pts": 8.2,
-   "opp": "NYG"
-  }
- ],
- "136799-63043": [
-  {
-   "week": 1,
-   "pts": 21.5,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": -0.1,
-   "opp": "DET"
-  },
-  {
-   "week": 3,
-   "pts": 9.7,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 2.2,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 14.6,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 5.1,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 17.4,
-   "opp": "NYJ"
-  }
- ],
- "136799-69189": [
-  {
-   "week": 1,
-   "pts": 14.26,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 9.88,
+   "pts": 11.3,
    "opp": "LV"
   },
   {
-   "week": 3,
-   "pts": 13.74,
+   "week": 10,
+   "pts": 15.1,
    "opp": "BUF"
   },
   {
-   "week": 4,
-   "pts": 11.56,
-   "opp": "SEA"
-  },
+   "week": 11,
+   "pts": 5.4,
+   "opp": "LAC"
+  }
+ ],
+ "137125-152575": [
   {
    "week": 5,
-   "pts": 11.24,
-   "opp": "DEN"
+   "pts": 0.2,
+   "opp": "WSH"
   },
   {
    "week": 6,
-   "pts": 9.76,
+   "pts": 17.32,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 10.18,
+   "opp": "HOU"
+  },
+  {
+   "week": 9,
+   "pts": 7.28,
+   "opp": "PHI"
+  },
+  {
+   "week": 10,
+   "pts": 18.12,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 14.22,
+   "opp": "JAX"
+  }
+ ],
+ "137125-63589": [
+  {
+   "week": 1,
+   "pts": 0.52,
+   "opp": "NE"
+  },
+  {
+   "week": 3,
+   "pts": 32.66,
+   "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 14.32,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 10.3,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 13.02,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 14.98,
    "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 9.78,
-   "opp": "LAR"
+   "pts": 18.52,
+   "opp": "CHI"
+  }
+ ],
+ "137125-64051": [
+  {
+   "week": 1,
+   "pts": 12.78,
+   "opp": "NE"
+  },
+  {
+   "week": 2,
+   "pts": 21.4,
+   "opp": "ARI"
   },
   {
    "week": 9,
-   "pts": 11.42,
-   "opp": "HOU"
+   "pts": 12.6,
+   "opp": "ARI"
   },
   {
    "week": 10,
-   "pts": 16.26,
-   "opp": "BAL"
+   "pts": 15.6,
+   "opp": "LV"
   }
  ],
- "136799-91750": [
+ "137125-32384": [
+  {
+   "week": 1,
+   "pts": 13.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 6.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 10.9,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 10.1,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 25.8,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 10.9,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 22.9,
+   "opp": "MIN"
+  }
+ ],
+ "137125-63759": [
+  {
+   "week": 1,
+   "pts": 3.9,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 7,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 11.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 12,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 5.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 7.6,
+   "opp": "IND"
+  },
+  {
+   "week": 7,
+   "pts": 38,
+   "opp": "CLE"
+  },
+  {
+   "week": 8,
+   "pts": 30.2,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 19.9,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 14,
+   "opp": "DAL"
+  }
+ ],
+ "137125-91750": [
   {
    "week": 1,
    "pts": 20,
@@ -1611,224 +1412,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 6.2,
    "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 10.3,
+   "opp": "KC"
   }
  ],
- "136799-160620": [
-  {
-   "week": 1,
-   "pts": 9.3,
-   "opp": "CLE"
-  },
-  {
-   "week": 2,
-   "pts": 13.2,
-   "opp": "DEN"
-  },
-  {
-   "week": 3,
-   "pts": 16,
-   "opp": "NE"
-  },
-  {
-   "week": 4,
-   "pts": 10.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 5,
-   "pts": 10.6,
-   "opp": "PHI"
-  },
-  {
-   "week": 6,
-   "pts": 22.7,
-   "opp": "HOU"
-  },
-  {
-   "week": 8,
-   "pts": 31.9,
-   "opp": "IND"
-  },
-  {
-   "week": 9,
-   "pts": 8.9,
-   "opp": "BAL"
-  },
-  {
-   "week": 10,
-   "pts": 18.8,
-   "opp": "TEN"
-  }
- ],
- "136799-63759": [
-  {
-   "week": 1,
-   "pts": 3.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 2,
-   "pts": 7,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 11.6,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 12,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 5.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 7.6,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 38,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 30.2,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 19.9,
-   "opp": "JAX"
-  }
- ],
- "136799-152575": [
-  {
-   "week": 5,
-   "pts": 0.2,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 17.32,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 10.18,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 7.28,
-   "opp": "PHI"
-  },
-  {
-   "week": 10,
-   "pts": 18.12,
-   "opp": "WSH"
-  }
- ],
- "136799-111631": [
-  {
-   "week": 1,
-   "pts": 6.5,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 4.3,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 6.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 16.2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 17.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 23.6,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 15,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 4.5,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 7,
-   "opp": "NE"
-  }
- ],
- "136799-168356": [
-  {
-   "week": 1,
-   "pts": 11.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 2,
-   "pts": 20.02,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 10.44,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 16.58,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 6,
-   "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 7.78,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 6.74,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 29.26,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 20.14,
-   "opp": "JAX"
-  }
- ],
- "136799-26483": [
+ "137125-26483": [
   {
    "week": 1,
    "pts": 9.3,
@@ -1878,90 +1469,78 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 5.92,
    "opp": "BUF"
-  }
- ],
- "136799-152646": [
+  },
   {
-   "week": 10,
-   "pts": 12.76,
-   "opp": "IND"
+   "week": 11,
+   "pts": 19.44,
+   "opp": "LAC"
   }
  ],
- "136799-73048": [
+ "137125-129315": [
+  {
+   "week": 8,
+   "pts": 0.72,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 0.2,
+   "opp": "HOU"
+  }
+ ],
+ "137125-69189": [
   {
    "week": 1,
-   "pts": 6,
-   "opp": "ATL"
+   "pts": 14.26,
+   "opp": "ARI"
   },
   {
    "week": 2,
-   "pts": 4.7,
-   "opp": "NE"
+   "pts": 9.88,
+   "opp": "LV"
   },
   {
    "week": 3,
-   "pts": 10.6,
-   "opp": "CIN"
+   "pts": 13.74,
+   "opp": "BUF"
   },
   {
    "week": 4,
-   "pts": 17,
-   "opp": "CLE"
+   "pts": 11.56,
+   "opp": "SEA"
   },
   {
    "week": 5,
-   "pts": 3.8,
-   "opp": "IND"
+   "pts": 11.24,
+   "opp": "DEN"
   },
   {
    "week": 6,
-   "pts": 14.8,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 6.6,
-   "opp": "NO"
+   "pts": 9.76,
+   "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 0.9,
-   "opp": "CLE"
+   "pts": 9.78,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": 11.42,
+   "opp": "HOU"
   },
   {
    "week": 10,
-   "pts": 14.4,
-   "opp": "CIN"
+   "pts": 16.26,
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 22.44,
+   "opp": "NYJ"
   }
  ],
- "136799-135811": [
-  {
-   "week": 3,
-   "pts": -0.1,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 13.42,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 13.86,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 12.66,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": -0.3,
-   "opp": "CAR"
-  }
- ],
- "136799-183240": [
+ "137125-183240": [
   {
    "week": 1,
    "pts": 14.1,
@@ -1996,104 +1575,343 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 25.7,
    "opp": "WSH"
-  }
- ],
- "136799-175137": [
-  {
-   "week": 5,
-   "pts": 2.22,
-   "opp": "NE"
   },
   {
-   "week": 10,
-   "pts": 13.92,
-   "opp": "SEA"
+   "week": 11,
+   "pts": 4.3,
+   "opp": "JAX"
   }
  ],
- "136799-167622": [
+ "137125-168356": [
+  {
+   "week": 1,
+   "pts": 11.7,
+   "opp": "NYJ"
+  },
   {
    "week": 2,
-   "pts": 13.3,
-   "opp": "JAX"
+   "pts": 20.02,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 10.44,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 16.58,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 6,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 7.78,
+   "opp": "IND"
   },
   {
    "week": 7,
-   "pts": 7.9,
-   "opp": "ARI"
+   "pts": 6.74,
+   "opp": "CLE"
   },
   {
    "week": 8,
-   "pts": 18.4,
-   "opp": "KC"
+   "pts": 29.26,
+   "opp": "CIN"
   },
   {
-   "week": 9,
-   "pts": 16.8,
+   "week": 10,
+   "pts": 20.14,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 22.22,
+   "opp": "DAL"
+  }
+ ],
+ "137125-30231": [
+  {
+   "week": 10,
+   "pts": 15.8,
+   "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 14.74,
    "opp": "CAR"
   }
  ],
- "136799-119670": [
+ "137125-160620": [
+  {
+   "week": 1,
+   "pts": 9.3,
+   "opp": "CLE"
+  },
+  {
+   "week": 2,
+   "pts": 13.2,
+   "opp": "DEN"
+  },
+  {
+   "week": 3,
+   "pts": 16,
+   "opp": "NE"
+  },
+  {
+   "week": 4,
+   "pts": 10.1,
+   "opp": "CIN"
+  },
+  {
+   "week": 5,
+   "pts": 10.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 6,
+   "pts": 22.7,
+   "opp": "HOU"
+  },
+  {
+   "week": 8,
+   "pts": 31.9,
+   "opp": "IND"
+  },
+  {
+   "week": 9,
+   "pts": 8.9,
+   "opp": "BAL"
+  },
+  {
+   "week": 10,
+   "pts": 18.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 6.8,
+   "opp": "NYG"
+  }
+ ],
+ "137125-39793": [
+  {
+   "week": 1,
+   "pts": 2.2,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 16,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 23.2,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 15,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 4.9,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 15.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 10.8,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 7.8,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 10.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 16.9,
+   "opp": "MIN"
+  }
+ ],
+ "137125-72846": [
+  {
+   "week": 1,
+   "pts": 4.1,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 4.2,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 6.3,
+   "opp": "CHI"
+  },
+  {
+   "week": 10,
+   "pts": 3.7,
+   "opp": "DET"
+  }
+ ],
+ "137125-88797": [
+  {
+   "week": 3,
+   "pts": 15.04,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 12.72,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 14.4,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 23.1,
+   "opp": "CHI"
+  },
+  {
+   "week": 7,
+   "pts": 20.42,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 2.1,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 14.48,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 13.34,
+   "opp": "KC"
+  }
+ ],
+ "137125-152646": [
+  {
+   "week": 10,
+   "pts": 12.76,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 3.98,
+   "opp": "BUF"
+  }
+ ],
+ "137125-133472": [
+  {
+   "week": 1,
+   "pts": 16.7,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 5,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 8.6,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 2.2,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 10.6,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 18.2,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-94748": [
+  {
+   "week": 3,
+   "pts": 1.4,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 0.84,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 8.14,
+   "opp": "DET"
+  }
+ ],
+ "137125-8023": [
+  {
+   "week": 11,
+   "pts": 10.7,
+   "opp": "KC"
+  }
+ ],
+ "137125-119670": [
   {
    "week": 10,
    "pts": 2.42,
    "opp": "LAR"
   }
  ],
- "136799-129010": [
-  {
-   "week": 9,
-   "pts": 4.96,
-   "opp": "HOU"
-  }
- ],
- "136799-166092": [
-  {
-   "week": 1,
-   "pts": 7,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 4.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 16.3,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 9.4,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 6.9,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 13.5,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 24.7,
-   "opp": "NE"
-  },
+ "137125-103376": [
   {
    "week": 8,
-   "pts": 15.1,
-   "opp": "SEA"
+   "pts": 4.4,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 17.2,
-   "opp": "TB"
+   "pts": 9.1,
+   "opp": "ARI"
+  },
+  {
+   "week": 10,
+   "pts": 9.4,
+   "opp": "LV"
   }
  ],
- "136799-24849": [
+ "137125-24849": [
   {
    "week": 2,
    "pts": 3.54,
@@ -2133,289 +1951,253 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 0.1,
    "opp": "WSH"
-  }
- ],
- "136799-166314": [
-  {
-   "week": 10,
-   "pts": 7.08,
-   "opp": "BUF"
-  }
- ],
- "136799-91598": [
-  {
-   "week": 1,
-   "pts": 34.9,
-   "opp": "CAR"
   },
+  {
+   "week": 11,
+   "pts": 6.5,
+   "opp": "JAX"
+  }
+ ],
+ "137125-90584": [
   {
    "week": 2,
-   "pts": 10.4,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 9.8,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 6.4,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 15.3,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 21,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 17,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 26.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 3.1,
-   "opp": "TB"
-  }
- ],
- "136799-53729": [
-  {
-   "week": 2,
-   "pts": 0.3,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
    "pts": -0.2,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 0.98,
-   "opp": "CIN"
-  }
- ],
- "136799-184983": [
-  {
-   "week": 8,
-   "pts": 0.94,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 1.7,
-   "opp": "JAX"
-  }
- ],
- "136799-57403": [
-  {
-   "week": 1,
-   "pts": 2.1,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 4,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
-   "pts": 6.1,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 0.9,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 8.8,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 2.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 7,
-   "pts": 6,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 7.3,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 13,
-   "opp": "CAR"
-  }
- ],
- "136799-89607": [
-  {
-   "week": 6,
-   "pts": 12.6,
-   "opp": "CAR"
-  },
-  {
-   "week": 7,
-   "pts": 11.54,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 7.98,
-   "opp": "WSH"
-  }
- ],
- "136799-133472": [
-  {
-   "week": 1,
-   "pts": 16.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 5,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 8.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 2.2,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 10.6,
-   "opp": "LAR"
-  }
- ],
- "136799-166860": [
-  {
-   "week": 1,
-   "pts": 7.8,
-   "opp": "DEN"
-  },
-  {
-   "week": 2,
-   "pts": 4.5,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 1.7,
    "opp": "MIA"
   },
   {
+   "week": 9,
+   "pts": -0.3,
+   "opp": "LV"
+  },
+  {
+   "week": 11,
+   "pts": 0.1,
+   "opp": "MIN"
+  }
+ ],
+ "137125-25079": [
+  {
+   "week": 1,
+   "pts": 13.5,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 19.2,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 5.3,
+   "opp": "SEA"
+  },
+  {
    "week": 4,
-   "pts": 1.5,
+   "pts": 6,
+   "opp": "IND"
+  },
+  {
+   "week": 6,
+   "pts": 13.4,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 11.3,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 6.6,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 17.3,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 6.5,
+   "opp": "CIN"
+  }
+ ],
+ "137125-73273": [
+  {
+   "week": 1,
+   "pts": 27.4,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 3.4,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 5.8,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 4.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 1.1,
+   "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 16.9,
+   "opp": "IND"
+  }
+ ],
+ "137125-129010": [
+  {
+   "week": 9,
+   "pts": 4.96,
+   "opp": "HOU"
+  }
+ ],
+ "137125-63484": [
+  {
+   "week": 1,
+   "pts": 0.62,
+   "opp": "GB"
+  },
+  {
+   "week": 3,
+   "pts": 11.42,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 11.48,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 18.26,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 13.9,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 20.9,
+   "opp": "DET"
+  }
+ ],
+ "137125-111540": [
+  {
+   "week": 1,
+   "pts": 12,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 3.1,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 5.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 16.9,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 16,
    "opp": "LV"
   },
   {
    "week": 6,
-   "pts": 3.4,
-   "opp": "LAC"
+   "pts": 3.6,
+   "opp": "NYJ"
   },
   {
    "week": 7,
-   "pts": 2.7,
-   "opp": "SEA"
+   "pts": 20,
+   "opp": "CHI"
   },
   {
    "week": 8,
-   "pts": 25.8,
-   "opp": "DEN"
+   "pts": 10.5,
+   "opp": "MIA"
   },
   {
    "week": 9,
-   "pts": 9.4,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 35.1,
-   "opp": "ATL"
-  }
- ],
- "136799-120033": [
-  {
-   "week": 1,
-   "pts": 6.2,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 5.9,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 12.4,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 3.5,
+   "pts": 13.3,
    "opp": "GB"
   },
   {
-   "week": 6,
-   "pts": 5.4,
-   "opp": "ATL"
+   "week": 10,
+   "pts": 1,
+   "opp": "DET"
+  }
+ ],
+ "137125-87127": [
+  {
+   "week": 1,
+   "pts": 2.3,
+   "opp": "CLE"
   },
   {
-   "week": 7,
-   "pts": 8.9,
+   "week": 2,
+   "pts": 1.3,
+   "opp": "DEN"
+  },
+  {
+   "week": 3,
+   "pts": 9.7,
    "opp": "NE"
   },
   {
+   "week": 4,
+   "pts": 9.5,
+   "opp": "CIN"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 6,
+   "pts": 5.5,
+   "opp": "HOU"
+  },
+  {
    "week": 8,
-   "pts": 10.7,
-   "opp": "SEA"
+   "pts": 12.3,
+   "opp": "IND"
   },
   {
    "week": 9,
-   "pts": 14,
-   "opp": "TB"
-  }
- ],
- "136799-160938": [
+   "pts": 10.2,
+   "opp": "BAL"
+  },
   {
-   "week": 8,
-   "pts": 0.32,
-   "opp": "IND"
+   "week": 10,
+   "pts": 0.5,
+   "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 4.6,
+   "opp": "NYG"
   }
  ],
- "136799-87260": [
+ "137125-87260": [
   {
    "week": 1,
    "pts": 23.8,
@@ -2460,58 +2242,143 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 26.2,
    "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 4,
+   "opp": "JAX"
   }
  ],
- "136799-166112": [
+ "137125-90572": [
+  {
+   "week": 5,
+   "pts": 0.36,
+   "opp": "BAL"
+  }
+ ],
+ "137125-56018": [
+  {
+   "week": 1,
+   "pts": 15,
+   "opp": "LAR"
+  },
   {
    "week": 2,
-   "pts": 0.7,
-   "opp": "SF"
+   "pts": 5,
+   "opp": "MIA"
   },
   {
    "week": 3,
-   "pts": 13,
-   "opp": "KC"
+   "pts": 15.4,
+   "opp": "ARI"
   },
   {
    "week": 4,
-   "pts": 20,
-   "opp": "MIN"
+   "pts": 15.5,
+   "opp": "DEN"
   },
   {
    "week": 5,
-   "pts": 14.8,
-   "opp": "CIN"
+   "pts": 1.5,
+   "opp": "SEA"
   },
   {
-   "week": 7,
-   "pts": 19.8,
-   "opp": "NYJ"
+   "week": 10,
+   "pts": 24.4,
+   "opp": "DAL"
   },
   {
-   "week": 8,
-   "pts": 6.9,
-   "opp": "NE"
+   "week": 11,
+   "pts": 6.2,
+   "opp": "MIN"
+  }
+ ],
+ "137125-25267": [
+  {
+   "week": 1,
+   "pts": 7.1,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 2.8,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 11.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 6.8,
+   "opp": "BUF"
   },
   {
    "week": 9,
-   "pts": 6.9,
-   "opp": "DET"
+   "pts": 11.1,
+   "opp": "GB"
   },
   {
    "week": 10,
-   "pts": 13.5,
+   "pts": 7.3,
+   "opp": "DET"
+  }
+ ],
+ "137125-86875": [
+  {
+   "week": 1,
+   "pts": 11.9,
+   "opp": "GB"
+  },
+  {
+   "week": 7,
+   "pts": 6.8,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 2,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 5.2,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 5.9,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 4.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-243753": [
+  {
+   "week": 2,
+   "pts": 0.96,
+   "opp": "CAR"
+  }
+ ],
+ "137125-152673": [
+  {
+   "week": 4,
+   "pts": 12.04,
    "opp": "IND"
   }
  ],
- "136799-129305": [
+ "137125-160938": [
   {
-   "week": 10,
-   "pts": 13.3,
-   "opp": "ATL"
+   "week": 8,
+   "pts": 0.32,
+   "opp": "IND"
   }
  ],
- "136799-61798": [
+ "137125-61798": [
   {
    "week": 8,
    "pts": 19.52,
@@ -2523,7 +2390,7 @@ window.MFFL_HISTORY = {
    "opp": "SEA"
   }
  ],
- "136799-151966": [
+ "137125-151966": [
   {
    "week": 1,
    "pts": 26.6,
@@ -2535,7 +2402,7 @@ window.MFFL_HISTORY = {
    "opp": "LAR"
   }
  ],
- "136799-70051": [
+ "137125-70051": [
   {
    "week": 4,
    "pts": 4.12,
@@ -2562,109 +2429,75 @@ window.MFFL_HISTORY = {
    "opp": "BUF"
   }
  ],
- "136799-185776": [
-  {
-   "week": 2,
-   "pts": 2.16,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 9.82,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 3.18,
-   "opp": "GB"
-  }
- ],
- "136799-91591": [
-  {
-   "week": 9,
-   "pts": -2.1,
-   "opp": "NYJ"
-  },
+ "137125-166314": [
   {
    "week": 10,
-   "pts": 0,
-   "opp": "ATL"
+   "pts": 7.08,
+   "opp": "BUF"
   }
  ],
- "136799-90573": [
+ "137125-138774": [
   {
    "week": 1,
-   "pts": 0.7,
-   "opp": "KC"
+   "pts": 4.5,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 20.8,
-   "opp": "JAX"
+   "pts": 6,
+   "opp": "CIN"
   },
   {
    "week": 3,
-   "pts": 5.4,
-   "opp": "LAR"
+   "pts": 8.6,
+   "opp": "IND"
   },
   {
    "week": 4,
-   "pts": 12,
-   "opp": "SF"
+   "pts": 8.2,
+   "opp": "DAL"
   },
   {
    "week": 5,
-   "pts": 3.8,
-   "opp": "LAC"
+   "pts": 10.5,
+   "opp": "TEN"
   },
   {
    "week": 6,
-   "pts": 4.4,
-   "opp": "SEA"
+   "pts": 9.1,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 6.8,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 13.4,
-   "opp": "KC"
+   "pts": 8.6,
+   "opp": "NYG"
   },
   {
    "week": 9,
-   "pts": 2.7,
-   "opp": "CAR"
-  }
- ],
- "136799-22994": [
-  {
-   "week": 3,
-   "pts": 24.48,
-   "opp": "PHI"
+   "pts": 7.9,
+   "opp": "LAC"
   },
   {
-   "week": 5,
-   "pts": 1.72,
-   "opp": "GB"
-  }
- ],
- "136799-40407": [
-  {
    "week": 10,
-   "pts": 0.08,
-   "opp": "NE"
+   "pts": 7,
+   "opp": "CLE"
   }
  ],
- "136799-41562": [
+ "137125-89628": [
+  {
+   "week": 9,
+   "pts": 0.08,
+   "opp": "LAC"
+  }
+ ],
+ "137125-41562": [
   {
    "week": 1,
    "pts": -0.3,
    "opp": "CLE"
   }
  ],
- "136799-87691": [
+ "137125-87691": [
   {
    "week": 1,
    "pts": 17.7,
@@ -2706,7 +2539,7 @@ window.MFFL_HISTORY = {
    "opp": "DET"
   }
  ],
- "136799-63115": [
+ "137125-63115": [
   {
    "week": 1,
    "pts": 27.96,
@@ -2733,117 +2566,139 @@ window.MFFL_HISTORY = {
    "opp": "BUF"
   }
  ],
- "136799-53095": [
+ "137125-184983": [
   {
    "week": 8,
-   "pts": -0.2,
-   "opp": "BAL"
+   "pts": 0.94,
+   "opp": "BUF"
   },
   {
    "week": 9,
-   "pts": -0.2,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": -0.2,
-   "opp": "NYJ"
-  }
- ],
- "136799-92020": [
-  {
-   "week": 1,
-   "pts": 2.4,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": -0.4,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 3.38,
-   "opp": "TB"
-  }
- ],
- "136799-69531": [
-  {
-   "week": 1,
-   "pts": 24.72,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 18.16,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 13.62,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 13.52,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 13,
+   "pts": 1.7,
    "opp": "JAX"
   }
  ],
- "136799-152655": [
-  {
-   "week": 1,
-   "pts": 8.8,
-   "opp": "CIN"
-  },
+ "137125-29358": [
   {
    "week": 2,
-   "pts": 8.8,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 8.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 2.3,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 14.2,
+   "pts": 8.74,
    "opp": "DAL"
   },
   {
-   "week": 6,
-   "pts": 14.3,
+   "week": 3,
+   "pts": 20.42,
+   "opp": "SEA"
+  },
+  {
+   "week": 4,
+   "pts": 5.34,
+   "opp": "IND"
+  }
+ ],
+ "137125-70324": [
+  {
+   "week": 1,
+   "pts": 19.22,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 6.32,
+   "opp": "CHI"
+  },
+  {
+   "week": 9,
+   "pts": -0.76,
+   "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 1.16,
+   "opp": "SF"
+  }
+ ],
+ "137125-152316": [
+  {
+   "week": 1,
+   "pts": 12.82,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 9.02,
    "opp": "PIT"
   },
   {
-   "week": 9,
-   "pts": 5.4,
+   "week": 3,
+   "pts": 5.76,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 27.16,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 42.46,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 23.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 31.44,
    "opp": "CHI"
-  }
- ],
- "136799-172675": [
+  },
+  {
+   "week": 8,
+   "pts": 22.46,
+   "opp": "MIA"
+  },
   {
    "week": 9,
-   "pts": 3,
-   "opp": "CLE"
+   "pts": 21.26,
+   "opp": "GB"
   },
   {
    "week": 10,
-   "pts": 13.5,
-   "opp": "CAR"
+   "pts": 3.02,
+   "opp": "DET"
   }
  ],
- "136799-172715": [
+ "137125-200653": [
+  {
+   "week": 9,
+   "pts": 2.32,
+   "opp": "BUF"
+  }
+ ],
+ "137125-129291": [
+  {
+   "week": 7,
+   "pts": 5,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 21.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 3.6,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 4.2,
+   "opp": "IND"
+  }
+ ],
+ "137125-172715": [
   {
    "week": 1,
    "pts": 3.5,
@@ -2865,7 +2720,7 @@ window.MFFL_HISTORY = {
    "opp": "KC"
   }
  ],
- "136799-158412": [
+ "137125-158412": [
   {
    "week": 1,
    "pts": 4,
@@ -2915,478 +2770,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 5.1,
    "opp": "BUF"
-  }
- ],
- "136799-89956": [
-  {
-   "week": 1,
-   "pts": 11.3,
-   "opp": "DET"
   },
   {
-   "week": 2,
-   "pts": 6.1,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 8,
-   "opp": "LV"
-  },
-  {
-   "week": 10,
-   "pts": 4.9,
-   "opp": "CAR"
-  }
- ],
- "136799-167031": [
-  {
-   "week": 1,
-   "pts": 32.7,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 8.3,
-   "opp": "LAC"
-  },
-  {
-   "week": 3,
-   "pts": 10.8,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 15.6,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 9.2,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 13.8,
-   "opp": "BUF"
-  },
-  {
-   "week": 7,
-   "pts": 17.6,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 8.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": 4.5,
-   "opp": "SF"
-  },
-  {
-   "week": 10,
-   "pts": 8.4,
-   "opp": "SEA"
-  }
- ],
- "136799-183756": [
-  {
-   "week": 1,
-   "pts": 5.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 2,
-   "pts": 4.2,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 8.8,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 20,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 16,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 7.4,
-   "opp": "CLE"
-  }
- ],
- "136799-86518": [
-  {
-   "week": 1,
-   "pts": 7,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 5.3,
-   "opp": "DET"
-  },
-  {
-   "week": 3,
-   "pts": 1.1,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 9.7,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 9.5,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 11.4,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
+   "week": 11,
    "pts": 8.9,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 7.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 6.5,
-   "opp": "NYJ"
+   "opp": "LAC"
   }
  ],
- "136799-129546": [
-  {
-   "week": 1,
-   "pts": 3.5,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 10.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 7.5,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 2.6,
-   "opp": "DEN"
-  },
-  {
-   "week": 8,
-   "pts": 4.6,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 2.1,
-   "opp": "HOU"
-  },
-  {
-   "week": 10,
-   "pts": 11.1,
-   "opp": "BAL"
-  }
- ],
- "136799-144102": [
-  {
-   "week": 1,
-   "pts": 22.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 6.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 3.1,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 30.5,
-   "opp": "NYJ"
-  }
- ],
- "136799-183380": [
-  {
-   "week": 1,
-   "pts": 1,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 4.4,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 4.2,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 6.8,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 3.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 7,
-   "pts": 16.2,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 8.7,
-   "opp": "WSH"
-  },
-  {
-   "week": 9,
-   "pts": 9.1,
-   "opp": "NYG"
-  }
- ],
- "136799-174215": [
-  {
-   "week": 1,
-   "pts": 8.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 16.5,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 5.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 12.3,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 4.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 5.9,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 3.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 6,
-   "opp": "HOU"
-  },
-  {
-   "week": 10,
-   "pts": 20,
-   "opp": "BAL"
-  }
- ],
- "136799-110974": [
-  {
-   "week": 1,
-   "pts": 4.8,
-   "opp": "LV"
-  },
-  {
-   "week": 2,
-   "pts": 6.7,
-   "opp": "SF"
-  },
-  {
-   "week": 3,
-   "pts": 8.6,
-   "opp": "KC"
-  },
-  {
-   "week": 4,
-   "pts": 9.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 5,
-   "pts": 9.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 7,
-   "pts": 5,
-   "opp": "NYJ"
-  },
-  {
-   "week": 8,
-   "pts": 12.5,
-   "opp": "NE"
-  },
-  {
-   "week": 9,
-   "pts": 3.1,
-   "opp": "DET"
-  },
-  {
-   "week": 10,
-   "pts": 11.86,
-   "opp": "IND"
-  }
- ],
- "136799-72297": [
-  {
-   "week": 1,
-   "pts": 3.1,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 5.4,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 6.4,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 11.6,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 11.6,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 4.4,
-   "opp": "CIN"
-  }
- ],
- "136799-166588": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 0.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 5.1,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 8.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 2.9,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 15.5,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 16.4,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 8,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 7.4,
-   "opp": "TB"
-  }
- ],
- "136799-155551": [
-  {
-   "week": 1,
-   "pts": 6.2,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 1.6,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
-   "pts": 13.4,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 6.2,
-   "opp": "SF"
-  },
-  {
-   "week": 9,
-   "pts": 13.6,
-   "opp": "CAR"
-  }
- ],
- "136799-63634": [
+ "137125-63634": [
   {
    "week": 1,
    "pts": 11.2,
@@ -3431,56 +2822,562 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 4.9,
    "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 10.5,
+   "opp": "NYG"
   }
  ],
- "136799-145558": [
+ "137125-40442": [
   {
    "week": 1,
-   "pts": 18.5,
-   "opp": "HOU"
+   "pts": 10,
+   "opp": "GB"
   },
   {
    "week": 2,
-   "pts": 19,
-   "opp": "DET"
+   "pts": 13.5,
+   "opp": "CHI"
   },
   {
    "week": 3,
-   "pts": 2.8,
-   "opp": "LAC"
+   "pts": 11.7,
+   "opp": "TB"
   },
   {
    "week": 4,
-   "pts": 1.2,
-   "opp": "NE"
+   "pts": 14.8,
+   "opp": "MIA"
   },
   {
    "week": 5,
-   "pts": 3.2,
-   "opp": "LAR"
+   "pts": 20.2,
+   "opp": "NO"
   },
   {
-   "week": 6,
-   "pts": 7.3,
-   "opp": "LV"
+   "week": 7,
+   "pts": 3.1,
+   "opp": "IND"
   },
   {
    "week": 8,
-   "pts": 16.6,
-   "opp": "BAL"
+   "pts": 5,
+   "opp": "DET"
   },
   {
    "week": 9,
-   "pts": 4.3,
-   "opp": "MIN"
+   "pts": 2.6,
+   "opp": "BUF"
   },
   {
    "week": 10,
-   "pts": 6.8,
+   "pts": 12,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 10.8,
+   "opp": "SF"
+  }
+ ],
+ "137125-172647": [
+  {
+   "week": 1,
+   "pts": 11.9,
+   "opp": "LV"
+  },
+  {
+   "week": 2,
+   "pts": 2.9,
+   "opp": "SF"
+  },
+  {
+   "week": 7,
+   "pts": 20,
+   "opp": "NYJ"
+  },
+  {
+   "week": 8,
+   "pts": 6.3,
+   "opp": "NE"
+  },
+  {
+   "week": 9,
+   "pts": 10,
+   "opp": "DET"
+  },
+  {
+   "week": 10,
+   "pts": 8.6,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 4,
+   "opp": "BUF"
+  }
+ ],
+ "137125-89956": [
+  {
+   "week": 1,
+   "pts": 11.3,
+   "opp": "DET"
+  },
+  {
+   "week": 2,
+   "pts": 6.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 3,
+   "pts": 8,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 4.9,
+   "opp": "CAR"
+  },
+  {
+   "week": 11,
+   "pts": 7.6,
+   "opp": "CHI"
+  }
+ ],
+ "137125-129210": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 3.1,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 17.5,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 7.1,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 3.3,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 10.1,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 3.8,
+   "opp": "BUF"
+  }
+ ],
+ "137125-166112": [
+  {
+   "week": 2,
+   "pts": 0.7,
+   "opp": "SF"
+  },
+  {
+   "week": 3,
+   "pts": 13,
+   "opp": "KC"
+  },
+  {
+   "week": 4,
+   "pts": 20,
+   "opp": "MIN"
+  },
+  {
+   "week": 5,
+   "pts": 14.8,
+   "opp": "CIN"
+  },
+  {
+   "week": 7,
+   "pts": 19.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 8,
+   "pts": 6.9,
+   "opp": "NE"
+  },
+  {
+   "week": 9,
+   "pts": 6.9,
+   "opp": "DET"
+  },
+  {
+   "week": 10,
+   "pts": 13.5,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 7.7,
+   "opp": "BUF"
+  }
+ ],
+ "137125-117178": [
+  {
+   "week": 1,
+   "pts": 12.1,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 5.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 4.8,
+   "opp": "SEA"
+  },
+  {
+   "week": 4,
+   "pts": 6,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 14.2,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 14.7,
+   "opp": "CIN"
+  }
+ ],
+ "137125-183756": [
+  {
+   "week": 1,
+   "pts": 5.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 4.2,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 8.8,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 20,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 1.1,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 16,
+   "opp": "IND"
+  },
+  {
+   "week": 7,
+   "pts": 7.4,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 12.8,
+   "opp": "DAL"
+  }
+ ],
+ "137125-129546": [
+  {
+   "week": 1,
+   "pts": 3.5,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 5.8,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 10.6,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 7.5,
+   "opp": "SEA"
+  },
+  {
+   "week": 5,
+   "pts": 2.6,
+   "opp": "DEN"
+  },
+  {
+   "week": 8,
+   "pts": 4.6,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": 2.1,
+   "opp": "HOU"
+  },
+  {
+   "week": 10,
+   "pts": 11.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 3.8,
    "opp": "NYJ"
   }
  ],
- "136799-151789": [
+ "137125-174215": [
+  {
+   "week": 1,
+   "pts": 8.3,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 16.5,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 5.6,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 12.3,
+   "opp": "SEA"
+  },
+  {
+   "week": 5,
+   "pts": 4.4,
+   "opp": "DEN"
+  },
+  {
+   "week": 6,
+   "pts": 5.9,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 3.7,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": 6,
+   "opp": "HOU"
+  },
+  {
+   "week": 10,
+   "pts": 20,
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 9.8,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-86312": [
+  {
+   "week": 1,
+   "pts": 8.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 1.6,
+   "opp": "KC"
+  }
+ ],
+ "137125-110974": [
+  {
+   "week": 1,
+   "pts": 4.8,
+   "opp": "LV"
+  },
+  {
+   "week": 2,
+   "pts": 6.7,
+   "opp": "SF"
+  },
+  {
+   "week": 3,
+   "pts": 8.6,
+   "opp": "KC"
+  },
+  {
+   "week": 4,
+   "pts": 9.5,
+   "opp": "MIN"
+  },
+  {
+   "week": 5,
+   "pts": 9.1,
+   "opp": "CIN"
+  },
+  {
+   "week": 7,
+   "pts": 5,
+   "opp": "NYJ"
+  },
+  {
+   "week": 8,
+   "pts": 12.5,
+   "opp": "NE"
+  },
+  {
+   "week": 9,
+   "pts": 3.1,
+   "opp": "DET"
+  },
+  {
+   "week": 10,
+   "pts": 11.86,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 5.6,
+   "opp": "BUF"
+  }
+ ],
+ "137125-29253": [
+  {
+   "week": 10,
+   "pts": 8.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 5.3,
+   "opp": "MIN"
+  }
+ ],
+ "137125-167881": [
+  {
+   "week": 1,
+   "pts": 7.5,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 2.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 3,
+   "pts": 1.7,
+   "opp": "ARI"
+  },
+  {
+   "week": 4,
+   "pts": 1.3,
+   "opp": "DEN"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 4.2,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 10.4,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 7,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 13.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 2,
+   "opp": "MIN"
+  }
+ ],
+ "137125-151740": [
+  {
+   "week": 1,
+   "pts": 1.1,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 3.2,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 4.4,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 5.7,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 1.3,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 3.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 11.5,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 2.5,
+   "opp": "DET"
+  }
+ ],
+ "137125-151789": [
   {
    "week": 1,
    "pts": 7.5,
@@ -3510,348 +3407,83 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 7.4,
    "opp": "BUF"
-  }
- ],
- "136799-90428": [
+  },
   {
-   "week": 1,
-   "pts": 8,
+   "week": 11,
+   "pts": 4,
    "opp": "LAC"
-  },
-  {
-   "week": 2,
-   "pts": 2.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 3,
-   "pts": 2.9,
-   "opp": "SF"
-  },
-  {
-   "week": 4,
-   "pts": 11.9,
-   "opp": "NYG"
-  },
-  {
-   "week": 5,
-   "pts": 2.6,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 5.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 7,
-   "pts": 6.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 8,
-   "pts": 36.6,
-   "opp": "DAL"
-  },
-  {
-   "week": 9,
-   "pts": 5.6,
-   "opp": "SEA"
-  },
-  {
-   "week": 10,
-   "pts": 1.4,
-   "opp": "LAR"
   }
  ],
- "136799-154008": [
+ "137125-166323": [
   {
    "week": 1,
-   "pts": 4.1,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 0.7,
-   "opp": "LAC"
-  },
-  {
-   "week": 3,
-   "pts": 11.4,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 2.2,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 1.5,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 5.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 7,
-   "pts": 2.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 8.3,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": -0.3,
-   "opp": "SF"
-  },
-  {
-   "week": 10,
-   "pts": 3.2,
-   "opp": "SEA"
-  }
- ],
- "136799-167636": [
-  {
-   "week": 2,
-   "pts": 5.5,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 1.9,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 2.1,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 11.4,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 20.2,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 4.2,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 5.5,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 1,
-   "opp": "CIN"
-  }
- ],
- "136799-42104": [
-  {
-   "week": 2,
-   "pts": 4.7,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 4.6,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": 20.3,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
-   "pts": 1.6,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 13.9,
-   "opp": "NYG"
-  },
-  {
-   "week": 7,
-   "pts": 9.7,
-   "opp": "PIT"
-  },
-  {
-   "week": 9,
-   "pts": 6.4,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 14.9,
-   "opp": "CAR"
-  }
- ],
- "136799-105646": [
-  {
-   "week": 1,
-   "pts": 7.3,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 14.2,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 5.9,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 18.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 17.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 2.3,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 5,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 5.2,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 2.1,
-   "opp": "NE"
-  }
- ],
- "136799-201233": [
-  {
-   "week": 1,
-   "pts": 3.2,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 4.8,
-   "opp": "WSH"
-  },
-  {
-   "week": 3,
-   "pts": 3.2,
-   "opp": "BAL"
-  },
-  {
-   "week": 4,
-   "pts": 5.7,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 10.5,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 13.5,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 9,
+   "pts": 14.4,
    "opp": "PHI"
   },
   {
-   "week": 8,
-   "pts": 11.6,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 6.3,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 16.1,
-   "opp": "SF"
-  }
- ],
- "136799-85845": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "IND"
-  },
-  {
    "week": 2,
-   "pts": 18.3,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 4.7,
+   "pts": 3.9,
    "opp": "DAL"
   },
   {
+   "week": 3,
+   "pts": 2.5,
+   "opp": "SEA"
+  },
+  {
    "week": 4,
-   "pts": 5.6,
-   "opp": "TEN"
+   "pts": 3.6,
+   "opp": "IND"
   },
   {
    "week": 5,
-   "pts": 8.7,
-   "opp": "ATL"
+   "pts": 4.6,
+   "opp": "NYG"
   },
   {
    "week": 6,
-   "pts": 0,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4.3,
-   "opp": "CIN"
+   "pts": 6.5,
+   "opp": "SF"
   },
   {
    "week": 8,
-   "pts": 2.7,
-   "opp": "BUF"
+   "pts": 7.9,
+   "opp": "PHI"
   },
   {
    "week": 9,
-   "pts": 1.1,
-   "opp": "JAX"
+   "pts": 4,
+   "opp": "LAR"
   },
   {
    "week": 10,
-   "pts": 5.7,
-   "opp": "LAC"
+   "pts": 11.2,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 19.7,
+   "opp": "CIN"
   }
  ],
- "136799-71521": [
+ "137125-172675": [
+  {
+   "week": 9,
+   "pts": 3,
+   "opp": "CLE"
+  },
+  {
+   "week": 10,
+   "pts": 13.5,
+   "opp": "CAR"
+  },
+  {
+   "week": 11,
+   "pts": 1.5,
+   "opp": "CHI"
+  }
+ ],
+ "137125-71521": [
   {
    "week": 1,
    "pts": 3.3,
@@ -3901,394 +3533,679 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 6.3,
    "opp": "LAC"
-  }
- ],
- "136799-110457": [
-  {
-   "week": 1,
-   "pts": 14.3,
-   "opp": "WSH"
   },
   {
-   "week": 2,
-   "pts": 9.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 4.2,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 3.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 8.8,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 3.4,
+   "week": 11,
+   "pts": 15.6,
    "opp": "CAR"
   }
  ],
- "136799-33076": [
+ "137125-119653": [
   {
    "week": 1,
-   "pts": 8.6,
-   "opp": "DEN"
+   "pts": 2.6,
+   "opp": "BUF"
   },
   {
    "week": 2,
-   "pts": 23.6,
+   "pts": 5.2,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 3.1,
    "opp": "IND"
   },
   {
-   "week": 3,
-   "pts": 12.9,
-   "opp": "MIA"
-  },
-  {
    "week": 4,
-   "pts": 2.5,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 7.3,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 6.4,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 9.2,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 15.3,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 4,
-   "opp": "ATL"
-  }
- ],
- "136799-157150": [
-  {
-   "week": 9,
-   "pts": 14.2,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 1.6,
-   "opp": "CAR"
-  }
- ],
- "136799-226859": [
-  {
-   "week": 2,
-   "pts": 9.6,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 16.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 14.1,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 1.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 7,
-   "pts": 2.2,
+   "pts": 5.1,
    "opp": "DAL"
   },
   {
-   "week": 8,
-   "pts": 2.9,
-   "opp": "WSH"
+   "week": 5,
+   "pts": 5.3,
+   "opp": "TEN"
   },
   {
-   "week": 9,
-   "pts": 3.5,
-   "opp": "NYG"
-  }
- ],
- "136799-172647": [
-  {
-   "week": 1,
-   "pts": 11.9,
-   "opp": "LV"
-  },
-  {
-   "week": 2,
-   "pts": 2.9,
-   "opp": "SF"
+   "week": 6,
+   "pts": 2.6,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 20,
-   "opp": "NYJ"
-  },
-  {
-   "week": 8,
-   "pts": 6.3,
-   "opp": "NE"
+   "pts": 3,
+   "opp": "NYG"
   },
   {
    "week": 9,
-   "pts": 10,
-   "opp": "DET"
+   "pts": 29.5,
+   "opp": "LAC"
   },
   {
    "week": 10,
-   "pts": 8.6,
+   "pts": 0,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 11,
    "opp": "IND"
   }
  ],
- "136799-128633": [
+ "137125-111876": [
+  {
+   "week": 1,
+   "pts": 4.5,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 1.4,
+   "opp": "PIT"
+  },
   {
    "week": 3,
+   "pts": 4.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
    "pts": 2.5,
    "opp": "BUF"
   },
   {
+   "week": 5,
+   "pts": 20.5,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 16.1,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 3.8,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 15.1,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 15.7,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 0.9,
+   "opp": "DET"
+  }
+ ],
+ "137125-90428": [
+  {
+   "week": 1,
+   "pts": 8,
+   "opp": "LAC"
+  },
+  {
+   "week": 2,
+   "pts": 2.9,
+   "opp": "SEA"
+  },
+  {
+   "week": 3,
+   "pts": 2.9,
+   "opp": "SF"
+  },
+  {
    "week": 4,
+   "pts": 11.9,
+   "opp": "NYG"
+  },
+  {
+   "week": 5,
+   "pts": 2.6,
+   "opp": "DET"
+  },
+  {
+   "week": 6,
+   "pts": 5.3,
+   "opp": "LAR"
+  },
+  {
+   "week": 7,
+   "pts": 6.4,
+   "opp": "DEN"
+  },
+  {
+   "week": 8,
+   "pts": 36.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 9,
+   "pts": 5.6,
+   "opp": "SEA"
+  },
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 2.3,
+   "opp": "KC"
+  }
+ ],
+ "137125-137902": [
+  {
+   "week": 1,
+   "pts": 3.7,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 11.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
    "pts": 10.6,
    "opp": "SEA"
   },
   {
    "week": 5,
-   "pts": 12.1,
-   "opp": "DEN"
+   "pts": 2.5,
+   "opp": "NYG"
   },
   {
    "week": 6,
-   "pts": 5.5,
-   "opp": "KC"
+   "pts": 13.7,
+   "opp": "SF"
   },
   {
    "week": 8,
+   "pts": 13,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 5.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 5.7,
+   "opp": "NYG"
+  }
+ ],
+ "137125-85845": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "IND"
+  },
+  {
+   "week": 2,
+   "pts": 18.3,
+   "opp": "NO"
+  },
+  {
+   "week": 3,
+   "pts": 4.7,
+   "opp": "DAL"
+  },
+  {
+   "week": 4,
+   "pts": 5.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 5,
+   "pts": 8.7,
+   "opp": "ATL"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "CLE"
+  },
+  {
+   "week": 7,
+   "pts": 4.3,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
+   "pts": 2.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 9,
+   "pts": 1.1,
+   "opp": "JAX"
+  },
+  {
+   "week": 10,
+   "pts": 5.7,
+   "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 13.7,
+   "opp": "CAR"
+  }
+ ],
+ "137125-56265": [
+  {
+   "week": 1,
+   "pts": 16.3,
+   "opp": "TB"
+  },
+  {
+   "week": 3,
+   "pts": 11.2,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 11.5,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 6.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 15.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 2.1,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 10.2,
+   "opp": "WSH"
+  }
+ ],
+ "137125-119788": [
+  {
+   "week": 1,
+   "pts": 4.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 5.2,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 7,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 6.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 8.5,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 2,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 10.4,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 10.4,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 13.8,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 2.3,
+   "opp": "IND"
+  }
+ ],
+ "137125-71706": [
+  {
+   "week": 1,
+   "pts": 11.6,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 4.4,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 2.1,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 21.4,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.2,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 11.5,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 13.8,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 5.3,
+   "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 8.5,
+   "opp": "SF"
+  }
+ ],
+ "137125-156740": [
+  {
+   "week": 1,
+   "pts": 3.5,
+   "opp": "DAL"
+  },
+  {
+   "week": 2,
    "pts": 4,
    "opp": "LAR"
   },
   {
-   "week": 9,
-   "pts": 4.1,
-   "opp": "HOU"
-  },
-  {
-   "week": 10,
-   "pts": 2.4,
-   "opp": "BAL"
-  }
- ],
- "136799-87787": [
-  {
-   "week": 1,
-   "pts": 3.6,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 3.6,
-   "opp": "JAX"
-  },
-  {
    "week": 3,
-   "pts": 5.8,
-   "opp": "LAR"
+   "pts": 2.9,
+   "opp": "TEN"
   },
   {
    "week": 4,
-   "pts": 6.2,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 14.4,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 12.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 7,
-   "pts": 8.3,
+   "pts": 12.2,
    "opp": "ARI"
   },
   {
-   "week": 8,
-   "pts": 1.3,
-   "opp": "KC"
+   "week": 5,
+   "pts": 3,
+   "opp": "WSH"
+  },
+  {
+   "week": 6,
+   "pts": 2.9,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 10.3,
+   "opp": "HOU"
+  },
+  {
+   "week": 9,
+   "pts": 5.5,
+   "opp": "PHI"
+  },
+  {
+   "week": 10,
+   "pts": 7.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 3.5,
+   "opp": "JAX"
+  }
+ ],
+ "137125-103511": [
+  {
+   "week": 1,
+   "pts": 16.4,
+   "opp": "DET"
+  },
+  {
+   "week": 2,
+   "pts": 8.9,
+   "opp": "BAL"
+  },
+  {
+   "week": 3,
+   "pts": 5.4,
+   "opp": "LV"
+  },
+  {
+   "week": 4,
+   "pts": 14.4,
+   "opp": "ATL"
+  },
+  {
+   "week": 5,
+   "pts": 4.6,
+   "opp": "MIN"
+  },
+  {
+   "week": 6,
+   "pts": 5.7,
+   "opp": "NYG"
+  },
+  {
+   "week": 7,
+   "pts": 13.9,
+   "opp": "PIT"
   },
   {
    "week": 9,
    "pts": 2.7,
-   "opp": "CAR"
-  }
- ],
- "136799-70422": [
-  {
-   "week": 1,
-   "pts": 12.4,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 6.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 18,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 1.6,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 1.9,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 2.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 6.3,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 5.2,
-   "opp": "TB"
-  }
- ],
- "136799-201547": [
-  {
-   "week": 1,
-   "pts": 32.8,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 10.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 2.8,
    "opp": "CLE"
   },
   {
-   "week": 6,
-   "pts": 12.7,
-   "opp": "PHI"
+   "week": 10,
+   "pts": 2.4,
+   "opp": "CAR"
   },
   {
-   "week": 7,
-   "pts": 1.4,
-   "opp": "TB"
-  },
+   "week": 11,
+   "pts": 11.1,
+   "opp": "CHI"
+  }
+ ],
+ "137125-61593": [
   {
-   "week": 8,
-   "pts": 8.6,
+   "week": 1,
+   "pts": 0,
    "opp": "GB"
   },
   {
-   "week": 9,
-   "pts": 4.6,
-   "opp": "DEN"
-  },
-  {
-   "week": 10,
-   "pts": 0.3,
-   "opp": "NO"
-  }
- ],
- "136799-103619": [
-  {
-   "week": 1,
-   "pts": 3.7,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 23.4,
-   "opp": "LAC"
-  },
-  {
    "week": 3,
-   "pts": 6.3,
-   "opp": "NO"
+   "pts": 0.6,
+   "opp": "TB"
   },
   {
    "week": 4,
-   "pts": 6.4,
-   "opp": "KC"
+   "pts": 1.3,
+   "opp": "MIA"
   },
   {
    "week": 5,
-   "pts": 5.5,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 24.2,
-   "opp": "BUF"
+   "pts": 0,
+   "opp": "NO"
   },
   {
    "week": 7,
-   "pts": 21.8,
-   "opp": "LAR"
+   "pts": 4.4,
+   "opp": "IND"
   },
   {
    "week": 8,
-   "pts": 0,
-   "opp": "NYJ"
+   "pts": 2.1,
+   "opp": "DET"
+  },
+  {
+   "week": 11,
+   "pts": 3.5,
+   "opp": "SF"
+  }
+ ],
+ "137125-169381": [
+  {
+   "week": 1,
+   "pts": 6.8,
+   "opp": "NE"
+  },
+  {
+   "week": 2,
+   "pts": 4.5,
+   "opp": "ARI"
+  },
+  {
+   "week": 3,
+   "pts": 0.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 8,
+   "pts": 4.7,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 7.5,
-   "opp": "SF"
+   "pts": 9.8,
+   "opp": "ARI"
   },
   {
    "week": 10,
-   "pts": 1.4,
-   "opp": "SEA"
+   "pts": 10.9,
+   "opp": "LV"
   }
  ],
- "136799-52436": [
+ "137125-104012": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 4,
+   "pts": 4.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 8,
+   "pts": 0.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 12.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 3.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 4,
+   "opp": "HOU"
+  }
+ ],
+ "137125-103252": [
+  {
+   "week": 2,
+   "pts": 2.4,
+   "opp": "SEA"
+  },
+  {
+   "week": 5,
+   "pts": 0.8,
+   "opp": "DET"
+  },
+  {
+   "week": 6,
+   "pts": 10.8,
+   "opp": "LAR"
+  },
+  {
+   "week": 7,
+   "pts": 7.8,
+   "opp": "DEN"
+  },
+  {
+   "week": 8,
+   "pts": 0.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 1.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 5,
+   "opp": "KC"
+  }
+ ],
+ "137125-152651": [
+  {
+   "week": 6,
+   "pts": 4.9,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 3,
+   "opp": "LAC"
+  }
+ ],
+ "137125-52436": [
   {
    "week": 1,
    "pts": 6.9,
@@ -4338,56 +4255,165 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 12.2,
    "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 2.4,
+   "opp": "CAR"
   }
  ],
- "136799-158974": [
+ "137125-86229": [
   {
    "week": 1,
-   "pts": 3.3,
-   "opp": "DEN"
+   "pts": 2.4,
+   "opp": "PIT"
   },
   {
    "week": 2,
-   "pts": 11,
-   "opp": "IND"
+   "pts": 2.1,
+   "opp": "CAR"
   },
   {
    "week": 3,
-   "pts": 3,
-   "opp": "MIA"
+   "pts": 1.6,
+   "opp": "GB"
   },
   {
    "week": 4,
-   "pts": 9,
-   "opp": "LV"
+   "pts": 12.4,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 6.4,
+   "opp": "BAL"
   },
   {
    "week": 6,
-   "pts": 10.8,
-   "opp": "LAC"
+   "pts": 16.2,
+   "opp": "CHI"
   },
   {
    "week": 7,
-   "pts": 2.6,
-   "opp": "SEA"
+   "pts": 1.1,
+   "opp": "SF"
   },
   {
    "week": 8,
-   "pts": 2.8,
-   "opp": "DEN"
+   "pts": 10.5,
+   "opp": "TB"
   },
   {
    "week": 9,
-   "pts": 7.8,
-   "opp": "NYJ"
+   "pts": 2.6,
+   "opp": "CIN"
   },
   {
    "week": 10,
-   "pts": 0,
-   "opp": "ATL"
+   "pts": 7.8,
+   "opp": "KC"
   }
  ],
- "136799-71032": [
+ "137125-52451": [
+  {
+   "week": 1,
+   "pts": 6.5,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 2.7,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 1.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 0.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 14.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 7.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 2.4,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 4.3,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 11.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 11.7,
+   "opp": "WSH"
+  }
+ ],
+ "137125-137530": [
+  {
+   "week": 1,
+   "pts": 8.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 11.4,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 10.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 6.6,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 17.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 8,
+   "pts": 3.8,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 6.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 2.7,
+   "opp": "HOU"
+  }
+ ],
+ "137125-71032": [
   {
    "week": 8,
    "pts": 2.4,
@@ -4404,484 +4430,274 @@ window.MFFL_HISTORY = {
    "opp": "LAR"
   }
  ],
- "136799-90912": [
-  {
-   "week": 1,
-   "pts": 2.3,
-   "opp": "CIN"
-  },
+ "137125-110259": [
   {
    "week": 2,
-   "pts": 3,
-   "opp": "CLE"
+   "pts": 0,
+   "opp": "DAL"
   },
   {
    "week": 3,
-   "pts": 2,
-   "opp": "MIN"
+   "pts": 8.3,
+   "opp": "SEA"
   },
   {
    "week": 4,
-   "pts": 9.7,
+   "pts": 11.2,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 3.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 8.6,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 9.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 10,
+   "pts": 3.7,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 4,
+   "opp": "CIN"
+  }
+ ],
+ "137125-134014": [
+  {
+   "week": 3,
+   "pts": 7,
+   "opp": "ARI"
+  },
+  {
+   "week": 6,
+   "pts": 2.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 7.1,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 16.6,
+   "opp": "LV"
+  },
+  {
+   "week": 10,
+   "pts": 5.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 11,
+   "pts": 2.4,
+   "opp": "MIN"
+  }
+ ],
+ "137125-86080": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 2,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 1,
    "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 6.2,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 12.7,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 20.5,
+   "opp": "CHI"
+  },
+  {
+   "week": 7,
+   "pts": 10.7,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 1.6,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 3.8,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 5,
+   "opp": "KC"
+  }
+ ],
+ "137125-129112": [
+  {
+   "week": 1,
+   "pts": -0.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 3,
+   "pts": -1.2,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 2,
+   "opp": "BAL"
   },
   {
    "week": 5,
    "pts": 4.3,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 2.9,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 8.8,
-   "opp": "CAR"
-  },
-  {
-   "week": 8,
-   "pts": 17,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 9.1,
-   "opp": "CHI"
-  }
- ],
- "136799-103252": [
-  {
-   "week": 2,
-   "pts": 2.4,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 0.8,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 10.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 7,
-   "pts": 7.8,
-   "opp": "DEN"
-  },
-  {
-   "week": 8,
-   "pts": 0.3,
-   "opp": "DAL"
-  },
-  {
-   "week": 10,
-   "pts": 1.9,
-   "opp": "LAR"
-  }
- ],
- "136799-156740": [
-  {
-   "week": 1,
-   "pts": 3.5,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 4,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 2.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 12.2,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 3,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 2.9,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 10.3,
    "opp": "HOU"
   },
   {
-   "week": 9,
-   "pts": 5.5,
-   "opp": "PHI"
-  },
-  {
-   "week": 10,
-   "pts": 7.7,
-   "opp": "WSH"
-  }
- ],
- "136799-83074": [
-  {
-   "week": 1,
-   "pts": 21.7,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 0.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 6.8,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 9.1,
-   "opp": "CAR"
-  },
-  {
    "week": 7,
-   "pts": 7.3,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 5.2,
-   "opp": "WSH"
-  },
-  {
-   "week": 9,
-   "pts": 7.5,
-   "opp": "NYG"
-  }
- ],
- "136799-25011": [
-  {
-   "week": 1,
-   "pts": 3.8,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 16.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 7.6,
+   "pts": 0,
    "opp": "CLE"
   },
   {
-   "week": 4,
-   "pts": 5.1,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 11.5,
-   "opp": "TB"
-  },
-  {
    "week": 8,
-   "pts": 1.6,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 19,
-   "opp": "DEN"
+   "pts": 15.6,
+   "opp": "CIN"
   },
   {
    "week": 10,
-   "pts": 3.4,
-   "opp": "NO"
+   "pts": 3.1,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 10.3,
+   "opp": "DAL"
   }
  ],
- "136799-63050": [
-  {
-   "week": 3,
-   "pts": 7,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 2.2,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 9.2,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 3.7,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 3.8,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 4.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 0.9,
-   "opp": "NYJ"
-  }
- ],
- "136799-157467": [
+ "137125-79970": [
   {
    "week": 1,
-   "pts": 0.6,
-   "opp": "HOU"
+   "pts": 4.5,
+   "opp": "NE"
   },
   {
    "week": 2,
-   "pts": 9.3,
-   "opp": "DET"
-  },
-  {
-   "week": 3,
-   "pts": 4.2,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 23.6,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 7.2,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 13.9,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 0.9,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 3.2,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 1.6,
-   "opp": "NYJ"
-  }
- ],
- "136799-120639": [
-  {
-   "week": 1,
-   "pts": 2.7,
+   "pts": 3,
    "opp": "ARI"
   },
   {
-   "week": 2,
-   "pts": 1.9,
-   "opp": "LV"
-  },
-  {
    "week": 3,
-   "pts": 5.5,
-   "opp": "BUF"
+   "pts": 12.6,
+   "opp": "WSH"
   },
   {
    "week": 4,
-   "pts": 4.5,
-   "opp": "SEA"
+   "pts": 1.8,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 2.5,
+   "opp": "SF"
   },
   {
    "week": 6,
-   "pts": 6.2,
+   "pts": 7.5,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 3,
    "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 5.7,
-   "opp": "LAR"
+   "pts": 7.2,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 12.8,
-   "opp": "HOU"
+   "pts": 4.7,
+   "opp": "ARI"
   },
   {
    "week": 10,
-   "pts": 1.1,
-   "opp": "BAL"
+   "pts": 9.9,
+   "opp": "LV"
   }
  ],
- "136799-172861": [
-  {
-   "week": 1,
-   "pts": 7.6,
-   "opp": "NYJ"
-  },
+ "137125-42104": [
   {
    "week": 2,
-   "pts": 7.9,
-   "opp": "PHI"
+   "pts": 4.7,
+   "opp": "BAL"
   },
   {
    "week": 3,
-   "pts": 1.6,
-   "opp": "NYG"
+   "pts": 4.6,
+   "opp": "LV"
   },
   {
    "week": 4,
-   "pts": 2.7,
-   "opp": "BAL"
+   "pts": 20.3,
+   "opp": "ATL"
   },
   {
    "week": 5,
-   "pts": 2.2,
-   "opp": "HOU"
+   "pts": 1.6,
+   "opp": "MIN"
   },
   {
    "week": 6,
-   "pts": 0.8,
-   "opp": "IND"
+   "pts": 13.9,
+   "opp": "NYG"
   },
   {
    "week": 7,
-   "pts": 5.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 4.9,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 10.4,
-   "opp": "JAX"
-  }
- ],
- "136799-87127": [
-  {
-   "week": 1,
-   "pts": 2.3,
-   "opp": "CLE"
-  },
-  {
-   "week": 2,
-   "pts": 1.3,
-   "opp": "DEN"
-  },
-  {
-   "week": 3,
    "pts": 9.7,
-   "opp": "NE"
-  },
-  {
-   "week": 4,
-   "pts": 9.5,
-   "opp": "CIN"
-  },
-  {
-   "week": 5,
-   "pts": 1.6,
-   "opp": "PHI"
-  },
-  {
-   "week": 6,
-   "pts": 5.5,
-   "opp": "HOU"
-  },
-  {
-   "week": 8,
-   "pts": 12.3,
-   "opp": "IND"
+   "opp": "PIT"
   },
   {
    "week": 9,
-   "pts": 10.2,
-   "opp": "BAL"
-  },
-  {
-   "week": 10,
-   "pts": 0.5,
-   "opp": "TEN"
-  }
- ],
- "136799-103539": [
-  {
-   "week": 1,
-   "pts": 6.3,
-   "opp": "NYJ"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 15.2,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 9.5,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 8.3,
-   "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 3.7,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 2.7,
+   "pts": 6.4,
    "opp": "CLE"
   },
   {
-   "week": 8,
-   "pts": 12.7,
-   "opp": "CIN"
+   "week": 10,
+   "pts": 14.9,
+   "opp": "CAR"
   },
   {
-   "week": 10,
-   "pts": 2.5,
-   "opp": "JAX"
+   "week": 11,
+   "pts": 6.7,
+   "opp": "CHI"
   }
  ],
- "136799-103587": [
+ "137125-103587": [
   {
    "week": 1,
    "pts": 9.3,
@@ -4926,31 +4742,276 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 7.9,
    "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 3.1,
+   "opp": "NYG"
   }
  ],
- "136799-151741": [
+ "137125-120085": [
   {
    "week": 1,
-   "pts": 9.8,
-   "opp": "MIA"
+   "pts": 0.5,
+   "opp": "BAL"
   },
   {
    "week": 2,
-   "pts": 3.5,
-   "opp": "LAC"
+   "pts": 0,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 1.4,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 4.3,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 2.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 2.7,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 5.3,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 2.9,
+   "opp": "JAX"
   },
   {
    "week": 9,
-   "pts": 1.4,
-   "opp": "SF"
+   "pts": 10.7,
+   "opp": "DAL"
   },
   {
    "week": 10,
-   "pts": 2,
-   "opp": "SEA"
+   "pts": 13.7,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 1.3,
+   "opp": "HOU"
   }
  ],
- "136799-151745": [
+ "137125-241064": [
+  {
+   "week": 1,
+   "pts": 3.3,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 4.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 11.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 2.2,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 4.9,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 7.3,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 9,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 0.7,
+   "opp": "WSH"
+  }
+ ],
+ "137125-102882": [
+  {
+   "week": 9,
+   "pts": 2.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 3.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 5.8,
+   "opp": "HOU"
+  }
+ ],
+ "137125-120639": [
+  {
+   "week": 1,
+   "pts": 2.7,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 1.9,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 5.5,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 4.5,
+   "opp": "SEA"
+  },
+  {
+   "week": 6,
+   "pts": 6.2,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 5.7,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": 12.8,
+   "opp": "HOU"
+  },
+  {
+   "week": 10,
+   "pts": 1.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 1.5,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-40845": [
+  {
+   "week": 1,
+   "pts": 4.1,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 5.5,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 8.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 11.9,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 12.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 10.6,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 4.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 5,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 3.2,
+   "opp": "DET"
+  }
+ ],
+ "137125-80001": [
+  {
+   "week": 4,
+   "pts": 4.5,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 1.9,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 1.7,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 5.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 4.4,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 7.2,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 5.4,
+   "opp": "CIN"
+  }
+ ],
+ "137125-151745": [
   {
    "week": 1,
    "pts": 5.5,
@@ -4990,414 +5051,125 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 4.4,
    "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 8.3,
+   "opp": "NYG"
   }
  ],
- "136799-86244": [
+ "137125-12540": [
   {
    "week": 1,
-   "pts": 13.1,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 5.4,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 4.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 9.2,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 19,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 2.1,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 3,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 10.6,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 10.5,
-   "opp": "CIN"
-  }
- ],
- "136799-55635": [
-  {
-   "week": 1,
-   "pts": 6.3,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 7.3,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 4,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 6.1,
+   "pts": 8,
    "opp": "GB"
   },
   {
-   "week": 5,
-   "pts": 5.5,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 5.7,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 4.7,
-   "opp": "CAR"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 3.8,
+   "week": 2,
+   "pts": 17,
    "opp": "CHI"
-  }
- ],
- "136799-138998": [
-  {
-   "week": 1,
-   "pts": 6.2,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 3.8,
-   "opp": "LAC"
   },
   {
    "week": 3,
-   "pts": 10.7,
-   "opp": "NO"
+   "pts": 17,
+   "opp": "TB"
   },
   {
    "week": 4,
-   "pts": 12.2,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 0.7,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 13,
-   "opp": "BUF"
-  },
-  {
-   "week": 7,
-   "pts": 4.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 7.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": 3.2,
-   "opp": "SF"
-  },
-  {
-   "week": 10,
-   "pts": 2.8,
-   "opp": "SEA"
-  }
- ],
- "136799-134023": [
-  {
-   "week": 1,
-   "pts": 0.9,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 4.4,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 12.2,
-   "opp": "BUF"
-  },
-  {
-   "week": 4,
-   "pts": 8.8,
-   "opp": "SEA"
-  },
-  {
-   "week": 5,
-   "pts": 4.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 6,
-   "pts": 0.4,
-   "opp": "KC"
-  },
-  {
-   "week": 8,
-   "pts": 3.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": 6.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 10,
-   "pts": 0.4,
-   "opp": "BAL"
-  }
- ],
- "136799-103511": [
-  {
-   "week": 1,
-   "pts": 16.4,
-   "opp": "DET"
-  },
-  {
-   "week": 2,
-   "pts": 8.9,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 5.4,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": 14.4,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
-   "pts": 4.6,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 5.7,
-   "opp": "NYG"
-  },
-  {
-   "week": 7,
-   "pts": 13.9,
-   "opp": "PIT"
-  },
-  {
-   "week": 9,
-   "pts": 2.7,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 2.4,
-   "opp": "CAR"
-  }
- ],
- "136799-12536": [
-  {
-   "week": 1,
-   "pts": 12,
-   "opp": "DEN"
-  },
-  {
-   "week": 2,
-   "pts": 1,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
    "pts": 8,
    "opp": "MIA"
   },
   {
-   "week": 4,
-   "pts": 4,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 15,
-   "opp": "LAC"
+   "week": 5,
+   "pts": 11,
+   "opp": "NO"
   },
   {
    "week": 7,
-   "pts": 3,
-   "opp": "SEA"
+   "pts": 10,
+   "opp": "IND"
   },
   {
    "week": 8,
-   "pts": 0,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 11,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 11,
-   "opp": "ATL"
-  }
- ],
- "136799-158968": [
-  {
-   "week": 1,
-   "pts": 6.7,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 1.6,
-   "opp": "ATL"
-  }
- ],
- "136799-92413": [
-  {
-   "week": 7,
-   "pts": 4.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 5.7,
-   "opp": "WSH"
-  },
-  {
-   "week": 9,
-   "pts": 4.1,
-   "opp": "NYG"
-  }
- ],
- "136799-64808": [
-  {
-   "week": 1,
-   "pts": 12.9,
+   "pts": 7,
    "opp": "DET"
   },
   {
-   "week": 2,
-   "pts": 8.6,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 19.3,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": 8.9,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
-   "pts": 3.6,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "NYG"
-  },
-  {
-   "week": 7,
-   "pts": 1.2,
-   "opp": "PIT"
-  },
-  {
    "week": 9,
-   "pts": 10.4,
-   "opp": "CLE"
+   "pts": 6,
+   "opp": "BUF"
   },
   {
    "week": 10,
-   "pts": 3.8,
-   "opp": "CAR"
+   "pts": 20,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "SF"
   }
  ],
- "136799-151903": [
+ "137125-170287": [
   {
    "week": 1,
-   "pts": 0.5,
-   "opp": "KC"
+   "pts": 0.9,
+   "opp": "NE"
   },
   {
    "week": 2,
-   "pts": 3.2,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
-   "pts": 2.6,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 2.6,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 0.7,
-   "opp": "SEA"
-  },
-  {
-   "week": 7,
-   "pts": 0,
+   "pts": 5.4,
    "opp": "ARI"
   },
   {
-   "week": 8,
-   "pts": 0.8,
+   "week": 3,
+   "pts": 2.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 11.8,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 3.3,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 9.3,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 1.1,
    "opp": "KC"
   },
   {
-   "week": 9,
-   "pts": 4.6,
-   "opp": "CAR"
+   "week": 10,
+   "pts": 1.3,
+   "opp": "LV"
   }
  ],
- "136799-112041": [
+ "137125-38264": [
+  {
+   "week": 1,
+   "pts": 12,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 4.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 3.7,
+   "opp": "LV"
+  }
+ ],
+ "137125-112041": [
   {
    "week": 1,
    "pts": 1.2,
@@ -5444,49 +5216,432 @@ window.MFFL_HISTORY = {
    "opp": "BUF"
   }
  ],
- "136799-89680": [
-  {
-   "week": 1,
-   "pts": 1.6,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 18.3,
-   "opp": "WSH"
-  },
+ "137125-128633": [
   {
    "week": 3,
-   "pts": 7.8,
-   "opp": "BAL"
+   "pts": 2.5,
+   "opp": "BUF"
   },
   {
    "week": 4,
-   "pts": 2.6,
-   "opp": "HOU"
+   "pts": 10.6,
+   "opp": "SEA"
   },
   {
    "week": 5,
-   "pts": 3.4,
-   "opp": "TB"
+   "pts": 12.1,
+   "opp": "DEN"
   },
   {
    "week": 6,
-   "pts": 2.3,
-   "opp": "GB"
+   "pts": 5.5,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 4,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": 4.1,
+   "opp": "HOU"
+  },
+  {
+   "week": 10,
+   "pts": 2.4,
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 6.4,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-131835": [
+  {
+   "week": 2,
+   "pts": 0.3,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 1.24,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 11.2,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 8.4,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "NYJ"
   },
   {
    "week": 7,
+   "pts": 2.1,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 4.2,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 13.4,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
    "pts": 0,
+   "opp": "DET"
+  }
+ ],
+ "137125-55042": [
+  {
+   "week": 1,
+   "pts": 5.5,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 23,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 4.5,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 1.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 4.5,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 5.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 7,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 5.2,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 7.6,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 1.6,
+   "opp": "IND"
+  }
+ ],
+ "137125-152593": [
+  {
+   "week": 10,
+   "pts": 1.4,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 7.7,
+   "opp": "KC"
+  }
+ ],
+ "137125-88297": [
+  {
+   "week": 1,
+   "pts": 2.6,
+   "opp": "PHI"
+  },
+  {
+   "week": 4,
+   "pts": 1.5,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 8,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 10.4,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 2.2,
    "opp": "PHI"
   },
   {
    "week": 9,
-   "pts": 9.1,
-   "opp": "IND"
+   "pts": 8.7,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 4.4,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 8.6,
+   "opp": "CIN"
   }
  ],
- "136799-158529": [
+ "137125-12541": [
+  {
+   "week": 1,
+   "pts": 6,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 21,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": -1,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 5,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 6,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 6,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 2,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 8,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": -1,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 2,
+   "opp": "DET"
+  }
+ ],
+ "137125-64808": [
+  {
+   "week": 1,
+   "pts": 12.9,
+   "opp": "DET"
+  },
+  {
+   "week": 2,
+   "pts": 8.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 3,
+   "pts": 19.3,
+   "opp": "LV"
+  },
+  {
+   "week": 4,
+   "pts": 8.9,
+   "opp": "ATL"
+  },
+  {
+   "week": 5,
+   "pts": 3.6,
+   "opp": "MIN"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "NYG"
+  },
+  {
+   "week": 7,
+   "pts": 1.2,
+   "opp": "PIT"
+  },
+  {
+   "week": 9,
+   "pts": 10.4,
+   "opp": "CLE"
+  },
+  {
+   "week": 10,
+   "pts": 3.8,
+   "opp": "CAR"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "CHI"
+  }
+ ],
+ "137125-72412": [
+  {
+   "week": 7,
+   "pts": 3.3,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 2,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 1.9,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 1.7,
+   "opp": "KC"
+  }
+ ],
+ "137125-137953": [
+  {
+   "week": 1,
+   "pts": 2.3,
+   "opp": "NE"
+  },
+  {
+   "week": 2,
+   "pts": 7.4,
+   "opp": "ARI"
+  },
+  {
+   "week": 3,
+   "pts": 9.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 1.7,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 3.5,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 3.1,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 6.6,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 3.3,
+   "opp": "CHI"
+  },
+  {
+   "week": 9,
+   "pts": 14,
+   "opp": "ARI"
+  },
+  {
+   "week": 10,
+   "pts": 3.4,
+   "opp": "LV"
+  }
+ ],
+ "137125-172861": [
+  {
+   "week": 1,
+   "pts": 7.6,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 7.9,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 1.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 2.7,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 2.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 0.8,
+   "opp": "IND"
+  },
+  {
+   "week": 7,
+   "pts": 5.9,
+   "opp": "CLE"
+  },
+  {
+   "week": 8,
+   "pts": 4.9,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 10.4,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 4.2,
+   "opp": "DAL"
+  }
+ ],
+ "137125-158529": [
   {
    "week": 1,
    "pts": 9,
@@ -5521,394 +5676,68 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 14.2,
    "opp": "TEN"
-  }
- ],
- "136799-129112": [
-  {
-   "week": 1,
-   "pts": -0.8,
-   "opp": "NYJ"
   },
   {
-   "week": 3,
-   "pts": -1.2,
+   "week": 11,
+   "pts": 5.9,
    "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 2,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 4.3,
-   "opp": "HOU"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 15.6,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 3.1,
-   "opp": "JAX"
   }
  ],
- "136799-12526": [
-  {
-   "week": 1,
-   "pts": 6,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "DET"
-  },
+ "137125-114530": [
   {
    "week": 3,
-   "pts": 5,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 4,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 2,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 1,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 14,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 15,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 12,
-   "opp": "NYJ"
-  }
- ],
- "136799-133477": [
-  {
-   "week": 1,
-   "pts": 2.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 1.2,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 8.2,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 10.2,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 2.2,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 10.5,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 6.9,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 10.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 1,
-   "opp": "CIN"
-  }
- ],
- "136799-190930": [
-  {
-   "week": 1,
-   "pts": 1.6,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 6,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": 4,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 1.8,
-   "opp": "BUF"
-  },
-  {
-   "week": 10,
-   "pts": 7.6,
-   "opp": "LAC"
-  }
- ],
- "136799-92890": [
-  {
-   "week": 1,
    "pts": 0,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 15.4,
-   "opp": "LAC"
-  },
-  {
-   "week": 3,
-   "pts": 6.9,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 6.6,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 5.4,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 7,
-   "pts": 0.9,
-   "opp": "LAR"
-  },
-  {
-   "week": 10,
-   "pts": 2.7,
-   "opp": "SEA"
-  }
- ],
- "136799-103187": [
-  {
-   "week": 4,
-   "pts": 2.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 6.5,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 13.5,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 1.3,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 3.3,
-   "opp": "SEA"
-  }
- ],
- "136799-86811": [
-  {
-   "week": 1,
-   "pts": 4.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 6.3,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 7.1,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 5.7,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 4,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 0.9,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "CAR"
-  },
-  {
-   "week": 9,
-   "pts": 4.5,
-   "opp": "CHI"
-  }
- ],
- "136799-85842": [
-  {
-   "week": 1,
-   "pts": 2.4,
-   "opp": "NYG"
-  },
-  {
-   "week": 3,
-   "pts": 2.4,
-   "opp": "BAL"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 5.5,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 2.1,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 5.1,
    "opp": "ARI"
   },
   {
-   "week": 9,
-   "pts": 3,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 3.1,
-   "opp": "SF"
-  }
- ],
- "136799-70603": [
-  {
-   "week": 1,
-   "pts": 11.8,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0.9,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 3.8,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 13,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 4.9,
-   "opp": "PHI"
-  },
-  {
-   "week": 10,
-   "pts": 0.3,
-   "opp": "WSH"
-  }
- ],
- "136799-169046": [
-  {
-   "week": 1,
-   "pts": 0,
+   "week": 4,
+   "pts": 0.2,
    "opp": "DEN"
   },
   {
-   "week": 4,
-   "pts": 0,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 3.7,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 2.3,
+   "week": 5,
+   "pts": -0.6,
    "opp": "SEA"
   },
   {
-   "week": 8,
-   "pts": 3,
-   "opp": "DEN"
+   "week": 6,
+   "pts": 0,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 6.3,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": 0,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 11.4,
-   "opp": "ATL"
+   "pts": 1,
+   "opp": "LV"
   }
  ],
- "136799-168054": [
+ "137125-175021": [
+  {
+   "week": 2,
+   "pts": 1.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 1.1,
+   "opp": "LV"
+  },
+  {
+   "week": 11,
+   "pts": 0.7,
+   "opp": "MIN"
+  }
+ ],
+ "137125-168054": [
   {
    "week": 1,
    "pts": 0.8,
@@ -5943,521 +5772,477 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 4,
    "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 3.5,
+   "opp": "LAC"
   }
  ],
- "136799-12547": [
+ "137125-152148": [
   {
    "week": 1,
-   "pts": 18,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 8,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 5,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 6,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 1,
-   "opp": "IND"
-  },
-  {
-   "week": 6,
-   "pts": 10,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 8,
-   "opp": "NO"
-  },
-  {
-   "week": 8,
-   "pts": 19,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": -3,
-   "opp": "CIN"
-  }
- ],
- "136799-41305": [
-  {
-   "week": 10,
-   "pts": 0,
-   "opp": "LAR"
-  }
- ],
- "136799-128624": [
-  {
-   "week": 1,
-   "pts": -0.4,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 5.4,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 1.3,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 3.7,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 6.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 6,
-   "pts": 1.7,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 11.7,
-   "opp": "CAR"
-  },
-  {
-   "week": 9,
-   "pts": 8.6,
-   "opp": "CHI"
-  }
- ],
- "136799-128693": [
-  {
-   "week": 1,
-   "pts": 0.3,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 10.8,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": -1,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 5.5,
-   "opp": "LAR"
-  }
- ],
- "136799-86780": [
-  {
-   "week": 9,
-   "pts": 2.5,
-   "opp": "TB"
-  }
- ],
- "136799-107293": [
-  {
-   "week": 1,
-   "pts": 3.4,
+   "pts": 4.8,
    "opp": "NYJ"
   },
   {
    "week": 2,
-   "pts": 8,
+   "pts": 2.3,
    "opp": "PHI"
   },
   {
    "week": 3,
-   "pts": 0.5,
+   "pts": 2.4,
    "opp": "NYG"
   },
   {
    "week": 4,
-   "pts": 1.1,
+   "pts": 3,
    "opp": "BAL"
   },
   {
    "week": 5,
-   "pts": 5.3,
-   "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 1.3,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 3.3,
-   "opp": "JAX"
-  }
- ],
- "136799-128805": [
-  {
-   "week": 6,
-   "pts": 3.7,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 5.5,
-   "opp": "HOU"
-  }
- ],
- "136799-41872": [
-  {
-   "week": 1,
-   "pts": 12.3,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 2.2,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
    "pts": 0,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 1.1,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 7.5,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 2.3,
-   "opp": "SEA"
+   "opp": "HOU"
   },
   {
    "week": 7,
-   "pts": 0.7,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 5.3,
-   "opp": "CAR"
-  }
- ],
- "136799-55335": [
-  {
-   "week": 1,
-   "pts": 8.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "LV"
-  }
- ],
- "136799-183404": [
-  {
-   "week": 3,
-   "pts": 1.9,
-   "opp": "DAL"
-  },
-  {
-   "week": 5,
-   "pts": 3.6,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 12.4,
+   "pts": 3.9,
    "opp": "CLE"
   },
   {
-   "week": 7,
-   "pts": 4.5,
+   "week": 8,
+   "pts": 12.1,
    "opp": "CIN"
   },
   {
-   "week": 8,
-   "pts": 2,
-   "opp": "BUF"
-  },
-  {
    "week": 10,
-   "pts": 5.2,
-   "opp": "LAC"
-  }
- ],
- "136799-168076": [
-  {
-   "week": 1,
-   "pts": 2.3,
-   "opp": "NO"
+   "pts": 4.3,
+   "opp": "JAX"
   },
   {
-   "week": 2,
-   "pts": 2.5,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 4.2,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 2.2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 0.5,
-   "opp": "GB"
-  },
-  {
-   "week": 8,
-   "pts": 7.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
-   "pts": 3.1,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 5,
-   "opp": "NE"
-  }
- ],
- "136799-69777": [
-  {
-   "week": 1,
-   "pts": 3.7,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 5.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 3,
-   "pts": 3.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
+   "week": 11,
    "pts": 2.4,
+   "opp": "DAL"
+  }
+ ],
+ "137125-134837": [
+  {
+   "week": 3,
+   "pts": 6.3,
    "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 7.1,
+   "opp": "LAC"
   },
   {
    "week": 6,
-   "pts": 2,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 1.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 6.5,
-   "opp": "PHI"
-  },
-  {
-   "week": 10,
    "pts": 1.8,
-   "opp": "WSH"
-  }
- ],
- "136799-12532": [
-  {
-   "week": 1,
-   "pts": 10,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": -2,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 2,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 7,
-   "opp": "ARI"
+   "opp": "DEN"
   },
   {
    "week": 7,
-   "pts": 6,
-   "opp": "GB"
+   "pts": 0,
+   "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 6,
-   "opp": "MIN"
+   "pts": 6.1,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 9,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 11,
-   "opp": "NE"
+   "pts": 3.2,
+   "opp": "ARI"
   }
  ],
- "136799-103694": [
+ "137125-134023": [
   {
    "week": 1,
-   "pts": 0.3,
-   "opp": "HOU"
+   "pts": 0.9,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 4.4,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 12.2,
+   "opp": "BUF"
   },
   {
    "week": 4,
-   "pts": 1.2,
-   "opp": "NE"
+   "pts": 8.8,
+   "opp": "SEA"
   },
   {
    "week": 5,
+   "pts": 4.4,
+   "opp": "DEN"
+  },
+  {
+   "week": 6,
+   "pts": 0.4,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
    "pts": 3.8,
    "opp": "LAR"
   },
   {
-   "week": 6,
-   "pts": 1.4,
-   "opp": "LV"
+   "week": 9,
+   "pts": 6.2,
+   "opp": "HOU"
   },
   {
-   "week": 8,
-   "pts": 3,
+   "week": 10,
+   "pts": 0.4,
    "opp": "BAL"
   },
   {
-   "week": 9,
-   "pts": 0.2,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 0.8,
+   "week": 11,
+   "pts": 1.1,
    "opp": "NYJ"
   }
  ],
- "136799-120093": [
+ "137125-94087": [
   {
-   "week": 4,
-   "pts": -0.5,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 1.9,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 2.3,
-   "opp": "SEA"
-  },
-  {
-   "week": 7,
-   "pts": 6.6,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 3.9,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 1,
-   "opp": "CAR"
-  }
- ],
- "136799-102696": [
-  {
-   "week": 3,
-   "pts": 8.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 5.2,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 3.4,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 3,
-   "opp": "TB"
-  },
-  {
-   "week": 8,
-   "pts": 2.9,
+   "week": 1,
+   "pts": 0.6,
    "opp": "GB"
   },
   {
+   "week": 2,
+   "pts": 2.5,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 0.2,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 1.5,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
+   "opp": "NO"
+  },
+  {
+   "week": 8,
+   "pts": 0.4,
+   "opp": "DET"
+  },
+  {
    "week": 9,
-   "pts": 5,
-   "opp": "DEN"
+   "pts": 0.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 1.5,
+   "opp": "SF"
+  }
+ ],
+ "137125-137139": [
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "CHI"
+  },
+  {
+   "week": 4,
+   "pts": 1.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 1.5,
+   "opp": "NO"
+  },
+  {
+   "week": 9,
+   "pts": 1.1,
+   "opp": "BUF"
   },
   {
    "week": 10,
-   "pts": 0.9,
-   "opp": "NO"
+   "pts": 14.1,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 3.6,
+   "opp": "SF"
   }
  ],
- "136799-184873": [
+ "137125-70603": [
+  {
+   "week": 1,
+   "pts": 11.8,
+   "opp": "DAL"
+  },
+  {
+   "week": 2,
+   "pts": 0.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 6,
+   "pts": 3.8,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 13,
+   "opp": "HOU"
+  },
+  {
+   "week": 9,
+   "pts": 4.9,
+   "opp": "PHI"
+  },
+  {
+   "week": 10,
+   "pts": 0.3,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 1.5,
+   "opp": "JAX"
+  }
+ ],
+ "137125-183251": [
+  {
+   "week": 2,
+   "pts": 2.4,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 1.2,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 2,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 2.5,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": -0.1,
+   "opp": "CHI"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-64555": [
+  {
+   "week": 2,
+   "pts": 4.5,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 1.8,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 4.3,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "IND"
+  },
+  {
+   "week": 8,
+   "pts": 1.5,
+   "opp": "CIN"
+  },
+  {
+   "week": 11,
+   "pts": 15.3,
+   "opp": "DAL"
+  }
+ ],
+ "137125-185593": [
+  {
+   "week": 1,
+   "pts": 2.2,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 1.2,
+   "opp": "HOU"
+  }
+ ],
+ "137125-12554": [
+  {
+   "week": 1,
+   "pts": 13,
+   "opp": "CLE"
+  },
+  {
+   "week": 2,
+   "pts": 3,
+   "opp": "DEN"
+  },
+  {
+   "week": 3,
+   "pts": 16,
+   "opp": "NE"
+  },
+  {
+   "week": 4,
+   "pts": 7,
+   "opp": "CIN"
+  },
+  {
+   "week": 5,
+   "pts": 2,
+   "opp": "PHI"
+  },
+  {
+   "week": 6,
+   "pts": 1,
+   "opp": "HOU"
+  },
+  {
+   "week": 8,
+   "pts": 20,
+   "opp": "IND"
+  },
+  {
+   "week": 9,
+   "pts": 11,
+   "opp": "BAL"
+  },
+  {
+   "week": 10,
+   "pts": 3,
+   "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 3,
+   "opp": "NYG"
+  }
+ ],
+ "137125-41305": [
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 2.3,
+   "opp": "KC"
+  }
+ ],
+ "137125-190930": [
+  {
+   "week": 1,
+   "pts": 1.6,
+   "opp": "IND"
+  },
+  {
+   "week": 6,
+   "pts": 6,
+   "opp": "CLE"
+  },
+  {
+   "week": 7,
+   "pts": 4,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
+   "pts": 1.8,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 7.6,
+   "opp": "LAC"
+  }
+ ],
+ "137125-157150": [
+  {
+   "week": 9,
+   "pts": 14.2,
+   "opp": "CLE"
+  },
+  {
+   "week": 10,
+   "pts": 1.6,
+   "opp": "CAR"
+  }
+ ],
+ "137125-185861": [
+  {
+   "week": 1,
+   "pts": 0.3,
+   "opp": "NE"
+  },
+  {
+   "week": 2,
+   "pts": 9.2,
+   "opp": "ARI"
+  },
+  {
+   "week": 3,
+   "pts": 1.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 25.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 12.2,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 5.2,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 21,
+   "opp": "KC"
+  }
+ ],
+ "137125-184873": [
   {
    "week": 1,
    "pts": 9.9,
@@ -6507,429 +6292,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 0.8,
    "opp": "BUF"
-  }
- ],
- "136799-152148": [
-  {
-   "week": 1,
-   "pts": 4.8,
-   "opp": "NYJ"
   },
   {
-   "week": 2,
-   "pts": 2.3,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 2.4,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 3,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "HOU"
-  },
-  {
-   "week": 7,
-   "pts": 3.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 12.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 4.3,
-   "opp": "JAX"
-  }
- ],
- "136799-92859": [
-  {
-   "week": 1,
-   "pts": 4.2,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 1.4,
+   "week": 11,
+   "pts": 4.5,
    "opp": "LAC"
-  },
-  {
-   "week": 3,
-   "pts": 2.1,
-   "opp": "NO"
-  },
-  {
-   "week": 6,
-   "pts": 1.4,
-   "opp": "BUF"
-  },
-  {
-   "week": 7,
-   "pts": 2.4,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 11.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": 1.9,
-   "opp": "SF"
-  },
-  {
-   "week": 10,
-   "pts": 0.4,
-   "opp": "SEA"
   }
  ],
- "136799-156527": [
-  {
-   "week": 2,
-   "pts": 5.2,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 2.4,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 7.9,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 0,
-   "opp": "CLE"
-  }
- ],
- "136799-64585": [
-  {
-   "week": 1,
-   "pts": 1.2,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 7.5,
-   "opp": "DET"
-  },
-  {
-   "week": 3,
-   "pts": 1,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 2.3,
-   "opp": "NE"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "LAR"
-  },
-  {
-   "week": 6,
-   "pts": 0.5,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 1.1,
-   "opp": "BAL"
-  },
-  {
-   "week": 9,
-   "pts": 5.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 10,
-   "pts": 1.2,
-   "opp": "NYJ"
-  }
- ],
- "136799-138649": [
-  {
-   "week": 1,
-   "pts": 2.5,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 1.9,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "TEN"
-  },
-  {
-   "week": 7,
-   "pts": 2,
-   "opp": "CIN"
-  },
-  {
-   "week": 9,
-   "pts": -0.1,
-   "opp": "JAX"
-  }
- ],
- "136799-88548": [
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "MIN"
-  },
-  {
-   "week": 5,
-   "pts": 2.7,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 1.3,
-   "opp": "NE"
-  },
-  {
-   "week": 10,
-   "pts": 11.9,
-   "opp": "IND"
-  }
- ],
- "136799-193004": [
-  {
-   "week": 1,
-   "pts": 6.6,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "GB"
-  }
- ],
- "136799-88575": [
-  {
-   "week": 6,
-   "pts": 0.9,
-   "opp": "CAR"
-  },
-  {
-   "week": 7,
-   "pts": 2.6,
-   "opp": "DAL"
-  },
-  {
-   "week": 9,
-   "pts": 0.2,
-   "opp": "NYG"
-  }
- ],
- "136799-206341": [
-  {
-   "week": 1,
-   "pts": 5.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 3.7,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
-   "pts": 10.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 4,
-   "pts": 3.5,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 5.5,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "CAR"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 0,
-   "opp": "CHI"
-  }
- ],
- "136799-89613": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "SF"
-  },
-  {
-   "week": 8,
-   "pts": 2.2,
-   "opp": "DAL"
-  },
-  {
-   "week": 9,
-   "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 10,
-   "pts": 2.6,
-   "opp": "LAR"
-  }
- ],
- "136799-183828": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "LV"
-  },
-  {
-   "week": 3,
-   "pts": 0.8,
-   "opp": "KC"
-  },
-  {
-   "week": 4,
-   "pts": 0.8,
-   "opp": "MIN"
-  },
-  {
-   "week": 5,
-   "pts": 10.5,
-   "opp": "CIN"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "NYJ"
-  },
-  {
-   "week": 8,
-   "pts": 12.1,
-   "opp": "NE"
-  },
-  {
-   "week": 9,
-   "pts": 1.6,
-   "opp": "DET"
-  },
-  {
-   "week": 10,
-   "pts": 1.1,
-   "opp": "IND"
-  }
- ],
- "136799-114198": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 7.4,
-   "opp": "ATL"
-  }
- ],
- "136799-129560": [
-  {
-   "week": 10,
-   "pts": 4.6,
-   "opp": "JAX"
-  }
- ],
- "136799-152103": [
-  {
-   "week": 1,
-   "pts": -0.1,
-   "opp": "LV"
-  },
-  {
-   "week": 2,
-   "pts": 1.1,
-   "opp": "SF"
-  },
-  {
-   "week": 4,
-   "pts": 0.7,
-   "opp": "MIN"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 7,
-   "pts": 0.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 8,
-   "pts": 0.5,
-   "opp": "NE"
-  },
-  {
-   "week": 10,
-   "pts": 2.5,
-   "opp": "IND"
-  }
- ],
- "136799-71444": [
-  {
-   "week": 2,
-   "pts": 1.6,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": -0.1,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 0,
-   "opp": "CIN"
-  }
- ],
- "136799-91931": [
+ "137125-91931": [
   {
    "week": 1,
    "pts": 2.8,
@@ -6969,90 +6339,457 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 0,
    "opp": "IND"
-  }
- ],
- "136799-138039": [
-  {
-   "week": 1,
-   "pts": 1.8,
-   "opp": "IND"
   },
   {
+   "week": 11,
+   "pts": 2.2,
+   "opp": "BUF"
+  }
+ ],
+ "137125-27477": [
+  {
    "week": 3,
-   "pts": 9.3,
-   "opp": "DAL"
+   "pts": 2.8,
+   "opp": "DET"
   },
   {
    "week": 4,
-   "pts": 4.4,
-   "opp": "TEN"
+   "pts": 0,
+   "opp": "CHI"
+  },
+  {
+   "week": 11,
+   "pts": 15.4,
+   "opp": "LAC"
+  }
+ ],
+ "137125-64496": [
+  {
+   "week": 1,
+   "pts": 1,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 0.8,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 1.9,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "NO"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "CHI"
   },
   {
    "week": 8,
+   "pts": 0.9,
+   "opp": "TB"
+  },
+  {
+   "week": 9,
+   "pts": 1,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 2.7,
+   "opp": "KC"
+  }
+ ],
+ "137125-173066": [
+  {
+   "week": 1,
+   "pts": 0.7,
+   "opp": "DET"
+  },
+  {
+   "week": 2,
+   "pts": 0.2,
+   "opp": "BAL"
+  },
+  {
+   "week": 3,
+   "pts": 0.5,
+   "opp": "LV"
+  },
+  {
+   "week": 4,
+   "pts": 3.3,
+   "opp": "ATL"
+  },
+  {
+   "week": 5,
+   "pts": 2.5,
+   "opp": "MIN"
+  },
+  {
+   "week": 6,
+   "pts": 1.9,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 1.7,
+   "opp": "CHI"
+  }
+ ],
+ "137125-55335": [
+  {
+   "week": 1,
+   "pts": 8.3,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 1.4,
+   "opp": "LV"
+  },
+  {
+   "week": 11,
+   "pts": 3.1,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-183404": [
+  {
+   "week": 3,
+   "pts": 1.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 3.6,
+   "opp": "ATL"
+  },
+  {
+   "week": 6,
+   "pts": 12.4,
+   "opp": "CLE"
+  },
+  {
+   "week": 7,
+   "pts": 4.5,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
+   "pts": 2,
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 5.2,
+   "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 1.3,
+   "opp": "CAR"
+  }
+ ],
+ "137125-69777": [
+  {
+   "week": 1,
+   "pts": 3.7,
+   "opp": "DAL"
+  },
+  {
+   "week": 2,
+   "pts": 5.8,
+   "opp": "LAR"
+  },
+  {
+   "week": 3,
+   "pts": 3.9,
+   "opp": "TEN"
+  },
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "ARI"
+  },
+  {
+   "week": 5,
+   "pts": 2.4,
+   "opp": "WSH"
+  },
+  {
+   "week": 6,
+   "pts": 2,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 1.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 9,
+   "pts": 6.5,
+   "opp": "PHI"
+  },
+  {
+   "week": 10,
+   "pts": 1.8,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "JAX"
+  }
+ ],
+ "137125-12556": [
+  {
+   "week": 1,
+   "pts": -2,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 6,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 11,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 4,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 15,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 3,
+   "opp": "NYG"
+  },
+  {
+   "week": 9,
+   "pts": 12,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 6,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 15,
+   "opp": "IND"
+  }
+ ],
+ "137125-136538": [
+  {
+   "week": 2,
+   "pts": 1.5,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 3.9,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
    "pts": 0,
    "opp": "BUF"
   },
   {
-   "week": 9,
-   "pts": 1,
-   "opp": "JAX"
-  }
- ],
- "136799-93143": [
-  {
-   "week": 1,
-   "pts": 1,
-   "opp": "DEN"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 5.4,
-   "opp": "MIA"
-  },
-  {
-   "week": 4,
-   "pts": 2.7,
+   "week": 5,
+   "pts": 16.6,
    "opp": "LV"
   },
   {
    "week": 6,
-   "pts": 6.8,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 5.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 8.5,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 1.6,
+   "pts": 1.7,
    "opp": "NYJ"
   },
   {
-   "week": 10,
-   "pts": 1.1,
-   "opp": "ATL"
-  }
- ],
- "136799-152593": [
+   "week": 7,
+   "pts": 0,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 10.8,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "GB"
+  },
   {
    "week": 10,
-   "pts": 1.4,
-   "opp": "LAR"
+   "pts": 0,
+   "opp": "DET"
   }
  ],
- "136799-71705": [
+ "137125-93539": [
+  {
+   "week": 7,
+   "pts": 1.9,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 1.6,
+   "opp": "DAL"
+  }
+ ],
+ "137125-89613": [
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 2.2,
+   "opp": "DAL"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 10,
+   "pts": 2.6,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 7.4,
+   "opp": "KC"
+  }
+ ],
+ "137125-152103": [
+  {
+   "week": 1,
+   "pts": -0.1,
+   "opp": "LV"
+  },
+  {
+   "week": 2,
+   "pts": 1.1,
+   "opp": "SF"
+  },
+  {
+   "week": 4,
+   "pts": 0.7,
+   "opp": "MIN"
+  },
+  {
+   "week": 5,
+   "pts": 1.1,
+   "opp": "CIN"
+  },
+  {
+   "week": 7,
+   "pts": 0.8,
+   "opp": "NYJ"
+  },
+  {
+   "week": 8,
+   "pts": 0.5,
+   "opp": "NE"
+  },
+  {
+   "week": 10,
+   "pts": 2.5,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "BUF"
+  }
+ ],
+ "137125-137122": [
+  {
+   "week": 7,
+   "pts": 0.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 10,
+   "pts": 1.2,
+   "opp": "PIT"
+  }
+ ],
+ "137125-152537": [
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "TB"
+  },
+  {
+   "week": 4,
+   "pts": 1.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 3.7,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "IND"
+  },
+  {
+   "week": 10,
+   "pts": 4.8,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 7.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-178158": [
+  {
+   "week": 2,
+   "pts": 1.2,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 0.7,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 6.9,
+   "opp": "WSH"
+  }
+ ],
+ "137125-71705": [
   {
    "week": 1,
    "pts": 11.3,
@@ -7087,53 +6824,344 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 0,
    "opp": "CAR"
+  },
+  {
+   "week": 11,
+   "pts": 2.9,
+   "opp": "CHI"
   }
  ],
- "136799-64555": [
+ "137125-64581": [
+  {
+   "week": 8,
+   "pts": 0,
+   "opp": "PHI"
+  },
+  {
+   "week": 9,
+   "pts": 14.3,
+   "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "CIN"
+  }
+ ],
+ "137125-12544": [
+  {
+   "week": 1,
+   "pts": 9,
+   "opp": "TEN"
+  },
   {
    "week": 2,
-   "pts": 4.5,
-   "opp": "PHI"
+   "pts": 6,
+   "opp": "GB"
+  },
+  {
+   "week": 3,
+   "pts": 1,
+   "opp": "DET"
+  },
+  {
+   "week": 4,
+   "pts": 5,
+   "opp": "CHI"
+  },
+  {
+   "week": 5,
+   "pts": 16,
+   "opp": "CLE"
+  },
+  {
+   "week": 6,
+   "pts": 4,
+   "opp": "NE"
+  },
+  {
+   "week": 7,
+   "pts": 1,
+   "opp": "MIA"
+  },
+  {
+   "week": 8,
+   "pts": 0,
+   "opp": "LV"
+  },
+  {
+   "week": 9,
+   "pts": 2,
+   "opp": "KC"
+  },
+  {
+   "week": 10,
+   "pts": 4,
+   "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 6,
+   "opp": "LAC"
+  }
+ ],
+ "137125-94579": [
+  {
+   "week": 9,
+   "pts": 2.9,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 2,
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 3.9,
+   "opp": "IND"
+  }
+ ],
+ "137125-56711": [
+  {
+   "week": 1,
+   "pts": 3.4,
+   "opp": "TB"
+  },
+  {
+   "week": 3,
+   "pts": 0.5,
+   "opp": "PIT"
+  },
+  {
+   "week": 5,
+   "pts": 1,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 9.4,
+   "opp": "BAL"
+  },
+  {
+   "week": 10,
+   "pts": 9,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 1.4,
+   "opp": "WSH"
+  }
+ ],
+ "137125-88548": [
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "MIN"
+  },
+  {
+   "week": 5,
+   "pts": 2.7,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
+   "pts": 1.3,
+   "opp": "NE"
+  },
+  {
+   "week": 10,
+   "pts": 11.9,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 2.2,
+   "opp": "BUF"
+  }
+ ],
+ "137125-114231": [
+  {
+   "week": 1,
+   "pts": 2.9,
+   "opp": "NE"
+  },
+  {
+   "week": 2,
+   "pts": 2,
+   "opp": "ARI"
+  },
+  {
+   "week": 3,
+   "pts": 8.3,
+   "opp": "WSH"
+  },
+  {
+   "week": 4,
+   "pts": 2.5,
+   "opp": "LAC"
+  },
+  {
+   "week": 5,
+   "pts": 3.1,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 8,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 2.8,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 0.9,
+   "opp": "CHI"
+  }
+ ],
+ "137125-128805": [
+  {
+   "week": 6,
+   "pts": 3.7,
+   "opp": "KC"
+  },
+  {
+   "week": 9,
+   "pts": 5.5,
+   "opp": "HOU"
+  }
+ ],
+ "137125-41806": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 7.6,
+   "opp": "KC"
+  },
+  {
+   "week": 3,
+   "pts": 2.5,
+   "opp": "HOU"
+  },
+  {
+   "week": 4,
+   "pts": 6.7,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 4.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 3.1,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 2.9,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 2.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 9.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "HOU"
+  }
+ ],
+ "137125-156527": [
+  {
+   "week": 2,
+   "pts": 5.2,
+   "opp": "NO"
   },
   {
    "week": 3,
    "pts": 0,
-   "opp": "NYG"
+   "opp": "DAL"
   },
   {
    "week": 4,
-   "pts": 1.8,
-   "opp": "BAL"
+   "pts": 2.4,
+   "opp": "TEN"
   },
   {
    "week": 5,
-   "pts": 4.3,
-   "opp": "HOU"
+   "pts": 7.9,
+   "opp": "ATL"
   },
   {
    "week": 6,
    "pts": 0,
-   "opp": "IND"
+   "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 3.9,
+   "opp": "CAR"
+  }
+ ],
+ "137125-184184": [
+  {
+   "week": 1,
+   "pts": 1.6,
+   "opp": "CLE"
+  },
+  {
+   "week": 5,
+   "pts": 1.4,
+   "opp": "PHI"
+  },
+  {
+   "week": 6,
+   "pts": 13.9,
+   "opp": "HOU"
   },
   {
    "week": 8,
-   "pts": 1.5,
-   "opp": "CIN"
-  }
- ],
- "136799-86125": [
+   "pts": 0.5,
+   "opp": "IND"
+  },
   {
-   "week": 7,
-   "pts": 3.4,
-   "opp": "NO"
+   "week": 9,
+   "pts": -1.6,
+   "opp": "BAL"
   },
   {
    "week": 10,
-   "pts": 2.5,
-   "opp": "CIN"
+   "pts": 2.9,
+   "opp": "TEN"
+  },
+  {
+   "week": 11,
+   "pts": 1.7,
+   "opp": "NYG"
   }
  ],
- "136799-173241": [
+ "137125-173241": [
   {
    "week": 1,
    "pts": 0.3,
@@ -7158,218 +7186,152 @@ window.MFFL_HISTORY = {
    "week": 9,
    "pts": 3.7,
    "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "CHI"
   }
  ],
- "136799-183488": [
+ "137125-131266": [
   {
    "week": 1,
-   "pts": 0,
-   "opp": "NO"
-  },
-  {
-   "week": 2,
-   "pts": 3.6,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 8.1,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 11.5,
-   "opp": "CAR"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 7,
-   "pts": 1.5,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 1.4,
-   "opp": "MIA"
-  },
-  {
-   "week": 10,
-   "pts": 8.9,
-   "opp": "NE"
-  }
- ],
- "136799-120042": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "MIN"
-  }
- ],
- "136799-12530": [
-  {
-   "week": 1,
-   "pts": 3,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "WSH"
-  },
-  {
-   "week": 3,
-   "pts": -1,
-   "opp": "BAL"
-  },
-  {
-   "week": 4,
-   "pts": 1,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 1,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 5,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 4,
-   "opp": "PHI"
+   "pts": 1.9,
+   "opp": "SEA"
   },
   {
    "week": 8,
+   "pts": 0.6,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 0.4,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 8.7,
+   "opp": "DET"
+  }
+ ],
+ "137125-12543": [
+  {
+   "week": 1,
+   "pts": 3,
+   "opp": "DAL"
+  },
+  {
+   "week": 2,
+   "pts": 4,
+   "opp": "LAR"
+  },
+  {
+   "week": 3,
+   "pts": 8,
+   "opp": "TEN"
+  },
+  {
+   "week": 4,
    "pts": 14,
    "opp": "ARI"
   },
   {
-   "week": 9,
-   "pts": 6,
-   "opp": "IND"
+   "week": 5,
+   "pts": 5,
+   "opp": "WSH"
   },
   {
-   "week": 10,
+   "week": 6,
    "pts": 1,
-   "opp": "SF"
-  }
- ],
- "136799-33047": [
-  {
-   "week": 1,
-   "pts": 5.8,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 1.1,
    "opp": "NO"
   },
   {
-   "week": 3,
-   "pts": 6.9,
-   "opp": "DAL"
+   "week": 7,
+   "pts": 1,
+   "opp": "HOU"
+  },
+  {
+   "week": 9,
+   "pts": 13,
+   "opp": "PHI"
   },
   {
    "week": 10,
-   "pts": 0,
-   "opp": "LAC"
+   "pts": 5,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 8,
+   "opp": "JAX"
   }
  ],
- "136799-91417": [
+ "137125-138649": [
   {
    "week": 1,
-   "pts": 1.7,
-   "opp": "NYG"
-  },
-  {
-   "week": 3,
-   "pts": 1.4,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 1.4,
-   "opp": "TB"
-  },
-  {
-   "week": 10,
-   "pts": 1.7,
-   "opp": "SF"
-  }
- ],
- "136799-176467": [
-  {
-   "week": 2,
-   "pts": 7.6,
+   "pts": 2.5,
    "opp": "IND"
   },
   {
-   "week": 3,
-   "pts": 1.6,
-   "opp": "MIA"
+   "week": 2,
+   "pts": 1.9,
+   "opp": "NO"
   },
   {
    "week": 4,
    "pts": 0,
-   "opp": "LV"
-  },
-  {
-   "week": 6,
-   "pts": 3.4,
-   "opp": "LAC"
+   "opp": "TEN"
   },
   {
    "week": 7,
-   "pts": 0,
-   "opp": "SEA"
-  },
-  {
-   "week": 8,
-   "pts": 0.9,
-   "opp": "DEN"
+   "pts": 2,
+   "opp": "CIN"
   },
   {
    "week": 9,
-   "pts": 2.8,
-   "opp": "NYJ"
+   "pts": -0.1,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": -2,
+   "opp": "CAR"
   }
  ],
- "136799-94621": [
+ "137125-73176": [
   {
    "week": 1,
+   "pts": 2.9,
+   "opp": "LAR"
+  },
+  {
+   "week": 3,
    "pts": 0,
    "opp": "ARI"
   },
   {
-   "week": 2,
+   "week": 5,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 7,
+   "pts": 1.9,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
    "pts": 0,
    "opp": "LV"
   },
   {
-   "week": 4,
-   "pts": -0.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 6,
-   "pts": 0.4,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 8,
-   "opp": "HOU"
+   "week": 11,
+   "pts": 1.2,
+   "opp": "MIN"
   }
  ],
- "136799-27229": [
+ "137125-27229": [
   {
    "week": 1,
    "pts": 3.7,
@@ -7396,19 +7358,39 @@ window.MFFL_HISTORY = {
    "opp": "BAL"
   }
  ],
- "136799-158402": [
+ "137125-138039": [
   {
-   "week": 5,
-   "pts": 0,
-   "opp": "LAR"
+   "week": 1,
+   "pts": 1.8,
+   "opp": "IND"
   },
   {
-   "week": 6,
+   "week": 3,
+   "pts": 9.3,
+   "opp": "DAL"
+  },
+  {
+   "week": 4,
+   "pts": 4.4,
+   "opp": "TEN"
+  },
+  {
+   "week": 8,
    "pts": 0,
-   "opp": "LV"
+   "opp": "BUF"
+  },
+  {
+   "week": 9,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 2.2,
+   "opp": "CAR"
   }
  ],
- "136799-170825": [
+ "137125-170825": [
   {
    "week": 1,
    "pts": 3,
@@ -7448,184 +7430,146 @@ window.MFFL_HISTORY = {
    "week": 9,
    "pts": 0,
    "opp": "DET"
-  }
- ],
- "136799-184184": [
-  {
-   "week": 1,
-   "pts": 1.6,
-   "opp": "CLE"
   },
   {
-   "week": 5,
-   "pts": 1.4,
+   "week": 11,
+   "pts": 1.3,
+   "opp": "BUF"
+  }
+ ],
+ "137125-72705": [
+  {
+   "week": 1,
+   "pts": 2.3,
    "opp": "PHI"
   },
   {
-   "week": 6,
-   "pts": 13.9,
-   "opp": "HOU"
+   "week": 3,
+   "pts": 1.4,
+   "opp": "SEA"
   },
   {
+   "week": 5,
+   "pts": 0.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 0.9,
+   "opp": "SF"
+  }
+ ],
+ "137125-175154": [
+  {
    "week": 8,
-   "pts": 0.5,
-   "opp": "IND"
+   "pts": 6.6,
+   "opp": "TEN"
   },
   {
    "week": 9,
-   "pts": -1.6,
-   "opp": "BAL"
-  },
-  {
-   "week": 10,
-   "pts": 2.9,
-   "opp": "TEN"
-  }
- ],
- "136799-91101": [
-  {
-   "week": 1,
-   "pts": 4,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
    "pts": 0.9,
    "opp": "ATL"
   },
   {
-   "week": 3,
-   "pts": 5.6,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 3.2,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 18.6,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 1.3,
-   "opp": "TB"
-  },
-  {
-   "week": 8,
-   "pts": 2.4,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 10.4,
-   "opp": "DEN"
-  },
-  {
    "week": 10,
-   "pts": 6.8,
-   "opp": "NO"
+   "pts": 0.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 5.3,
+   "opp": "WSH"
   }
  ],
- "136799-173066": [
-  {
-   "week": 1,
-   "pts": 0.7,
-   "opp": "DET"
-  },
+ "137125-137265": [
   {
    "week": 2,
-   "pts": 0.2,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 0.5,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": 3.3,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
-   "pts": 2.5,
-   "opp": "MIN"
-  },
-  {
-   "week": 6,
-   "pts": 1.9,
-   "opp": "NYG"
-  }
- ],
- "136799-151777": [
-  {
-   "week": 7,
-   "pts": 0,
+   "pts": 1.1,
    "opp": "DAL"
   },
   {
+   "week": 3,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 10,
+   "pts": 12.2,
+   "opp": "NYG"
+  }
+ ],
+ "137125-133180": [
+  {
+   "week": 5,
+   "pts": 1.5,
+   "opp": "NO"
+  },
+  {
    "week": 8,
-   "pts": 6.8,
-   "opp": "WSH"
+   "pts": 2.9,
+   "opp": "DET"
   },
   {
    "week": 9,
    "pts": 0,
-   "opp": "NYG"
+   "opp": "BUF"
+  },
+  {
+   "week": 10,
+   "pts": 1.2,
+   "opp": "GB"
   }
  ],
- "136799-12531": [
+ "137125-103547": [
   {
-   "week": 1,
-   "pts": 3,
-   "opp": "KC"
-  },
-  {
-   "week": 2,
-   "pts": 8,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
-   "pts": 14,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 2,
+   "week": 6,
+   "pts": 0,
    "opp": "SF"
   },
   {
-   "week": 5,
-   "pts": 12,
-   "opp": "LAC"
+   "week": 9,
+   "pts": 1.1,
+   "opp": "LAR"
+  }
+ ],
+ "137125-40126": [
+  {
+   "week": 2,
+   "pts": 3,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 8.1,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 1.4,
+   "opp": "NO"
   },
   {
    "week": 6,
-   "pts": 12,
-   "opp": "SEA"
+   "pts": 1.1,
+   "opp": "CHI"
   },
   {
    "week": 7,
-   "pts": 4,
-   "opp": "ARI"
+   "pts": 3.1,
+   "opp": "SF"
   },
   {
    "week": 8,
-   "pts": 2,
-   "opp": "KC"
+   "pts": 1.4,
+   "opp": "TB"
   },
   {
-   "week": 9,
-   "pts": 7,
-   "opp": "CAR"
+   "week": 10,
+   "pts": 1.3,
+   "opp": "KC"
   }
  ],
- "136799-137488": [
+ "137125-137488": [
   {
    "week": 7,
    "pts": 1.9,
@@ -7637,29 +7581,34 @@ window.MFFL_HISTORY = {
    "opp": "BUF"
   }
  ],
- "136799-71105": [
+ "137125-94621": [
   {
-   "week": 2,
-   "pts": 0.7,
-   "opp": "NE"
+   "week": 1,
+   "pts": 0,
+   "opp": "ARI"
   },
   {
-   "week": 3,
-   "pts": 8.8,
-   "opp": "CIN"
+   "week": 2,
+   "pts": 0,
+   "opp": "LV"
   },
   {
    "week": 4,
-   "pts": 1.2,
-   "opp": "CLE"
+   "pts": -0.9,
+   "opp": "SEA"
   },
   {
-   "week": 10,
-   "pts": 0.5,
-   "opp": "CIN"
+   "week": 6,
+   "pts": 0.4,
+   "opp": "KC"
+  },
+  {
+   "week": 9,
+   "pts": 8,
+   "opp": "HOU"
   }
  ],
- "136799-160213": [
+ "137125-160213": [
   {
    "week": 5,
    "pts": 2.2,
@@ -7681,34 +7630,150 @@ window.MFFL_HISTORY = {
    "opp": "LV"
   }
  ],
- "136799-172646": [
+ "137125-39428": [
   {
-   "week": 6,
-   "pts": -0.1,
-   "opp": "PHI"
+   "week": 2,
+   "pts": 9.7,
+   "opp": "MIA"
   },
   {
-   "week": 7,
-   "pts": 3.5,
-   "opp": "TB"
+   "week": 3,
+   "pts": 0,
+   "opp": "ARI"
   },
   {
-   "week": 8,
-   "pts": 0.1,
-   "opp": "GB"
-  },
-  {
-   "week": 9,
-   "pts": 0.7,
+   "week": 4,
+   "pts": 3.8,
    "opp": "DEN"
   },
   {
-   "week": 10,
-   "pts": 2,
-   "opp": "NO"
+   "week": 6,
+   "pts": 1.5,
+   "opp": "WSH"
+  },
+  {
+   "week": 7,
+   "pts": 8.6,
+   "opp": "ATL"
+  },
+  {
+   "week": 9,
+   "pts": 0.4,
+   "opp": "LV"
+  },
+  {
+   "week": 11,
+   "pts": 2.3,
+   "opp": "MIN"
   }
  ],
- "136799-85635": [
+ "137125-183828": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 0.8,
+   "opp": "KC"
+  },
+  {
+   "week": 4,
+   "pts": 0.8,
+   "opp": "MIN"
+  },
+  {
+   "week": 5,
+   "pts": 10.5,
+   "opp": "CIN"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "NYJ"
+  },
+  {
+   "week": 8,
+   "pts": 12.1,
+   "opp": "NE"
+  },
+  {
+   "week": 9,
+   "pts": 1.6,
+   "opp": "DET"
+  },
+  {
+   "week": 10,
+   "pts": 1.1,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "BUF"
+  }
+ ],
+ "137125-129560": [
+  {
+   "week": 10,
+   "pts": 4.6,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "DAL"
+  }
+ ],
+ "137125-176734": [
+  {
+   "week": 1,
+   "pts": 6.7,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 3.5,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 1.7,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 8.2,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 1.6,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 13.1,
+   "opp": "CHI"
+  },
+  {
+   "week": 8,
+   "pts": 1,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 6.7,
+   "opp": "GB"
+  },
+  {
+   "week": 10,
+   "pts": 1.1,
+   "opp": "DET"
+  }
+ ],
+ "137125-85635": [
   {
    "week": 2,
    "pts": 3.6,
@@ -7738,114 +7803,304 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 2.6,
    "opp": "BAL"
-  }
- ],
- "136799-173994": [
-  {
-   "week": 3,
-   "pts": 0.6,
-   "opp": "PHI"
   },
   {
-   "week": 5,
-   "pts": 2.7,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 4,
-   "opp": "ATL"
-  },
-  {
-   "week": 8,
-   "pts": 0.9,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 1.8,
-   "opp": "TB"
-  }
- ],
- "136799-69558": [
-  {
-   "week": 10,
-   "pts": 0,
+   "week": 11,
+   "pts": 1.3,
    "opp": "NYJ"
   }
  ],
- "136799-139284": [
+ "137125-155293": [
   {
-   "week": 1,
-   "pts": 0.3,
+   "week": 8,
+   "pts": 4.3,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 2.1,
    "opp": "HOU"
   }
  ],
- "136799-29780": [
+ "137125-147168": [
   {
-   "week": 3,
+   "week": 2,
+   "pts": 1.1,
+   "opp": "CAR"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "SF"
+  },
+  {
+   "week": 9,
+   "pts": 0,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 3.1,
+   "opp": "KC"
+  }
+ ],
+ "137125-57091": [
+  {
+   "week": 5,
+   "pts": 3.6,
+   "opp": "CLE"
+  },
+  {
+   "week": 6,
+   "pts": 2,
+   "opp": "NE"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "LAC"
+  }
+ ],
+ "137125-152363": [
+  {
+   "week": 4,
+   "pts": 0.9,
+   "opp": "MIA"
+  },
+  {
+   "week": 5,
+   "pts": 5.8,
+   "opp": "NO"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "IND"
+  },
+  {
+   "week": 10,
+   "pts": 11.1,
+   "opp": "GB"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "SF"
+  }
+ ],
+ "137125-128810": [
+  {
+   "week": 1,
    "pts": 1.4,
-   "opp": "CHI"
+   "opp": "DAL"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "LAR"
   },
   {
    "week": 4,
-   "pts": 2.3,
-   "opp": "LAR"
+   "pts": 7.6,
+   "opp": "ARI"
+  },
+  {
+   "week": 5,
+   "pts": 4.5,
+   "opp": "WSH"
+  },
+  {
+   "week": 10,
+   "pts": 1.3,
+   "opp": "WSH"
+  },
+  {
+   "week": 11,
+   "pts": 2,
+   "opp": "JAX"
+  }
+ ],
+ "137125-152607": [
+  {
+   "week": 2,
+   "pts": 1.4,
+   "opp": "KC"
+  },
+  {
+   "week": 4,
+   "pts": 1.1,
+   "opp": "WSH"
   },
   {
    "week": 5,
    "pts": 0,
-   "opp": "JAX"
-  }
- ],
- "136799-12554": [
-  {
-   "week": 1,
-   "pts": 13,
-   "opp": "CLE"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "DEN"
-  },
-  {
-   "week": 3,
-   "pts": 16,
-   "opp": "NE"
-  },
-  {
-   "week": 4,
-   "pts": 7,
-   "opp": "CIN"
-  },
-  {
-   "week": 5,
-   "pts": 2,
-   "opp": "PHI"
+   "opp": "PIT"
   },
   {
    "week": 6,
+   "pts": 5.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 1.6,
+   "opp": "MIN"
+  },
+  {
+   "week": 8,
+   "pts": 0.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 9,
+   "pts": 0.5,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "MIA"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "HOU"
+  }
+ ],
+ "137125-83117": [
+  {
+   "week": 1,
+   "pts": 0.9,
+   "opp": "TB"
+  },
+  {
+   "week": 3,
+   "pts": 2.3,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 0.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 8.9,
+   "opp": "MIA"
+  }
+ ],
+ "137125-90307": [
+  {
+   "week": 1,
+   "pts": 1.2,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 2.6,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 0.7,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
    "pts": 1,
    "opp": "HOU"
   },
   {
-   "week": 8,
-   "pts": 20,
+   "week": 6,
+   "pts": 0,
    "opp": "IND"
   },
   {
-   "week": 9,
-   "pts": 11,
-   "opp": "BAL"
+   "week": 7,
+   "pts": 0.9,
+   "opp": "CLE"
+  },
+  {
+   "week": 8,
+   "pts": 5.1,
+   "opp": "CIN"
   },
   {
    "week": 10,
-   "pts": 3,
-   "opp": "TEN"
+   "pts": 7.6,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "DAL"
   }
  ],
- "136799-171332": [
+ "137125-33047": [
+  {
+   "week": 1,
+   "pts": 5.8,
+   "opp": "IND"
+  },
+  {
+   "week": 2,
+   "pts": 1.1,
+   "opp": "NO"
+  },
+  {
+   "week": 3,
+   "pts": 6.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "LAC"
+  }
+ ],
+ "137125-60712": [
+  {
+   "week": 1,
+   "pts": 2.5,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 4.4,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 7.7,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 0.6,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 1.8,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 13.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": 1.3,
+   "opp": "IND"
+  }
+ ],
+ "137125-171332": [
   {
    "week": 5,
    "pts": 3.9,
@@ -7862,29 +8117,7 @@ window.MFFL_HISTORY = {
    "opp": "SEA"
   }
  ],
- "136799-166253": [
-  {
-   "week": 2,
-   "pts": 1.4,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 2.1,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 1.3,
-   "opp": "NYJ"
-  },
-  {
-   "week": 9,
-   "pts": 3.3,
-   "opp": "TB"
-  }
- ],
- "136799-129422": [
+ "137125-129422": [
   {
    "week": 1,
    "pts": 1.4,
@@ -7926,119 +8159,33 @@ window.MFFL_HISTORY = {
    "opp": "TEN"
   }
  ],
- "136799-60957": [
+ "137125-86612": [
   {
-   "week": 1,
-   "pts": 1.3,
-   "opp": "NYG"
-  },
-  {
-   "week": 2,
-   "pts": 0.1,
-   "opp": "WSH"
-  },
-  {
-   "week": 3,
-   "pts": 8.3,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 1.2,
-   "opp": "TB"
-  },
-  {
-   "week": 10,
-   "pts": 2.4,
-   "opp": "SF"
+   "week": 4,
+   "pts": 0,
+   "opp": "DEN"
   }
  ],
- "136799-184917": [
+ "137125-184917": [
   {
    "week": 4,
    "pts": 1.8,
    "opp": "TEN"
   }
  ],
- "136799-200291": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "LAC"
-  },
-  {
-   "week": 8,
-   "pts": 1.2,
-   "opp": "BAL"
-  },
+ "137125-139094": [
   {
    "week": 9,
-   "pts": 1.3,
-   "opp": "MIN"
-  }
- ],
- "136799-104165": [
-  {
-   "week": 3,
    "pts": 0,
-   "opp": "CIN"
+   "opp": "PHI"
   },
   {
-   "week": 5,
-   "pts": 0.6,
-   "opp": "IND"
-  },
-  {
-   "week": 10,
-   "pts": 5,
-   "opp": "CIN"
+   "week": 11,
+   "pts": 0.9,
+   "opp": "JAX"
   }
  ],
- "136799-128810": [
-  {
-   "week": 1,
-   "pts": 1.4,
-   "opp": "DAL"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 7.6,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 4.5,
-   "opp": "WSH"
-  },
-  {
-   "week": 10,
-   "pts": 1.3,
-   "opp": "WSH"
-  }
- ],
- "136799-137059": [
-  {
-   "week": 4,
-   "pts": 7,
-   "opp": "GB"
-  },
-  {
-   "week": 5,
-   "pts": 1.8,
-   "opp": "DAL"
-  },
-  {
-   "week": 7,
-   "pts": 11.2,
-   "opp": "CAR"
-  }
- ],
- "136799-93075": [
+ "137125-93075": [
   {
    "week": 3,
    "pts": 1,
@@ -8053,36 +8200,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 1.2,
    "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 1.6,
+   "opp": "KC"
   }
  ],
- "136799-152526": [
-  {
-   "week": 1,
-   "pts": 1.4,
-   "opp": "DEN"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "MIA"
-  },
-  {
-   "week": 8,
-   "pts": 1.1,
-   "opp": "DEN"
-  },
-  {
-   "week": 9,
-   "pts": 0.8,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 2.5,
-   "opp": "ATL"
-  }
- ],
- "136799-166896": [
+ "137125-166896": [
   {
    "week": 9,
    "pts": 5,
@@ -8094,265 +8219,185 @@ window.MFFL_HISTORY = {
    "opp": "IND"
   }
  ],
- "136799-183290": [
-  {
-   "week": 6,
-   "pts": 1.8,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 0.8,
-   "opp": "SEA"
-  },
-  {
-   "week": 10,
-   "pts": 10.8,
-   "opp": "ATL"
-  }
- ],
- "136799-90307": [
-  {
-   "week": 1,
-   "pts": 1.2,
-   "opp": "NYJ"
-  },
+ "137125-167950": [
   {
    "week": 2,
-   "pts": 0,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 2.6,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 0.7,
+   "pts": 1.3,
    "opp": "BAL"
   },
   {
-   "week": 5,
-   "pts": 1,
-   "opp": "HOU"
-  },
-  {
    "week": 6,
-   "pts": 0,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 0.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 5.1,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 7.6,
-   "opp": "JAX"
-  }
- ],
- "136799-130270": [
-  {
-   "week": 1,
    "pts": 2,
-   "opp": "KC"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "SF"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 4,
-   "opp": "KC"
-  },
-  {
-   "week": 9,
-   "pts": 2.5,
-   "opp": "CAR"
-  }
- ],
- "136799-12527": [
-  {
-   "week": 1,
-   "pts": 6,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 7,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 12,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 1,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 11,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 4,
-   "opp": "NE"
-  },
-  {
-   "week": 8,
-   "pts": 8,
-   "opp": "SEA"
-  },
-  {
-   "week": 9,
-   "pts": 14,
-   "opp": "TB"
-  }
- ],
- "136799-71031": [
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "JAX"
-  },
-  {
-   "week": 5,
-   "pts": 1.3,
-   "opp": "LAC"
-  },
-  {
-   "week": 7,
-   "pts": 1,
-   "opp": "ARI"
-  },
-  {
-   "week": 8,
-   "pts": 1.5,
-   "opp": "KC"
-  }
- ],
- "136799-80353": [
-  {
-   "week": 3,
-   "pts": 0.7,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": 0,
-   "opp": "CIN"
-  }
- ],
- "136799-185863": [
-  {
-   "week": 1,
-   "pts": 0.7,
    "opp": "NYG"
   },
   {
-   "week": 2,
-   "pts": 0.1,
-   "opp": "WSH"
-  },
-  {
-   "week": 4,
-   "pts": 0.7,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 0.5,
-   "opp": "TB"
-  },
-  {
-   "week": 6,
-   "pts": 2.4,
-   "opp": "GB"
-  },
-  {
    "week": 7,
-   "pts": 0.3,
-   "opp": "PHI"
+   "pts": 0.7,
+   "opp": "PIT"
   },
   {
-   "week": 10,
-   "pts": 2,
-   "opp": "SF"
+   "week": 11,
+   "pts": 1.1,
+   "opp": "CHI"
   }
  ],
- "136799-201230": [
+ "137125-111637": [
   {
-   "week": 3,
-   "pts": -2,
-   "opp": "NO"
-  },
-  {
-   "week": 5,
-   "pts": 10,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 0.4,
+   "week": 1,
+   "pts": 0.3,
    "opp": "BUF"
   },
   {
-   "week": 10,
-   "pts": 0,
-   "opp": "SEA"
-  }
- ],
- "136799-89627": [
-  {
-   "week": 3,
-   "pts": 10.3,
-   "opp": "CLE"
+   "week": 4,
+   "pts": 2.5,
+   "opp": "DAL"
   },
   {
-   "week": 4,
-   "pts": 4.2,
-   "opp": "DET"
+   "week": 6,
+   "pts": 0.5,
+   "opp": "JAX"
   },
   {
    "week": 7,
-   "pts": 0,
-   "opp": "TB"
+   "pts": 2.4,
+   "opp": "NYG"
+  }
+ ],
+ "137125-152628": [
+  {
+   "week": 7,
+   "pts": 3.4,
+   "opp": "HOU"
+  }
+ ],
+ "137125-79980": [
+  {
+   "week": 2,
+   "pts": -0.5,
+   "opp": "ARI"
   },
   {
-   "week": 8,
-   "pts": 1.6,
-   "opp": "GB"
+   "week": 3,
+   "pts": 7.8,
+   "opp": "WSH"
+  },
+  {
+   "week": 5,
+   "pts": 0,
+   "opp": "SF"
+  },
+  {
+   "week": 6,
+   "pts": 0,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "KC"
   },
   {
    "week": 9,
    "pts": 0,
-   "opp": "DEN"
+   "opp": "ARI"
   }
  ],
- "136799-208430": [
+ "137125-28827": [
+  {
+   "week": 9,
+   "pts": 0.8,
+   "opp": "LAC"
+  },
+  {
+   "week": 10,
+   "pts": 2,
+   "opp": "CLE"
+  }
+ ],
+ "137125-12528": [
+  {
+   "week": 1,
+   "pts": 18,
+   "opp": "TB"
+  },
+  {
+   "week": 2,
+   "pts": 11,
+   "opp": "HOU"
+  },
+  {
+   "week": 3,
+   "pts": 3,
+   "opp": "PIT"
+  },
+  {
+   "week": 4,
+   "pts": 4,
+   "opp": "JAX"
+  },
+  {
+   "week": 5,
+   "pts": 9,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 10,
+   "opp": "BAL"
+  },
+  {
+   "week": 8,
+   "pts": 4,
+   "opp": "TEN"
+  },
+  {
+   "week": 9,
+   "pts": 3,
+   "opp": "ATL"
+  },
+  {
+   "week": 10,
+   "pts": 4,
+   "opp": "PIT"
+  },
+  {
+   "week": 11,
+   "pts": 3,
+   "opp": "WSH"
+  }
+ ],
+ "137125-85306": [
+  {
+   "week": 2,
+   "pts": 2.3,
+   "opp": "MIA"
+  },
+  {
+   "week": 9,
+   "pts": 2.2,
+   "opp": "LV"
+  }
+ ],
+ "137125-94625": [
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "IND"
+  }
+ ],
+ "137125-177614": [
+  {
+   "week": 1,
+   "pts": 2.1,
+   "opp": "BUF"
+  },
+  {
+   "week": 11,
+   "pts": 10.4,
+   "opp": "IND"
+  }
+ ],
+ "137125-208430": [
   {
    "week": 1,
    "pts": 5.7,
@@ -8392,41 +8437,14 @@ window.MFFL_HISTORY = {
    "week": 9,
    "pts": 0,
    "opp": "CLE"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "CHI"
   }
  ],
- "136799-112192": [
-  {
-   "week": 1,
-   "pts": 1.5,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "HOU"
-  },
-  {
-   "week": 5,
-   "pts": 3,
-   "opp": "TB"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 2.8,
-   "opp": "IND"
-  }
- ],
- "136799-102986": [
+ "137125-102986": [
   {
    "week": 3,
    "pts": 3.5,
@@ -8461,16 +8479,41 @@ window.MFFL_HISTORY = {
    "week": 9,
    "pts": 2.1,
    "opp": "SEA"
-  }
- ],
- "136799-86682": [
+  },
   {
-   "week": 9,
-   "pts": 0,
-   "opp": "NYG"
+   "week": 11,
+   "pts": 0.9,
+   "opp": "KC"
   }
  ],
- "136799-103083": [
+ "137125-147049": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "BAL"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "KC"
+  },
+  {
+   "week": 5,
+   "pts": 0.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 7,
+   "pts": 2.2,
+   "opp": "MIN"
+  },
+  {
+   "week": 10,
+   "pts": 1,
+   "opp": "MIA"
+  }
+ ],
+ "137125-103083": [
   {
    "week": 5,
    "pts": 2.1,
@@ -8487,282 +8530,39 @@ window.MFFL_HISTORY = {
    "opp": "BAL"
   }
  ],
- "136799-57091": [
-  {
-   "week": 5,
-   "pts": 3.6,
-   "opp": "CLE"
-  },
-  {
-   "week": 6,
-   "pts": 2,
-   "opp": "NE"
-  }
- ],
- "136799-201535": [
-  {
-   "week": 4,
-   "pts": 0.8,
-   "opp": "GB"
-  }
- ],
- "136799-91046": [
-  {
-   "week": 1,
-   "pts": 1,
-   "opp": "NO"
-  },
+ "137125-71351": [
   {
    "week": 2,
    "pts": 0,
-   "opp": "BUF"
-  },
-  {
-   "week": 3,
-   "pts": 1.7,
-   "opp": "NYJ"
-  },
-  {
-   "week": 4,
-   "pts": 1.3,
    "opp": "CAR"
   },
   {
-   "week": 5,
-   "pts": 1.6,
-   "opp": "ARI"
+   "week": 4,
+   "pts": 0,
+   "opp": "NO"
   },
   {
-   "week": 10,
-   "pts": 2.1,
-   "opp": "NE"
-  }
- ],
- "136799-167950": [
-  {
-   "week": 2,
-   "pts": 1.3,
+   "week": 5,
+   "pts": 1.8,
    "opp": "BAL"
   },
   {
-   "week": 6,
-   "pts": 2,
-   "opp": "NYG"
-  },
-  {
    "week": 7,
-   "pts": 0.7,
-   "opp": "PIT"
-  }
- ],
- "136799-60451": [
-  {
-   "week": 7,
-   "pts": 0.9,
-   "opp": "GB"
+   "pts": 1.7,
+   "opp": "SF"
   },
   {
    "week": 8,
-   "pts": 1.2,
-   "opp": "MIN"
-  },
-  {
-   "week": 9,
    "pts": 0,
-   "opp": "MIA"
-  }
- ],
- "136799-152628": [
-  {
-   "week": 7,
-   "pts": 3.4,
-   "opp": "HOU"
-  }
- ],
- "136799-93391": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "MIN"
-  },
-  {
-   "week": 5,
-   "pts": 1,
-   "opp": "DAL"
-  }
- ],
- "136799-12555": [
-  {
-   "week": 1,
-   "pts": 6,
-   "opp": "IND"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "NO"
-  },
-  {
-   "week": 3,
-   "pts": 4,
-   "opp": "DAL"
-  },
-  {
-   "week": 4,
-   "pts": 6,
-   "opp": "TEN"
-  },
-  {
-   "week": 5,
-   "pts": 6,
-   "opp": "ATL"
-  },
-  {
-   "week": 6,
-   "pts": 11,
-   "opp": "CLE"
-  },
-  {
-   "week": 7,
-   "pts": -3,
-   "opp": "CIN"
-  },
-  {
-   "week": 8,
-   "pts": 1,
-   "opp": "BUF"
-  },
-  {
-   "week": 9,
-   "pts": 1,
-   "opp": "JAX"
-  },
-  {
-   "week": 10,
-   "pts": 2,
-   "opp": "LAC"
-  }
- ],
- "136799-157975": [
-  {
-   "week": 9,
-   "pts": 9,
-   "opp": "MIN"
-  }
- ],
- "136799-94625": [
-  {
-   "week": 10,
-   "pts": 0,
-   "opp": "IND"
-  }
- ],
- "136799-40371": [
-  {
-   "week": 2,
-   "pts": 1.8,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 0.9,
-   "opp": "CHI"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 0.9,
-   "opp": "CAR"
-  }
- ],
- "136799-91578": [
-  {
-   "week": 9,
-   "pts": 0.5,
-   "opp": "CLE"
-  }
- ],
- "136799-154124": [
-  {
-   "week": 1,
-   "pts": 1.4,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": 1.8,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 5.1,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 1.3,
-   "opp": "DET"
-  },
-  {
-   "week": 6,
-   "pts": 0.1,
-   "opp": "PHI"
-  },
-  {
-   "week": 7,
-   "pts": 4.9,
    "opp": "TB"
   },
   {
-   "week": 8,
-   "pts": 3.2,
-   "opp": "GB"
-  },
-  {
    "week": 9,
-   "pts": 3,
-   "opp": "DEN"
-  },
-  {
-   "week": 10,
-   "pts": 0,
-   "opp": "NO"
+   "pts": 6.6,
+   "opp": "CIN"
   }
  ],
- "136799-173626": [
-  {
-   "week": 2,
-   "pts": 11.3,
-   "opp": "JAX"
-  },
-  {
-   "week": 3,
-   "pts": 7.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 7.4,
-   "opp": "KC"
-  }
- ],
- "136799-93845": [
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 1.6,
-   "opp": "MIA"
-  }
- ],
- "136799-87815": [
+ "137125-87815": [
   {
    "week": 1,
    "pts": 0.9,
@@ -8779,7 +8579,29 @@ window.MFFL_HISTORY = {
    "opp": "DET"
   }
  ],
- "136799-157490": [
+ "137125-86800": [
+  {
+   "week": 2,
+   "pts": 1.9,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 0.7,
+   "opp": "SEA"
+  },
+  {
+   "week": 4,
+   "pts": 0,
+   "opp": "IND"
+  },
+  {
+   "week": 9,
+   "pts": 1.1,
+   "opp": "LAR"
+  }
+ ],
+ "137125-157490": [
   {
    "week": 1,
    "pts": 0,
@@ -8816,26 +8638,7 @@ window.MFFL_HISTORY = {
    "opp": "IND"
   }
  ],
- "136799-139094": [
-  {
-   "week": 9,
-   "pts": 0,
-   "opp": "PHI"
-  }
- ],
- "136799-27477": [
-  {
-   "week": 3,
-   "pts": 2.8,
-   "opp": "DET"
-  },
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "CHI"
-  }
- ],
- "136799-166749": [
+ "137125-166749": [
   {
    "week": 2,
    "pts": 0,
@@ -8865,62 +8668,38 @@ window.MFFL_HISTORY = {
    "week": 9,
    "pts": 0,
    "opp": "BAL"
-  }
- ],
- "136799-93026": [
-  {
-   "week": 5,
-   "pts": 14.5,
-   "opp": "DET"
   },
   {
-   "week": 9,
-   "pts": 1.3,
-   "opp": "SEA"
+   "week": 11,
+   "pts": 0.4,
+   "opp": "NYG"
   }
  ],
- "136799-159649": [
+ "137125-94116": [
   {
-   "week": 2,
-   "pts": 2.3,
-   "opp": "SF"
+   "week": 6,
+   "pts": 3,
+   "opp": "TEN"
   },
   {
-   "week": 10,
-   "pts": 1.5,
-   "opp": "IND"
+   "week": 7,
+   "pts": 0,
+   "opp": "MIN"
   }
  ],
- "136799-91055": [
+ "137125-70661": [
   {
-   "week": 2,
-   "pts": 1.2,
-   "opp": "BAL"
+   "week": 6,
+   "pts": 2.4,
+   "opp": "DEN"
+  },
+  {
+   "week": 7,
+   "pts": 0.8,
+   "opp": "KC"
   }
  ],
- "136799-93107": [
-  {
-   "week": 1,
-   "pts": 2.8,
-   "opp": "CHI"
-  },
-  {
-   "week": 2,
-   "pts": -0.3,
-   "opp": "ATL"
-  },
-  {
-   "week": 3,
-   "pts": 1.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 4,
-   "pts": 1.2,
-   "opp": "DET"
-  }
- ],
- "136799-90123": [
+ "137125-90123": [
   {
    "week": 1,
    "pts": 0,
@@ -8932,21 +8711,14 @@ window.MFFL_HISTORY = {
    "opp": "DEN"
   }
  ],
- "136799-110616": [
+ "137125-110616": [
   {
    "week": 4,
    "pts": 0,
    "opp": "ATL"
   }
  ],
- "136799-152603": [
-  {
-   "week": 7,
-   "pts": 8.3,
-   "opp": "TB"
-  }
- ],
- "136799-138277": [
+ "137125-138277": [
   {
    "week": 3,
    "pts": 0,
@@ -8968,7 +8740,7 @@ window.MFFL_HISTORY = {
    "opp": "DEN"
   }
  ],
- "136799-42046": [
+ "137125-42046": [
   {
    "week": 1,
    "pts": 0.9,
@@ -8980,108 +8752,93 @@ window.MFFL_HISTORY = {
    "opp": "NO"
   }
  ],
- "136799-166977": [
+ "137125-152647": [
   {
-   "week": 9,
-   "pts": 0,
-   "opp": "IND"
+   "week": 2,
+   "pts": 13.6,
+   "opp": "PIT"
+  },
+  {
+   "week": 3,
+   "pts": 3.4,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 4.2,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 4.3,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 2.5,
+   "opp": "NYJ"
+  },
+  {
+   "week": 7,
+   "pts": 3.3,
+   "opp": "CHI"
   }
  ],
- "136799-174148": [
+ "137125-174148": [
   {
    "week": 9,
    "pts": 1.3,
    "opp": "DET"
   }
  ],
- "136799-141390": [
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "CLE"
-  }
- ],
- "136799-68714": [
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "CAR"
-  }
- ],
- "136799-183410": [
+ "137125-103539": [
   {
    "week": 1,
-   "pts": 0.3,
-   "opp": "MIA"
+   "pts": 6.3,
+   "opp": "NYJ"
   },
   {
    "week": 2,
-   "pts": 0,
-   "opp": "LAC"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "NO"
-  },
-  {
-   "week": 5,
-   "pts": 1.1,
-   "opp": "NE"
-  },
-  {
-   "week": 7,
-   "pts": 0,
-   "opp": "LAR"
-  }
- ],
- "136799-79987": [
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "CLE"
-  },
-  {
-   "week": 6,
-   "pts": 3.2,
+   "pts": 1.4,
    "opp": "PHI"
   },
   {
-   "week": 7,
-   "pts": -2,
-   "opp": "TB"
-  }
- ],
- "136799-155775": [
-  {
    "week": 3,
-   "pts": 0.9,
-   "opp": "MIA"
-  }
- ],
- "136799-89220": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "DEN"
-  },
-  {
-   "week": 2,
-   "pts": 10.6,
-   "opp": "IND"
-  },
-  {
-   "week": 3,
-   "pts": 3.2,
-   "opp": "MIA"
+   "pts": 15.2,
+   "opp": "NYG"
   },
   {
    "week": 4,
-   "pts": 28.6,
-   "opp": "LV"
+   "pts": 9.5,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 8.3,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 3.7,
+   "opp": "IND"
+  },
+  {
+   "week": 7,
+   "pts": 2.7,
+   "opp": "CLE"
+  },
+  {
+   "week": 8,
+   "pts": 12.7,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": 2.5,
+   "opp": "JAX"
   }
  ],
- "136799-86153": [
+ "137125-86153": [
   {
    "week": 1,
    "pts": -0.6,
@@ -9113,14 +8870,14 @@ window.MFFL_HISTORY = {
    "opp": "HOU"
   }
  ],
- "136799-83083": [
+ "137125-152717": [
   {
-   "week": 7,
-   "pts": 1.2,
-   "opp": "SEA"
+   "week": 10,
+   "pts": 0,
+   "opp": "KC"
   }
  ],
- "136799-54426": [
+ "137125-54426": [
   {
    "week": 7,
    "pts": -0.1,
@@ -9132,197 +8889,152 @@ window.MFFL_HISTORY = {
    "opp": "BUF"
   }
  ],
- "136799-62628": [
+ "137125-94370": [
   {
-   "week": 9,
-   "pts": 1,
-   "opp": "MIA"
-  }
- ],
- "136799-105648": [
+   "week": 1,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 2,
+   "pts": 11.1,
+   "opp": "PIT"
+  },
   {
    "week": 3,
-   "pts": 2.2,
-   "opp": "BAL"
+   "pts": 6.4,
+   "opp": "JAX"
+  },
+  {
+   "week": 4,
+   "pts": 20.8,
+   "opp": "BUF"
+  },
+  {
+   "week": 5,
+   "pts": 2.1,
+   "opp": "LV"
+  },
+  {
+   "week": 6,
+   "pts": 10.7,
+   "opp": "NYJ"
+  }
+ ],
+ "137125-171217": [
+  {
+   "week": 2,
+   "pts": 0.7,
+   "opp": "CHI"
+  },
+  {
+   "week": 3,
+   "pts": 0.1,
+   "opp": "TB"
   },
   {
    "week": 4,
    "pts": 1.2,
-   "opp": "HOU"
+   "opp": "MIA"
   },
   {
-   "week": 6,
-   "pts": 1.4,
-   "opp": "GB"
-  },
-  {
-   "week": 7,
-   "pts": 3.8,
-   "opp": "PHI"
-  },
-  {
-   "week": 8,
-   "pts": 4.3,
-   "opp": "ARI"
-  },
-  {
-   "week": 9,
-   "pts": 7.7,
-   "opp": "IND"
+   "week": 5,
+   "pts": 1.1,
+   "opp": "NO"
   }
  ],
- "136799-129219": [
+ "137125-88290": [
   {
-   "week": 10,
-   "pts": 1.5,
+   "week": 5,
+   "pts": 3.7,
+   "opp": "NO"
+  },
+  {
+   "week": 11,
+   "pts": 1.3,
    "opp": "SF"
   }
  ],
- "136799-158916": [
-  {
-   "week": 6,
-   "pts": 2.6,
-   "opp": "PIT"
-  }
- ],
- "136799-170208": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "CAR"
-  }
- ],
- "136799-166118": [
-  {
-   "week": 9,
-   "pts": 1.9,
-   "opp": "NYJ"
-  }
- ],
- "136799-63717": [
+ "137125-63717": [
   {
    "week": 3,
    "pts": 5,
    "opp": "BUF"
   }
  ],
- "136799-151799": [
-  {
-   "week": 3,
-   "pts": 1.3,
-   "opp": "NYJ"
-  }
- ],
- "136799-174329": [
+ "137125-174329": [
   {
    "week": 2,
    "pts": 1.8,
    "opp": "LV"
   }
  ],
- "136799-12545": [
-  {
-   "week": 1,
-   "pts": 3,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 3,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 5,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 5,
-   "opp": "JAX"
-  },
-  {
-   "week": 6,
-   "pts": 2,
-   "opp": "CAR"
-  },
-  {
-   "week": 7,
-   "pts": -4,
-   "opp": "DAL"
-  },
-  {
-   "week": 8,
-   "pts": 4,
-   "opp": "WSH"
-  },
-  {
-   "week": 9,
-   "pts": 9,
-   "opp": "NYG"
-  }
- ],
- "136799-52495": [
+ "137125-52495": [
   {
    "week": 4,
    "pts": 0,
    "opp": "ARI"
   }
  ],
- "136799-94481": [
+ "137125-56648": [
   {
-   "week": 5,
+   "week": 6,
    "pts": 1.3,
-   "opp": "NE"
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 3.3,
+   "opp": "PHI"
   }
  ],
- "136799-133478": [
+ "137125-93538": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 2.1,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 0,
+   "opp": "SEA"
+  },
+  {
+   "week": 4,
+   "pts": 8,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 0.7,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 1.1,
+   "opp": "SF"
+  }
+ ],
+ "137125-133478": [
   {
    "week": 1,
    "pts": 0,
    "opp": "TEN"
   }
  ],
- "136799-87418": [
-  {
-   "week": 1,
-   "pts": 9.9,
-   "opp": "HOU"
-  },
-  {
-   "week": 2,
-   "pts": 10.8,
-   "opp": "DET"
-  },
-  {
-   "week": 4,
-   "pts": 0.8,
-   "opp": "NE"
-  },
-  {
-   "week": 6,
-   "pts": 4.2,
-   "opp": "LV"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "BAL"
-  }
- ],
- "136799-110978": [
+ "137125-110978": [
   {
    "week": 9,
    "pts": 0,
    "opp": "SEA"
   }
  ],
- "136799-167306": [
+ "137125-167306": [
   {
    "week": 8,
    "pts": 1.3,
@@ -9339,7 +9051,7 @@ window.MFFL_HISTORY = {
    "opp": "TEN"
   }
  ],
- "136799-80289": [
+ "137125-80289": [
   {
    "week": 1,
    "pts": 11.5,
@@ -9376,7 +9088,19 @@ window.MFFL_HISTORY = {
    "opp": "DAL"
   }
  ],
- "136799-80299": [
+ "137125-63907": [
+  {
+   "week": 1,
+   "pts": 3.2,
+   "opp": "GB"
+  },
+  {
+   "week": 2,
+   "pts": 2.9,
+   "opp": "CHI"
+  }
+ ],
+ "137125-80299": [
   {
    "week": 1,
    "pts": 0,
@@ -9388,7 +9112,7 @@ window.MFFL_HISTORY = {
    "opp": "ARI"
   }
  ],
- "136799-87469": [
+ "137125-87469": [
   {
    "week": 3,
    "pts": 2.5,
@@ -9415,21 +9139,104 @@ window.MFFL_HISTORY = {
    "opp": "MIA"
   }
  ],
- "136799-185827": [
+ "137125-91578": [
   {
-   "week": 10,
-   "pts": 0.9,
-   "opp": "NE"
+   "week": 9,
+   "pts": 0.5,
+   "opp": "CLE"
   }
  ],
- "136799-71143": [
+ "137125-90562": [
+  {
+   "week": 1,
+   "pts": 3.1,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 7.7,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 11,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 25.2,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 1.6,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 2,
+   "opp": "CHI"
+  }
+ ],
+ "137125-152007": [
+  {
+   "week": 1,
+   "pts": 6.3,
+   "opp": "BUF"
+  },
+  {
+   "week": 2,
+   "pts": 4.9,
+   "opp": "CIN"
+  },
+  {
+   "week": 3,
+   "pts": 3.5,
+   "opp": "IND"
+  },
+  {
+   "week": 4,
+   "pts": 10.4,
+   "opp": "DAL"
+  },
+  {
+   "week": 5,
+   "pts": 12.7,
+   "opp": "TEN"
+  },
+  {
+   "week": 6,
+   "pts": 21.7,
+   "opp": "JAX"
+  },
+  {
+   "week": 7,
+   "pts": 0.7,
+   "opp": "NYG"
+  }
+ ],
+ "137125-157154": [
+  {
+   "week": 9,
+   "pts": 1.7,
+   "opp": "LAR"
+  }
+ ],
+ "137125-71143": [
   {
    "week": 5,
    "pts": 0,
    "opp": "HOU"
   }
  ],
- "136799-89612": [
+ "137125-184821": [
+  {
+   "week": 10,
+   "pts": 0.4,
+   "opp": "NYG"
+  }
+ ],
+ "137125-89612": [
   {
    "week": 1,
    "pts": 8.1,
@@ -9476,14 +9283,7 @@ window.MFFL_HISTORY = {
    "opp": "SEA"
   }
  ],
- "136799-226875": [
-  {
-   "week": 4,
-   "pts": 0,
-   "opp": "DET"
-  }
- ],
- "136799-138820": [
+ "137125-138820": [
   {
    "week": 1,
    "pts": 8.6,
@@ -9500,72 +9300,40 @@ window.MFFL_HISTORY = {
    "opp": "KC"
   }
  ],
- "136799-71241": [
-  {
-   "week": 8,
-   "pts": 1.4,
-   "opp": "CLE"
-  }
- ],
- "136799-18009": [
+ "137125-18009": [
   {
    "week": 9,
    "pts": 0,
    "opp": "PHI"
+  },
+  {
+   "week": 11,
+   "pts": 1.9,
+   "opp": "JAX"
   }
  ],
- "136799-69213": [
-  {
-   "week": 1,
-   "pts": 7.3,
-   "opp": "ATL"
-  },
+ "137125-138854": [
   {
    "week": 3,
-   "pts": 2.6,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 2.5,
-   "opp": "CLE"
+   "pts": -2,
+   "opp": "PIT"
   }
  ],
- "136799-154245": [
+ "137125-154245": [
   {
    "week": 7,
    "pts": 0,
    "opp": "NYJ"
   }
  ],
- "136799-94887": [
-  {
-   "week": 2,
-   "pts": 3.9,
-   "opp": "JAX"
-  },
+ "137125-152219": [
   {
    "week": 3,
-   "pts": 1.9,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 6.9,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 0.6,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 0.6,
-   "opp": "SEA"
+   "pts": 0,
+   "opp": "IND"
   }
  ],
- "136799-88752": [
+ "137125-88752": [
   {
    "week": 6,
    "pts": 5.6,
@@ -9577,68 +9345,26 @@ window.MFFL_HISTORY = {
    "opp": "PHI"
   }
  ],
- "136799-65231": [
+ "137125-152258": [
   {
    "week": 2,
-   "pts": 0.7,
-   "opp": "JAX"
+   "pts": 2.2,
+   "opp": "ARI"
   },
   {
    "week": 5,
-   "pts": 0.3,
-   "opp": "LAC"
-  },
-  {
-   "week": 8,
-   "pts": 1.5,
-   "opp": "KC"
-  }
- ],
- "136799-92882": [
-  {
-   "week": 1,
-   "pts": 0.1,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
-   "pts": 0.1,
-   "opp": "LAC"
-  },
-  {
-   "week": 3,
    "pts": 0,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 1,
-   "opp": "KC"
-  },
-  {
-   "week": 7,
-   "pts": 1.8,
-   "opp": "LAR"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "NYJ"
-  },
-  {
-   "week": 10,
-   "pts": 1.6,
-   "opp": "SEA"
+   "opp": "SF"
   }
  ],
- "136799-128765": [
+ "137125-29411": [
   {
-   "week": 10,
-   "pts": 0.6,
-   "opp": "ATL"
+   "week": 6,
+   "pts": 1.2,
+   "opp": "TEN"
   }
  ],
- "136799-188171": [
+ "137125-188171": [
   {
    "week": 1,
    "pts": 12,
@@ -9670,583 +9396,632 @@ window.MFFL_HISTORY = {
    "opp": "DAL"
   }
  ],
- "136799-170769": [
+ "137125-70426": [
+  {
+   "week": 2,
+   "pts": 0.9,
+   "opp": "PIT"
+  },
+  {
+   "week": 10,
+   "pts": 1.1,
+   "opp": "DET"
+  }
+ ],
+ "137125-107293": [
+  {
+   "week": 1,
+   "pts": 3.4,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 8,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 0.5,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 1.1,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 5.3,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 1.3,
+   "opp": "IND"
+  },
+  {
+   "week": 10,
+   "pts": 3.3,
+   "opp": "JAX"
+  }
+ ],
+ "137125-87844": [
+  {
+   "week": 1,
+   "pts": 3,
+   "opp": "NE"
+  },
+  {
+   "week": 3,
+   "pts": 2.5,
+   "opp": "WSH"
+  }
+ ],
+ "137125-158511": [
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "IND"
+  },
   {
    "week": 10,
    "pts": 0,
-   "opp": "SF"
+   "opp": "GB"
   }
  ],
- "136799-138028": [
+ "137125-138028": [
   {
    "week": 5,
    "pts": 0.3,
    "opp": "HOU"
   }
  ],
- "136799-138037": [
+ "137125-112455": [
   {
-   "week": 1,
-   "pts": 4.1,
-   "opp": "ATL"
-  },
-  {
-   "week": 2,
-   "pts": 5.3,
-   "opp": "NE"
-  },
-  {
-   "week": 3,
-   "pts": 13.5,
-   "opp": "CIN"
-  },
-  {
-   "week": 4,
-   "pts": 14.9,
-   "opp": "CLE"
-  },
-  {
-   "week": 5,
-   "pts": 0,
-   "opp": "IND"
-  }
- ],
- "136799-72515": [
-  {
-   "week": 2,
-   "pts": 1.6,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": 10.2,
-   "opp": "KC"
-  },
-  {
-   "week": 5,
-   "pts": 1.4,
-   "opp": "NE"
-  },
-  {
-   "week": 7,
-   "pts": 1.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 10,
-   "pts": 1.8,
-   "opp": "SEA"
-  }
- ],
- "136799-169834": [
-  {
-   "week": 2,
-   "pts": 3.2,
-   "opp": "LAC"
-  },
-  {
-   "week": 4,
-   "pts": -0.6,
-   "opp": "KC"
-  }
- ],
- "136799-157579": [
-  {
-   "week": 9,
-   "pts": 0,
-   "opp": "NYG"
-  }
- ],
- "136799-110484": [
-  {
-   "week": 1,
-   "pts": 6.1,
-   "opp": "KC"
-  },
-  {
-   "week": 3,
-   "pts": 7.7,
-   "opp": "LAR"
-  },
-  {
-   "week": 4,
-   "pts": 14.3,
-   "opp": "SF"
-  },
-  {
-   "week": 5,
-   "pts": 0.7,
-   "opp": "LAC"
-  },
-  {
-   "week": 6,
-   "pts": 13.1,
-   "opp": "SEA"
-  },
-  {
-   "week": 7,
-   "pts": 13,
-   "opp": "ARI"
-  }
- ],
- "136799-91047": [
-  {
-   "week": 1,
-   "pts": 10.5,
-   "opp": "CAR"
-  },
-  {
-   "week": 2,
-   "pts": 0,
-   "opp": "MIN"
-  },
-  {
-   "week": 3,
-   "pts": 0,
-   "opp": "PHI"
-  },
-  {
-   "week": 4,
-   "pts": 2.3,
-   "opp": "NYJ"
-  },
-  {
-   "week": 5,
-   "pts": 1.3,
-   "opp": "GB"
-  },
-  {
-   "week": 6,
-   "pts": 1.3,
-   "opp": "ATL"
-  },
-  {
-   "week": 7,
-   "pts": 4.3,
-   "opp": "NE"
-  }
- ],
- "136799-152520": [
-  {
-   "week": 1,
-   "pts": 1.7,
-   "opp": "WSH"
-  },
-  {
-   "week": 2,
-   "pts": 3.9,
-   "opp": "TEN"
-  },
-  {
-   "week": 3,
-   "pts": 1.6,
-   "opp": "CHI"
-  },
-  {
-   "week": 4,
-   "pts": 2.3,
-   "opp": "LAR"
-  },
-  {
-   "week": 5,
-   "pts": 7.8,
+   "week": 11,
+   "pts": 1.1,
    "opp": "JAX"
   }
  ],
- "136799-85986": [
+ "137125-93026": [
   {
-   "week": 8,
-   "pts": 0,
-   "opp": "ARI"
+   "week": 5,
+   "pts": 14.5,
+   "opp": "DET"
+  },
+  {
+   "week": 9,
+   "pts": 1.3,
+   "opp": "SEA"
   }
  ],
- "136799-12544": [
+ "137125-64389": [
+  {
+   "week": 5,
+   "pts": 0,
+   "opp": "PIT"
+  },
+  {
+   "week": 10,
+   "pts": 0,
+   "opp": "MIA"
+  }
+ ],
+ "137125-94094": [
+  {
+   "week": 4,
+   "pts": 1.8,
+   "opp": "DAL"
+  },
+  {
+   "week": 6,
+   "pts": 0.4,
+   "opp": "JAX"
+  }
+ ],
+ "137125-159649": [
+  {
+   "week": 2,
+   "pts": 2.3,
+   "opp": "SF"
+  },
+  {
+   "week": 10,
+   "pts": 1.5,
+   "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 1.2,
+   "opp": "BUF"
+  }
+ ],
+ "137125-91055": [
+  {
+   "week": 2,
+   "pts": 1.2,
+   "opp": "BAL"
+  }
+ ],
+ "137125-56250": [
   {
    "week": 1,
-   "pts": 9,
-   "opp": "TEN"
+   "pts": 2.4,
+   "opp": "PHI"
   },
   {
    "week": 2,
    "pts": 6,
-   "opp": "GB"
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 16.7,
+   "opp": "SEA"
+  },
+  {
+   "week": 5,
+   "pts": 10.2,
+   "opp": "NYG"
+  },
+  {
+   "week": 6,
+   "pts": 3.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-103378": [
+  {
+   "week": 2,
+   "pts": 1.5,
+   "opp": "HOU"
+  },
+  {
+   "week": 5,
+   "pts": 4,
+   "opp": "MIA"
+  },
+  {
+   "week": 7,
+   "pts": 4.1,
+   "opp": "BAL"
+  }
+ ],
+ "137125-24533": [
+  {
+   "week": 3,
+   "pts": 2.1,
+   "opp": "HOU"
+  },
+  {
+   "week": 5,
+   "pts": 2.4,
+   "opp": "PIT"
+  },
+  {
+   "week": 6,
+   "pts": 6.6,
+   "opp": "TEN"
+  },
+  {
+   "week": 7,
+   "pts": 0,
+   "opp": "MIN"
+  }
+ ],
+ "137125-73687": [
+  {
+   "week": 11,
+   "pts": 3.1,
+   "opp": "HOU"
+  }
+ ],
+ "137125-128986": [
+  {
+   "week": 1,
+   "pts": 0.9,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": 0,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 2.6,
+   "opp": "SEA"
+  }
+ ],
+ "137125-104424": [
+  {
+   "week": 4,
+   "pts": 0.4,
+   "opp": "IND"
+  }
+ ],
+ "137125-96254": [
+  {
+   "week": 7,
+   "pts": 7.2,
+   "opp": "SF"
+  }
+ ],
+ "137125-12549": [
+  {
+   "week": 1,
+   "pts": 8,
+   "opp": "LAR"
+  },
+  {
+   "week": 2,
+   "pts": 8,
+   "opp": "MIA"
   },
   {
    "week": 3,
    "pts": 1,
-   "opp": "DET"
+   "opp": "ARI"
   },
   {
    "week": 4,
-   "pts": 5,
-   "opp": "CHI"
+   "pts": 3,
+   "opp": "DEN"
   },
   {
    "week": 5,
-   "pts": 16,
-   "opp": "CLE"
+   "pts": 18,
+   "opp": "SEA"
   },
   {
    "week": 6,
-   "pts": 4,
-   "opp": "NE"
+   "pts": 5,
+   "opp": "WSH"
   },
   {
    "week": 7,
-   "pts": 1,
-   "opp": "MIA"
-  },
-  {
-   "week": 8,
-   "pts": 0,
-   "opp": "LV"
+   "pts": -1,
+   "opp": "ATL"
   },
   {
    "week": 9,
-   "pts": 2,
-   "opp": "KC"
+   "pts": 17,
+   "opp": "LV"
   },
   {
    "week": 10,
-   "pts": 4,
-   "opp": "BUF"
-  }
- ],
- "136799-12543": [
-  {
-   "week": 1,
-   "pts": 3,
+   "pts": 1,
    "opp": "DAL"
   },
   {
+   "week": 11,
+   "pts": 15,
+   "opp": "MIN"
+  }
+ ],
+ "137125-12550": [
+  {
+   "week": 1,
+   "pts": 13,
+   "opp": "NE"
+  },
+  {
    "week": 2,
-   "pts": 4,
-   "opp": "LAR"
+   "pts": 8,
+   "opp": "ARI"
   },
   {
    "week": 3,
    "pts": 8,
-   "opp": "TEN"
+   "opp": "WSH"
   },
   {
    "week": 4,
-   "pts": 14,
-   "opp": "ARI"
-  },
-  {
-   "week": 5,
-   "pts": 5,
-   "opp": "WSH"
-  },
-  {
-   "week": 6,
-   "pts": 1,
-   "opp": "NO"
-  },
-  {
-   "week": 7,
-   "pts": 1,
-   "opp": "HOU"
-  },
-  {
-   "week": 9,
-   "pts": 13,
-   "opp": "PHI"
-  },
-  {
-   "week": 10,
-   "pts": 5,
-   "opp": "WSH"
-  }
- ],
- "136799-12537": [
-  {
-   "week": 1,
-   "pts": 13,
-   "opp": "MIA"
-  },
-  {
-   "week": 2,
    "pts": 12,
    "opp": "LAC"
   },
   {
-   "week": 3,
-   "pts": 12,
-   "opp": "NO"
-  },
-  {
-   "week": 4,
-   "pts": 1,
-   "opp": "KC"
-  },
-  {
    "week": 5,
-   "pts": -1,
-   "opp": "NE"
+   "pts": 9,
+   "opp": "SF"
   },
   {
    "week": 6,
-   "pts": 1,
-   "opp": "BUF"
+   "pts": 3,
+   "opp": "DEN"
   },
   {
    "week": 7,
-   "pts": 1,
-   "opp": "LAR"
+   "pts": 10,
+   "opp": "KC"
   },
   {
    "week": 8,
-   "pts": 9,
-   "opp": "NYJ"
+   "pts": 2,
+   "opp": "CHI"
   },
   {
    "week": 9,
-   "pts": 2,
-   "opp": "SF"
+   "pts": 10,
+   "opp": "ARI"
+  },
+  {
+   "week": 10,
+   "pts": 10,
+   "opp": "LV"
+  }
+ ],
+ "137125-12548": [
+  {
+   "week": 1,
+   "pts": 1,
+   "opp": "ARI"
+  },
+  {
+   "week": 2,
+   "pts": 4,
+   "opp": "LV"
+  },
+  {
+   "week": 3,
+   "pts": 14,
+   "opp": "BUF"
+  },
+  {
+   "week": 4,
+   "pts": 4,
+   "opp": "SEA"
+  },
+  {
+   "week": 5,
+   "pts": 3,
+   "opp": "DEN"
+  },
+  {
+   "week": 6,
+   "pts": 4,
+   "opp": "KC"
+  },
+  {
+   "week": 8,
+   "pts": 3,
+   "opp": "LAR"
+  },
+  {
+   "week": 9,
+   "pts": -1,
+   "opp": "HOU"
   },
   {
    "week": 10,
    "pts": 7,
-   "opp": "SEA"
+   "opp": "BAL"
+  },
+  {
+   "week": 11,
+   "pts": 1,
+   "opp": "NYJ"
   }
  ],
- "136799-12553": [
+ "137125-12555": [
   {
    "week": 1,
-   "pts": 0,
-   "opp": "CHI"
+   "pts": 6,
+   "opp": "IND"
   },
   {
    "week": 2,
-   "pts": 26,
-   "opp": "ATL"
+   "pts": 3,
+   "opp": "NO"
   },
   {
    "week": 3,
    "pts": 4,
-   "opp": "CLE"
+   "opp": "DAL"
   },
   {
    "week": 4,
+   "pts": 6,
+   "opp": "TEN"
+  },
+  {
+   "week": 5,
+   "pts": 6,
+   "opp": "ATL"
+  },
+  {
+   "week": 6,
+   "pts": 11,
+   "opp": "CLE"
+  },
+  {
+   "week": 7,
+   "pts": -3,
+   "opp": "CIN"
+  },
+  {
+   "week": 8,
    "pts": 1,
-   "opp": "DET"
+   "opp": "BUF"
+  },
+  {
+   "week": 9,
+   "pts": 1,
+   "opp": "JAX"
+  },
+  {
+   "week": 10,
+   "pts": 2,
+   "opp": "LAC"
+  },
+  {
+   "week": 11,
+   "pts": 9,
+   "opp": "CAR"
+  }
+ ],
+ "137125-12552": [
+  {
+   "week": 1,
+   "pts": 3,
+   "opp": "PHI"
+  },
+  {
+   "week": 2,
+   "pts": -2,
+   "opp": "DAL"
+  },
+  {
+   "week": 3,
+   "pts": 12,
+   "opp": "SEA"
+  },
+  {
+   "week": 4,
+   "pts": 5,
+   "opp": "IND"
+  },
+  {
+   "week": 5,
+   "pts": 6,
+   "opp": "NYG"
   },
   {
    "week": 6,
    "pts": 4,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 13,
    "opp": "PHI"
   },
   {
+   "week": 9,
+   "pts": 6,
+   "opp": "LAR"
+  },
+  {
+   "week": 10,
+   "pts": 5,
+   "opp": "NYG"
+  },
+  {
+   "week": 11,
+   "pts": 4,
+   "opp": "CIN"
+  }
+ ],
+ "137125-12525": [
+  {
+   "week": 1,
+   "pts": 5,
+   "opp": "PIT"
+  },
+  {
+   "week": 2,
+   "pts": 1,
+   "opp": "CAR"
+  },
+  {
+   "week": 3,
+   "pts": 6,
+   "opp": "GB"
+  },
+  {
+   "week": 4,
+   "pts": 4,
+   "opp": "NO"
+  },
+  {
+   "week": 5,
+   "pts": 11,
+   "opp": "BAL"
+  },
+  {
+   "week": 6,
+   "pts": 5,
+   "opp": "CHI"
+  },
+  {
    "week": 7,
-   "pts": -4,
+   "pts": 11,
+   "opp": "SF"
+  },
+  {
+   "week": 8,
+   "pts": 4,
    "opp": "TB"
   },
   {
-   "week": 8,
-   "pts": 6,
-   "opp": "GB"
-  },
-  {
    "week": 9,
-   "pts": 3,
-   "opp": "DEN"
+   "pts": 1,
+   "opp": "CIN"
   },
   {
    "week": 10,
-   "pts": 8,
-   "opp": "NO"
+   "pts": -3,
+   "opp": "KC"
   }
  ],
- "136799-12548": [
+ "137125-12535": [
   {
    "week": 1,
-   "pts": 1,
-   "opp": "ARI"
+   "pts": 0,
+   "opp": "BAL"
   },
   {
    "week": 2,
-   "pts": 4,
-   "opp": "LV"
+   "pts": 1,
+   "opp": "KC"
   },
   {
    "week": 3,
-   "pts": 14,
-   "opp": "BUF"
+   "pts": 4,
+   "opp": "HOU"
   },
   {
    "week": 4,
-   "pts": 4,
-   "opp": "SEA"
+   "pts": 8,
+   "opp": "WSH"
   },
   {
    "week": 5,
-   "pts": 3,
-   "opp": "DEN"
+   "pts": 0,
+   "opp": "PIT"
   },
   {
    "week": 6,
    "pts": 4,
-   "opp": "KC"
+   "opp": "TEN"
   },
   {
-   "week": 8,
-   "pts": 3,
-   "opp": "LAR"
-  },
-  {
-   "week": 9,
-   "pts": -1,
-   "opp": "HOU"
-  },
-  {
-   "week": 10,
-   "pts": 7,
-   "opp": "BAL"
-  }
- ],
- "136799-12551": [
-  {
-   "week": 1,
-   "pts": 9,
-   "opp": "CIN"
-  },
-  {
-   "week": 2,
-   "pts": 2,
-   "opp": "CLE"
-  },
-  {
-   "week": 3,
+   "week": 7,
    "pts": 6,
    "opp": "MIN"
   },
   {
-   "week": 4,
-   "pts": 5,
-   "opp": "GB"
+   "week": 8,
+   "pts": 1,
+   "opp": "JAX"
   },
   {
-   "week": 5,
+   "week": 9,
    "pts": 7,
    "opp": "DAL"
   },
   {
-   "week": 6,
-   "pts": 7,
-   "opp": "PIT"
-  },
-  {
-   "week": 7,
-   "pts": 25,
-   "opp": "CAR"
-  },
-  {
-   "week": 8,
-   "pts": 18,
-   "opp": "ATL"
-  },
-  {
-   "week": 9,
-   "pts": 11,
-   "opp": "CHI"
-  }
- ],
- "136799-12542": [
-  {
-   "week": 1,
-   "pts": 2,
-   "opp": "DET"
-  },
-  {
-   "week": 2,
-   "pts": 8,
-   "opp": "BAL"
-  },
-  {
-   "week": 3,
-   "pts": 1,
-   "opp": "LV"
-  },
-  {
-   "week": 4,
-   "pts": -3,
-   "opp": "ATL"
-  },
-  {
-   "week": 5,
+   "week": 10,
    "pts": 12,
-   "opp": "MIN"
+   "opp": "MIA"
   },
   {
-   "week": 6,
-   "pts": 13,
-   "opp": "NYG"
-  },
-  {
-   "week": 7,
-   "pts": 4,
-   "opp": "PIT"
-  },
-  {
-   "week": 9,
-   "pts": 5,
-   "opp": "CLE"
-  },
-  {
-   "week": 10,
-   "pts": 4,
-   "opp": "CAR"
-  }
- ],
- "136799-12534": [
-  {
-   "week": 1,
-   "pts": 0,
-   "opp": "NYJ"
-  },
-  {
-   "week": 2,
-   "pts": 7,
-   "opp": "PHI"
-  },
-  {
-   "week": 3,
-   "pts": 7,
-   "opp": "NYG"
-  },
-  {
-   "week": 4,
-   "pts": 2,
-   "opp": "BAL"
-  },
-  {
-   "week": 5,
-   "pts": 2,
+   "week": 11,
+   "pts": 3,
    "opp": "HOU"
-  },
-  {
-   "week": 6,
-   "pts": 13,
-   "opp": "IND"
-  },
-  {
-   "week": 7,
-   "pts": 5,
-   "opp": "CLE"
-  },
-  {
-   "week": 8,
-   "pts": 7,
-   "opp": "CIN"
-  },
-  {
-   "week": 10,
-   "pts": -1,
-   "opp": "JAX"
   }
  ],
- "136799-12539": [
+ "137125-12539": [
   {
    "week": 1,
    "pts": 4,
@@ -10291,9 +10066,14 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 12,
    "opp": "IND"
+  },
+  {
+   "week": 11,
+   "pts": 7,
+   "opp": "BUF"
   }
  ],
- "136799-12546": [
+ "137125-12546": [
   {
    "week": 1,
    "pts": 10,
@@ -10343,6 +10123,115 @@ window.MFFL_HISTORY = {
    "week": 10,
    "pts": 3,
    "opp": "LAR"
+  },
+  {
+   "week": 11,
+   "pts": 0,
+   "opp": "KC"
+  }
+ ],
+ "137125-12534": [
+  {
+   "week": 1,
+   "pts": 0,
+   "opp": "NYJ"
+  },
+  {
+   "week": 2,
+   "pts": 7,
+   "opp": "PHI"
+  },
+  {
+   "week": 3,
+   "pts": 7,
+   "opp": "NYG"
+  },
+  {
+   "week": 4,
+   "pts": 2,
+   "opp": "BAL"
+  },
+  {
+   "week": 5,
+   "pts": 2,
+   "opp": "HOU"
+  },
+  {
+   "week": 6,
+   "pts": 13,
+   "opp": "IND"
+  },
+  {
+   "week": 7,
+   "pts": 5,
+   "opp": "CLE"
+  },
+  {
+   "week": 8,
+   "pts": 7,
+   "opp": "CIN"
+  },
+  {
+   "week": 10,
+   "pts": -1,
+   "opp": "JAX"
+  },
+  {
+   "week": 11,
+   "pts": -4,
+   "opp": "DAL"
+  }
+ ],
+ "137125-12542": [
+  {
+   "week": 1,
+   "pts": 2,
+   "opp": "DET"
+  },
+  {
+   "week": 2,
+   "pts": 8,
+   "opp": "BAL"
+  },
+  {
+   "week": 3,
+   "pts": 1,
+   "opp": "LV"
+  },
+  {
+   "week": 4,
+   "pts": -3,
+   "opp": "ATL"
+  },
+  {
+   "week": 5,
+   "pts": 12,
+   "opp": "MIN"
+  },
+  {
+   "week": 6,
+   "pts": 13,
+   "opp": "NYG"
+  },
+  {
+   "week": 7,
+   "pts": 4,
+   "opp": "PIT"
+  },
+  {
+   "week": 9,
+   "pts": 5,
+   "opp": "CLE"
+  },
+  {
+   "week": 10,
+   "pts": 4,
+   "opp": "CAR"
+  },
+  {
+   "week": 11,
+   "pts": 7,
+   "opp": "CHI"
   }
  ]
 };
